@@ -356,7 +356,9 @@ else if ((telefone.value.length != 13 || telefone.value.length != 12) && z ==3 )
 else if ((celular.value.length != 13 || telefone.value.length != 12) && z ==3 ) {telefone.className += " invalid"}
 else{
 
-  return valid;}
+  return valid;
+  
+}
 
 }
 
