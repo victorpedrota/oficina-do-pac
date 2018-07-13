@@ -12,40 +12,25 @@
 
 </head>
 <body>
-<div class="small-top">
-</div>
-<div class="top-head left">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-        <h1>OFICINAPRO</h1>
-      </div>
-      <div class="col-md-6 col-lg-3 ml-auto admin-bar hidden-sm-down">
-        <nav class="nav nav-inline"> <a href="#" class="nav-link"><span class="ping"></span><i class="fa fa-envelope-o"></i></a> <a href="#" class="nav-link"><i class="fa fa-bell-o"></i></a> <a href="#" class="nav-link">Bruce Wayne <img class="img-fluid rounded-circle" src="http://grafreez.com/wp-content/temp_demos/river/img/admin-bg.jpg"></a> </nav>
-      </div>
-    </div>
-  </div>
-</div>
-</header>
-<section class="top-nav">
-  <nav class="navbar navbar-expand-lg py-0">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="exCollapsingNavbar2">
-        <ul class="nav navbar-nav ">
-          <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li>
-          <li class="nav-item"> <a class="nav-link" href="form_veiculo.php" >Cadastrar Veiculo</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="visualizar_veiculos.php">Meus veiculos</a> </li>
-          
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">OficinaPro</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item mr-auto">
+                    <a href="login.php" class="nav-link">Home</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="logout.php" class="nav-link">Sair</a>
+                </li>
+            </ul>
+        </div>
 
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-</section>
+    </nav>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -118,11 +103,5 @@
  });
 </script>
 
-<div class="container"  >
-	<select class="form-control" name="car-years" id="car-years"></select>  
-	<select class="form-control" name="car-makes" id="car-makes"></select> 
-	<select class="form-control" name="car-models" id="car-models"></select>
-	<select class="form-control" name="car-model-trims" id="car-model-trims"></select> 
-</div> 
 </body>
 </html>
