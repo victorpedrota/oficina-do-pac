@@ -1,7 +1,7 @@
 <html>
 <head>
-	<title>Oficina Pro</title>
-	<meta charset="utf-8">
+    <title>Oficina Pro</title>
+    <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
     <link href="css/about.css" rel="stylesheet">
 
@@ -9,13 +9,15 @@
 </head>
 <body>
     
-	<?php
+    <?php
 
-	require('navbar2.html');
-	?>
-    <section id="team" class="pb-5">
+    require('navbar2.html');
+    ?>
+    
+<section style="color:black;" class="about-sec parallax-section" id="about">
+<section >
     <div class="container">
-        <h5 class="section-title h1">Nossa equipe</h5>
+        
         <div class="row">
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-3">
@@ -25,8 +27,8 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/Pac.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Pac cabaço</h4>
-                                    <p class="card-text">viadinho programador meio esquisito...perai, meio?! é esquistasso.</p>
+                                    <h4 class="card-title">Victor Hugop P.</h4>
+                                    <p class="card-text">Programador Back-end </p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -34,7 +36,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Pacdrota</h4>
+                                    <h4 class="card-title">Victor Hugo Pedrota Godoi</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
@@ -73,8 +75,8 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/Victor.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Vitão</h4>
-                                    <p class="card-text">viadinho sedusente sempre molhadinho</p>
+                                    <h4 class="card-title">Victor Mateus C.</h4>
+                                    <p class="card-text">Programador Front-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -82,7 +84,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Victor Caralho</h4>
+                                    <h4 class="card-title">Victor Mateus Gomes de Carvalho</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
@@ -121,8 +123,8 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/Pedro.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Pedrawn</h4>
-                                    <p class="card-text">Namoradinho da miiih s2 s2..</p>
+                                    <h4 class="card-title">Pedro Henrique M.</h4>
+                                    <p class="card-text">Assistente</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -130,7 +132,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Pedro costela</h4>
+                                    <h4 class="card-title">Pedro Henrique de Paula</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
@@ -169,8 +171,8 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/Lucas.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Lucas lindão</h4>
-                                    <p class="card-text">Programador pika. o design mais top de td sanja city</p>
+                                    <h4 class="card-title">Lucas Henrique</h4>
+                                    <p class="card-text">Programador Front-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -178,7 +180,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Lucas</h4>
+                                    <h4 class="card-title">Lucas Henrique Monteiro</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
@@ -212,6 +214,8 @@
         </div>
     </div>
 </section>
+</section>
+
 
 </body>
 </html>

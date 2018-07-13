@@ -1,7 +1,5 @@
 <?php
-    //Verificando se ja existe uma sessão aberta
 
-    //Mantendo a sessão/cri sessao
 session_start();
 
 if(!isset($_SESSION["system_control"]))
