@@ -12,8 +12,9 @@ if(!isset($_SESSION["system_control"]))
   <?php       
 }
 else{
-        //Sessao já criada  
-        //Recuperando as variaveis da sessão
+        
+  
+
   $system_control = $_SESSION["system_control"];   
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
@@ -25,32 +26,37 @@ else{
     $resultado = mysqli_query($conn,$sql_pesquisa); 
     $vetor = mysqli_fetch_array($resultado);
     
+    function soNumero($str) {
+    return preg_replace("/[^0-9]/", "", $str);
+}
 
     
   
     
-    $telefone = $_POST['telefone'];
-    $cep = $_POST['cep'];
+    
+    $telefone = soNumero($_POST['telefone']);
+  
+    $cep =  soNumero($_POST['cep']);
     $estado = $_POST['uf'];
     $cidade = $_POST['cidade'];
     $bairro = $_POST['bairro'];
     $rua = $_POST['rua'];
     $numero = $_POST['numero'];
     $complemento = $_POST['complemento'];
-    $celular = $_POST['celular'];
+    $celular =  soNumero($_POST['celular']);
     
 
 
     
-        $sql_pesquisa ="UPDATE `cliente` SET `rua`='$rua',`estado`='$estado',`cep`=$cep,`cidade`='$cidade',`telefone`=$telefone,`bairro`='$bairro',`complemento`= '$complemento',`numero`='$numero',`celular`=$celular WHERE `cod_login` = $cod_login" ;
+        $sql_pesquisa ="UPDATE `cliente` SET `rua`='$rua',`estado`='$estado',`cep`=$cep,`cidade`='$cidade',`telefone`='$telefone',`bairro`='$bairro',`complemento`= '$complemento',`numero`='$numero',`celular`='$celular' WHERE `cod_login` = $cod_login" ;
 
         $resultado = mysqli_query($conn,$sql_pesquisa);
         
-       
+       echo $telefone;
 
     ?>
     <script>
-      alert("Informações cadastradas");
+      alert("Informações atualizadas!");
       document.location.href="form_alterar_usuario.php";
     </script>
   

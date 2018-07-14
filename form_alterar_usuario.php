@@ -19,7 +19,8 @@ else{
       $novo = substr_replace($novo, ') ', 3, 0);
     }else{
       $novo = substr_replace($numero, '(', 0, 0);
-      $novo = substr_replace($novo, ')', 3, 0);
+      $novo = substr_replace($novo, ') ', 3, 0);
+      $novo = substr_replace($novo, '-', 9, 0);
     }
     return $novo;
   }
