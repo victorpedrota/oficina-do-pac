@@ -38,39 +38,14 @@ else{
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <style type="text/css">
-      
-      .main-section{
-        border:1px solid #138496;
-        background-color: #fff;
-      }
-      .profile-header{
-        background-color: #343a40;
-        height:150px;
-      }
-      .user-detail{
-        margin:-50px 0px 30px 0px;
-      }
-      .user-detail img{
-        height:100px;
-        width:100px;
-      }
-      .user-detail h5{
-        margin:15px 0px 5px 0px;
-      }
-      .user-social-detail{
-        padding:15px 0px;
-        background-color: #343a40;
-      }
-      .user-social-detail a i{
-        color:#fff;
-        font-size:23px;
-        padding: 0px 5px;
-      }
-    </style>
+  
 
   </head>
   <body>
+     <?php
+    require("navbar_logout.html");
+    ?>
+
     <script type="text/javascript" >
 
       function limpa_formulário_cep() {
@@ -142,10 +117,7 @@ else{
         };
 
       </script>
-    <?php
-    require("navbar_logout.html");
-    ?>
-
+  
     <div class="">
       <div class="row">
         
@@ -155,7 +127,7 @@ else{
           </div>
           <div class="row user-detail">
             <div class="col">
-              <img src="https://community.smartsheet.com/sites/default/files/default_user.jpg" class="rounded-circle img-thumbnail">
+            
               <h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
 
               <hr>

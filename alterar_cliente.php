@@ -1,4 +1,4 @@
-<?php
+ <?php
     //Mantendo a sessão/cria uma sessao
 session_start();
 
