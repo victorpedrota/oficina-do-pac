@@ -134,16 +134,11 @@ else{
               <div class="container">
 <form method="POST" action="alterar_cliente.php">
 
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Login</label>
-                    <input  value="<?php echo $vetor_login['login']; ?>" name="login" type="text" class="form-control" required>
-                  </div>
-                  <div class="form-group col-md-6">
+                
                     <label for="inputPassword4">Telefone</label>
                     <input  value="<?php echo $vetor['telefone']; ?>" name="telefone" type="text" class="form-control" required>
-                  </div>
-                </div>
+                  
+                
                 <div class="form-row">
                 <div class="col-md-6">
                   <label for="inputAddress">Celular:</label>
@@ -180,8 +175,7 @@ else{
                     <label for="inputPassword4">Comeplemento:</label>
                     <input  value="<?php echo $vetor['numero']; ?>" type="text" name="complemento" class="form-control">
                   </div>
-                  <input type="hidden" name="senha" value="<?php echo $vetor_login['senha']; ?>">
-                  <input type="hidden" name="c_senha" value="<?php echo $vetor_login['senha']; ?>">
+              
                 </div>
                 <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
                 <br>
@@ -200,12 +194,10 @@ else{
       }
       else
       {
-            //Acesso Inválido
-
-            //Finalizando a sessão
+        
         session_destroy();
 
-            //Mensagem para o Usuário
+           
         ?>
         <script>
           alert("Acesso Inválido!");

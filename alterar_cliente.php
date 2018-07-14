@@ -26,9 +26,9 @@ else{
     $vetor = mysqli_fetch_array($resultado);
     
 
-    $login = $_POST['login'];
-    $c_senha = $_POST['c_senha'];
-    $senha = $_POST['senha'];
+    
+  
+    
     $telefone = $_POST['telefone'];
     $cep = $_POST['cep'];
     $estado = $_POST['uf'];
@@ -39,30 +39,21 @@ else{
     $complemento = $_POST['complemento'];
     $celular = $_POST['celular'];
     
-    if ($senha != $c_senha) {
-      ?>
-      <script>
-        alert("Erro");
-    document.location.href="form_alterar_usuario.php";
-       
-      </script>
-      <?php 
-    }
 
-    else
-      { 
+
+    
         $sql_pesquisa ="UPDATE `cliente` SET `rua`='$rua',`estado`='$estado',`cep`=$cep,`cidade`='$cidade',`telefone`=$telefone,`bairro`='$bairro',`complemento`= '$complemento',`numero`='$numero',`celular`=$celular WHERE `cod_login` = $cod_login" ;
 
         $resultado = mysqli_query($conn,$sql_pesquisa);
-        $sql="UPDATE `login` SET `login`='$login',`senha`='$senha' WHERE `cod_login` = $cod_login";
-        $atualizar = mysqli_query($conn,$sql);
+        
+       
 
-  }
     ?>
-  <script>
-    alert("Informações Cadastradas");
-    document.location.href="form_alterar_usuario.php";
-  </script>
+    <script>
+      alert("Informações cadastradas");
+      document.location.href="form_alterar_usuario.php";
+    </script>
+  
   <?php  
 
   }
