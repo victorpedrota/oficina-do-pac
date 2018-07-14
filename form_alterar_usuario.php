@@ -12,8 +12,26 @@ if(!isset($_SESSION["system_control"]))
   <?php       
 }
 else{
-        //Sessao já criada  
-        //Recuperando as variaveis da sessão
+  function formataTelefone($numero){
+    if(strlen($numero) == 10){
+      $novo = substr_replace($numero, '(', 0, 0);
+      $novo = substr_replace($novo, '9', 3, 0);
+      $novo = substr_replace($novo, ') ', 3, 0);
+    }else{
+      $novo = substr_replace($numero, '(', 0, 0);
+      $novo = substr_replace($novo, ')', 3, 0);
+    }
+    return $novo;
+  }
+  function cep($numero){
+
+    $novo = substr_replace($numero, 0, '.', '.');
+    $novo = substr_replace($novo, ')', 3, 0);
+    
+    return $novo;
+  }
+
+
   $system_control = $_SESSION["system_control"];   
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
@@ -38,15 +56,15 @@ else{
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  
 
-  </head>
-  <body>
+
+    </head>
+    <body>
      <?php
-    require("navbar_logout.html");
-    ?>
+     require("navbar_logout.html");
+     ?>
 
-    <script type="text/javascript" >
+     <script type="text/javascript" >
 
       function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
@@ -117,93 +135,93 @@ else{
         };
 
       </script>
-  
-    <div class="">
-      <div class="row">
-        
-        <div class="col main-section text-center">
-          <div class="row">
-            <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-          </div>
-          <div class="row user-detail">
-            <div class="col">
-            
-              <h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
+      
+      <div class="" style="margin-top: 10px;">
+        <div class="row">
 
-              <hr>
-              <div class="container">
-<form method="POST" action="alterar_cliente.php">
-
-                
-                    <label for="inputPassword4">Telefone</label>
-                    <input  value="<?php echo $vetor['telefone']; ?>" name="telefone" type="text" class="form-control" required>
-                  
-                
-                <div class="form-row">
-                <div class="col-md-6">
-                  <label for="inputAddress">Celular:</label>
-                  <input  value="<?php echo $vetor['celular']; ?>" name="celular" type="text" class="form-control" required>
-                </div>
-                <div class="col-md-6">
-                  <label for="inputAddress2">CEP:</label>
-                  <input  value="<?php echo $vetor['cep']; ?>" id="cep" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
-                </div></div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputCity">Estado:</label>
-                    <input  value="<?php echo $vetor['estado']; ?>" name="uf" id="uf" type="text" class="form-control" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputState">Cidade:</label>
-                    <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label for="inputZip">Bairro</label>
-                    <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Rua:</label>
-                    <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputPassword4">Numero:</label>
-                    <input  value="<?php echo $vetor['numero']; ?>" name="numero" type="text" class="form-control">
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label for="inputPassword4">Comeplemento:</label>
-                    <input  value="<?php echo $vetor['numero']; ?>" type="text" name="complemento" class="form-control">
-                  </div>
-              
-                </div>
-                <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
-                <br>
-              </div>
-                <div class="row user-social-detail" style="height: 100px">
-
-                </div>
-              </div>
+          <div class="col main-section text-center">
+            <div class="row">
+              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
             </div>
-          </div>
-          </form>
-        </body>
+            <div class="row user-detail">
+              <div class="col">
 
-        </html>
-        <?php
-      }
-      else
-      {
-        
-        session_destroy();
+                <h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
 
-           
-        ?>
-        <script>
-          alert("Acesso Inválido!");
-          document.location.href="login.php";
-        </script>
-        <?php           
+                <hr>
+                <div class="container">
+                  <form method="POST" action="alterar_cliente.php">
+
+
+                    <label for="inputPassword4">Telefone</label>
+                    <input  value="<?php echo formataTelefone($vetor['telefone']); ?>" name="telefone" type="text" class="form-control" required>
+
+
+                    <div class="form-row">
+                      <div class="col-md-6">
+                        <label for="inputAddress">Celular:</label>
+                        <input  value="<?php echo formataTelefone($vetor['celular']); ?>" name="celular" type="text" class="form-control" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputAddress2">CEP:</label>
+                        <input  value="<?php echo cep($vetor['cep']); ?>" id="cep" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+                      </div></div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputCity">Estado:</label>
+                          <input  value="<?php echo $vetor['estado']; ?>" name="uf" id="uf" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputState">Cidade:</label>
+                          <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="inputZip">Bairro</label>
+                          <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Rua:</label>
+                          <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputPassword4">Numero:</label>
+                          <input  value="<?php echo $vetor['numero']; ?>" name="numero" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="inputPassword4">Comeplemento:</label>
+                          <input  value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
+                        </div>
+
+                      </div>
+                      <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
+                      <br>
+                    </div>
+                    <div class="row user-social-detail" style="height: 100px">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </body>
+
+          </html>
+          <?php
+        }
+        else
+        {
+
+          session_destroy();
+
+
+          ?>
+          <script>
+            alert("Acesso Inválido!");
+            document.location.href="login.php";
+          </script>
+          <?php           
+        }
       }
-    }
-    ?>
+      ?>
