@@ -18,21 +18,15 @@ crossorigin="anonymous">
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
-          <div class="img-rounded profile-img"></div>
-          User Name <span class="caret"></span>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link<div class="img-rounded profile-img"></div>
         </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="#">Settings</a>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li>
-            <a href="#">Log out</a>
-          </li>
-        </ul>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
     </ul>
   </div>
