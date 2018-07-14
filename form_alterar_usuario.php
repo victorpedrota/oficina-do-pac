@@ -25,8 +25,8 @@ else{
   }
   function cep($numero){
 
-    $novo = substr_replace($numero, 0, '.', '.');
-    $novo = substr_replace($novo, ')', 3, 0);
+    $novo = substr_replace($numero, '.', 2 , 0 );
+    $novo = substr_replace($novo, '-', 6, 0);
     
     return $novo;
   }
