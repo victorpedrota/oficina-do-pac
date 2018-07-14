@@ -19,7 +19,7 @@
     <div class="container">
         
         <div class="row">
-            <!-- Team member -->
+            
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                     <div class="mainflip">
@@ -36,7 +36,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Victor Hugo Pedrota Godoi</h4>
+                                    <h4 class="card-title">Victor Hugo gato Pedrota Godoi</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
