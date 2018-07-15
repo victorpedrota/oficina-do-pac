@@ -18,6 +18,7 @@ else{
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
   $cod_cliente = $_SESSION["cod_cliente"];
+
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
 
@@ -37,7 +38,7 @@ else{
     $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
     $veiculo_resultado = mysqli_query($conn,$sql_veiculo); 
     $numero_veiculos = mysqli_num_rows($veiculo_resultado);
-    
+    $_SESSION["nome"] = $vetor["nome"];
     ?>
 
     <!DOCTYPE html>
@@ -54,7 +55,8 @@ else{
       <?php
       require("navbar_logout.html");
       ?>
-      
+      <a href="form_alterar_usuario.php">Alterar informações de conta</a><br>
+      <a href="form_veiculo.php">Cadastrar veículo</a>
   </body>
   </html>
   <?php
