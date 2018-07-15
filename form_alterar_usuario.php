@@ -141,6 +141,9 @@ else{
         </div>
         
         
+          <br>
+          <br>
+          
           <center><h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5></center>
           <hr>
             <form method="POST" action="alterar_cliente.php">
