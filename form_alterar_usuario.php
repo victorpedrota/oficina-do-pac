@@ -145,7 +145,35 @@ else{
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputCity">Estado:</label>
-                  <input  value="<?php echo $vetor['estado']; ?>" name="uf" id="uf" type="text" class="form-control" required>
+                  <select name="uf" id="uf" type="text" class="form-control" required>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputState">Cidade:</label>
@@ -163,7 +191,7 @@ else{
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputPassword4">Numero:</label>
-                  <input  value="<?php echo $vetor['numero']; ?>" name="numero" type="text" class="form-control">
+                  <input  value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
                 </div>
                 <div class="form-group col-md-2">
                   <label for="inputPassword4">Comeplemento:</label>
@@ -181,7 +209,7 @@ else{
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script type="text/javascript">
           $(document).ready(function(){
-            $('#telefone').mask('(00) 0000-0000');
+
             $('#celular').mask('(00) 0000-00009');
             $('#celular').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
@@ -190,7 +218,18 @@ else{
                 $('#celular').mask('(00) 0000-00009');
               }
             });
+            $('#telefone').mask('(00) 0000-00009');
+            $('#telefone').blur(function(event) {
+                if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+                 $('#telefone').mask('(00) 00000-0009');
+               } else {
+                $('#telefone').mask('(00) 0000-00009');
+              }
+            });
             $('#cep').mask('00.000-000');
+          });
+          $('#numero').keyup(function() {
+            $(this).val(this.value.replace(/\D/g, ''));
           });
         </script>
       </body>
