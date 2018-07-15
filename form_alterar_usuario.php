@@ -165,7 +165,7 @@ else{
             </div>
             <div class="col-md-6">
               <label for="inputAddress2">CEP:</label>
-              <input  value="<?php echo $vetor['cep']; ?>" id="cep"  onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+              <input  value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
             </div></div>
             <div class="form-row">
               <div class="form-group col-md-6">
