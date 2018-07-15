@@ -144,16 +144,9 @@ else{
         }</script>
       
       <div class="" style="margin-top: 10px;">
-        <div class="row">
+        
 
-          <div class="col main-section text-center">
-            <div class="row">
-              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-            </div>
-            <div class="row user-detail">
-              <div class="col">
-
-                <h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
+                <center><h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5></center>
 
                 <hr>
                 <div class="container">
@@ -203,14 +196,11 @@ else{
 
                       </div>
                       <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
-                      <br>
+                      
                     </div>
-                    <div class="row user-social-detail" style="height: 100px">
-
-                    </div>
+                  
                   </div>
-                </div>
-              </div>
+                
             </form>
           </body>
 
