@@ -38,6 +38,7 @@ else{
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" type="text/css" href="css/sidenav.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
@@ -118,15 +119,31 @@ else{
         };
 
       </script>
-      
-      <div class="" style="margin-top: 10px;">
-
-
-        <center><h5><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5></center>
-
-        <hr>
+               
         <div class="container">
-          <form method="POST" action="alterar_cliente.php">
+           <div id="wrapper">
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                      Configurações de Conta
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Alterar Informações</a>
+                </li>
+                <li>
+                    <a href="#">Alterar Senha</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+          <center><h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5></center>
+          <hr>
+            <form method="POST" action="alterar_cliente.php">
 
 
             <label for="inputPassword4">Telefone</label>
@@ -201,11 +218,15 @@ else{
               </div>
               <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
 
-            </div>
-
-          </div>
+          
 
         </form>
+        </div>
+        </div>
+
+
+    </div>
+          
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script type="text/javascript">
           $(document).ready(function(){
