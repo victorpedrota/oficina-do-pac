@@ -13,15 +13,11 @@ if(!isset($_SESSION["system_control"]))
 }
 else{
   function formataTelefone($numero){
-    if(strlen($numero) == 10){
-      $novo = substr_replace($numero, '(', 0, 0);
-      $novo = substr_replace($novo, '9', 3, 0);
-      $novo = substr_replace($novo, ') ', 3, 0);
-    }else{
-      $novo = substr_replace($numero, '(', 0, 0);
-      $novo = substr_replace($novo, ') ', 3, 0);
-      $novo = substr_replace($novo, '-', 9, 0);
-    }
+    
+
+      $novo = substr_replace($numero, ' ', 2, 0);
+      $novo = substr_replace($novo, '-', 7, 0);
+    
     return $novo;
   }
   function cep($numero){
@@ -135,7 +131,17 @@ else{
           }
         };
 
-      </script>
+
+        function formatar(mascara, documento){
+          var i = documento.value.length;
+          var saida = mascara.substring(0,1);
+          var texto = mascara.substring(i)
+
+          if (texto.substring(0,1) != saida){
+            documento.value += texto.substring(0,1);
+          }
+
+        }</script>
       
       <div class="" style="margin-top: 10px;">
         <div class="row">
@@ -155,17 +161,17 @@ else{
 
 
                     <label for="inputPassword4">Telefone</label>
-                    <input  value="<?php echo formataTelefone($vetor['telefone']); ?>" name="telefone" type="text" class="form-control" required>
+                    <input  value="<?php echo formataTelefone($vetor['telefone']); ?>" OnKeyPress="formatar('## ####-####', this)" name="telefone" type="text" class="form-control" required>
 
 
                     <div class="form-row">
                       <div class="col-md-6">
                         <label for="inputAddress">Celular:</label>
-                        <input  value="<?php echo formataTelefone($vetor['celular']); ?>" name="celular" type="text" class="form-control" required>
+                        <input  value="<?php echo formataTelefone($vetor['celular']); ?>"  OnKeyPress="formatar('## ####-####', this)" name="celular" type="text" class="form-control" required>
                       </div>
                       <div class="col-md-6">
                         <label for="inputAddress2">CEP:</label>
-                        <input  value="<?php echo cep($vetor['cep']); ?>" id="cep" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+                        <input  value="<?php echo cep($vetor['cep']); ?>" id="cep"  OnKeyPress="formatar('##.###-###', this)" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
                       </div></div>
                       <div class="form-row">
                         <div class="form-group col-md-6">

@@ -52,7 +52,7 @@ else{
 
         $resultado = mysqli_query($conn,$sql_pesquisa);
         
-       echo $telefone;
+       
 
     ?>
     <script>
