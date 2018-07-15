@@ -101,7 +101,7 @@ if(!isset($_SESSION["system_control"]))
           }
 
         }</script>
-
+        <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <div style="margin-top: -50px;" class="container">
           <form id="regForm" method="POST" action="cadastrar_cliente.php">
             
@@ -138,7 +138,7 @@ if(!isset($_SESSION["system_control"]))
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputAddress">CPF:*</label>
-                <input class="form-control" id="cpf" type="text" name="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX" OnKeyPress="formatar('###.###.###-##', this)" minlength="14" required >
+                <input class="form-control" id="cpf" type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX"   required >
               </div>
               <div class="form-group col-md-6">
                 <label for="inputAddress2">RG:*</label>
@@ -148,7 +148,7 @@ if(!isset($_SESSION["system_control"]))
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputCity">Data nascimento:*</label>
-                <input class="form-control" type="date" name="data" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="00/00/0000" OnKeyPress="formatar('##/##/####', this)" minlength="10" required>
+                <input class="form-control" type="text" name="data" id="data" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="00/00/0000"  required>
               </div>
               <div class="form-group col-md-6">
                 <label>Email:*</label>
@@ -393,7 +393,12 @@ function TestaCPF(strCPF) {
 }
 
 </script>
-
+<script type="text/javascript" src="jquery.mask.min.js"></script>
+<script type="text/javascript">
+  
+  $('#data').mask('00/00/0000');
+  $('#cpf').mask('000.000.000-00', {reverse: true});
+</script>
 </body>
 </html>
 
