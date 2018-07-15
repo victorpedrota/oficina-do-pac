@@ -39,22 +39,59 @@ else{
     <h3 >Formulário Cadastrar veiculo</h3>
     
     <form action="cadastrar_veiculo.php" method="POST">
-      <div class="col-xs-4">
-        <label for="ex3">Modelo:</label>
-        <input class="form-control" id="ex3" name="modelo"  type="text" required>
-        <label for="ex3">Cor:</label>
-        <input class="form-control" id="ex3" name="cor"  type="text" required>
-        <label for="ex3">Ano:</label>
-        <input class="form-control" id="ex3" name="ano" type="text" required>
-        <label for="ex3">Placa:</label>
-        <input class="form-control"  min="8" id="ex3" name="placa" type="text" required>
-        <label for="ex3">Descrição:</label>
-        <input class="form-control" id="ex3" name="descricao" type="text" required>
+      <script
+src="https://code.jquery.com/jquery-3.2.0.min.js"
+integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+crossorigin="anonymous"></script>
+  <select name="marcas" class="form-control" id="marcas">
+    <option>Selecione uma Marca</option>
+  </select>
+  
+  <div id="div"></div>
+  <script>
+    $( document ).ready(function() {
 
-        <center> <button style="margin-top: 10px" type="submit" class="btn btn-primary">Submit</button></center>
-      </div>
+      $.getJSON('http://fipeapi.appspot.com/api/1/carro/marcas.json', function(data) {
+        var select = ''
 
-    </form>
+        for (var i in data) {
+
+          select += '<option value="'+ data[i].id +'">'+ data[i].fipe_name + '</option>';
+
+        }
+        
+        $('#marcas').append(select);
+
+      });
+
+      $( "#marcas" )
+      .change(function () {
+        var str = "";
+        $( "#marcas option:selected" ).each(function() {
+          str = $( this ).val();
+          $.getJSON('http://fipeapi.appspot.com/api/1/carros/veiculos/'+str+'.json', function(data) {
+
+            var select = '<select class="form-control">';
+            for (var i in data) {
+
+              select += '<option value="'+data[i].id +'">'+ data[i].name + '</option>';
+
+            }
+            select += '</select>';
+            $('#div').html(select);
+
+          });
+        });
+    
+      })
+      .change();
+
+    });
+
+
+
+
+  </script>
   </div>
 </body>
 </html>

@@ -6,14 +6,17 @@
 	<style>
 
 </style>
-<script
+</head>
+<body>
+</body>
+<?php
+   require("navbar_logout.html");
+ ?>
+ <script
 src="https://code.jquery.com/jquery-3.2.0.min.js"
 integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
 crossorigin="anonymous"></script>
-</head>
-<body>
-
-	<select name="marcas" id="marcas">
+	<select name="marcas" class="form-control" id="marcas">
 		<option>Selecione uma Marca</option>
 	</select>
 	
@@ -41,7 +44,7 @@ crossorigin="anonymous"></script>
 					str = $( this ).val();
 					$.getJSON('http://fipeapi.appspot.com/api/1/carros/veiculos/'+str+'.json', function(data) {
 
-						var select = '<select>';
+						var select = '<select class="form-control">';
 						for (var i in data) {
 
 							select += '<option value="'+data[i].id +'">'+ data[i].name + '</option>';
