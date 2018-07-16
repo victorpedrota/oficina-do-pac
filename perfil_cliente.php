@@ -57,6 +57,10 @@ else{
       ?>
       <a href="form_alterar_usuario.php">Alterar informações de conta</a><br>
       <a href="form_veiculo.php">Cadastrar veículo</a>
+      <a href="">Visualizar veiculos</a>
+      <a href=""> iniciar chamado</a>
+      <a href="">ver serviços em andamento</a>
+      <a href=""> servicos completos</a>
   </body>
   </html>
   <?php

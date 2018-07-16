@@ -149,109 +149,124 @@ else{
         <br>
         <br>
 
-        <center><h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5></center>
-        <hr>
-        <form method="POST" action="alterar_cliente.php">
-
-
-          <label for="inputPassword4">Telefone</label>
-          <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control" required>
-
-
-          <div class="form-row">
-            <div class="col-md-6">
-              <label for="inputAddress">Celular:</label>
-              <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label for="inputAddress2">CEP:</label>
-              <input  value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
-            </div></div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">Estado:</label>
-                <select name="uf" id="uf" type="text" class="form-control" required>
-                  <option value="<?php echo $vetor['estado'];?>"><?php echo $vetor['estado']; ?></option>
-                  <option value="AC">Acre</option>
-                  <option value="AL">Alagoas</option>
-                  <option value="AP">Amapá</option>
-                  <option value="AM">Amazonas</option>
-                  <option value="BA">Bahia</option>
-                  <option value="CE">Ceará</option>
-                  <option value="DF">Distrito Federal</option>
-                  <option value="ES">Espírito Santo</option>
-                  <option value="GO">Goiás</option>
-                  <option value="MA">Maranhão</option>
-                  <option value="MT">Mato Grosso</option>
-                  <option value="MS">Mato Grosso do Sul</option>
-                  <option value="MG">Minas Gerais</option>
-                  <option value="PA">Pará</option>
-                  <option value="PB">Paraíba</option>
-                  <option value="PR">Paraná</option>
-                  <option value="PE">Pernambuco</option>
-                  <option value="PI">Piauí</option>
-                  <option value="RJ">Rio de Janeiro</option>
-                  <option value="RN">Rio Grande do Norte</option>
-                  <option value="RS">Rio Grande do Sul</option>
-                  <option value="RO">Rondônia</option>
-                  <option value="RR">Roraima</option>
-                  <option value="SC">Santa Catarina</option>
-                  <option value="SP">São Paulo</option>
-                  <option value="SE">Sergipe</option>
-                  <option value="TO">Tocantins</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">Cidade:</label>
-                <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip">Bairro</label>
-                <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Rua:</label>
-                <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputPassword4">Numero:</label>
-                <input  value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputPassword4">Comeplemento:</label>
-                <input  value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
-              </div>
-
-            </div>
-            <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
-
-
-
-          </form>
-        </div>
-      </div>
-
-
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <center>
+          <div class="show-image">
+            <img src="imagens/Victor.jpg" style="width: 100px;height: 100px; border-radius: 50%;">
           </div>
-          <div class="modal-body">
+          <style type="text/css">
+          div.show-image {
+
+            
+            margin:5px;
+          }
+          div.show-image:hover img{
+            opacity:0.5;
+          }
+        </style>
+        <h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
+      </center>
+      <hr>
+      <form method="POST" action="alterar_cliente.php">
+
+
+        <label for="inputPassword4">Telefone</label>
+        <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control" required>
+
+
+        <div class="form-row">
+          <div class="col-md-6">
+            <label for="inputAddress">Celular:</label>
+            <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="inputAddress2">CEP:</label>
+            <input  value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+          </div></div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Estado:</label>
+              <select name="uf" id="uf" type="text" class="form-control" required>
+                <option value="<?php echo $vetor['estado'];?>"><?php echo $vetor['estado']; ?></option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">Cidade:</label>
+              <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Bairro</label>
+              <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Rua:</label>
+              <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Numero:</label>
+              <input  value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputPassword4">Comeplemento:</label>
+              <input  value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
+            </div>
+
+          </div>
+          <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
+
+
+
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <form>
             <label for="inputPassword4">Senha atual:</label>
-          <input   name="senha_antiga"  type="password" class="form-control" required>
-          <label for="inputPassword4">Senha nova:</label>
-          <input  name="senha" type="password" class="form-control" required>
-          <label for="inputPassword4">Confirmar senha:</label>
-          <input    name="c_senha" type="password" class="form-control" required>
+            <input   name="senha_antiga"  type="password" class="form-control" required>
+            <label for="inputPassword4">Senha nova:</label>
+            <input  name="senha" type="password" class="form-control" required>
+            <label for="inputPassword4">Confirmar senha:</label>
+            <input    name="c_senha" type="password" class="form-control" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
