@@ -12,8 +12,7 @@ if(!isset($_SESSION["system_control"]))
   <?php       
 }
 else{
-        //Sessao já criada  
-        //Recuperando as variaveis da sessão
+      
   $system_control = $_SESSION["system_control"];   
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
@@ -21,11 +20,15 @@ else{
 
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
-
-    
-    ?>
-
-    <?php
+  $senha = $_POST['senha_nova'];
+  $oficina ="UPDATE `login` SET `senha`='$senha' WHERE `cod_login` = $cod_login";
+  $oficinas_query = mysqli_query($conn,$oficina); 
+  ?>
+    <script>
+      alert("Senha alterada com sucesso!");
+      document.location.href="form_alterar_usuario.php";
+    </script>
+    <?php  
   }
   else
   {
