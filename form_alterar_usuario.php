@@ -337,7 +337,7 @@ else{
       }
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="js/validar_form2.js"></script>
   <script src="js/validar_form.js"></script>
   <script >
 
@@ -345,6 +345,7 @@ else{
       var form = $( "#alterar" );
       form.valid();
       if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
+      else{alert("erro")}
       
     });
 
