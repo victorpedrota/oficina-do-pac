@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Jul-2018 às 21:41
--- Versão do servidor: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: 16-Jul-2018 às 21:24
+-- Versão do servidor: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,12 +78,12 @@ CREATE TABLE `cliente` (
   `estado` varchar(50) NOT NULL,
   `cep` int(11) NOT NULL,
   `cidade` varchar(50) NOT NULL,
-  `telefone` int(11) NOT NULL,
+  `telefone` varchar(200) NOT NULL,
   `bairro` varchar(30) NOT NULL,
   `complemento` varchar(90) NOT NULL,
   `sobrenome` varchar(90) NOT NULL,
   `numero` varchar(90) NOT NULL,
-  `celular` int(11) NOT NULL,
+  `celular` varchar(200) NOT NULL,
   `data_nascimento` varchar(200) NOT NULL,
   `imagem` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -93,8 +93,8 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cod_cliente`, `cod_login`, `nome`, `rg`, `cpf`, `rua`, `estado`, `cep`, `cidade`, `telefone`, `bairro`, `complemento`, `sobrenome`, `numero`, `celular`, `data_nascimento`, `imagem`) VALUES
-(1, 60, 'vicror', 534289538, '51183514808', 'Rua Cristiane de Souza Ramos', 's123', 12236491, '2', 2147483647, 'Jardim Sul', '123', 'pedrota', '123', 2147483647, '02/08/1992', ''),
-(18, 57, '2', 222222223, '25011106845', 'Rua MaurÃ­cio Cardoso', 'SP', 12236495, 'SÃ£o JosÃ© dos Campos', 2147483647, 'Jardim Sul', '0', '2', '0', 1213131112, '', '');
+(1, 60, 'vicror', 534289538, '51183514808', 'Rua Cristiane de Souza Ramos', 's123', 12236491, '2', '2147483647', 'Jardim Sul', '123', 'pedrota', '123', '2147483647', '02/08/1992', 'Victor.jpg'),
+(18, 57, 'victor', 222222223, '25011106845', 'Rua Geralda dos Santos Nunes', 'SP', 12236494, 'SÃ£o JosÃ© dos Campos', '11111112222', 'Jardim Sul', '1221', 'pedrota', '1229929', '21994742222', '', 'fotos_usuarios/b86703cce36f5c094392abed0e05586a.jpg');
 
 -- --------------------------------------------------------
 
@@ -238,20 +238,26 @@ CREATE TABLE `veiculo` (
   `ano` varchar(50) NOT NULL,
   `descricao` varchar(200) NOT NULL,
   `placa` varchar(200) NOT NULL,
-  `chassi` varchar(11) NOT NULL,
-  `cod_cliente` int(11) NOT NULL
+  `cod_cliente` int(11) NOT NULL,
+  `marca` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `veiculo`
 --
 
-INSERT INTO `veiculo` (`cod_veiculo`, `modelo`, `cor`, `ano`, `descricao`, `placa`, `chassi`, `cod_cliente`) VALUES
-(1, '1', '1', '1', '1', '1', '11', 1),
-(2, '2', '2', '2', '2[', '2', '22', 1),
-(3, '333', '3', '3', '3', '3', '33', 1),
-(4, 'carro pika', 'pika', '2000', 'Ã© pika', 'pika1234', '1234', 18),
-(5, 'carro pika 2', '2222222', '22222222', '222', '2222222222', '2222222', 18);
+INSERT INTO `veiculo` (`cod_veiculo`, `modelo`, `cor`, `ano`, `descricao`, `placa`, `cod_cliente`, `marca`) VALUES
+(1, '1', '1', '1', '1', '1', 1, ''),
+(2, '2', '2', '2', '2[', '2', 1, ''),
+(3, '333', '3', '3', '3', '3', 1, ''),
+(4, 'carro pika', 'pika', '2000', 'Ã© pika', 'pika1234', 18, ''),
+(5, 'carro pika 2', '2222222', '22222222', '222', '2222222222', 18, ''),
+(6, '', 'Selecione um cor', '', '', 'hsh-2222', 18, '7'),
+(7, '', 'Selecione um cor', '', '', 'hdh-3333', 18, '6'),
+(8, '', 'Selecione um cor', '', '', 'hfh-4444', 18, '6'),
+(9, '', '', '', '', '', 18, ''),
+(10, '43', 'Selecione um cor', '', '', 'dha-9999', 18, '6'),
+(11, '43', 'Selecione um cor', 'Selecione o ano', '', 'gfg-4444', 18, '6');
 
 --
 -- Indexes for dumped tables
@@ -367,7 +373,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `veiculo`
 --
 ALTER TABLE `veiculo`
-  MODIFY `cod_veiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_veiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
