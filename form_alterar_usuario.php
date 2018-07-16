@@ -171,13 +171,13 @@ else{
         <div id="erro_alterar"></div>
 
         <label for="inputPassword4">Telefone</label>
-        <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control" required>
+        <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control telefone" required>
 
 
         <div class="form-row">
           <div class="col-md-6">
             <label for="inputAddress">Celular:</label>
-            <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control" required>
+            <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control telefone" required>
           </div>
           <div class="col-md-6">
             <label for="inputAddress2">CEP:</label>
@@ -345,7 +345,7 @@ else{
       var form = $( "#alterar" );
       form.valid();
       if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
-      else{alert("erro")}
+      
       
     });
 
@@ -378,20 +378,13 @@ else{
     <script type="text/javascript">
       $(document).ready(function(){
 
-        $('#celular').mask('(00) 0000-00009');
-        $('#celular').blur(function(event) {
+  
+        $('.telefone').mask('(00) 0000-00009');
+        $('.telefone').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
-                 $('#celular').mask('(00) 00000-0009');
+                 $('.telefone').mask('(00) 00000-0009');
                } else {
-                $('#celular').mask('(00) 0000-00009');
-              }
-            });
-        $('#telefone').mask('(00) 0000-00009');
-        $('#telefone').blur(function(event) {
-                if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
-                 $('#telefone').mask('(00) 00000-0009');
-               } else {
-                $('#telefone').mask('(00) 0000-00009');
+                $('.telefone').mask('(00) 0000-00009');
               }
             });
         $('#cep').mask('00.000-000');
