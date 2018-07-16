@@ -134,7 +134,7 @@ else{
               <a style="color:white;" href="#">Alterar Informações</a>
             </li>
             <li>
-              <a style="color:white;" data-toggle="modal" data-target="#exampleModal">Alterar Senha</a>
+              <a style="color:white;" data-toggle="modal" data-target="#alterar_senha">Alterar Senha</a>
               
             </li>
             <li>
@@ -151,7 +151,7 @@ else{
 
         <center>
           <div class="show-image">
-            <img src="imagens/Victor.jpg" style="width: 100px;height: 100px; border-radius: 50%;">
+            <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
           </div>
           <style type="text/css">
           div.show-image {
@@ -250,7 +250,7 @@ else{
 
 
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -275,6 +275,29 @@ else{
         </div>
       </div>
     </div>
+    <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
+          
+          <input type="file" class="form-control" name="arquivo">
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+      </div>
+    </div>
+  </div>
+</div>
     <script type="text/javascript" src="js/jquery.mask.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
