@@ -20,7 +20,7 @@ crossorigin="anonymous">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo $_SESSION["nome"] ; ?><div class="img-rounded profile-img"></div>
+          <?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile-img">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Configurações</a>
@@ -38,7 +38,6 @@ crossorigin="anonymous">
   margin-top: -5px;
   margin-right: 5px;
   float: left;
-  background: url(imagens/bruce.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
   background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
   width: 30px;
   height: 30px;

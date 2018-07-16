@@ -49,18 +49,18 @@ else{
          <form method="POST" action="cadastrar_veiculo.php">
            <div class="row">
             <div class="col-3">
-              Placa:<input type="form-control" class="form-control" id="placa" name="placa">
+              Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
             </div>
             <div class="col-3">
               Cor:
-              <select name="cor" class="form-control" name="cor" id="cor">
+              <select name="cor" class="form-control" name="cor" id="cor" required>
                 <option>Selecione um cor</option>
               </select>
             </div>
             <div class="col-2">
-              Cor:
-              <select name="ano" class="form-control" name="ano" id="ano">
-                <option>Selecione o anox</option>
+              Ano:
+              <select name="ano" class="form-control" name="ano" id="ano" required>
+                <option>Selecione o ano</option>
               </select>
             </div>
 
@@ -68,7 +68,7 @@ else{
           <div class="row">
             <div class="col-3">
               Marca:
-              <select name="marca" class="form-control" id="marcas">
+              <select name="marca" class="form-control" id="marcas" required>
                 <option  value="">Selecione uma Marca</option></select>
               </div>
 

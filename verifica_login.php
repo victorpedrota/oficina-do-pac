@@ -38,6 +38,7 @@
              $resultado_cliente = mysqli_query($conn,$cliente);
              $vetor_cliente = mysqli_fetch_array($resultado_cliente);
              $_SESSION["cod_cliente"] = $vetor_cliente['cod_cliente'];
+             $_SESSION["imagem"] = $vetor_cliente['imagem'];
              ?>
              <script language='JavaScript'>
                 document.location.href="perfil_cliente.php";

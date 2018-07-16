@@ -42,7 +42,10 @@ else{
 
 
               ?>
-      
+      <script>
+        alert("Carro cadastrado com succeso!");
+        document.location.href="form_veiculo.php";
+      </script>
       <?php   
           }
           else{?>
