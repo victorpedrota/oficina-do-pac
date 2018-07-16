@@ -30,7 +30,18 @@ else{
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-    
+if (isset ($_POST['senha'])) {
+  $senha = $_POST['senha_nova'];
+  $oficina ="UPDATE `login` SET `senha`='$senha' WHERE `cod_login` = $cod_login";
+  $oficinas_query = mysqli_query($conn,$oficina); 
+  ?>
+    <script>
+      alert("Senha alterada com sucesso!");
+      document.location.href="form_alterar_usuario.php";
+    </script>
+    <?php  
+  
+}else{
   
     
     
@@ -61,7 +72,7 @@ else{
     </script>
   
   <?php  
-
+}
   }
   else
   {

@@ -284,13 +284,14 @@ else{
           </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="alterar_senha.php" id="form">
+          <form method="post" action="alterar_cliente.php" id="form">
             <label for="inputPassword4">Senha atual:</label>
             <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
             <label for="inputPassword4">Senha nova:</label>
             <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
             <label for="inputPassword4">Confirmar senha:</label>
             <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
+            <input type="hidden" value="1" name="senha">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
