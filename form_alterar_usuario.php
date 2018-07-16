@@ -260,21 +260,35 @@ else{
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="post" action="sei vei" id="form">
             <label for="inputPassword4">Senha atual:</label>
-            <input   name="senha_antiga"  type="password" class="form-control" required>
+            <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
             <label for="inputPassword4">Senha nova:</label>
-            <input  name="senha" type="password" class="form-control" required>
+            <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
             <label for="inputPassword4">Confirmar senha:</label>
-            <input    name="c_senha" type="password" class="form-control" required>
+            <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Alterar senha</button></form>
+            <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      function enviar(){
+      var senha = "<?php print $vetor_login['senha']; ?>";
+      var form = document.getElementById("form");
+      var c_senha = document.getElementById("senha_antiga").value
+      var senha_nova = document.getElementById("senha_nova").value
+      var c_senha_nova = document.getElementById("c_senha_nova").value
+      if(senha != c_senha){
+        alert("senha incorreta")
+      }
+      else if( senha_nova != c_senha_nova){alert("senhas nao conferem")}
+      else{form.submit();}
+    }
+    </script>
     <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
