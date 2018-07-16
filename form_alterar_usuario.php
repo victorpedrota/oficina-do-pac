@@ -244,7 +244,7 @@ else{
           <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
             Enviar
           </button></center>
-        
+
         </form>
       </div>
     </div>
@@ -284,7 +284,7 @@ else{
           </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="sei vei" id="form">
+          <form method="post" action="alterar_senha.php" id="form">
             <label for="inputPassword4">Senha atual:</label>
             <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
             <label for="inputPassword4">Senha nova:</label>
@@ -306,12 +306,27 @@ else{
         var c_senha = document.getElementById("senha_antiga").value
         var senha_nova = document.getElementById("senha_nova").value
         var c_senha_nova = document.getElementById("c_senha_nova").value
-        if(senha != c_senha){
-          alert("senha incorreta")
+        if(senha == "" || senha_nova == "" || c_senha_nova == "")
+        {
+          alert("Preencha todos os campos")
         }
-        else if( senha_nova != c_senha_nova){alert("senhas nao conferem")}
+        else{
+          if(senha != c_senha)
+          {
+            alert("senha incorreta")
+          }
 
-          else{form.submit();}
+          else if(senha_nova.length < 6 )
+          {
+            alert("a senha deve ter pelo menos 6 digitos")
+          }
+
+          else{
+            if (senha_nova == c_senha_nova) {form.submit();}
+            else{alert("senhas não conferem")}
+          }
+        }
+
 
       }
 
@@ -345,8 +360,8 @@ else{
       var form = $( "#alterar" );
       form.valid();
       if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
-      
-      
+
+
     });
 
 
@@ -378,7 +393,7 @@ else{
     <script type="text/javascript">
       $(document).ready(function(){
 
-  
+
         $('.telefone').mask('(00) 0000-00009');
         $('.telefone').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
