@@ -25,27 +25,24 @@ else{
 
   if($system_control == 1 && $privilegio == 0){
     $modelo = $_POST['modelo'];
+    $marca = $_POST['marca'];
     $cor = $_POST['cor'];
     $ano = $_POST['ano'];
-    $descricao = $_POST['descricao'];
     $placa = $_POST['placa'];
     
     
 
-    $sql ="select * from `veiculo` where  `placa` = '$placa' || `chassi` = $chassi" ;
+    $sql ="select * from `veiculo` where  `placa` = '$placa'" ;
     $resultado_sql = mysqli_query($conn,$sql); 
     $numero_veiculo = mysqli_num_rows($resultado_sql);
           if( $numero_veiculo == 0){
 
-              $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `descricao`, `placa`, `chassi`,`cod_cliente`) VALUES ('$modelo','$cor','$ano','$descricao','$placa',$chassi,$cod_cliente)";
+              $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `marca`,`placa`,`cod_cliente`) VALUES ('$modelo','$cor','$ano','$marca','$placa',$cod_cliente)";
               $insere = mysqli_query($conn,$sql);
 
 
               ?>
-      <script>
-        alert("Carro cadastrado com succeso!");
-        document.location.href="form_veiculo.php";
-      </script>
+      
       <?php   
           }
           else{?>
