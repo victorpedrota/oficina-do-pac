@@ -156,7 +156,7 @@ else{
           <style type="text/css">
           div.show-image {
 
-            
+
             margin:5px;
           }
           div.show-image:hover img{
@@ -166,7 +166,7 @@ else{
         <h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
       </center>
       <hr>
-      <form method="POST" action="alterar_cliente.php">
+      <form method="POST" action="alterar_cliente.php" id="alterar">
 
 
         <label for="inputPassword4">Telefone</label>
@@ -240,43 +240,65 @@ else{
             </div>
 
           </div>
-          <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <input type="submit" class="btn btn-primary" name=""></center>
-
-
-
+          <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alterar_informacoes">
+            Enviar
+          </button></center>
         </form>
       </div>
     </div>
-
-
-  </div>
-  <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="sei vei" id="form">
-            <label for="inputPassword4">Senha atual:</label>
-            <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
-            <label for="inputPassword4">Senha nova:</label>
-            <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
-            <label for="inputPassword4">Confirmar senha:</label>
-            <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
+    <div class="modal fade" id="alterar_informacoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Autenticação de Usuário</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
-          </div>
+          <div class="modal-body">
+            <form id="validar">
+            <label for="inputPassword4">Senha:</label>
+              <div id="erro"></div>
+              
+             <input  name="senha_nova" id="v_senha" type="password" class="form-control" required>
+           </form>
+         </div>
+         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="enviar_informacoes();" class="btn btn-primary">Enviar</button>
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      function enviar(){
+  </div>
+
+</div>
+<div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="sei vei" id="form">
+          <label for="inputPassword4">Senha atual:</label>
+          <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
+          <label for="inputPassword4">Senha nova:</label>
+          <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
+          <label for="inputPassword4">Confirmar senha:</label>
+          <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function enviar(){
       var senha = "<?php print $vetor_login['senha']; ?>";
       var form = document.getElementById("form");
       var c_senha = document.getElementById("senha_antiga").value
@@ -286,32 +308,43 @@ else{
         alert("senha incorreta")
       }
       else if( senha_nova != c_senha_nova){alert("senhas nao conferem")}
-      else{form.submit();}
+      
+        else{form.submit();}
+      
     }
-    </script>
-    <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
-          
-          <input type="file" class="form-control" name="arquivo">
+    function enviar_informacoes(){
+      var senha = "<?php print $vetor_login['senha']; ?>";
+      var form = document.getElementById("alterar");
+      var c_senha = document.getElementById("v_senha").value
+      if(senha != c_senha || c_senha == ""){
+        document.getElementById("erro").innerHTML = "<p style='color:red;'>Senha incorreta</p>";
+      }
+        else{form.submit();}
+    }
+  </script>
+  <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
 
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+            <input type="file" class="form-control" name="arquivo">
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     <script type="text/javascript" src="js/jquery.mask.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
