@@ -63,101 +63,116 @@ else{
                 
               </div>
               <div class="row">
-            <div class="col-4">
-              Tipo:
-              <select name="tipo" class="form-control" id="tipo" required>
-                <option  value="">Selecione um tipo</option>
-                <option  value="carros">Carros</option>
-                <option  value="motos">Motos</option></select>
-              </div>
-            <div class="col-4">
-              Marca:
-              <select name="marca" class="form-control" id="marcas" required>
-                <option  value="">Selecione uma Marca</option></select>
-              </div>
+                <div class="col-4">
+                  Tipo:
+                  <select name="tipo" class="form-control" id="tipo" required>
 
-              <div class="col-4">
-                <div id="div"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-8">
-                <center><br><a  class="btn btn-secondary" href="login.php">Cancelar</a>
-                  <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
-            </div>
-            <script>
-                  $( document ).ready(function() {
-                    $.getJSON('http://fipeapi.appspot.com/api/1/carro/marcas.json', function(data) {
-                      var select = ''
+                    <option  value="carros">Carros</option>
+                    <option  value="motos">Motos</option>
+                    <option  value="caminhao">Caminhão</option>
+                  </select>
+                  </div>
+                  <div class="col-4">
+                    Marcas:
+                  <select name="marcas" class="form-control" id="marcas" required>
 
-                      for (var i in data) {
+                    <option  value="">selecione uma Marca</option>
+                    </select>
+                  </div>
 
-                        select += '<option value="'+ data[i].id +'">'+ data[i].fipe_name + '</option>';
+                  <div class="col-4">
+                    <div id="div"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <center><br><a  class="btn btn-secondary" href="login.php">Cancelar</a>
+                      <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
+                    </div>
+                    <script>
 
-                      }
+                      $( document ).ready(function() {
 
-                      $('#marcas').append(select);
-                      var elect = 'Modelo:<select name="modelo" class="form-control"><option>Selecione um Modelo</option></select>' 
-                      $('#div').html(elect); 
+                        $( "#tipo" )
+                        .change(function () {
 
-                    });
+                          $( "#tipo option:selected" ).each(function() {
 
+                            tipo = $( this ).val();
+                            $('#marcas').children('option:not(:first)').remove();
+                            $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo +'/marcas.json', function(data) {
 
-                    $( "#marcas" )
-                    .change(function () {
+                          
+                              for (var i in data) {
+                                $('#marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
+                              }
 
-                      $( "#marcas option:selected" ).each(function() {
+                      
+                              var elect = 'Modelo:<select name="modelo" class="form-control"><option>Selecione um Modelo</option></select>' 
+                              $('#div').html(elect);
 
-                        str = $( this ).val();
+                            });
 
-                        $.getJSON('http://fipeapi.appspot.com/api/1/carros/veiculos/'+str+'.json', function(data) {
+                          });
 
-                          var select = 'Modelo:<select name="modelo" class="form-control">';
-                          for (var i in data) {
+                        })
+                        .change();
 
-                            select += '<option value="'+data[i].id +'">'+ data[i].name + '</option>';
+                        $( "#marcas" )
+                        .change(function () {
+                          
+                          $( "#marcas option:selected" ).each(function() {
 
-                          }
-                          select += '</select>';
-                          $('#div').html(select);
+                            str = $( this ).val();
+                      
+                            $.getJSON('http://fipeapi.appspot.com/api/1/'+tipo+'/veiculos/'+str+'.json', function(data) {
 
-                        });
+                              var select = 'Modelo:<select name="modelo" class="form-control">';
+                              for (var i in data) {
+
+                                select += '<option value="'+data[i].id +'">'+ data[i].name + '</option>';
+
+                              }
+                              select += '</select>';
+                              $('#div').html(select);
+
+                            });
+                          });
+
+                        })
+                        .change();
+
                       });
 
-                    })
-                    .change();
-
-                  });
-                  
-                  $('#placa').mask('ZZZ-0000', { translation: {'Z': {pattern: /[a-z\s]/
+                      $('#placa').mask('ZZZ-0000', { translation: {'Z': {pattern: /[a-z\s]/
                       }
                     }
                   });
                 </script>
 
-            <div class="col-sm">
-              One of three colsumns
+                <div class="col-sm">
+                  One of three colsumns
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </body>
-      </html>
-      <?php
-    }
-    else
-    {
+          </body>
+          </html>
+          <?php
+        }
+        else
+        {
             //Acesso Inválido
 
             //Finalizando a sessão
-      session_destroy();
+          session_destroy();
 
             //Mensagem para o Usuário
+          ?>
+          <script>
+            alert("Acesso Inválido!");
+            document.location.href="login.php";
+          </script>
+          <?php           
+        }
+      }
       ?>
-      <script>
-        alert("Acesso Inválido!");
-        document.location.href="login.php";
-      </script>
-      <?php           
-    }
-  }
-  ?>
