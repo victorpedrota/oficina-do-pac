@@ -27,7 +27,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/Pac.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Victor Hugop P.</h4>
+                                    <h4 class="card-title">Victor Hugop Puto.</h4>
                                     <p class="card-text">Programador Back-end </p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
