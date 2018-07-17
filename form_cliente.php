@@ -143,12 +143,12 @@ if(!isset($_SESSION["system_control"]))
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="inputAddress">CPF:*</label>
-									<input class="form-control" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX"   required >
+									<label for="inputAddress">CPF:</label>
+									<input class="form-control" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX"  required >
 								</div>
 								<div class="form-group col-md-6">
-									<label for="inputAddress2">RG:*</label>
-									<input class="form-control" type="text" id="rg" name="rg"  placeholder="XX.XXX.XXX-X"  minlength="12" required >
+									<label for="inputAddress2">RG:</label>
+									<input class="form-control" type="text" id="rg" name="rg"  placeholder="XX.XXX.XXX-X" required >
 								</div>
 							</div>
 							<div class="form-row">
@@ -157,7 +157,7 @@ if(!isset($_SESSION["system_control"]))
 									<input class="form-control" type="text" name="data" id="data" required>
 								</div>
 								<div class="form-group col-md-6">
-									<label>Email:*</label>
+									<label>Email:</label>
 									<input class="form-control" type="email" required>
 								</div>
 
@@ -170,11 +170,11 @@ if(!isset($_SESSION["system_control"]))
 							<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
 							<div class="form-row">
 								<div class="form-group col-md-2">
-									<label for="inputZip">CEP:*</label>
+									<label for="inputZip">CEP:</label>
 									<input class="form-control" id="cep"  onblur="pesquisacep(this.value);"   name="cep" type="text" required>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputState">Estado:*</label>
+									<label for="inputState">Estado:</label>
 									<input class="form-control" id="uf" name="estado" type="text"> 
 								</div>
 
@@ -188,22 +188,22 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Bairro:*</label>
-									<input class="form-control" id="bairro" name="bairro" type="text" pattern="[a-z\s]+$"   required>
+									<input class="form-control" id="bairro" name="bairro" type="text"  required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Rua:*</label>
-									<input class="form-control" id="rua" name="rua" pattern="[a-z\s]+$"  type="text" required>
+									<input class="form-control" id="rua" name="rua"  type="text" required>
 								</div>
 							</div>
 
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Número:*</label>
-									<input class="form-control" onkeyup="numeros( this );" id="numero" name="numero" type="text" pattern="[a-z\s]+$"   required>
+									<input class="form-control" onkeyup="numeros( this );" id="numero" name="numero" type="text"   required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Complemento:*</label>
-									<input class="form-control" id="complemento" name="complemento" pattern="[a-z\s]+$"  type="text" required>
+									<input class="form-control" id="complemento" name="complemento" type="text" required>
 								</div>
 							</div>
 						</div>
@@ -215,11 +215,11 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Telefone:*</label>
-									<input id="telefone" class="form-control telefone" type="text" name="telefone" pattern=".{14,15}" placeholder="00 0000-0000"  minlength="12">
+									<input id="telefone" class="form-control telefone" type="text" name="telefone" placeholder="00 0000-0000">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Celular:*</label>
-									<input class="form-control telefone" type="text" name="celular" pattern=".{14,15}" id="celular"  placeholder="00 0000-0000" minlength="12">
+									<input class="form-control telefone" type="text" name="celular" id="celular"  placeholder="00 0000-0000" >
 								</div>
 							</div>
 						</div>

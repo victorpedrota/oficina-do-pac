@@ -48,7 +48,7 @@ else{
      require("navbar_logout.html");
      ?>
      <script src="js/jquery.mask.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
      <script type="text/javascript" >
 
       function limpa_formulário_cep() {
@@ -139,12 +139,13 @@ else{
               
             </li>
             <li>
-              <a style="color:white;" >Excluir conta</a>
+              <a style="color:white; position: fixed; bottom:0px;" >Excluir conta</a>
               
             </li>
 
           </ul>
         </div>
+
         
         
         <br>
@@ -327,92 +328,90 @@ else{
             if (senha_nova == c_senha_nova) {form.submit();}
             else{alert("senhas não conferem")}
           }
-        }
-
-
       }
 
 
-
-      function enviar_informacoes(){
-        var senha = "<?php print $vetor_login['senha']; ?>";
-        var form = document.getElementById("alterar");
-        var c_senha = document.getElementById("v_senha").value
-        if(senha != c_senha || c_senha == ""){
-          document.getElementById("erro").innerHTML = "<p style='color:red;'>Senha incorreta</p>";
-        }
-        else{
-         var test =  form.checkValidity();
-         if(test == true){
-          form.submit();
-        }else{
-          document.getElementById("erro_alterar").innerHTML = "<p style='color:red;'>Preencha todos os campos corretamente</p>";
-        }
-
-
-
-      }
     }
-  </script>
-  <script src="js/validar_form2.js"></script>
-  <script src="js/validar_form.js"></script>
-  <script >
-
-    $( "#enviar" ).click(function() {
-      var form = $( "#alterar" );
-      form.valid();
-      if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
 
 
-    });
+
+    function enviar_informacoes(){
+      var senha = "<?php print $vetor_login['senha']; ?>";
+      var form = document.getElementById("alterar");
+      var c_senha = document.getElementById("v_senha").value
+      if(senha != c_senha || c_senha == ""){
+        document.getElementById("erro").innerHTML = "<p style='color:red;'>Senha incorreta</p>";
+      }
+      else{
+       var test =  form.checkValidity();
+       if(test == true){
+        form.submit();
+      }else{
+        document.getElementById("erro_alterar").innerHTML = "<p style='color:red;'>Preencha todos os campos corretamente</p>";
+      }
 
 
-  </script>
-  <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+    }
+  }
+</script>
+<script src="js/validar_form2.js"></script>
+<script src="js/validar_form.js"></script>
+<script >
+
+  $( "#enviar" ).click(function() {
+    var form = $( "#alterar" );
+    form.valid();
+    if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
+
+
+  });
+
+
+</script>
+<div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
+
+          <input type="file" class="form-control" name="arquivo">
+
+
         </div>
-        <div class="modal-body">
-          <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
-
-            <input type="file" class="form-control" name="arquivo">
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Alterar foto</button></form>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Alterar foto</button></form>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function(){
+  <script>
+    $(document).ready(function(){
 
-
-        $('.telefone').mask('(00) 0000-00009');
-        $('.telefone').blur(function(event) {
+      $('#cep').mask('00.000-000');
+      $('.telefone').mask('(00) 0000-00009');
+      $('.telefone').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
                  $('.telefone').mask('(00) 00000-0009');
                } else {
                 $('.telefone').mask('(00) 0000-00009');
               }
             });
-        $('#cep').mask('00.000-000');
-      });
-      $('#numero').keyup(function() {
-        $(this).val(this.value.replace(/\D/g, ''));
-      });
-    </script>
-  </body>
-  </html>
-  <?php
+
+    });
+
+  </script>
+</body>
+</html>
+<?php
 }
 else
 {
