@@ -127,129 +127,129 @@ if(!isset($_SESSION["system_control"]))
 						</div>
 
 						<div class="tab" value="2">
-						 <center><h3>Quem é você?, é necessário que você preencha os sguintes campos</h3></center>
-						 <div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputEmail4">Nome:*</label>
-								<input class="form-control" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+							<center><h3>Quem é você?, é necessário que você preencha os sguintes campos</h3></center>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">Nome:*</label>
+									<input class="form-control" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Sobrenome:*</label>
+									<input class="form-control" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
+								</div>
 							</div>
-							<div class="form-group col-md-6">
-								<label for="inputPassword4">Sobrenome:*</label>
-								<input class="form-control" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputAddress">CPF:*</label>
+									<input class="form-control" id="cpf" type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX"   required >
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputAddress2">RG:*</label>
+									<input class="form-control" type="text" id="rg" name="rg" maxlength="12" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]" placeholder="XX.XXX.XXX-X" OnKeyPress="formatar('##.###.###-#', this)" minlength="12" required >
+								</div>
 							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputAddress">CPF:*</label>
-								<input class="form-control" id="cpf" type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX"   required >
-							</div>
-							<div class="form-group col-md-6">
-								<label for="inputAddress2">RG:*</label>
-								<input class="form-control" type="text" id="rg" name="rg" maxlength="12" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]" placeholder="XX.XXX.XXX-X" OnKeyPress="formatar('##.###.###-#', this)" minlength="12" required >
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputCity">Data nascimento:*</label>
-								<input class="form-control" type="text" name="data" id="data" required>
-							</div>
-							<div class="form-group col-md-6">
-								<label>Email:*</label>
-								<input class="form-control" type="text" required>
-							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputCity">Data nascimento:*</label>
+									<input class="form-control" type="text" name="data" id="data" required>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Email:*</label>
+									<input class="form-control" type="text" required>
+								</div>
 
 
+							</div>
+
 						</div>
 
+						<div class="tab">
+							<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
+							<div class="form-row">
+								<div class="form-group col-md-2">
+									<label for="inputZip">CEP:*</label>
+									<input class="form-control" onkeyup="numeros( this );" id="cep"  onblur="pesquisacep(this.value);" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}" placeholder="XX.XXX.XXX" minlength="10" name="cep" type="text" maxlength="10" required>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="inputState">Estado:*</label>
+									<input class="form-control" id="uf" name="estado" type="text"> 
+								</div>
+
+								<div class="form-group col-md-6">
+									<label for="inputCity">Cidade:*</label>
+									<input type="text" id="cidade" name="cidade" class="form-control">
+								</div>
+
+
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">Bairro:*</label>
+									<input class="form-control" id="bairro" name="bairro" type="text" pattern="[a-z\s]+$"   required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Rua:*</label>
+									<input class="form-control" id="rua" name="rua" pattern="[a-z\s]+$"  type="text" required>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">Número:*</label>
+									<input class="form-control" onkeyup="numeros( this );" id="numero" name="numero" type="text" pattern="[a-z\s]+$"   required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Complemento:*</label>
+									<input class="form-control" id="complemento" name="complemento" pattern="[a-z\s]+$"  type="text" required>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="tab">
+							<center><h3>Precisamos de seu contato caso ocorra algum problema, por favor insira seu contato</h3></center>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">Telefone:*</label>
+									<input id="telefone" class="form-control telefone" type="text" name="telefone" pattern=".{14,15}" placeholder="00 0000-0000"  minlength="12">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Celular:*</label>
+									<input class="form-control" type="text" name="celular telefone" pattern=".{14,15}" id="celular"  placeholder="00 0000-0000" minlength="12">
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+						<div style="position: static;">
+							<br><center>
+								<div>
+									<button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
+									<button type="button" class="btn btn-danger" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+								</div></center>
+							</div>
+							<!-- Circles which indicates the steps of the form: -->
+							<div style="text-align:center;margin-top:40px;">
+								<span class="step"></span>
+								<span class="step"></span>
+								<span class="step"></span>
+								<span class="step"></span>
+							</div>
+						</form>
 					</div>
+					<script type="text/javascript">
+						function numeros( campo )
+						{
+							if ( isNaN( campo.value ) )
+								campo.value = campo.value.substr( 0 , campo.value.length - 1 );
+						}
+					</script>
 
-					<div class="tab">
-						<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
-						<div class="form-row">
-							<div class="form-group col-md-2">
-								<label for="inputZip">CEP:*</label>
-								<input class="form-control" onkeyup="numeros( this );" id="cep"  onblur="pesquisacep(this.value);" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}" placeholder="XX.XXX.XXX" minlength="10" name="cep" type="text" maxlength="10" required>
-							</div>
-							<div class="form-group col-md-4">
-								<label for="inputState">Estado:*</label>
-								<input class="form-control" id="uf" name="estado" type="text"> 
-							</div>
-
-							<div class="form-group col-md-6">
-								<label for="inputCity">Cidade:*</label>
-								<input type="text" id="cidade" name="cidade" class="form-control">
-							</div>
-
-
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputEmail4">Bairro:*</label>
-								<input class="form-control" id="bairro" name="bairro" type="text" pattern="[a-z\s]+$"   required>
-							</div>
-							<div class="form-group col-md-6">
-								<label for="inputPassword4">Rua:*</label>
-								<input class="form-control" id="rua" name="rua" pattern="[a-z\s]+$"  type="text" required>
-							</div>
-						</div>
-
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputEmail4">Número:*</label>
-								<input class="form-control" onkeyup="numeros( this );" id="numero" name="numero" type="text" pattern="[a-z\s]+$"   required>
-							</div>
-							<div class="form-group col-md-6">
-								<label for="inputPassword4">Complemento:*</label>
-								<input class="form-control" id="complemento" name="complemento" pattern="[a-z\s]+$"  type="text" required>
-							</div>
-						</div>
-					</div>
-
-
-
-					<div class="tab">
-						<center><h3>Precisamos de seu contato caso ocorra algum problema, por favor insira seu contato</h3></center>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="inputEmail4">Telefone:*</label>
-								<input id="telefone" class="form-control telefone" type="text" name="telefone" pattern=".{14,15}" placeholder="00 0000-0000"  minlength="12">
-							</div>
-							<div class="form-group col-md-6">
-								<label for="inputPassword4">Celular:*</label>
-								<input class="form-control" type="text" name="celular telefone" pattern=".{14,15}" id="celular"  placeholder="00 0000-0000" minlength="12">
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-					<div style="position: static;">
-						<br><center>
-							<div>
-								<button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
-								<button type="button" class="btn btn-danger" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
-							</div></center>
-						</div>
-						<!-- Circles which indicates the steps of the form: -->
-						<div style="text-align:center;margin-top:40px;">
-							<span class="step"></span>
-							<span class="step"></span>
-							<span class="step"></span>
-							<span class="step"></span>
-						</div>
-					</form>
-				</div>
-				<script type="text/javascript">
-					function numeros( campo )
-					{
-						if ( isNaN( campo.value ) )
-							campo.value = campo.value.substr( 0 , campo.value.length - 1 );
-					}
-				</script>
-
-				<script>
+					<script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 var z, x = document.getElementsByClassName("tab");
@@ -319,7 +319,7 @@ function validateForm() {
 	rgn = rg.value.replace(/[^0-9]/g,'');
 
 	if (z==2) {for (i = 0; i < (y.length-1); i++) {
-	 
+
 		
 		if (y[i].value == "") {
 
@@ -331,7 +331,7 @@ function validateForm() {
 
 	}}
 	else{for (i = 0; i < y.length; i++) {
-	 
+
 		
 		if (y[i].value == "") {
 
@@ -398,21 +398,25 @@ function TestaCPF(strCPF) {
 </script>
 <script src="js/jquery.mask.min.js"></script>
 <script type="text/javascript">
- $(document).ready(function(){
+	$(document).ready(function(){
 
 
-	$('.telefone').mask('(00) 0000-00009');
-	$('.telefone').blur(function(event) {
+		$('.telefone').mask('(00) 0000-00009');
+		$('.telefone').blur(function(event) {
 								if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
-								 $('.telefone').mask('(00) 00000-0009');
-							 } else {
-								$('.telefone').mask('(00) 0000-00009');
-							}
-						});
-	$('#cpf').mask('000.000.000-00', {reverse: true});
-	$('#rg').mask('00.000.000-0', {reverse: true});
-	$('#data').mask('00/00/0000');
-});
+									$('.telefone').mask('(00) 00000-0009');
+								} else {
+									$('.telefone').mask('(00) 0000-00009');
+								}
+							});
+		$('#cpf').mask('000.000.000-00', {reverse: true});
+		$('#rg').mask('00.000.000-0', {reverse: true});
+		$('#data').mask('00/00/0000');
+		$( "input" ).click(function() {
+		
+		$( this ).removeClass( "invalid" );
+		});
+	});
 </script>
 
 </body>
