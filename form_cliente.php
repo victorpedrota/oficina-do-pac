@@ -117,15 +117,15 @@ if(!isset($_SESSION["system_control"]))
 							<center><div><h3>Vamos fazer isso na ordem certa. Crie um login e senha</h3> </div></center>
 
 
-							<h5 style="display:  inline-block;">Login:*</h5><p style="display:  inline-block;">(mínimo 6 caracters)</p> 
+							<h5 style="display:  inline-block;">Login:</h5>
 							<input class="form-control"  id="login" name="login"  minlength="6" type="text" required>
 							<br>
 
-							<h5 style="display:  inline-block;">Senha:*</h5><p style="display:  inline-block;">(mínimo 6 caracters)</p>
+							<h5 style="display:  inline-block;">Senha:</h5>
 							<input class="form-control"  id="senha" name="senha"  minlength="6" type="password" required>
 							<br>
-							<h5>Confirmar Senha:*</h5>
-							<input class="form-control" id="c_senha" name="senha"  minlength="6" type="password" required>
+							<h5 style="display:  inline-block;">Confirmar Senha:</h5>
+							<input class="form-control" id="c_senha" name="c_senha"  minlength="6" type="password" required>
 
 						</div>
 
@@ -134,11 +134,11 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Nome:*</label>
-									<input class="form-control" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+									<input class="form-control letters" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Sobrenome:*</label>
-									<input class="form-control" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
+									<input class="form-control letters" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
 								</div>
 							</div>
 							<div class="form-row">
@@ -180,7 +180,7 @@ if(!isset($_SESSION["system_control"]))
 
 								<div class="form-group col-md-6">
 									<label for="inputCity">Cidade:*</label>
-									<input type="text" id="cidade" name="cidade" class="form-control">
+									<input type="text" id="cidade" name="cidade" class="form-control letters">
 								</div>
 
 
@@ -226,7 +226,10 @@ if(!isset($_SESSION["system_control"]))
 
 
 
+<style type="text/css">
+	
 
+</style>
 
 						<div style="position: static;">
 							<br><center>
@@ -429,6 +432,10 @@ function TestaCPF(strCPF) {
 
 			$( this ).removeClass( "invalid" );
 		});
+		$('.letters').bind('keyup blur',function(){ 
+    var node = $(this);
+    node.val(node.val().replace(/[^a-z]/g,'') ); }
+);
 	});
 </script>
 
