@@ -169,16 +169,16 @@ if(!isset($_SESSION["system_control"]))
 						<div class="tab">
 							<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
 							<div class="form-row">
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-4">
 									<label for="inputZip">CEP:</label>
-									<input class="form-control" id="cep"  onblur="pesquisacep(this.value);"   name="cep" type="text" required>
+									<input class="form-control" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="inputState">Estado:</label>
-									<input class="form-control" id="uf" name="estado" type="text"> 
+									<input class="form-control" id="uf" name="estado" type="text" required> 
 								</div>
 
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputCity">Cidade:*</label>
 									<input type="text" id="cidade" name="cidade" class="form-control letters">
 								</div>
@@ -199,11 +199,11 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Número:*</label>
-									<input class="form-control" onkeyup="numeros( this );" id="numero" name="numero" type="text"   required>
+									<input class="form-control" id="numero" name="numero" type="text"   required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Complemento:*</label>
-									<input class="form-control" id="complemento" name="complemento" type="text" required>
+									<input class="form-control" id="complemento" name="complemento" type="text">
 								</div>
 							</div>
 						</div>
@@ -226,46 +226,42 @@ if(!isset($_SESSION["system_control"]))
 
 
 
-<style type="text/css">
-	
-
-</style>
-
-						<div style="position: static;">
-							<br><center>
-								<div>
-									<button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
-									<button type="button" class="btn btn-danger" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
-								</div></center>
-							</div>
-							<!-- Circles which indicates the steps of the form: -->
-							<div style="text-align:center;margin-top:40px;">
-								<span class="step"></span>
-								<span class="step"></span>
-								<span class="step"></span>
-								<span class="step"></span>
-							</div>
-						</form>
-					</div>
-					<script src="js/validar_form2.js"></script>
-					<script src="js/validar_form.js"></script>
-					<script>
-
-						$( "#nextBtn" ).click(function() {
-							var form = $( "#regForm" );
-						 form.valid();
+						<style type="text/css">
 
 
-						});
-					</script><script type="text/javascript">
-						function numeros( campo )
-						{
-							if ( isNaN( campo.value ) )
-								campo.value = campo.value.substr( 0 , campo.value.length - 1 );
-						}
-					</script>
+					</style>
 
-					<script>
+					<div style="position: static;">
+						<br><center>
+							<div>
+								<button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
+								<button type="button" class="btn btn-danger" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+							</div></center>
+						</div>
+						<!-- Circles which indicates the steps of the form: -->
+						<div style="text-align:center;margin-top:40px;">
+							<span class="step"></span>
+							<span class="step"></span>
+							<span class="step"></span>
+							<span class="step"></span>
+						</div>
+					</form>
+				</div>
+				<script src="js/validar_form2.js"></script>
+				<script src="js/validar_form.js"></script>
+				<script>
+					var form = $( "#regForm" );
+
+					$( "#nextBtn" ).click(function() {
+
+
+
+						form.valid();
+
+					});
+				</script>
+
+				<script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 var z, x = document.getElementsByClassName("tab");
@@ -415,8 +411,8 @@ function TestaCPF(strCPF) {
 <script src="js/jquery.mask.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-
-
+		form.valid();
+		
 		$('.telefone').mask('(00) 0000-00009');
 		$('.telefone').blur(function(event) {
 								if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
@@ -429,14 +425,16 @@ function TestaCPF(strCPF) {
 		$('#cep').mask('00.000-000');
 		$('#rg').mask('00.000.000-0', {reverse: true});
 		$('#data').mask('00/00/0000');
+
 		$( "input" ).click(function() {
 
 			$( this ).removeClass( "invalid" );
 		});
 		$('.letters').bind('keyup blur',function(){ 
-    var node = $(this);
-    node.val(node.val().replace(/[^a-z]/g,'') ); }
-);
+			var node = $(this);
+			node.val(node.val().replace(/[^a-z]/g,'') ); }
+			);
+		$('#numero').mask('0#');
 	});
 </script>
 
