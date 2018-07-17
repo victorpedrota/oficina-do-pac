@@ -36,7 +36,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Victor Hugo gato Pedrota aloalaosmksndGodoi</h4>
+                                    <h4 class="card-title">Victor Hugo mongol nerd filho da puta nunca ganhou solo</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
