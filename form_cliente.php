@@ -158,7 +158,7 @@ if(!isset($_SESSION["system_control"]))
 								</div>
 								<div class="form-group col-md-6">
 									<label>Email:*</label>
-									<input class="form-control" type="text" required>
+									<input class="form-control" type="email" required>
 								</div>
 
 
@@ -251,7 +251,7 @@ if(!isset($_SESSION["system_control"]))
 						$( "#nextBtn" ).click(function() {
 							var form = $( "#regForm" );
 							alert(form.valid())
-						
+
 
 						});
 					</script><script type="text/javascript">
