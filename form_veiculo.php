@@ -34,61 +34,59 @@ else{
     </head>
     <body>
       <?php require("navbar_logout.html"); ?>
-
+      <script
+      src="https://code.jquery.com/jquery-3.2.0.min.js"
+      integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+      crossorigin="anonymous"></script>
+      <script type="text/javascript" src="js/jquery.mask.min.js"></script>
       <div class="container" style="margin-top: 60px">
-        <h3 >Formulário Cadastrar veiculo</h3>
+        <form method="POST" action="cadastrar_veiculo.php">
 
-        <form action="cadastrar_veiculo.php" method="POST">
-         <script
-         src="https://code.jquery.com/jquery-3.2.0.min.js"
-         integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
-         crossorigin="anonymous"></script>
-         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
-
-
-         <form method="POST" action="cadastrar_veiculo.php">
-           <div class="row">
-            <div class="col-3">
-              Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
-            </div>
-            <div class="col-3">
-              Cor:
-              <select name="cor" class="form-control" name="cor" id="cor" required>
-                <option>Selecione um cor</option>
-              </select>
-            </div>
-            <div class="col-2">
-              Ano:
-              <select name="ano" class="form-control" name="ano" id="ano" required>
-                <option>Selecione o ano</option>
-              </select>
-            </div>
-
-          </div>
           <div class="row">
-            <div class="col-3">
+            <div class="col-sm">
+              <div class="row">
+                <div class="col-4">
+                  Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
+                </div>
+                <div class="col-4">
+                  Cor:
+                  <select name="cor" class="form-control" name="cor" id="cor" required>
+                    <option>Selecione um cor</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  Ano:
+                  <select name="ano" class="form-control" name="ano" id="ano" required>
+                    <option>Selecione o ano</option>
+                  </select>
+                </div>
+                
+              </div>
+              <div class="row">
+            <div class="col-4">
+              Tipo:
+              <select name="tipo" class="form-control" id="tipo" required>
+                <option  value="">Selecione um tipo</option>
+                <option  value="carros">Carros</option>
+                <option  value="motos">Motos</option></select>
+              </div>
+            <div class="col-4">
               Marca:
               <select name="marca" class="form-control" id="marcas" required>
                 <option  value="">Selecione uma Marca</option></select>
               </div>
 
-              <div class="col-5">
+              <div class="col-4">
                 <div id="div"></div>
               </div>
             </div>
-            <br>
             <div class="row">
               <div class="col-8">
-                <center><a  class="btn btn-secondary" href="login.php">Cancelar</a>
+                <center><br><a  class="btn btn-secondary" href="login.php">Cancelar</a>
                   <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
-                </form>
-
-
-
-                <script>
-
+            </div>
+            <script>
                   $( document ).ready(function() {
-
                     $.getJSON('http://fipeapi.appspot.com/api/1/carro/marcas.json', function(data) {
                       var select = ''
 
@@ -136,25 +134,30 @@ else{
                     }
                   });
                 </script>
-              </div>
-            </body>
-            </html>
-            <?php
-          }
-          else
-          {
+
+            <div class="col-sm">
+              One of three colsumns
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
+      <?php
+    }
+    else
+    {
             //Acesso Inválido
 
             //Finalizando a sessão
-            session_destroy();
+      session_destroy();
 
             //Mensagem para o Usuário
-            ?>
-            <script>
-              alert("Acesso Inválido!");
-              document.location.href="login.php";
-            </script>
-            <?php           
-          }
-        }
-        ?>
+      ?>
+      <script>
+        alert("Acesso Inválido!");
+        document.location.href="login.php";
+      </script>
+      <?php           
+    }
+  }
+  ?>
