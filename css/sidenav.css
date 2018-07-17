@@ -57,6 +57,18 @@
     text-decoration: none;
 }
 
+.sidebar-nav li h5 {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li h5:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
 .sidebar-nav > .sidebar-brand {
     height: 65px;
     font-size: 18px;

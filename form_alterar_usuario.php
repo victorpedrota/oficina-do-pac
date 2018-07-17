@@ -127,19 +127,16 @@ else{
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="sidebar-brand">
-              <a href="#" style="color:white;">
-                Configurações de Conta
+              <a style="color:white;">
+                Configurações da Conta
               </a>
             </li>
             <li>
-              <a style="color:white;" href="#">Alterar Informações</a>
-            </li>
-            <li>
-              <a style="color:white;" data-toggle="modal" data-target="#alterar_senha">Alterar Senha</a>
+              <a style="color:white;" data-toggle="modal" data-target="#alterar_senha" href="#">Alterar Senha</a>
               
             </li>
             <li>
-              <a style="color:white; position: fixed; bottom:0px;" >Excluir conta</a>
+              <a style="color:white; position: fixed; bottom:0px;" href="#" >Excluir conta</a>
               
             </li>
 

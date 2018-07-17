@@ -47,6 +47,7 @@ else{
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" type="text/css" href="css/sidenav.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
@@ -55,12 +56,29 @@ else{
       <?php
       require("navbar_logout.html");
       ?>
-      <a href="form_alterar_usuario.php">Alterar informações de conta</a><br>
-      <a href="form_veiculo.php">Cadastrar veículo</a>
-      <a href="">Visualizar veiculos</a>
-      <a href=""> iniciar chamado</a>
-      <a href="">ver serviços em andamento</a>
-      <a href=""> servicos completos</a>
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+              <a style="color:white;">
+                Configurações da Conta
+              </a>
+            </li>
+            <li>
+              <a style="color:white;" href="form_alterar_usuario.php">Alterar informações</a>
+            </li>
+            <li>
+              <a style="color:white;" href="form_veiculo.php">Cadastrar veiculo</a>
+            </li>
+            <li>
+              <a style="color:white;" href="form_veiculo.php">Visualizar veiculos</a>
+            </li>
+            <li>
+              <a style="color:white;" href="form_veiculo.php">iniciar chamado</a>
+            </li>
+           
+
+          </ul>
+        </div>
   </body>
   </html>
   <?php
