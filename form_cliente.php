@@ -148,7 +148,7 @@ if(!isset($_SESSION["system_control"]))
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputAddress2">RG:*</label>
-									<input class="form-control" type="text" id="rg" name="rg" maxlength="12" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]" placeholder="XX.XXX.XXX-X" OnKeyPress="formatar('##.###.###-#', this)" minlength="12" required >
+									<input class="form-control" type="text" id="rg" name="rg"  placeholder="XX.XXX.XXX-X"  minlength="12" required >
 								</div>
 							</div>
 							<div class="form-row">
@@ -171,7 +171,7 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-2">
 									<label for="inputZip">CEP:*</label>
-									<input class="form-control" onkeyup="numeros( this );" id="cep"  onblur="pesquisacep(this.value);" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}" placeholder="XX.XXX.XXX" minlength="10" name="cep" type="text" maxlength="10" required>
+									<input class="form-control" id="cep"  onblur="pesquisacep(this.value);"   name="cep" type="text" required>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="inputState">Estado:*</label>
@@ -253,7 +253,7 @@ if(!isset($_SESSION["system_control"]))
 
 						$( "#nextBtn" ).click(function() {
 							var form = $( "#regForm" );
-							alert(form.valid())
+						 form.valid();
 
 
 						});
@@ -371,8 +371,8 @@ else if (senha.value.length != c_senha.value.length) {senha.className += " inval
 else if(z==1 && TestaCPF(cpf.value.replace(/[^0-9]/g,'')) == false) {cpf.className += " invalid";}
 else if (z==1 && rgn.length != 9  ){rg.className += " invalid";}
 else if (z==1 && rgn == "000000000" || rgn == "111111111" || rgn == "222222222" || rgn == "333333333" || rgn == "444444444" || rgn == "555555555" || rgn == "666666666" || rgn == "777777777" || rgn == "888888888" || rgn == "99999999" ){rg.className += " invalid";}
-else if ((telefone.value.length != 13 || telefone.value.length != 12) && z ==3 ) {telefone.className += " invalid"}
-	else if ((celular.value.length != 13 || telefone.value.length != 12) && z ==3 ) {telefone.className += " invalid"}
+else if ((telefone.value.length != 15 && telefone.value.length != 14) && z ==3 ) {telefone.className += " invalid"}
+	else if ((celular.value.length != 15 && celular.value.length != 14) && z ==3 ) {celular.className += " invalid"}
 		else{
 
 			return valid;
@@ -426,6 +426,7 @@ function TestaCPF(strCPF) {
 								}
 							});
 		$('#cpf').mask('000.000.000-00', {reverse: true});
+		$('#cep').mask('00.000-000');
 		$('#rg').mask('00.000.000-0', {reverse: true});
 		$('#data').mask('00/00/0000');
 		$( "input" ).click(function() {
