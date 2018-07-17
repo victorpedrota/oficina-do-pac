@@ -104,13 +104,16 @@ if(!isset($_SESSION["system_control"]))
 					}
 
 				}</script>
+
 				<script type="text/javascript" src="js/jquery.mask.min.js"></script>
 				<div style="margin-top: -50px;" class="container">
+
 					<form id="regForm" method="POST" action="cadastrar_cliente.php">
 						
 						<br>
 
 						<div class="tab" value="0">
+							
 							<center><div><h3>Vamos fazer isso na ordem certa. Crie um login e senha</h3> </div></center>
 
 
@@ -119,10 +122,10 @@ if(!isset($_SESSION["system_control"]))
 							<br>
 
 							<h5 style="display:  inline-block;">Senha:*</h5><p style="display:  inline-block;">(mínimo 6 caracters)</p>
-							<input class="form-control"  id="senha" name="senha"  minlength="8" type="password" required>
+							<input class="form-control"  id="senha" name="senha"  minlength="6" type="password" required>
 							<br>
 							<h5>Confirmar Senha:*</h5>
-							<input class="form-control" id="c_senha" name="senha"  minlength="8" type="password" required>
+							<input class="form-control" id="c_senha" name="senha"  minlength="6" type="password" required>
 
 						</div>
 
@@ -141,7 +144,7 @@ if(!isset($_SESSION["system_control"]))
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputAddress">CPF:*</label>
-									<input class="form-control" id="cpf" type="text" name="cpf" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX"   required >
+									<input class="form-control" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX"   required >
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputAddress2">RG:*</label>
@@ -216,7 +219,7 @@ if(!isset($_SESSION["system_control"]))
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Celular:*</label>
-									<input class="form-control" type="text" name="celular telefone" pattern=".{14,15}" id="celular"  placeholder="00 0000-0000" minlength="12">
+									<input class="form-control telefone" type="text" name="celular" pattern=".{14,15}" id="celular"  placeholder="00 0000-0000" minlength="12">
 								</div>
 							</div>
 						</div>
@@ -241,7 +244,17 @@ if(!isset($_SESSION["system_control"]))
 							</div>
 						</form>
 					</div>
-					<script type="text/javascript">
+					<script src="js/validar_form2.js"></script>
+					<script src="js/validar_form.js"></script>
+					<script>
+
+						$( "#nextBtn" ).click(function() {
+							var form = $( "#regForm" );
+							alert(form.valid())
+						
+
+						});
+					</script><script type="text/javascript">
 						function numeros( campo )
 						{
 							if ( isNaN( campo.value ) )
@@ -413,8 +426,8 @@ function TestaCPF(strCPF) {
 		$('#rg').mask('00.000.000-0', {reverse: true});
 		$('#data').mask('00/00/0000');
 		$( "input" ).click(function() {
-		
-		$( this ).removeClass( "invalid" );
+
+			$( this ).removeClass( "invalid" );
 		});
 	});
 </script>
