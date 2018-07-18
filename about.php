@@ -26,9 +26,9 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/Pac.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Victor Hugop Puto.</h4>
-                                    <p class="card-text">Programador Back-end </p>
+                                    <p><img src="imagens/pac.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Victor Hugo</h4>
+                                    <p class="card-text">O faz tudo </p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -36,8 +36,7 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Victor Hugo mongol nerd filho da puta nunca ganhou solo</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                    <h4 class="card-title">Victor Hugo mongol</h4>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -74,9 +73,9 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/Victor.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Victor Mateus C.</h4>
-                                    <p class="card-text">Programador Front-end</p>
+                                    <p><img src="imagens/victor.png" alt="card image"></p>
+                                    <h4 class="card-title">Victor Mateus</h4>
+                                    <p class="card-text">O que faz café</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -85,7 +84,7 @@
                             <div class="card">
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Victor Mateus Gomes de Carvalho</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                    
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -122,9 +121,9 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/Pedro.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Pedro Henrique M.</h4>
-                                    <p class="card-text">Assistente</p>
+                                    <p><img src="imagens/pedro.png" alt="card image"></p>
+                                    <h4 class="card-title">Pedro Henrique</h4>
+                                    <p class="card-text">O turista</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -133,7 +132,7 @@
                             <div class="card">
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Pedro Henrique de lindo pra krl </h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                   
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -170,9 +169,9 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/Lucas.jpg" alt="card image"></p>
+                                    <p><img src="imagens/lukas.jpg" alt="card image"></p>
                                     <h4 class="card-title">Lucas Henrique</h4>
-                                    <p class="card-text">Programador Front-end</p>
+                                    <p class="card-text">O rosto bonitinho</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -181,7 +180,7 @@
                             <div class="card">
                                 <div class="card-body text-center mt-4">
                                     <h4 class="card-title">Lucas Henrique Monteiro</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                    
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
