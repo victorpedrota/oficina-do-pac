@@ -41,14 +41,14 @@ if(!isset($_SESSION["system_control"]))
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="imagens/velocimetro1.jpg" alt="First slide">
+          <img class="d-block w-100" src="imagens/velocimetro2.jpg" alt="First slide" height="750">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="imagens/carro.jpg" alt="Second slide">
+          <img class="d-block w-100" src="imagens/carro1.jpg" alt="Second slide" height="750">
         </div>
         <div class="carousel-item">
 
-          <img class="d-block w-100" src="imagens/motoris.jpg" alt="Third slide">
+          <img class="d-block w-100" src="imagens/motoris3.jpg" alt="Third slide" height="750">
 
         </div>
       </div>
@@ -94,7 +94,7 @@ if(!isset($_SESSION["system_control"]))
             </div>
           </div>
         </div>
-        <div class="col-md-4"> <img src="imagens/Dominic.png" class="img-fluid" /> </div>
+        <div class="col-md-4"> <img src="imagens/mecanico3.png" class="img-fluid"> </div>
       </div>
       <!-- /.row --> 
     </div>
