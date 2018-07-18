@@ -65,9 +65,11 @@ else{
         <div class="row">
           <div class="col-sm" id="botao">
             <center>
-              <button type="button" class="btn btn-primary" id ="aparecer">Enviar</button></center>
+              Aqui estão seus carros cadastrados até o momento, clique neles para saber de mais detalhes.
+              <button type="button" class="btn btn-primary" id ="aparecer">Cadastrar</button></center>
             </div>
             <div class="col-sm" id="escondido"style="display: none;">
+              <center><h4>Cadastrar novo carro</h4></center>
               <div class="row">
                 <div class="col-4">
                   Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
@@ -75,13 +77,13 @@ else{
                 <div class="col-4">
                   Cor:
                   <select name="cor" class="form-control" name="cor" id="cor" required>
-                    <option>Selecione um cor</option>
+                    <option value="">Selecione um cor</option>
                   </select>
                 </div>
                 <div class="col-4">
                   Ano:
                   <select name="ano" class="form-control" name="ano" id="ano" required>
-                    <option>Selecione o ano</option>
+                    <option value="">Selecione o ano</option>
                   </select>
                 </div>
 
@@ -117,14 +119,15 @@ else{
 
                   <div class="col-sm">
                     <center>
+                      <h4>Carros ja cadastrados</h4>
                       <ul class="list-group">
 
                         <?php
 
                         while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                          echo "  <li class='list-group-item'>" . $vetor_veiculo['modelo']. "</li>";
+                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "</li>";
                         }
-                        
+
                         ?></ul></center>
                       </div>
                     </div>

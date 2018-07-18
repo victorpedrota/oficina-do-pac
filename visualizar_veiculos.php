@@ -58,7 +58,7 @@ else{
             <?php
 
         while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-            echo "  <li class='list-group-item'>" . $vetor_veiculo['modelo']. "</li>";
+            echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" $vetor_veiculo['modelo']. "</li>";
         }
         
         ?></ul></center></div>
