@@ -41,14 +41,14 @@ if(!isset($_SESSION["system_control"]))
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="imagens/velocimetro.jpg" alt="First slide">
+          <img class="d-block w-100" src="imagens/velocimetro1.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="imagens/pagina1.jpg" alt="Second slide">
+          <img class="d-block w-100" src="imagens/carro.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
 
-          <img class="d-block w-100" src="imagens/carro.png" alt="Third slide">
+          <img class="d-block w-100" src="imagens/motoris.jpg" alt="Third slide">
 
         </div>
       </div>
@@ -77,24 +77,24 @@ if(!isset($_SESSION["system_control"]))
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-plus" aria-hidden="true"></i>
-              <h3>Profissionalidade</h3>
-              <p>Nós temos total profissionalidade e comprometimento com nosso trabalho e nossos clientes.</p>
+              <h3>Diferenciais</h3>
+              <p>Nossos profissionais utilizam maquinários e ferramentas específicas e de alta qualidade visando obter os melhores resultados.</p>
             </div>
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
-              <h3>Praticidade</h3>
-              <p>O site possui um layout simples e de fácil compreensão, para que nossos usuários possam usar facilmente.</p>
+              <h3>Vantagens</h3>
+              <p>Com uma boa vistoria é possivel ter mais confiança e autonomia ao usar o veículo.</p>
             </div>
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
-              <h3>Preço</h3>
-              <p>Melhor busca nos preços, proporcionando maior acessibilidade a preços.</p>
+              <h3>Recomendação</h3>
+              <p>Fazemos recomendações de preços, peças e muito mais para lhe ajudar a manter seu carro "tinindo".<p>
             </div>
             <div class="col-md-6 text-sm-center service-block"><i class="fa fa-bell" aria-hidden="true"></i>
-              <h3>Sempre alerta</h3>
-              <p>Você sempre alerta sobre seu carro e cobranças.</p>
+              <h3>Garantia</h3>
+              <p>Oferecemos total garantia de serviços bem feitos e preços justos.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4"> <img src="imagens/mecanico.jpg" class="img-fluid" /> </div>
+        <div class="col-md-4"> <img src="imagens/Dominic.png" class="img-fluid" /> </div>
       </div>
       <!-- /.row --> 
     </div>
@@ -123,7 +123,12 @@ if(!isset($_SESSION["system_control"]))
 
   <section class="action-sec">
     <div class="container">
-      
+      <a href="#"><img src="imagens/facebook.png" width="45" height="45"></a>
+      <a href="#"><img src="imagens/Google.png" width="45" height="45"></a>
+      <a href="#"><img src="imagens/instagram.png" width="45" height="45"></a>
+      <a href="#"><img src="imagens/youtube.png" width="45" height="45"></a>
+      <a href="#"><img src="imagens/whatsapp.png" width="45" height="45"></a>
+      (12) 99999-9999
     </div>
   </section>
 </body>
