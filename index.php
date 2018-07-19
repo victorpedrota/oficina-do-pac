@@ -94,7 +94,7 @@ if(!isset($_SESSION["system_control"]))
             </div>
           </div>
         </div>
-        <div class="col-md-4"> <img src="imagens/Dominic.png" class="img-fluid" /> </div>
+        <div class="col-md-4"> <img src="imagens/mecanico.jpg" class="img-fluid" /> </div>
       </div>
       <!-- /.row --> 
     </div>
