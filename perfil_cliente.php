@@ -67,10 +67,7 @@ else{
               <a style="color:white;" href="form_alterar_usuario.php">Alterar informações</a>
             </li>
             <li>
-              <a style="color:white;" href="form_veiculo.php">Cadastrar veiculo</a>
-            </li>
-            <li>
-              <a style="color:white;" href="form_veiculo.php">Visualizar veiculos</a>
+              <a style="color:white;" href="form_veiculo.php">Meus veiculos</a>
             </li>
             <li>
               <a style="color:white;" href="form_veiculo.php">iniciar chamado</a>

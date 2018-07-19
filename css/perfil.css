@@ -1,0 +1,79 @@
+	.title-arch {
+		text-align: center;
+		margin: 50px 0;
+		font-size: 22px;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+	}
+.project {
+	width: 100%;
+	height: 500px;
+	background-image: url(http://economia.culturamix.com/blog/wp-content/gallery/vantagens-do-consorcio-de-veiculos-1/Vantagens-do-Cons%C3%B3rcio-de-Ve%C3%ADculos-1.jpeg);
+	background-size: cover;
+	background-position: center;
+	padding: 0 !important;
+	float:left;
+}
+
+.project-2 {
+	background-image: url(http://www.blogdaqualidade.com.br/wp-content/uploads/2016/09/3-dicas-para-diminuir-o-numero-de-informacoes-documentadas-sem-comprometer-o-sgq_.jpg);
+}
+
+.project-3 {
+	background-image: url(https://png.pngtree.com/element_origin_min_pic/17/08/21/003f7278eb7bf9b360756f0e3a945fa1.jpg);
+}
+
+.project-4 {
+	background-image: url(https://prograd.ufms.br/files/2016/10/relat%C3%B3rio-2.png);
+}
+
+.project-hover {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	background-color: rgba(186, 232, 2, 0.7);
+	padding: 40% 30px !important;
+}
+
+.project-hover hr {
+	height: 30px;
+	width: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	background-color: rgba(255, 255, 255, 1);
+	border: 0;
+}
+
+.project-hover a {
+	color: rgba(255, 255, 255, 1);
+	padding: 2px 22px;
+	line-height: 40px;
+	border: 2px solid rgba(255, 255, 255, 1);
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.project-hover a:hover {
+	border-color: rgba(51, 51, 51, 1);
+	color: rgba(51, 51, 51, 1);
+	background-color: #FFF;
+}
+
+.project:hover .project-hover {
+	opacity: 1;
+}
+
+.project:hover .project-hover hr {
+	width: 100%;
+	height: 5px;
+}
+

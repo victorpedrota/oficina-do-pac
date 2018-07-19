@@ -61,12 +61,24 @@ else{
     <div class="container" style="margin-top: 60px">
 
       <form method="POST" action="cadastrar_veiculo.php">
+<div class="col-sm">
+                    <center>
+                      <h4>Carros ja cadastrados</h4>
+                      <ul class="list-group">
 
+                        <?php
+
+                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "</li>";
+                        }
+
+                        ?></ul></center>
+                      </div>
         <div class="row">
           <div class="col-sm" id="botao">
             <center>
               Aqui estão seus carros cadastrados até o momento, clique neles para saber de mais detalhes.
-              <button type="button" class="btn btn-primary" id ="aparecer">Cadastrar</button></center>
+              <a href="#" id ="aparecer">Cadastrar</a></center>
             </div>
             <div class="col-sm" id="escondido"style="display: none;">
               <center><h4>Cadastrar novo carro</h4></center>
@@ -112,25 +124,14 @@ else{
                 </div>
               </div>
               <div class="row">
-                <div class="col-8">
-                  <center><br><a  class="btn btn-secondary" href="login.php">Cancelar</a>
+                <div class="col-sm">
+                  <center><br><a  class="btn btn-secondary" href="form_veiculo.php">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
                   </div>
 
-                  <div class="col-sm">
-                    <center>
-                      <h4>Carros ja cadastrados</h4>
-                      <ul class="list-group">
-
-                        <?php
-
-                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "</li>";
-                        }
-
-                        ?></ul></center>
-                      </div>
+                 
                     </div>
+                    
                   </div>
                   <script>
 
