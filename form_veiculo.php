@@ -41,6 +41,64 @@ else{
      <!DOCTYPE html>
     <html>
     <head>
+<<<<<<< HEAD
+      <style type="text/css">
+      .hide{
+        display: none;
+      }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+    <?php require("navbar_logout.html"); ?>
+    <script
+    src="https://code.jquery.com/jquery-3.2.0.min.js"
+    integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+    <div class="container" style="margin-top: 60px">
+
+      <form method="POST" action="cadastrar_veiculo.php">
+<div class="col-sm">
+                    <center>
+                      <h4>Carros ja cadastrados</h4>
+                      <ul class="list-group">
+
+                        <?php
+
+                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "</li>";
+                        }
+
+                        ?></ul></center>
+                      </div>
+        <div class="row">
+          <div class="col-sm" id="botao">
+            <center>
+              Aqui estão seus carros cadastrados até o momento, clique neles para saber de mais detalhes.
+              <a href="#" id ="aparecer">Cadastrar</a></center>
+            </div>
+            <div class="col-sm" id="escondido"style="display: none;">
+              <center><h4>Cadastrar novo carro</h4></center>
+              <div class="row">
+                <div class="col-4">
+                  Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
+                </div>
+                <div class="col-4">
+                  Cor:
+                  <select name="cor" class="form-control" name="cor" id="cor" required>
+                    <option value="">Selecione um cor</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  Ano:
+                  <select name="ano" class="form-control" name="ano" id="ano" required>
+                    <option value="">Selecione o ano</option>
+                  </select>
+                </div>
+=======
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,6 +122,7 @@ else{
             document.getElementById('bairro').value=("");
             document.getElementById('cidade').value=("");
             document.getElementById('uf').value=("");
+>>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
 
           }
 
@@ -175,6 +234,14 @@ else{
                 <h4>Cadastrar novo carro</h4>
               </center>
               <div class="row">
+<<<<<<< HEAD
+                <div class="col-sm">
+                  <center><br><a  class="btn btn-secondary" href="form_veiculo.php">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
+                  </div>
+
+                 
+=======
                 <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
                 <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
                 </option><option value="azul">azul
@@ -224,7 +291,9 @@ else{
                   <div class="col-sm">
                     <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
                       <button type="submit" class="btn btn-primary">Enviar</button></center>
+>>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
                     </div>
+                    
                   </div>
                 </div>
 
