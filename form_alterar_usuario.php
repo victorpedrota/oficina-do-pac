@@ -38,20 +38,203 @@ else{
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" type="text/css" href="css/sidenav.css">
-      <link href="sccs/main.css" type="text/css">
+      <link rel="stylesheet" href="scss/main.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <style type="text/css">
+      div.show-image {
 
 
-    </head>
-    <body>
-     <?php
-     require("navbar_logout.html");
-     ?>
-     <script src="js/jquery.mask.min.js"></script>
+        margin:5px;
+      }
+      div.show-image:hover img{
+        opacity:0.5;
+      }
+    </style>
 
-     <script type="text/javascript" >
+  </head>
+  <body>
 
-      function limpa_formulário_cep() {
+
+      <div class="wrapper">
+
+       <?php
+       require("sidebar.html");
+       ?>
+       <div id="content">
+        <?php
+        require("navbar_logout.html");
+        ?>
+
+        <center>
+          <div class="show-image" style="width: 100px;">
+            <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
+          </div>
+
+          <h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
+        </center>
+        <hr>
+
+        <form method="POST" action="alterar_cliente.php" id="alterar">
+          <div id="erro_alterar"></div>
+
+          <label for="inputPassword4">Telefone</label>
+          <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control telefone" required>
+
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="inputAddress">Celular:</label>
+              <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control telefone" required>
+            </div>
+            <div class="col-md-6">
+              <label for="inputAddress2">CEP:</label>
+              <input  value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+            </div></div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Estado:</label>
+                <select name="uf" id="uf" type="text" class="form-control" required>
+                  <option value="<?php echo $vetor['estado'];?>"><?php echo $vetor['estado']; ?></option>
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">Rio Grande do Norte</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Cidade:</label>
+                <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip">Bairro</label>
+                <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Rua:</label>
+                <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputPassword4">Numero:</label>
+                <input  value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputPassword4">Comeplemento:</label>
+                <input  value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
+              </div>
+
+            </div>
+            <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
+              Enviar
+            </button></center>
+
+          </form>
+        </div>
+      </div>
+      <div class="modal fade" id="alterar_informacoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Autenticação de Usuário</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="validar">
+                <label for="inputPassword4">Senha:</label>
+                <div id="erro"></div>
+
+                <input  name="senha_nova" id="v_senha" type="password" class="form-control" required>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" onclick="enviar_informacoes();" class="btn btn-primary">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="alterar_cliente.php" id="form">
+              <label for="inputPassword4">Senha atual:</label>
+              <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
+              <label for="inputPassword4">Senha nova:</label>
+              <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
+              <label for="inputPassword4">Confirmar senha:</label>
+              <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
+              <input type="hidden" value="1" name="senha">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
+
+            <input type="file" class="form-control" name="arquivo">
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.mask.min.js"></script>
+
+   <script type="text/javascript" >
+
+    function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
             document.getElementById('rua').value=("");
             document.getElementById('bairro').value=("");
@@ -120,296 +303,102 @@ else{
         };
 
       </script>
-
-      <div class="container">
-       <div id="wrapper">
-
-        <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-              <a>
-                Configurações da Conta
-              </a>
-            </li>
-            <li>
-              <a data-toggle="modal" data-target="#alterar_senha" href="#">Alterar Senha</a>
-
-            </li>
-            <li>
-              <a style="position: fixed; bottom:0px;" href="#" >Excluir conta</a>
-
-            </li>
-
-          </ul>
-        </div>
-
-
-
-        <br>
-        <br>
-
-        <center>
-          <div class="show-image" style="width: 100px;">
-            <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
-          </div>
-          <style type="text/css">
-          div.show-image {
-
-
-            margin:5px;
+      <script type="text/javascript">
+        function enviar(){
+          var senha = "<?php print $vetor_login['senha']; ?>";
+          var form = document.getElementById("form");
+          var c_senha = document.getElementById("senha_antiga").value
+          var senha_nova = document.getElementById("senha_nova").value
+          var c_senha_nova = document.getElementById("c_senha_nova").value
+          if(senha == "" || senha_nova == "" || c_senha_nova == "")
+          {
+            alert("Preencha todos os campos")
           }
-          div.show-image:hover img{
-            opacity:0.5;
-          }
-        </style>
-        <h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
-      </center>
-      <hr>
+          else{
+            if(senha != c_senha)
+            {
+              alert("senha incorreta")
+            }
 
-      <form method="POST" action="alterar_cliente.php" id="alterar">
-        <div id="erro_alterar"></div>
+            else if(senha_nova.length < 6 )
+            {
+              alert("a senha deve ter pelo menos 6 digitos")
+            }
 
-        <label for="inputPassword4">Telefone</label>
-        <input  value="<?php echo $vetor['telefone']; ?>" pattern=".{14,15}"  name="telefone" id="telefone" type="text" class="form-control telefone" required>
+            else{
+              if (senha_nova == c_senha_nova) {form.submit();}
+              else{alert("senhas não conferem")}
+            }
+        }
 
 
-        <div class="form-row">
-          <div class="col-md-6">
-            <label for="inputAddress">Celular:</label>
-            <input  value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular"  name="celular" type="text" class="form-control telefone" required>
-          </div>
-          <div class="col-md-6">
-            <label for="inputAddress2">CEP:</label>
-            <input  value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
-          </div></div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputCity">Estado:</label>
-              <select name="uf" id="uf" type="text" class="form-control" required>
-                <option value="<?php echo $vetor['estado'];?>"><?php echo $vetor['estado']; ?></option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-              </select>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">Cidade:</label>
-              <input  value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
-            </div>
-            <div class="form-group col-md-2">
-              <label for="inputZip">Bairro</label>
-              <input  value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputEmail4">Rua:</label>
-              <input  value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputPassword4">Numero:</label>
-              <input  value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-2">
-              <label for="inputPassword4">Comeplemento:</label>
-              <input  value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
-            </div>
+      }
 
-          </div>
-          <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
-            Enviar
-          </button></center>
 
-        </form>
-      </div>
-    </div>
-    <div class="modal fade" id="alterar_informacoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Autenticação de Usuário</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="validar">
-              <label for="inputPassword4">Senha:</label>
-              <div id="erro"></div>
 
-              <input  name="senha_nova" id="v_senha" type="password" class="form-control" required>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" onclick="enviar_informacoes();" class="btn btn-primary">Enviar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="alterar_cliente.php" id="form">
-            <label for="inputPassword4">Senha atual:</label>
-            <input   name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
-            <label for="inputPassword4">Senha nova:</label>
-            <input  name="senha_nova" id="senha_nova" type="password" class="form-control" required>
-            <label for="inputPassword4">Confirmar senha:</label>
-            <input    name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
-            <input type="hidden" value="1" name="senha">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript">
-      function enviar(){
+      function enviar_informacoes(){
         var senha = "<?php print $vetor_login['senha']; ?>";
-        var form = document.getElementById("form");
-        var c_senha = document.getElementById("senha_antiga").value
-        var senha_nova = document.getElementById("senha_nova").value
-        var c_senha_nova = document.getElementById("c_senha_nova").value
-        if(senha == "" || senha_nova == "" || c_senha_nova == "")
-        {
-          alert("Preencha todos os campos")
+        var form = document.getElementById("alterar");
+        var c_senha = document.getElementById("v_senha").value
+        if(senha != c_senha || c_senha == ""){
+          document.getElementById("erro").innerHTML = "<p style='color:red;'>Senha incorreta</p>";
         }
         else{
-          if(senha != c_senha)
-          {
-            alert("senha incorreta")
-          }
+         var test =  form.checkValidity();
+         if(test == true){
+          form.submit();
+        }else{
+          document.getElementById("erro_alterar").innerHTML = "<p style='color:red;'>Preencha todos os campos corretamente</p>";
+        }
 
-          else if(senha_nova.length < 6 )
-          {
-            alert("a senha deve ter pelo menos 6 digitos")
-          }
 
-          else{
-            if (senha_nova == c_senha_nova) {form.submit();}
-            else{alert("senhas não conferem")}
-          }
+
       }
-
-
     }
+  </script>
+  <script src="js/validar_form2.js"></script>
+  <script src="js/validar_form.js"></script>
+  <script >
+
+    $( "#enviar" ).click(function() {
+      var form = $( "#alterar" );
+      form.valid();
+      if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
 
 
-
-    function enviar_informacoes(){
-      var senha = "<?php print $vetor_login['senha']; ?>";
-      var form = document.getElementById("alterar");
-      var c_senha = document.getElementById("v_senha").value
-      if(senha != c_senha || c_senha == ""){
-        document.getElementById("erro").innerHTML = "<p style='color:red;'>Senha incorreta</p>";
-      }
-      else{
-       var test =  form.checkValidity();
-       if(test == true){
-        form.submit();
-      }else{
-        document.getElementById("erro_alterar").innerHTML = "<p style='color:red;'>Preencha todos os campos corretamente</p>";
-      }
+    });
 
 
-
-    }
-  }
-</script>
-<script src="js/validar_form2.js"></script>
-<script src="js/validar_form.js"></script>
-<script >
-
-  $( "#enviar" ).click(function() {
-    var form = $( "#alterar" );
-    form.valid();
-    if (form.valid() == true) {$("#alterar_informacoes").modal("show");}
+  </script>
 
 
-  });
+    <script>
+      $(document).ready(function(){
 
-
-</script>
-<div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
-
-          <input type="file" class="form-control" name="arquivo">
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Alterar foto</button></form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    $(document).ready(function(){
-
-      $('#cep').mask('00.000-000');
-      $('.telefone').mask('(00) 0000-00009');
-      $('.telefone').blur(function(event) {
+        $('#cep').mask('00.000-000');
+        $('.telefone').mask('(00) 0000-00009');
+        $('.telefone').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
                  $('.telefone').mask('(00) 00000-0009');
                } else {
                 $('.telefone').mask('(00) 0000-00009');
               }
             });
-       $('#numero').mask('0000000');
+        $('#numero').mask('0000000');
 
-    });
+      });
 
-  </script>
-</body>
-</html>
-<?php
+    </script>
+     <script>
+        $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+          });
+        });
+      </script>
+  </body>
+  </html>
+  <?php
 }
 else
 {
