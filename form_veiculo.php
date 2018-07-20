@@ -38,72 +38,14 @@ else{
 
 
     ?>
-     <!DOCTYPE html>
+    <!DOCTYPE html>
     <html>
     <head>
-<<<<<<< HEAD
-      <style type="text/css">
-      .hide{
-        display: none;
-      }
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  </head>
-  <body>
-    <?php require("navbar_logout.html"); ?>
-    <script
-    src="https://code.jquery.com/jquery-3.2.0.min.js"
-    integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
-    crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
-    <div class="container" style="margin-top: 60px">
-
-      <form method="POST" action="cadastrar_veiculo.php">
-<div class="col-sm">
-                    <center>
-                      <h4>Carros ja cadastrados</h4>
-                      <ul class="list-group">
-
-                        <?php
-
-                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "</li>";
-                        }
-
-                        ?></ul></center>
-                      </div>
-        <div class="row">
-          <div class="col-sm" id="botao">
-            <center>
-              Aqui estão seus carros cadastrados até o momento, clique neles para saber de mais detalhes.
-              <a href="#" id ="aparecer">Cadastrar</a></center>
-            </div>
-            <div class="col-sm" id="escondido"style="display: none;">
-              <center><h4>Cadastrar novo carro</h4></center>
-              <div class="row">
-                <div class="col-4">
-                  Placa:<input type="form-control" class="form-control" id="placa" name="placa" required="">
-                </div>
-                <div class="col-4">
-                  Cor:
-                  <select name="cor" class="form-control" name="cor" id="cor" required>
-                    <option value="">Selecione um cor</option>
-                  </select>
-                </div>
-                <div class="col-4">
-                  Ano:
-                  <select name="ano" class="form-control" name="ano" id="ano" required>
-                    <option value="">Selecione o ano</option>
-                  </select>
-                </div>
-=======
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" type="text/css" href="css/sidenav.css">
       <link href="sccs/main.css" type="text/css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
     </head>
@@ -122,7 +64,6 @@ else{
             document.getElementById('bairro').value=("");
             document.getElementById('cidade').value=("");
             document.getElementById('uf').value=("");
->>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
 
           }
 
@@ -224,9 +165,9 @@ else{
         <br>
 
         <form method="POST" action="cadastrar_veiculo.php">
-          
-            
-    
+
+
+
           <div class="row">
 
             <div class="col-sm" id="escondido" style="display: block;"><br>
@@ -234,14 +175,6 @@ else{
                 <h4>Cadastrar novo carro</h4>
               </center>
               <div class="row">
-<<<<<<< HEAD
-                <div class="col-sm">
-                  <center><br><a  class="btn btn-secondary" href="form_veiculo.php">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
-                  </div>
-
-                 
-=======
                 <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
                 <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
                 </option><option value="azul">azul
@@ -291,9 +224,7 @@ else{
                   <div class="col-sm">
                     <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
                       <button type="submit" class="btn btn-primary">Enviar</button></center>
->>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
                     </div>
-                    
                   </div>
                 </div>
 
@@ -306,8 +237,8 @@ else{
 
                       while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
                         echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<button style='color:red;' type='button' class='close' aria-label='Close'>
-  <span aria-hidden='true'>&times;</span>
-</button></li> ";
+                        <span aria-hidden='true'>&times;</span>
+                        </button></li> ";
                       }
 
                       ?>
@@ -387,25 +318,30 @@ else{
               });
             </script>
 
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <!-- Popper.JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
           </body>
           </html>
-        <?php
-      }
-      else
-      {
+          <?php
+        }
+        else
+        {
             //Acesso Inválido
 
             //Finalizando a sessão
-        session_destroy();
+          session_destroy();
 
             //Mensagem para o Usuário
-        ?>
-        <script>
-          alert("Acesso Inválido!");
-          document.location.href = "login.php";
-        </script>
-        <?php
+          ?>
+          <script>
+            alert("Acesso Inválido!");
+            document.location.href = "login.php";
+          </script>
+          <?php
+        }
       }
-    }
-    ?>
+      ?>
