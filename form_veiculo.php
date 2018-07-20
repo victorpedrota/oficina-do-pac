@@ -1,5 +1,5 @@
 <?php
-    //Mantendo a sessão/cria uma sessao
+
 session_start();
 
 if(!isset($_SESSION["system_control"]))
@@ -7,41 +7,41 @@ if(!isset($_SESSION["system_control"]))
   ?>
   <script>
     alert("Acesso Inválido!");
-    document.location.href="login.php";
+    document.location.href = "login.php";
   </script>
-  <?php       
+  <?php
 }
 else{
-        //Sessao já criada  
-        //Recuperando as variaveis da sessão
-  $system_control = $_SESSION["system_control"];   
+
+  $system_control = $_SESSION["system_control"];
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
   $cod_cliente = $_SESSION["cod_cliente"];
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
     $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
-    $resultado = mysqli_query($conn,$sql_pesquisa); 
+    $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
-    
+
 
     $oficina ="SELECT * FROM `oficina` ORDER BY `nome`";
-    $oficinas_query = mysqli_query($conn,$oficina); 
+    $oficinas_query = mysqli_query($conn,$oficina);
     $numero_oficina = mysqli_num_rows($oficinas_query);
 
     $sql ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
-    $resultado_pesquisa = mysqli_query($conn,$sql); 
+    $resultado_pesquisa = mysqli_query($conn,$sql);
     $vetor_login = mysqli_fetch_array($resultado_pesquisa);
 
     $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
-    $veiculo_resultado = mysqli_query($conn,$sql_veiculo); 
+    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
     $numero_veiculos = mysqli_num_rows($veiculo_resultado);
 
 
     ?>
-    <!DOCTYPE html>
-    <html lang="en">
+     <!DOCTYPE html>
+    <html>
     <head>
+<<<<<<< HEAD
       <style type="text/css">
       .hide{
         display: none;
@@ -98,123 +98,314 @@ else{
                     <option value="">Selecione o ano</option>
                   </select>
                 </div>
+=======
+      <title>Oficina Pro</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+      <link href="sccs/main.css" type="text/css">
 
-              </div>
+
+    </head>
+    <body>
+     <?php
+     require("navbar_logout.html");
+     ?>
+     <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+
+     <script type="text/javascript" >
+
+      function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+>>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
+
+          }
+
+          function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+          }
+        }
+
+        function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+              }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+          }
+        };
+
+      </script>
+
+      <div class="container">
+       <div id="wrapper">
+
+        <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+              <a>
+                Configurações da Conta
+              </a>
+            </li>
+            <li>
+              <a id="aparecer" href="#">Cadastrar</a>
+
+            </li>
+            <li>
+              <a id="aparecer2" href="#">Meus veículos</a>
+
+            </li>
+            <li>
+              <a id="aparecer2" href="#">Alterar</a>
+
+            </li>
+            <li>
+              <a id="aparecer2" href="#">Excluir</a>
+
+            </li>
+
+
+          </ul>
+        </div>
+
+
+
+        <br>
+        <br>
+
+        <form method="POST" action="cadastrar_veiculo.php">
+          
+            
+    
+          <div class="row">
+
+            <div class="col-sm" id="escondido" style="display: block;"><br>
+              <center>
+                <h4>Cadastrar novo carro</h4>
+              </center>
               <div class="row">
-                <div class="col-4">
-                  Tipo:
-                  <select name="tipo" class="form-control" id="tipo" required>
-
-                    <option  value="carros">Carros</option>
-                    <option  value="motos">Motos</option>
-                    <option  value="caminhao">Caminhão</option>
-
-                  </select>
-                </div>
-                <div class="col-4">
-                  Marcas:
-                  <select name="marcas" class="form-control" id="marcas" required>
-
-                    <option  value="">selecione uma Marca</option>
-                  </select>
-                </div>
-
-                <div class="col-4">
-                  <div id="div"></div>
-                </div>
-              </div>
-              <div class="row">
+<<<<<<< HEAD
                 <div class="col-sm">
                   <center><br><a  class="btn btn-secondary" href="form_veiculo.php">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Enviar</button></center></div></div>
                   </div>
 
                  
+=======
+                <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
+                <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                </option><option value="azul">azul
+                </option> </select> </div>
+                <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
+                  <option value="">Selecione o ano</option> </select> </div>
+                  <script type="text/javascript">
+                    var today = new Date(),
+                    yyyy = today.getFullYear(),
+                    inpYear = $('#expYear'),
+                    html = '';
+
+                    for (var i = 0; i < 40; i++, yyyy--) {
+
+                      $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
+                    };
+
+                    console.log(html);
+
+                  </script>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    Tipo:
+                    <select name="tipo" class="form-control" id="tipo" required>
+
+                      <option value="carros">Carros</option>
+                      <option value="motos">Motos</option>
+                      <option value="caminhao">Caminhão</option>
+                      
+
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    Marcas:
+                    <select name="marcas" class="form-control" id="marcas" required>
+
+                      <option value="">selecione uma Marca</option>
+                    </select>
+                  </div>
+
+                  <div class="col-4">
+                    <div id="div"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm">
+                    <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
+                      <button type="submit" class="btn btn-primary">Enviar</button></center>
+>>>>>>> b2077d1727d7132a5d34a6d18eb1f0d73fe66efb
                     </div>
                     
                   </div>
-                  <script>
+                </div>
 
-                    $( document ).ready(function() {
+                <div class="col-sm" id="escondido2" style="display: none;"><br>
+                  <center>
+                    <h4>Carros ja cadastrados</h4>
+                    <ul style="text-align: left;" class="list-group">
 
-                      $( "#tipo" )
-                      .change(function () {
+                      <?php
 
-                        $( "#tipo option:selected" ).each(function() {
+                      while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                        echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<button style='color:red;' type='button' class='close' aria-label='Close'>
+  <span aria-hidden='true'>&times;</span>
+</button></li> ";
+                      }
 
-                          tipo = $( this ).val();
-                          $('#marcas').children('option:not(:first)').remove();
-                          $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo +'/marcas.json', function(data) {
+                      ?>
+                    </ul>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <script>
+              $(document).ready(function() {
+
+                $("#tipo")
+                .change(function() {
+
+                  $("#tipo option:selected").each(function() {
+
+                    tipo = $(this).val();
+                    $('#marcas').children('option:not(:first)').remove();
+                    $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/marcas.json', function(data) {
 
 
-                            for (var i in data) {
-                              $('#marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
-                            }
+                      for (var i in data) {
+                        $('#marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
+                      }
 
 
-                            var elect = 'Modelo:<select name="modelo" class="form-control"><option>Selecione um Modelo</option></select>' 
-                            $('#div').html(elect);
-
-                          });
-
-                        });
-
-                      })
-                      .change();
-
-                      $( "#marcas" )
-                      .change(function () {
-
-                        $( "#marcas option:selected" ).each(function() {
-
-                          str = $( this ).val();
-
-                          $.getJSON('http://fipeapi.appspot.com/api/1/'+tipo+'/veiculos/'+str+'.json', function(data) {
-
-                            var select = 'Modelo:<select name="modelo" class="form-control">';
-                            for (var i in data) {
-
-                              select += '<option value="'+data[i].id +'">'+ data[i].name + '</option>';
-
-                            }
-                            select += '</select>';
-                            $('#div').html(select);
-
-                          });
-                        });
-
-                      })
-                      .change();
+                      var elect = 'Modelo:<select name="modelo" class="form-control"><option>Selecione um Modelo</option></select>'
+                      $('#div').html(elect);
 
                     });
-                    $( "#aparecer" ).click(function() {
-                      $("#escondido").css("display","block");
-                      $("#botao").css("display","none");
-                    });
 
-                    $('#placa').mask('ZZZ-0000', { translation: {'Z': {pattern: /[a-z\s]/
-                    }
+                  });
+
+                })
+                .change();
+
+                $("#marcas")
+                .change(function() {
+
+                  $("#marcas option:selected").each(function() {
+
+                    str = $(this).val();
+
+                    $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/veiculos/' + str + '.json', function(data) {
+
+                      var select = 'Modelo:<select name="modelo" class="form-control">';
+                      for (var i in data) {
+
+                        select += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+
+                      }
+                      select += '</select>';
+                      $('#div').html(select);
+
+                    });
+                  });
+
+                })
+                .change();
+
+              });
+              $("#aparecer").click(function() {
+                $("#escondido").slideDown(1000);
+                $("#escondido2").css("display", "none");
+              });
+              $("#aparecer2").click(function() {
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+              });
+
+              $('#placa').mask('ZZZ-0000', {
+                translation: {
+                  'Z': {
+                    pattern: /[a-z\s]/
                   }
-                });
-              </script>
-            </body>
-            </html>
-            <?php
-          }
-          else
-          {
+                }
+              });
+            </script>
+
+
+          </body>
+          </html>
+        <?php
+      }
+      else
+      {
             //Acesso Inválido
 
             //Finalizando a sessão
-            session_destroy();
+        session_destroy();
 
             //Mensagem para o Usuário
-            ?>
-            <script>
-              alert("Acesso Inválido!");
-              document.location.href="login.php";
-            </script>
-            <?php           
-          }
-        }
         ?>
+        <script>
+          alert("Acesso Inválido!");
+          document.location.href = "login.php";
+        </script>
+        <?php
+      }
+    }
+    ?>

@@ -41,7 +41,11 @@ if(!isset($_SESSION["system_control"]))
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
+<<<<<<< HEAD
+          <img class="d-block w-100" src="imagens/velocimetro2.jpg" alt="First slide">
+=======
           <img class="d-block w-100" src="imagens/velocimetro2.jpg" alt="First slide" height="750">
+>>>>>>> 9f55447be395baf2eb02b9637c2af3ce5a2205ae
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="imagens/carro1.jpg" alt="Second slide" height="750">
@@ -94,7 +98,11 @@ if(!isset($_SESSION["system_control"]))
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+        <div class="col-md-4"> <img src="imagens/mecanico.jpg" class="img-fluid" /> </div>
+=======
         <div class="col-md-4"> <img src="imagens/mecanico3.png" class="img-fluid"> </div>
+>>>>>>> 9f55447be395baf2eb02b9637c2af3ce5a2205ae
       </div>
       <!-- /.row --> 
     </div>
@@ -122,14 +130,14 @@ if(!isset($_SESSION["system_control"]))
   </section>
 
   <section class="action-sec">
+    <center>
     <div class="container">
       <a href="#"><img src="imagens/facebook.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/Google.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/instagram.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/youtube.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/whatsapp.png" width="45" height="45"></a>
-      (12) 99999-9999
-    </div>
+    </div></center>
   </section>
 </body>
 </html>

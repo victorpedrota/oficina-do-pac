@@ -9,13 +9,13 @@ if(!isset($_SESSION["system_control"]))
     alert("Acesso Inválido!");
     document.location.href="login.php";
   </script>
-  <?php       
+  <?php
 }
 else{
 
 
 
-  $system_control = $_SESSION["system_control"];   
+  $system_control = $_SESSION["system_control"];
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
 
@@ -23,10 +23,10 @@ else{
     require('connect.php');
 
     $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
-    $resultado = mysqli_query($conn,$sql_pesquisa); 
+    $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
     $sql ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
-    $resul = mysqli_query($conn,$sql); 
+    $resul = mysqli_query($conn,$sql);
     $vetor_login = mysqli_fetch_array($resul);
 
 
@@ -39,7 +39,7 @@ else{
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="stylesheet" type="text/css" href="css/sidenav.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="sccs/main.css" type="text/css">
 
 
     </head>
@@ -57,7 +57,7 @@ else{
             document.getElementById('bairro').value=("");
             document.getElementById('cidade').value=("");
             document.getElementById('uf').value=("");
-            
+
           }
 
           function meu_callback(conteudo) {
@@ -67,7 +67,7 @@ else{
             document.getElementById('bairro').value=(conteudo.bairro);
             document.getElementById('cidade').value=(conteudo.localidade);
             document.getElementById('uf').value=(conteudo.uf);
-            
+
         } //end if.
         else {
             //CEP não Encontrado.
@@ -75,7 +75,7 @@ else{
             alert("CEP não encontrado.");
           }
         }
-        
+
         function pesquisacep(valor) {
 
         //Nova variável "cep" somente com dígitos.
@@ -95,7 +95,7 @@ else{
                 document.getElementById('bairro').value="...";
                 document.getElementById('cidade').value="...";
                 document.getElementById('uf').value="...";
-                
+
 
                 //Cria um elemento javascript.
                 var script = document.createElement('script');
@@ -127,24 +127,24 @@ else{
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="sidebar-brand">
-              <a style="color:white;">
+              <a>
                 Configurações da Conta
               </a>
             </li>
             <li>
-              <a style="color:white;" data-toggle="modal" data-target="#alterar_senha" href="#">Alterar Senha</a>
-              
+              <a data-toggle="modal" data-target="#alterar_senha" href="#">Alterar Senha</a>
+
             </li>
             <li>
-              <a style="color:white; position: fixed; bottom:0px;" href="#" >Excluir conta</a>
-              
+              <a style="position: fixed; bottom:0px;" href="#" >Excluir conta</a>
+
             </li>
 
           </ul>
         </div>
 
-        
-        
+
+
         <br>
         <br>
 
@@ -165,7 +165,7 @@ else{
         <h5 style="margin-top: "><?php echo $vetor['nome'] . ',' . $vetor['sobrenome']; ?></h5>
       </center>
       <hr>
-      
+
       <form method="POST" action="alterar_cliente.php" id="alterar">
         <div id="erro_alterar"></div>
 
@@ -260,7 +260,7 @@ else{
             <form id="validar">
               <label for="inputPassword4">Senha:</label>
               <div id="erro"></div>
-              
+
               <input  name="senha_nova" id="v_senha" type="password" class="form-control" required>
             </form>
           </div>
@@ -402,6 +402,7 @@ else{
                 $('.telefone').mask('(00) 0000-00009');
               }
             });
+       $('#numero').mask('0000000');
 
     });
 
@@ -421,7 +422,7 @@ else
     alert("Acesso Inválido!");
     document.location.href="login.php";
   </script>
-  <?php           
+  <?php
 }
 }
 ?>
