@@ -1,8 +1,6 @@
 $theme-colors: (
   "primary": #563d7c,
-  "secundary": #15e06e,
-  "danger": #ff4136,
-  "light": #ff4136
+  "secundary": #15e06e
 
 );
 
@@ -10,8 +8,6 @@ $input-border-radius: 10rem;
 $btn-border-radius: 10rem;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-
 
 
 .main-form {
