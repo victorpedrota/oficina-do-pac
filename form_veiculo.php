@@ -1,5 +1,5 @@
 <?php
-
+    //Mantendo a sessão/cria uma sessao
 session_start();
 
 if(!isset($_SESSION["system_control"]))
@@ -7,18 +7,21 @@ if(!isset($_SESSION["system_control"]))
   ?>
   <script>
     alert("Acesso Inválido!");
-    document.location.href = "login.php";
+    document.location.href="login.php";
   </script>
   <?php
 }
 else{
-
+        //Sessao já criada
+        //Recuperando as variaveis da sessão
   $system_control = $_SESSION["system_control"];
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
   $cod_cliente = $_SESSION["cod_cliente"];
+
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
+
     $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
     $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
@@ -35,30 +38,33 @@ else{
     $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
     $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
     $numero_veiculos = mysqli_num_rows($veiculo_resultado);
-
-
+    $_SESSION["nome"] = $vetor["nome"];
     ?>
+
     <!DOCTYPE html>
     <html>
     <head>
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link href="sccs/main.css" type="text/css">
+      <!-- Bootstrap CSS CDN -->
+      <link rel="stylesheet" href="scss/main.css">
+      <!-- Our Custom CSS -->
       <link rel="stylesheet" type="text/css" href="css/style.css">
+
+      <!-- Font Awesome JS -->
+      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 
     </head>
     <body>
-     <?php
-     require("navbar_logout.html");
-     ?>
-     <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
-     <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="js/jquery.mask.min.js"></script>
 
-     <script type="text/javascript" >
+      <script type="text/javascript" >
 
-      function limpa_formulário_cep() {
+        function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
             document.getElementById('rua').value=("");
             document.getElementById('bairro').value=("");
@@ -127,126 +133,116 @@ else{
         };
 
       </script>
+      <div class="wrapper">
+        <!-- Sidebar  -->
+        <?php 
+        require("sidebar.html");
+        ?>
 
-      <div class="container">
-       <div id="wrapper">
+        <!-- Page Content  -->
+        <div id="content">
 
-        <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-              <a>
-                Configurações da Conta
-              </a>
-            </li>
-            <li>
-              <a id="aparecer" href="#">Cadastrar</a>
+          <?php
+          require("navbar_logout.html");
+          ?>
 
-            </li>
-            <li>
-              <a id="aparecer2" href="#">Meus veículos</a>
-
-            </li>
-            <li>
-              <a id="aparecer2" href="#">Alterar</a>
-
-            </li>
-            <li>
-              <a id="aparecer2" href="#">Excluir</a>
-
-            </li>
-
-
-          </ul>
-        </div>
+          <form method="POST" action="cadastrar_veiculo.php">
 
 
 
-        <br>
-        <br>
+            <div class="row">
 
-        <form method="POST" action="cadastrar_veiculo.php">
-
-
-
-          <div class="row">
-
-            <div class="col-sm" id="escondido" style="display: block;"><br>
-              <center>
-                <h4>Cadastrar novo carro</h4>
-              </center>
-              <div class="row">
-                <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
-                <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
-                </option><option value="azul">azul
-                </option> </select> </div>
-                <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
-                  <option value="">Selecione o ano</option> </select> </div>
-                  <script type="text/javascript">
-                    var today = new Date(),
-                    yyyy = today.getFullYear(),
-                    inpYear = $('#expYear'),
-                    html = '';
-
-                    for (var i = 0; i < 40; i++, yyyy--) {
-
-                      $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
-                    };
-
-                    console.log(html);
-
-                  </script>
-                </div>
+              <div class="col-sm" id="escondido" style="display: block;"><br>
+                <center>
+                  <h4>Cadastrar novo carro</h4>
+                </center>
                 <div class="row">
-                  <div class="col-4">
-                    Tipo:
-                    <select name="tipo" class="form-control" id="tipo" required>
+                  <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
+                  <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                  </option><option value="azul">azul
+                  </option> </select> </div>
+                  <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
+                    <option value="">Selecione o ano</option> </select> </div>
+                    <script type="text/javascript">
+                      var today = new Date(),
+                      yyyy = today.getFullYear(),
+                      inpYear = $('#expYear'),
+                      html = '';
 
-                      <option value="carros">Carros</option>
-                      <option value="motos">Motos</option>
-                      <option value="caminhao">Caminhão</option>
-                      
+                      for (var i = 0; i < 40; i++, yyyy--) {
 
-                    </select>
+                        $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
+                      };
+
+                      console.log(html);
+
+                    </script>
                   </div>
-                  <div class="col-4">
-                    Marcas:
-                    <select name="marcas" class="form-control" id="marcas" required>
+                  <div class="row">
+                    <div class="col-4">
+                      Tipo:
+                      <select name="tipo" class="form-control" id="tipo" required>
 
-                      <option value="">selecione uma Marca</option>
-                    </select>
-                  </div>
+                        <option value="carros">Carros</option>
+                        <option value="motos">Motos</option>
+                        <option value="caminhao">Caminhão</option>
 
-                  <div class="col-4">
-                    <div id="div"></div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm">
-                    <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
-                      <button type="submit" class="btn btn-primary">Enviar</button></center>
+
+                      </select>
+                    </div>
+                    <div class="col-4">
+                      Marcas:
+                      <select name="marcas" class="form-control" id="marcas" required>
+
+                        <option value="">selecione uma Marca</option>
+                      </select>
+                    </div>
+
+                    <div class="col-4">
+                      <div id="div"></div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-sm">
+                      <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Enviar</button></center>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm" id="escondido2" style="display: none;"><br>
+                    <center>
+                      <h4>Carros ja cadastrados</h4>
+                      <ul style="text-align: left;" class="list-group">
+
+                        <?php
+
+                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<button style='color:red;' type='button' class='close' aria-label='Close'>
+                          <span aria-hidden='true'>&times;</span>
+                          </button></li> ";
+                        }
+
+                        ?>
+                      </ul>
+                    </center>
+                  </div>
                 </div>
-
-                <div class="col-sm" id="escondido2" style="display: none;"><br>
-                  <center>
-                    <h4>Carros ja cadastrados</h4>
-                    <ul style="text-align: left;" class="list-group">
-
-                      <?php
-
-                      while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                        echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<button style='color:red;' type='button' class='close' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button></li> ";
-                      }
-
-                      ?>
-                    </ul>
-                  </center>
-                </div>
-              </div>
+              </div></form></div></div>
             </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <!-- Popper.JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+            <script>
+              $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                  $('#sidebar').toggleClass('active');
+                });
+              });
+            </script>
             <script>
               $(document).ready(function() {
 
@@ -317,13 +313,6 @@ else{
                 }
               });
             </script>
-
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <!-- Popper.JS -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-            <!-- Bootstrap JS -->
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
           </body>
           </html>
           <?php
@@ -339,7 +328,7 @@ else{
           ?>
           <script>
             alert("Acesso Inválido!");
-            document.location.href = "login.php";
+            document.location.href="login.php";
           </script>
           <?php
         }
