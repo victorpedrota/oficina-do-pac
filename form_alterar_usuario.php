@@ -57,14 +57,12 @@ else{
 
       <div class="wrapper">
 
-       <?php
-       require("sidebar.html");
-       ?>
+       
        <div id="content">
         <?php
         require("navbar_logout.html");
         ?>
-
+<div style="" class="container">
         <center>
           <div class="show-image" style="width: 100px;">
             <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
