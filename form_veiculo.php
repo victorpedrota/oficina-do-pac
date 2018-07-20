@@ -150,6 +150,9 @@ else{
                 <a id="aparecer" href="#">Cadastrar veículo</a>
               </li>
               <li>
+                <a id="btnexcluir" href="#">Excluir Veículos</a>
+              </li>
+              <li>
                 <a href="#">Alterar veículos</a>
               </li>
 
@@ -181,7 +184,7 @@ else{
 
             <div class="row">
 
-              <div class="col-sm" id="escondido" style="display: block;"><br>
+              <div class="col-sm" id="escondido" style="display: none;"><br>
                 <center>
                   <h4>Cadastrar novo carro</h4>
                 </center>
@@ -239,7 +242,7 @@ else{
                     </div>
                   </div>
 
-                  <div class="col-sm" id="escondido2" style="display: none;"><br>
+                  <div class="col-sm" id="escondido2" style="display: block;"><br>
                     <center>
                       <h4>Carros ja cadastrados</h4>
                       <ul style="text-align: left;" class="list-group">
@@ -247,9 +250,9 @@ else{
                         <?php
 
                         while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<button style='color:red;' type='button' class='close' aria-label='Close'>
+                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<a style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'  class='close' aria-label='Close'>
                           <i class='fas fa-times'></i>
-                          </button></li> ";
+                          </a></li> ";
                         }
 
                         ?>
@@ -322,12 +325,22 @@ else{
 
               });
               $("#aparecer").click(function() {
+                $("#escondido").css("display", "none");
                 $("#escondido").slideDown(1000);
                 $("#escondido2").css("display", "none");
               });
               $("#aparecer2").click(function() {
+                $("#escondido2").css("display", "none");
                 $("#escondido2").slideDown(1000);
                 $("#escondido").css("display", "none");
+                $(".close").css("display", "none");
+              });
+              $("#btnexcluir").click(function() {
+                $("#escondido2").css("display", "none");
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+                $(".close").css("display", "block");
+                $(".close").css("color", "red");
               });
 
 
