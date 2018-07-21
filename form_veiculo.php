@@ -198,7 +198,7 @@ else{
                   <div class="row">
                     <div class="col-4">
                       Tipo:
-                      <select name="tipo" class="form-control tipo" id="tipo" required>
+                      <select name="tipo" class="form-control tipo" required>
 
                         <option value="carro">Carros</option>
                         <option value="moto">Motos</option>
@@ -242,7 +242,7 @@ else{
                       <div class="row">
                         <div class="col-4">
                           Tipo:
-                          <select name="tipo" class="form-control tipo" id="tipo" required>
+                          <select  class="form-control tipo" id="tipo" required>
 
                             <option value="carro">Carros</option>
                             <option value="moto">Motos</option>
@@ -281,8 +281,19 @@ else{
                           $x = 0;
                           while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
 
-                            echo "<li class='list-group-item itens'><p style='display:inline-block;' class='placa' id='edit".$x."'> Placa: " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><a class='aalterar' style='display:none;' value='edit".$x."' href='#' aria-label='Edit'><i class='fas fa-edit edit'></i></a><br> Tipo: ". $vetor_veiculo['tipo']."   Modelo:  " . $vetor_veiculo['modelo']. "    Marca:  ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."</li>";
+                            echo "<li class='list-group-item itens'><p style='display:inline-block;'  class='placa'>Placa: " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'edit".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  Modelo:  " . $vetor_veiculo['modelo']. " Marca: ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."</li>
+
+
+                              <input type='hidden' id='pedit".$x."' value='".$vetor_veiculo['placa']."''>
+                              <input type='hidden' id='tedit".$x."' value='".$vetor_veiculo['tipo']."''>
+                              <input type='hidden' id='medit".$x."' value='".$vetor_veiculo['marca']."''>
+                              <input type='hidden' id='aedit".$x."' value='".$vetor_veiculo['ano']."''>
+
+
+                            ";
                             $x = $x + 1 ;
+
+                            
                           }
 
                           ?>
@@ -384,7 +395,7 @@ else{
                 $("#escondido").css("display", "none");
                 $("#alterar").css("display", "none");
                 $(".close").css("display", "none");
-                $(".edit").css("display", "none");
+                $(".aalterar").css("display", "none");
                 $("#escondido3").css("display", "none");
               });
               $("#btnexcluir").click(function() {
@@ -405,18 +416,40 @@ else{
                 $(".aalterar").css("display", "inline-block");
                 $(".aalterar").css("float", "right");
                 $(".aexcluir").css("display", "none");
-                $(".edit").css("color", "blue");
+                $(".edit").css("color", "black");
                 $(".edit").css("display", "block");
                 $("#escondido3").css("display", "none");
               });
               $("#escondido3").appendTo("#cagada");
               $(".aalterar").click(function() {
-                $('select').val('').trigger('change');
+
+
+              
                 $("#cagada").insertAfter(this);
                 $("#escondido3").css("display", "none");
                 $("#escondido3").toggle(1000);
-                 var valorDaDiv = $(".placa").text(); 
-                 alert(valorDaDiv)
+                var placa = "#p"+ $(this).val();
+                var texto = $(placa).val();
+                $(".inplaca").val(texto);
+                var tipo = "#t"+ $(this).val();
+                 texto = $(tipo).val();
+
+                $('#tipo option').each(function() {
+
+                  if($(this).val() == texto) {
+                    $(this).attr('selected', true);
+                  }
+                });
+                var marca = "#m"+ $(this).val();
+                 texto = $(marca).text();
+
+                $('.marcas option').each(function() {
+
+                  if($(this).val() == texto) {
+                    $(this).attr('selected', true);
+                  }
+                });
+
               });
 
 
