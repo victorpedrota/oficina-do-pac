@@ -150,10 +150,11 @@ else{
                 <a id="aparecer" href="#">Cadastrar veículo</a>
               </li>
               <li>
-                <a id="btnexcluir" href="#">Excluir Veículos</a>
+                <a id="btnalterar" href="#">Alterar veículos</a>
+                
               </li>
               <li>
-                <a href="#">Alterar veículos</a>
+                <a id="btnexcluir" href="#">Excluir Veículos</a>
               </li>
 
             </li>
@@ -177,38 +178,22 @@ else{
           <?php
           require("navbar_logout.html");
           ?>
+
           <script src="js/jquery.mask.min.js"></script>
-          <form method="POST" action="cadastrar_veiculo.php">
-
-
-
-            <div class="row">
-
-              <div class="col-sm" id="escondido" style="display: none;"><br>
-                <center>
-                  <h4>Cadastrar novo carro</h4>
-                </center>
+          
+          <div class="row">
+            <div class="col-sm" id="escondido" style="display: none;"><br>
+              <center>
+                <h4>Cadastrar novo carro</h4>
+              </center>
+              <form method="POST" action="cadastrar_veiculo.php">
                 <div class="row">
-                  <div class="col-4"> Placa:<input type="form-control" class="form-control" id="placa" name="placa" required> </div>
-                  <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                  <div class="col-4"> Placa:<input type="text" class="form-control" id="placa" name="placa" required></div>
+                  <div class="col-4"> Cor: <select name="cor" class="form-control" id="cor" required> <option value="">Selecione um cor
                   </option><option value="azul">azul
                   </option> </select> </div>
-                  <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
+                  <div class="col-4"> Ano: <select  class="form-control" name="ano" id="year" required>
                     <option value="">Selecione o ano</option> </select> </div>
-                    <script type="text/javascript">
-                      var today = new Date(),
-                      yyyy = today.getFullYear(),
-                      inpYear = $('#expYear'),
-                      html = '';
-
-                      for (var i = 0; i < 40; i++, yyyy--) {
-
-                        $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
-                      };
-
-                      console.log(html);
-
-                    </script>
                   </div>
                   <div class="row">
                     <div class="col-4">
@@ -238,29 +223,77 @@ else{
                     <div class="col-sm">
                       <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Enviar</button></center>
-                      </div>
+                      </form> </div>
+
                     </div>
                   </div>
-
-                  <div class="col-sm" id="escondido2" style="display: block;"><br>
+                  <div class="col-sm" id="escondido3" style="display: none;"><br>
                     <center>
-                      <h4>Carros ja cadastrados</h4>
-                      <ul style="text-align: left;" class="list-group">
-
-                        <?php
-
-                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                          echo "  <li class='list-group-item'>PLaca:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<a style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'  class='close' aria-label='Close'>
-                          <i class='fas fa-times'></i>
-                          </a></li> ";
-                        }
-
-                        ?>
-                      </ul>
+                      <h4>Cadastrar novo carro</h4>
                     </center>
+                    <div class="row">
+                      <div class="col-4"> Placa:<input type="form" class="form-control" id="placa" name="placa" required> </div>
+                      <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                      </option><option value="azul">azul
+                      </option> </select> </div>
+                      <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
+                        <option value="">Selecione o ano</option> </select> </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-4">
+                          Tipo:
+                          <select name="tipo" class="form-control" id="tipo" required>
+
+                            <option value="carros">Carros</option>
+                            <option value="motos">Motos</option>
+                            <option value="caminhao">Caminhão</option>
+
+
+                          </select>
+                        </div>
+                        <div class="col-4">
+                          Marcas:
+                          <select name="marcas" class="form-control" id="marcas" required>
+
+                            <option value="">selecione uma Marca</option>
+                          </select>
+                        </div>
+
+                        <div class="col-4">
+                          <div id="div"></div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm">
+                          <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Enviar</button></center>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div class="col-sm" id="escondido2" style="display: block;"><br>
+                      <center>
+                        <h4>Carros ja cadastrados</h4>
+                        <ul style="text-align: left;" class="list-group">
+
+                          <?php
+
+                          while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+
+                            echo "<li class='list-group-item'>Placa:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><a class='aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-edit edit'></i></a></li> ";
+                          }
+
+                          ?>
+                          <div id="cagada"></div>
+                        </ul>
+
+                      </center>
+                    </div>
+
                   </div>
                 </div>
-              </div></form></div></div>
+              </div>
             </div>
 
 
@@ -270,6 +303,20 @@ else{
                   $('#sidebar').toggleClass('active');
                 });
               });
+            </script>
+            <script type="text/javascript">
+              var today = new Date(),
+              yyyy = today.getFullYear(),
+              inpYear = $('#expYear'),
+              html = '';
+
+              for (var i = 0; i < 40; i++, yyyy--) {
+
+                $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
+              };
+
+              console.log(html);
+
             </script>
             <script>
               $(document).ready(function() {
@@ -328,19 +375,46 @@ else{
                 $("#escondido").css("display", "none");
                 $("#escondido").slideDown(1000);
                 $("#escondido2").css("display", "none");
+                $("#alterar").css("display", "none");
               });
               $("#aparecer2").click(function() {
                 $("#escondido2").css("display", "none");
                 $("#escondido2").slideDown(1000);
                 $("#escondido").css("display", "none");
+                $("#alterar").css("display", "none");
                 $(".close").css("display", "none");
+                $(".edit").css("display", "none");
+                $("#escondido3").css("display", "none");
               });
               $("#btnexcluir").click(function() {
                 $("#escondido2").css("display", "none");
                 $("#escondido2").slideDown(1000);
                 $("#escondido").css("display", "none");
-                $(".close").css("display", "block");
+                $(".aexcluir").css("display", "inline-block");
+                $(".aexcluir").css("float", "right");
+                $(".aalterar").css("display", "none");
                 $(".close").css("color", "red");
+                $(".close").css("display", "block");
+                $("#escondido3").css("display", "none");
+              });
+              $("#btnalterar").click(function() {
+                $("#escondido2").css("display", "none");
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+                $(".aalterar").css("display", "inline-block");
+                $(".aalterar").css("float", "right");
+                $(".aexcluir").css("display", "none");
+                $(".edit").css("color", "blue");
+                $(".edit").css("display", "block");
+                $("#escondido3").css("display", "none");
+              });
+              $(".aalterar").click(function() {
+                $("#escondido3").appendTo("#cagada");
+                $("#escondido3").toggle(1000);
+                
+                $("#cagada").insertAfter(this);
+
+
               });
 
 
