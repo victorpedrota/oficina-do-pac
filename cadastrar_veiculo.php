@@ -24,11 +24,13 @@ else{
   $cod_cliente = $vetor_cliente['cod_cliente'];
 
   if($system_control == 1 && $privilegio == 0){
+    
     $modelo = $_POST['modelo'];
     $marca = $_POST['marca'];
     $cor = $_POST['cor'];
     $ano = $_POST['ano'];
     $placa = $_POST['placa'];
+    $tipo = $_POST['tipo'];
     
     
 
@@ -37,14 +39,14 @@ else{
     $numero_veiculo = mysqli_num_rows($resultado_sql);
           if( $numero_veiculo == 0){
 
-              $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `marca`,`placa`,`cod_cliente`) VALUES ('$modelo','$cor','$ano','$marca','$placa',$cod_cliente)";
+              $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `marca`,`placa`,`cod_cliente`,`tipo`) VALUES ('$modelo','$cor','$ano','$marca','$placa',$cod_cliente,'$tipo')";
               $insere = mysqli_query($conn,$sql);
 
 
               ?>
       <script>
         alert("Carro cadastrado com succeso!");
-        document.location.href="form_veiculo.php";
+        
       </script>
       <?php   
           }

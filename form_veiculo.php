@@ -188,35 +188,35 @@ else{
               </center>
               <form method="POST" action="cadastrar_veiculo.php">
                 <div class="row">
-                  <div class="col-4"> Placa:<input type="text" class="form-control" id="placa" name="placa" required></div>
+                  <div class="col-4"> Placa:<input type="text" class="form-control inplaca" id="placa" name="placa" required></div>
                   <div class="col-4"> Cor: <select name="cor" class="form-control" id="cor" required> <option value="">Selecione um cor
                   </option><option value="azul">azul
                   </option> </select> </div>
-                  <div class="col-4"> Ano: <select  class="form-control" name="ano" id="year" required>
+                  <div class="col-4"> Ano: <select  class="form-control year" name="ano" id="year" required>
                     <option value="">Selecione o ano</option> </select> </div>
                   </div>
                   <div class="row">
                     <div class="col-4">
                       Tipo:
-                      <select name="tipo" class="form-control" id="tipo" required>
+                      <select name="tipo" class="form-control tipo" id="tipo" required>
 
-                        <option value="carros">Carros</option>
-                        <option value="motos">Motos</option>
-                        <option value="caminhao">Caminhão</option>
+                        <option value="carro">Carros</option>
+                        <option value="moto">Motos</option>
+                        <option value="caminhão">Caminhão</option>
 
 
                       </select>
                     </div>
                     <div class="col-4">
                       Marcas:
-                      <select name="marcas" class="form-control" id="marcas" required>
+                      <select  name="marca" class="form-control marcas selectpicker" data-live-search="true" id="marcas" required>
 
-                        <option value="">selecione uma Marca</option>
+                        <option value="">Selecione uma Marca</option>
                       </select>
                     </div>
 
                     <div class="col-4">
-                      <div id="div"></div>
+                      <div class="div" id="div"></div>
                     </div>
                   </div>
                   <div class="row">
@@ -229,23 +229,23 @@ else{
                   </div>
                   <div class="col-sm" id="escondido3" style="display: none;"><br>
                     <center>
-                      <h4>Cadastrar novo carro</h4>
+                      <h4>Alterar informações do Veículo</h4>
                     </center>
                     <div class="row">
-                      <div class="col-4"> Placa:<input type="form" class="form-control" id="placa" name="placa" required> </div>
-                      <div class="col-4"> Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                      <div class="col-4">Placa:<input type="form" class="form-control inplaca" id="placa" name="placa" required> </div>
+                      <div class="col-4">Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
                       </option><option value="azul">azul
                       </option> </select> </div>
-                      <div class="col-4"> Ano: <select name="ano" class="form-control" name="ano" id="year" required>
+                      <div class="col-4"> Ano: <select name="ano" class="form-control year" name="ano" id="year" required>
                         <option value="">Selecione o ano</option> </select> </div>
                       </div>
                       <div class="row">
                         <div class="col-4">
                           Tipo:
-                          <select name="tipo" class="form-control" id="tipo" required>
+                          <select name="tipo" class="form-control tipo" id="tipo" required>
 
-                            <option value="carros">Carros</option>
-                            <option value="motos">Motos</option>
+                            <option value="carro">Carros</option>
+                            <option value="moto">Motos</option>
                             <option value="caminhao">Caminhão</option>
 
 
@@ -253,14 +253,14 @@ else{
                         </div>
                         <div class="col-4">
                           Marcas:
-                          <select name="marcas" class="form-control" id="marcas" required>
+                          <select name="marca" class="form-control marcas" id="marcas" required>
 
-                            <option value="">selecione uma Marca</option>
+                            <option value="">Selecione uma Marca</option>
                           </select>
                         </div>
 
                         <div class="col-4">
-                          <div id="div"></div>
+                          <div class="div" id="div"></div>
                         </div>
                       </div>
                       <div class="row">
@@ -274,14 +274,15 @@ else{
 
                     <div class="col-sm" id="escondido2" style="display: block;"><br>
                       <center>
-                        <h4>Carros ja cadastrados</h4>
+                        <h4 id="titulo">Carros ja cadastrados</h4>
                         <ul style="text-align: left;" class="list-group">
 
                           <?php
-
+                          $x = 0;
                           while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
 
-                            echo "<li class='list-group-item'>Placa:" . $vetor_veiculo['placa']. " Modelo:" . $vetor_veiculo['modelo']. "<a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><a class='aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-edit edit'></i></a></li> ";
+                            echo "<li class='list-group-item itens'><p style='display:inline-block;' class='placa' id='edit".$x."'> Placa: " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><a class='aalterar' style='display:none;' value='edit".$x."' href='#' aria-label='Edit'><i class='fas fa-edit edit'></i></a><br> Tipo: ". $vetor_veiculo['tipo']."   Modelo:  " . $vetor_veiculo['modelo']. "    Marca:  ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."</li>";
+                            $x = $x + 1 ;
                           }
 
                           ?>
@@ -312,7 +313,7 @@ else{
 
               for (var i = 0; i < 40; i++, yyyy--) {
 
-                $('#year').append($("<option></option>").attr("value", yyyy).text(yyyy));
+                $('.year').append($("<option></option>").attr("value", yyyy).text(yyyy));
               };
 
               console.log(html);
@@ -321,23 +322,23 @@ else{
             <script>
               $(document).ready(function() {
 
-                $("#tipo")
+                $(".tipo")
                 .change(function() {
 
-                  $("#tipo option:selected").each(function() {
+                  $(".tipo option:selected").each(function() {
 
                     tipo = $(this).val();
-                    $('#marcas').children('option:not(:first)').remove();
+                    $('.marcas').children('option:not(:first)').remove();
                     $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/marcas.json', function(data) {
 
 
                       for (var i in data) {
-                        $('#marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
+                        $('.marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
                       }
 
 
                       var elect = 'Modelo:<select name="modelo" class="form-control"><option>Selecione um Modelo</option></select>'
-                      $('#div').html(elect);
+                      $('.div').html(elect);
 
                     });
 
@@ -346,10 +347,10 @@ else{
                 })
                 .change();
 
-                $("#marcas")
+                $(".marcas")
                 .change(function() {
 
-                  $("#marcas option:selected").each(function() {
+                  $(".marcas option:selected").each(function() {
 
                     str = $(this).val();
 
@@ -362,7 +363,7 @@ else{
 
                       }
                       select += '</select>';
-                      $('#div').html(select);
+                      $('.div').html(select);
 
                     });
                   });
@@ -408,19 +409,20 @@ else{
                 $(".edit").css("display", "block");
                 $("#escondido3").css("display", "none");
               });
+              $("#escondido3").appendTo("#cagada");
               $(".aalterar").click(function() {
-                $("#escondido3").appendTo("#cagada");
-                $("#escondido3").toggle(1000);
-                
+                $('select').val('').trigger('change');
                 $("#cagada").insertAfter(this);
-
-
+                $("#escondido3").css("display", "none");
+                $("#escondido3").toggle(1000);
+                 var valorDaDiv = $(".placa").text(); 
+                 alert(valorDaDiv)
               });
 
 
             </script>
             <script>
-              $('#placa').mask('ZZZ-0000', {
+              $('.inplaca').mask('ZZZ-0000', {
                 translation: {
                   'Z': {
                     pattern: /[a-z\s]/
