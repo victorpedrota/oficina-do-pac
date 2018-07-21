@@ -222,12 +222,14 @@ else{
                   <div class="row">
                     <div class="col-sm">
                       <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">Enviar</button></center>
+                        <button type="submit" value="0" name="opcao" class="btn btn-primary">Enviar</button></center>
                       </form> </div>
 
                     </div>
                   </div>
                   <div class="col-sm" id="escondido3" style="display: none;"><br>
+                    
+                    <form method="POST" action="cadastrar_veiculo.php">
                     <center>
                       <h4>Alterar informações do Veículo</h4>
                     </center>
@@ -242,7 +244,7 @@ else{
                       <div class="row">
                         <div class="col-4">
                           Tipo:
-                          <select  class="form-control tipo" id="tipo" required>
+                          <select name="tipo"  class="form-control tipo" id="tipo" required>
 
                             <option value="carro">Carros</option>
                             <option value="moto">Motos</option>
@@ -258,7 +260,7 @@ else{
                             <option value="">Selecione uma Marca</option>
                           </select>
                         </div>
-
+                        <input type="hidden" value="" id="codigo" name="codigo">
                         <div class="col-4">
                           <div class="div" id="div"></div>
                         </div>
@@ -266,7 +268,7 @@ else{
                       <div class="row">
                         <div class="col-sm">
                           <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Enviar</button></center>
+                            <button type="submit" value="1" name="opcao" class="btn btn-primary">Enviar</button></center>
                           </div>
                         </form>
                       </div>
@@ -288,6 +290,7 @@ else{
                               <input type='hidden' id='tedit".$x."' value='".$vetor_veiculo['tipo']."''>
                               <input type='hidden' id='medit".$x."' value='".$vetor_veiculo['marca']."''>
                               <input type='hidden' id='aedit".$x."' value='".$vetor_veiculo['ano']."''>
+                              <input type='hidden' id='cedit".$x."' value='".$vetor_veiculo['cod_veiculo']."''>
 
 
                             ";
@@ -416,7 +419,7 @@ else{
                 $(".aalterar").css("display", "inline-block");
                 $(".aalterar").css("float", "right");
                 $(".aexcluir").css("display", "none");
-                $(".edit").css("color", "black");
+                $(".edit").css("color", "white");
                 $(".edit").css("display", "block");
                 $("#escondido3").css("display", "none");
               });
@@ -441,6 +444,9 @@ else{
                   }
                 });
                 var marca = "#m"+ $(this).val();
+                var codigo = "#c"+ $(this).val();
+                var test = $(codigo).val();
+                $("#codigo").attr('value', test );
                  texto = $(marca).text();
 
                 $('.marcas option').each(function() {
