@@ -24,55 +24,80 @@ else{
   $cod_cliente = $vetor_cliente['cod_cliente'];
 
   if($system_control == 1 && $privilegio == 0){
+
     $modelo = $_POST['modelo'];
     $marca = $_POST['marca'];
     $cor = $_POST['cor'];
     $ano = $_POST['ano'];
     $placa = $_POST['placa'];
-    
-    
-
+    $tipo = $_POST['tipo'];
+    $opcao = $_POST['opcao'];
     $sql ="select * from `veiculo` where  `placa` = '$placa'" ;
     $resultado_sql = mysqli_query($conn,$sql); 
     $numero_veiculo = mysqli_num_rows($resultado_sql);
-          if( $numero_veiculo == 0){
-
-              $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `marca`,`placa`,`cod_cliente`) VALUES ('$modelo','$cor','$ano','$marca','$placa',$cod_cliente)";
-              $insere = mysqli_query($conn,$sql);
+    if ($opcao == 1) {
 
 
-              ?>
-      <script>
-        alert("Carro cadastrado com succeso!");
-        document.location.href="form_veiculo.php";
-      </script>
-      <?php   
-          }
-          else{?>
-      <script>
-        alert("Carro ja cadastrado no sistema!");
-        document.location.href="form_veiculo.php";
-      </script>
-      <?php           
+
+        $codigo = $_POST['codigo'];
+        $sql = "UPDATE `veiculo` SET `modelo`='$modelo',`cor`='$cor',`ano`='$ano',`placa`='$placa',`marca`='$marca',`tipo`='$tipo' WHERE `cod_veiculo` = $codigo";
+        $insere = mysqli_query($conn,$sql);
+        ?>
+        <script>
+          alert("Veículo alterado com succeso!");
+          document.location.href="form_veiculo.php";
+
+        </script>
+        <?php 
+      
+      
     }
-        }
+    else{
 
-    else
-    {
-         
+      if( $numero_veiculo == 0){
+
+        $sql = "INSERT INTO `veiculo`(`modelo`, `cor`, `ano`, `marca`,`placa`,`cod_cliente`,`tipo`) VALUES ('$modelo','$cor','$ano','$marca','$placa',$cod_cliente,'$tipo')";
+        $insere = mysqli_query($conn,$sql);
+
+
+        ?>
+        <script>
+          alert("Carro cadastrado com succeso!");
+          document.location.href="form_veiculo.php";
+
+        </script>
+        <?php   
+      }
+      else{?>
+        <script>
+          alert("Carro ja cadastrado no sistema!");
+          document.location.href="form_veiculo.php";
+
+        </script>
+        <?php           
+      }
+    }
+
+    
+
+  }
+
+  else
+  {
+
             //Finalizando a sessão
 
-      session_destroy();
+    session_destroy();
 
             //Mensagem para o Usuário
-      ?>
-      <script>
-        alert("Acesso Inválido!");
-        document.location.href="../login.php";
-      </script>
-      <?php           
+    ?>
+    <script>
+      alert("Acesso Inválido!");
+      document.location.href="../login.php";
+    </script>
+    <?php           
     
-  
+
+  }
 }
-}
-  ?>
+?>

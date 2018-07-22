@@ -1,0 +1,19 @@
+$theme-colors: (
+  "primary": #563d7c,
+  "secundary": #15e06e
+
+);
+
+
+$input-border-radius: 10rem;
+$btn-border-radius: 10rem;
+$modal-content-bg: white;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+.main-form {
+	width: 450px;
+	margin: auto;
+}
+
