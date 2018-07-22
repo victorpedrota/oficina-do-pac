@@ -123,7 +123,7 @@
                                 <div class="card-body text-center">
                                     <p><img src="imagens/pedro.png" alt="card image"></p>
                                     <h4 class="card-title">Pedro Henrique</h4>
-                                    <p class="card-text">O turista</p>
+                                    <p class="card-text">O que tem o pinto maior!</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -131,8 +131,10 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Pedro Henrique de lindo pra krl </h4>
-                                   
+                                    <h4 class="card-title">Pedro Henrique de lindo pra krl piruzudo</h4>
+                                    <p class="card-text">é um cara bacana </p>
+
+                                
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -171,7 +173,7 @@
                                 <div class="card-body text-center">
                                     <p><img src="imagens/lukas.jpg" alt="card image"></p>
                                     <h4 class="card-title">Lucas Henrique</h4>
-                                    <p class="card-text">O rosto bonitinho</p>
+                                    <p class="card-text">O que se acha diferentão so pq tem pau preto</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>

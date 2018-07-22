@@ -41,11 +41,8 @@ if(!isset($_SESSION["system_control"]))
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-<<<<<<< HEAD
           <img class="d-block w-100" src="imagens/velocimetro2.jpg" alt="First slide">
-=======
           <img class="d-block w-100" src="imagens/velocimetro2.jpg" alt="First slide" height="750">
->>>>>>> 9f55447be395baf2eb02b9637c2af3ce5a2205ae
         </div>
         <div class="carousel-item">
           <img class="d-block w-100" src="imagens/carro1.jpg" alt="Second slide" height="750">
@@ -82,7 +79,7 @@ if(!isset($_SESSION["system_control"]))
           <div class="row">
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-plus" aria-hidden="true"></i>
               <h3>Diferenciais</h3>
-              <p>Nossos profissionais utilizam maquinários e ferramentas específicas e de alta qualidade visando obter os melhores resultados.</p>
+              <p>Nossos profissionais sempre buscam a mais alta qualidade para entregar um serviço que faça o cliente satisfeitos, usando ferramentas e maquinas profissionais.</p>
             </div>
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
               <h3>Vantagens</h3>
@@ -90,19 +87,19 @@ if(!isset($_SESSION["system_control"]))
             </div>
             <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
               <h3>Recomendação</h3>
-              <p>Fazemos recomendações de preços, peças e muito mais para lhe ajudar a manter seu carro "tinindo".<p>
+              <p>Fazemos recomendações de preços, peças e muito mais para o cliente ter uma vasta fonte de pesquisa pelo o melhor serviço e preço.<p>
             </div>
             <div class="col-md-6 text-sm-center service-block"><i class="fa fa-bell" aria-hidden="true"></i>
               <h3>Garantia</h3>
-              <p>Oferecemos total garantia de serviços bem feitos e preços justos.</p>
+              <p>Oferecemos total garantia de serviços bem feitos, profissionais  e preços justos.</p>
             </div>
           </div>
         </div>
-<<<<<<< HEAD
+
         <div class="col-md-4"> <img src="imagens/mecanico.jpg" class="img-fluid" /> </div>
-=======
+
         <div class="col-md-4"> <img src="imagens/mecanico3.png" class="img-fluid"> </div>
->>>>>>> 9f55447be395baf2eb02b9637c2af3ce5a2205ae
+
       </div>
       <!-- /.row --> 
     </div>
@@ -114,16 +111,14 @@ if(!isset($_SESSION["system_control"]))
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h2><small>Quem nós fucking somos</small>Sobre<br>
+          <h2><small>Quem nós somos</small>Sobre
           Nós</h2>
         </div>
         <div class="col-md-4">
-          <p>(pdp que esse texto ai é só conceitual tlgd)To enjoy good health, to bring true happiness to one's family, to bring peace to all, one must first discipline and control one's own mind. If a man can control his mind he can find the way to Enlightenment, and all wisdom and virtue will naturally come to him.</p>
-          <p>Saving our planet, lifting people out of poverty, advancing economic growth... these are one and the same fight. We must connect the dots between climate change, water scarcity, energy shortages, global health, food security and women's empowerment. Solutions to one problem must be solutions for all.</p>
+          <p>Somos um grupo de estudantes com o objetivo de apresentar um projeto de boa qualidade.Trazemos muito esforço e determinação para o desenvolvimento do site e uma ideia que pode evoluir o sistema que as oficinas usam atualmente.Portanto, estamos trabalhando e dando nosso melhor para entregar um projeto de respeito que assim possa ajudar e facilitar a vida dos nossos prezados clientes.</p>
         </div>
         <div class="col-md-4">
-          <p>Our greatest happiness does not depend on the condition of life in which chance has placed us, but is always the result of a good conscience, good health, occupation, and freedom in all just pursuits.</p>
-          <p>Being in control of your life and having realistic expectations about your day-to-day challenges are the keys to stress management, which is perhaps the most important ingredient to living a happy, healthy and rewarding life.</p>
+          <p>Estudamos atualmente no Colégio Joseense, localizado em São José dos Campos. Nosso professor de informatica(Alex Borges) está nos ajudando dando auxilio e corrigindo nossos erros para manter a qualidade. </p>
         </div>
       </div>
     </div>
