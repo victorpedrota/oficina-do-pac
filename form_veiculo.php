@@ -130,116 +130,64 @@ else{
         };
 
       </script>
-    
-          <?php
-          require("navbar_logout.html");
-          ?>
-          <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Gerenciar veiculo <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="aparecer2" href="#">Meus veículos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" id="aparecer" >Cadastrar veículo
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" id="btnalterar" >Alterar veículo
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" id="btnexcluir" >Excluir veículo
-                </a>
-              </li>
-              
-            </ul>
-          </div>
-        </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="" style="width: 850px">
-          <div class="row">
-            <div class="col-sm" id="escondido" style="display: none;"><br>
-              <center>
-                <h4>Cadastrar novo carro</h4>
-              </center>
-              <form method="POST" action="cadastrar_veiculo.php">
+      <?php
+      require("navbar_logout.html");
+      ?>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                    <span data-feather="home"></span>
+                    Gerenciar veiculo <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="aparecer2" href="#">Meus veículos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="aparecer" >Cadastrar veículo
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="btnalterar" >Alterar veículo
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="btnexcluir" >Excluir veículo
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </nav>
+
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="row">
+              <div class="col">
                 <div class="row">
-                  <div class="col-4"> Placa:<input type="text" class="form-control inplaca" id="placa" name="placa" required></div>
-                  <div class="col-4"> Cor: <select name="cor" class="form-control" id="cor" required> <option value="">Selecione um cor
-                  </option><option value="azul">azul
-                  </option> </select> </div>
-                  <div class="col-4"> Ano: <select  class="form-control year" name="ano" id="year" required>
-                    <option value="">Selecione o ano</option> </select> </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-4">
-                      Tipo:
-                      <select name="tipo" class="form-control tipo" required>
-
-                        <option value="carro">Carros</option>
-                        <option value="moto">Motos</option>
-                        <option value="caminhao">Caminhão</option>
-
-
-                      </select>
-                    </div>
-                    <div class="col-4">
-                      <input type="hidden" value="" name="marca" id="hmarca">
-                      Marcas:
-                      <select  class="form-control marcas selectpicker" data-live-search="true" id="marcas" required>
-
-                        <option value="">Selecione uma Marca</option>
-                      </select>
-                    </div>
-
-                    <div class="col-4">
-                      
-                      Modelo:
-                        <select class="form-control modelo" name="modelo" id="modelo" required>
-                          <option value="">Selecione um modelo</option>
-                        </select>
-
-                      
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm">
-                      <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
-                        <button type="submit" value="0" id= "btnenviar" name="opcao" class="btn btn-primary">Enviar</button></center>
-                      </form> </div>
-
-                    </div>
-                  </div>
-                  <div class="col-sm" id="escondido3" style="display: none;"><br>
-
+                  <div class="col-sm" id="escondido" style="display: none;"><br>
+                    <center>
+                      <h4>Cadastrar novo carro</h4>
+                    </center>
                     <form method="POST" action="cadastrar_veiculo.php">
-                      <center>
-                        <h4>Alterar informações do Veículo</h4>
-                      </center>
                       <div class="row">
-                        <div class="col-4">Placa:<input type="form" class="form-control inplaca" id="placa" name="placa" required> </div>
-                        <div class="col-4">Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                        <div class="col-4"> Placa:<input type="text" class="form-control inplaca" id="placa" name="placa" required></div>
+                        <div class="col-4"> Cor: <select name="cor" style="" class="form-control" id="cor" required> <option value="">Selecione um cor
                         </option><option value="azul">azul
                         </option> </select> </div>
-                        <div class="col-4"> Ano: <select name="ano" class="form-control year" name="ano" id="year" required>
+                        <div class="col-4"> Ano: <select  class="form-control year" name="ano" id="year" required>
                           <option value="">Selecione o ano</option> </select> </div>
                         </div>
                         <div class="row">
                           <div class="col-4">
                             Tipo:
-                            <select name="tipo"  class="form-control" id="tipo" required>
+                            <select name="tipo" class="form-control tipo" required>
 
-                              <option value="carros">Carros</option>
+                              <option value="carro">Carros</option>
                               <option value="moto">Motos</option>
                               <option value="caminhao">Caminhão</option>
 
@@ -247,291 +195,348 @@ else{
                             </select>
                           </div>
                           <div class="col-4">
+                            <input type="hidden" value="" name="marca" id="hmarca">
                             Marcas:
-                            <select name="marca" class="form-control" required>
+                            <select  class="form-control marcas selectpicker" data-live-search="true" id="marcas" required>
 
                               <option value="">Selecione uma Marca</option>
                             </select>
                           </div>
-                          <input type="hidden" value="" id="codigo" name="codigo">
+
                           <div class="col-4">
+
                             Modelo:
-                        <select class="form-control modelo" name="modelo" id="modelo" required>
-                          <option value="">Selecione um modelo</option>
-                        </select>
+                            <select class="form-control modelo" name="modelo" id="modelo" required>
+                              <option value="">Selecione um modelo</option>
+                            </select>
+
+
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-sm">
-                            <center><br><a class="btn btn-secondary btncancelar" href="#">Cancelar</a>
-                              <button type="submit" value="1" name="opcao"  class="btn btn-primary">Enviar</button></center>
+                            <center><br><a class="btn btn-secondary" href="login.php">Cancelar</a>
+                              <button type="submit" value="0" id= "btnenviar" name="opcao" class="btn btn-primary">Enviar</button></center>
+                            </form> </div>
+
+                          </div>
+                        </div>
+                        <div class="col-sm" id="escondido3" style="display: none;"><br>
+
+                          <form method="POST" action="cadastrar_veiculo.php">
+                            <center>
+                              <h4>Alterar informações do Veículo</h4>
+                            </center>
+                            <div class="row">
+                              <div class="col-4">Placa:<input type="form" class="form-control inplaca" id="placa" name="placa" required> </div>
+                              <div class="col-4">Cor: <select name="cor" class="form-control" name="cor" id="cor" required> <option value="">Selecione um cor
+                              </option><option value="azul">azul
+                              </option> </select> </div>
+                              <div class="col-4"> Ano: <select name="ano" class="form-control year" name="ano" id="year" required>
+                                <option value="">Selecione o ano</option> </select> </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-4">
+                                  Tipo:
+                                  <select name="tipo"  class="form-control" id="tipo" required>
+
+                                    <option value="carros">Carros</option>
+                                    <option value="moto">Motos</option>
+                                    <option value="caminhao">Caminhão</option>
+
+
+                                  </select>
+                                </div>
+                                <div class="col-4">
+                                  Marcas:
+                                  <select name="marca" class="form-control" required>
+
+                                    <option value="">Selecione uma Marca</option>
+                                  </select>
+                                </div>
+                                <input type="hidden" value="" id="codigo" name="codigo">
+                                <div class="col-4">
+                                  Modelo:
+                                  <select class="form-control modelo" name="modelo" id="modelo" required>
+                                    <option value="">Selecione um modelo</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-sm">
+                                  <center><br><a class="btn btn-secondary btncancelar" href="#">Cancelar</a>
+                                    <button type="submit" value="1" name="opcao"  class="btn btn-primary">Enviar</button></center>
+                                  </div>
+                                </form>
+                              </div>
                             </div>
-                          </form>
+
+                            <div class="col-sm" id="escondido2" style="display: block;"><br>
+                              <center>
+                                <h4 id="titulo">Veículos Cadastrados</h4>
+                                <div id="info"></div>
+                                <ul style="text-align: left;" class="list-group">
+
+                                  <?php
+                                  $x = 0;
+                                  while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+
+                                    echo "<li class='list-group-item itens'><p style='display:inline-block;'  class='placa'>Placa: " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'edit".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  Modelo:  " . $vetor_veiculo['modelo']. " Marca: ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."
+
+                                    </li>
+
+
+                                    <input type='hidden' id='pedit".$x."' value='".$vetor_veiculo['placa']."''>
+                                    <input type='hidden' id='coedit".$x."' value='".$vetor_veiculo['cor']."''>
+                                    <input type='hidden' id='tedit".$x."' value='".$vetor_veiculo['tipo']."''>
+                                    <input type='hidden' id='medit".$x."' value='".$vetor_veiculo['marca']."''>
+                                    <input type='hidden' id='moedit".$x."' value='".$vetor_veiculo['modelo']."''>
+                                    <input type='hidden' id='aedit".$x."' value='".$vetor_veiculo['ano']."''>
+                                    <input type='hidden' id='cedit".$x."' value='".$vetor_veiculo['cod_veiculo']."''>
+
+
+                                    ";
+                                    $x = $x + 1 ;
+
+
+                                  }
+
+                                  ?>
+                                  <div id="cagada"></div>
+                                </ul>
+
+                              </center>
+                            </div>
+
+                          </div>
                         </div>
                       </div>
 
-                      <div class="col-sm" id="escondido2" style="display: block;"><br>
-                        <center>
-                          <h4 id="titulo">Veículos Cadastrados</h4>
-                          <div id="info"></div>
-                          <ul style="text-align: left;" class="list-group">
+                    </main>
 
-                            <?php
-                            $x = 0;
-                            while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-
-                              echo "<li class='list-group-item itens'><p style='display:inline-block;'  class='placa'>Placa: " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'edit".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  Modelo:  " . $vetor_veiculo['modelo']. " Marca: ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."
-                              
-                              </li>
-
-
-                              <input type='hidden' id='pedit".$x."' value='".$vetor_veiculo['placa']."''>
-                              <input type='hidden' id='coedit".$x."' value='".$vetor_veiculo['cor']."''>
-                              <input type='hidden' id='tedit".$x."' value='".$vetor_veiculo['tipo']."''>
-                              <input type='hidden' id='medit".$x."' value='".$vetor_veiculo['marca']."''>
-                              <input type='hidden' id='moedit".$x."' value='".$vetor_veiculo['modelo']."''>
-                              <input type='hidden' id='aedit".$x."' value='".$vetor_veiculo['ano']."''>
-                              <input type='hidden' id='cedit".$x."' value='".$vetor_veiculo['cod_veiculo']."''>
-
-
-                              ";
-                              $x = $x + 1 ;
-
-
-                            }
-
-                            ?>
-                            <div id="cagada"></div>
-                          </ul>
-
-                        </center>
-                      </div>
-
-                    </div>
                   </div>
+
                 </div>
-        </main>
-        </div>
-      </div>
-    </div>
+              </div>
+            </div>
 
-          <script src="js/jquery.mask.min.js"></script>
-          
-          
-              
+            <script src="js/jquery.mask.min.js"></script>
 
 
-              <script>
-                $(document).ready(function () {
-                  $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                  });
+
+
+
+            <script>
+              $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                  $('#sidebar').toggleClass('active');
                 });
-              </script>
-              <script type="text/javascript">
-                var today = new Date(),
-                yyyy = today.getFullYear(),
-                inpYear = $('#expYear'),
-                html = '';
+              });
+            </script>
+            <script type="text/javascript">
+              var today = new Date(),
+              yyyy = today.getFullYear(),
+              inpYear = $('#expYear'),
+              html = '';
 
-                for (var i = 0; i < 40; i++, yyyy--) {
+              for (var i = 0; i < 40; i++, yyyy--) {
 
-                  $('.year').append($("<option></option>").attr("value", yyyy).text(yyyy));
-                };
+                $('.year').append($("<option></option>").attr("value", yyyy).text(yyyy));
+              };
 
-                console.log(html);
+              console.log(html);
 
-              </script>
-              <script>
-                $(document).ready(function() {
+            </script>
+            <script>
+              $(document).ready(function() {
 
-                  var marca = "#m"+ $(this).val();
-                  var modelo = "#mo"+ $(this).val();
-                  $.getJSON('http://fipeapi.appspot.com/api/1/carros/veiculo/'+$(marca).val()+'/'+$(modelo).val()+'.json', function(data) {
+                var marca = "#m"+ $(this).val();
+                var modelo = "#mo"+ $(this).val();
+                $.getJSON('http://fipeapi.appspot.com/api/1/carros/veiculo/'+$(marca).val()+'/'+$(modelo).val()+'.json', function(data) {
 
-                    $('#marca_modelo').text(data[0].veiculo + data[0].marca);
-                    
-                  });
+                  $('#marca_modelo').text(data[0].veiculo + data[0].marca);
 
-                  $(".tipo")
-                  .change(function() {
+                });
 
-                    $(".tipo option:selected").each(function() {
+                $(".tipo")
+                .change(function() {
 
-                      tipo = $(this).val();
+                  $(".tipo option:selected").each(function() {
 
-                      $('.marcas').children('option:not(:first)').remove();
-                      $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/marcas.json', function(data) {
+                    tipo = $(this).val();
 
-
-                        for (var i in data) {
-                          $('.marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
-                          
-                        }
+                    $('.marcas').children('option:not(:first)').remove();
+                    $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/marcas.json', function(data) {
 
 
-                        
+                      for (var i in data) {
+                        $('.marcas').append($("<option></option>").attr("value", data[i].id).text(data[i].fipe_name));
 
-                      });
+                      }
+
+
+
 
                     });
 
-                  })
-                  .change();
+                  });
 
-                  $(".marcas")
-                  .change(function() {
+                })
+                .change();
 
-                    $(".marcas option:selected").each(function() {
+                $(".marcas")
+                .change(function() {
 
-                      str = $(this).val();
-                      text = $(this).text();
-                      $("#hmarca").attr("value",text);
-                      $('.modelo').children('option:not(:first)').remove();
-                      $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/veiculos/' + str + '.json', function(data) {
+                  $(".marcas option:selected").each(function() {
 
-                        
-                        for (var i in data) {
+                    str = $(this).val();
+                    text = $(this).text();
+                    $("#hmarca").attr("value",text);
+                    $('.modelo').children('option:not(:first)').remove();
+                    $.getJSON('http://fipeapi.appspot.com/api/1/' + tipo + '/veiculos/' + str + '.json', function(data) {
 
-                          $('.modelo').append($("<option></option>").attr("value", data[i].fipe_name).text(data[i].fipe_name));
-                          
-                        }
-                        
 
-                      });
+                      for (var i in data) {
+
+                        $('.modelo').append($("<option></option>").attr("value", data[i].fipe_name).text(data[i].fipe_name));
+
+                      }
+
+
                     });
-
-                  })
-                  .change();
-      
-
-                });
-                $("#aparecer").click(function() {
-                  $("#escondido").css("display", "none");
-                  $("#escondido").slideDown(1000);
-                  $("#escondido2").css("display", "none");
-                  $("#alterar").css("display", "none");
-                  $("#placa").val("");
-
-                });
-                $("#aparecer2").click(function() {
-                  $("#escondido2").css("display", "none");
-                  $("#escondido2").slideDown(1000);
-                  $("#escondido").css("display", "none");
-                  $("#alterar").css("display", "none");
-                  $(".close").css("display", "none");
-                  $(".aalterar").css("display", "none");
-                  $("#escondido3").css("display", "none");
-
-                });
-                $("#btnexcluir").click(function() {
-                  $("#escondido2").css("display", "none");
-                  $("#escondido2").slideDown(1000);
-                  $("#escondido").css("display", "none");
-                  $(".aexcluir").css("display", "inline-block");
-                  $(".aexcluir").css("float", "right");
-                  $(".aalterar").css("display", "none");
-                  $(".close").css("color", "red");
-                  $(".close").css("display", "block");
-                  $("#escondido3").css("display", "none");
-                  $("#titulo").text("Excluir Veículo");
-                });
-                $("#btnalterar").click(function() {
-                  $("#escondido2").css("display", "none");
-                  $("#escondido2").slideDown(1000);
-                  $("#escondido").css("display", "none");
-                  $(".aalterar").css("display", "inline-block");
-                  $(".aalterar").css("float", "right");
-                  $(".aexcluir").css("display", "none");
-                  $(".edit").css("color", "white");
-                  $(".edit").css("display", "block");
-                  $("#escondido3").css("display", "none");
-                  $("#titulo").text("Alterar Veículo");
-                });
-                $("#escondido3").appendTo("#cagada");
-                $(".aalterar").click(function() {
-                  $("#cagada").insertAfter(this);
-                  $("#escondido3").css("display", "none");
-                  $("#escondido3").toggle(1000);
-                  var placa = "#p"+ $(this).val();
-                  var ano = "#a" + $(this).val();
-                  var anoval = $(ano).val();
-                  var texto = $(placa).val();
-                  $(".inplaca").val(texto);
-                  var tipo = "#t"+ $(this).val();
-                  texto = $(tipo).val();
-
-                  $('#tipo option').each(function() {
-
-                    if($(this).val() == texto) {
-                      $(this).attr('selected', true);
-                    }
                   });
 
-                  $('#year option').each(function() {
-
-                    if($(this).val() == anoval ) {
-                      $(this).attr('selected', true);
-                    }
-                  });
-
-                  var codigo = "#c"+ $(this).val();
-                  var cor = "#co"+ $(this).val();
-                  var test = $(codigo).val();
-                  $("#codigo").attr('value', test );
-                  ;
-
-                  $('.marcas option').each(function() {
-
-                    if($(this).val() == texto) {
-                      $(this).attr('selected', true);
-                    }
-                  });
-
-                  $('#cor option').each(function() {
-
-                    if($(this).val() == $(cor).val()) {
-                      $(this).attr('selected', true);
-                    }
-                  });
+                })
+                .change();
 
 
-                });
+              });
+              $("#aparecer").click(function() {
+                $("#escondido").css("display", "none");
+                $("#escondido").slideDown(1000);
+                $("#escondido2").css("display", "none");
+                $("#alterar").css("display", "none");
+                $("#placa").val("");
 
-                $(".btncancelar").click(function(){
+              });
+              $("#aparecer2").click(function() {
+                $("#escondido2").css("display", "none");
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+                $("#alterar").css("display", "none");
+                $(".close").css("display", "none");
+                $(".aalterar").css("display", "none");
+                $("#escondido3").css("display", "none");
 
-                  $("#escondido3").toggle(1000);
-                }); 
+              });
+              $("#btnexcluir").click(function() {
+                $("#escondido2").css("display", "none");
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+                $(".aexcluir").css("display", "inline-block");
+                $(".aexcluir").css("float", "right");
+                $(".aalterar").css("display", "none");
+                $(".close").css("color", "red");
+                $(".close").css("display", "block");
+                $("#escondido3").css("display", "none");
+                $("#titulo").text("Excluir Veículo");
+              });
+              $("#btnalterar").click(function() {
+                $("#escondido2").css("display", "none");
+                $("#escondido2").slideDown(1000);
+                $("#escondido").css("display", "none");
+                $(".aalterar").css("display", "inline-block");
+                $(".aalterar").css("float", "right");
+                $(".aexcluir").css("display", "none");
+                $(".edit").css("color", "white");
+                $(".edit").css("display", "block");
+                $("#escondido3").css("display", "none");
+                $("#titulo").text("Alterar Veículo");
+              });
+              $("#escondido3").appendTo("#cagada");
+              $(".aalterar").click(function() {
+                $("#cagada").insertAfter(this);
+                $("#escondido3").css("display", "none");
+                $("#escondido3").toggle(1000);
+                var placa = "#p"+ $(this).val();
+                var ano = "#a" + $(this).val();
+                var anoval = $(ano).val();
+                var texto = $(placa).val();
+                $(".inplaca").val(texto);
+                var tipo = "#t"+ $(this).val();
+                texto = $(tipo).val();
 
+                $('#tipo option').each(function() {
 
-              </script>
-              <script>
-                $('.inplaca').mask('ZZZ-0000', {
-                  translation: {
-                    'Z': {
-                      pattern: /[a-z\s]/
-                    }
+                  if($(this).val() == texto) {
+                    $(this).attr('selected', true);
                   }
                 });
-              </script>
-            </body>
-            </html>
-            <?php
-          }
-          else
-          {
+
+                $('#year option').each(function() {
+
+                  if($(this).val() == anoval ) {
+                    $(this).attr('selected', true);
+                  }
+                });
+
+                var codigo = "#c"+ $(this).val();
+                var cor = "#co"+ $(this).val();
+                var test = $(codigo).val();
+                $("#codigo").attr('value', test );
+                ;
+
+                $('.marcas option').each(function() {
+
+                  if($(this).val() == texto) {
+                    $(this).attr('selected', true);
+                  }
+                });
+
+                $('#cor option').each(function() {
+
+                  if($(this).val() == $(cor).val()) {
+                    $(this).attr('selected', true);
+                  }
+                });
+
+
+              });
+
+              $(".btncancelar").click(function(){
+
+                $("#escondido3").toggle(1000);
+              }); 
+
+
+            </script>
+            <script>
+              $('.inplaca').mask('ZZZ-0000', {
+                translation: {
+                  'Z': {
+                    pattern: /[a-z\s]/
+                  }
+                }
+              });
+            </script>
+          </body>
+          </html>
+          <?php
+        }
+        else
+        {
             //Acesso Inválido
 
             //Finalizando a sessão
-            session_destroy();
+          session_destroy();
 
             //Mensagem para o Usuário
-            ?>
-            <script>
-              alert("Acesso Inválido!");
-              document.location.href="login.php";
-            </script>
-            <?php
-          }
+          ?>
+          <script>
+            alert("Acesso Inválido!");
+            document.location.href="login.php";
+          </script>
+          <?php
         }
-        ?>
+      }
+      ?>

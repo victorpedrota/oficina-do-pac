@@ -21,7 +21,7 @@
 
       <li class="nav-item active">
         <div class="input-group">
-          <input type="text" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar..">
+          <input type="text" id="insearch" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar..">
           <div class="input-group-btn">
             <button class="btn btn-default" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px" type="submit">
               <i class="fas fa-search"></i>
@@ -56,10 +56,48 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
   $("#search").click(function () {
     $("#search-toggle").animate({
       width: 'toggle'
     });
   });
+
+  $( "#insearch" ).keyup(function( event ) {
+    $.post("search.php", {
+      texto: $("#insearch").val()
+    },function(data) {
+
+var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure"
+    ];
+    
+     for (var i in data) {
+
+    availableTags.push(data[i]);
+    }
+    
+    
+
+    $( "#insearch" ).autocomplete({
+      source: availableTags
+    });
+
+
+  })
+
+  }).keydown(function( event ) {
+    if ( event.which == 13 ) {
+      event.preventDefault();
+    }
+  });
+  
 </script>
