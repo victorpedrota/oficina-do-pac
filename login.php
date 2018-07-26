@@ -66,7 +66,7 @@ else if($_SESSION["system_control"] == 1)
     else if ($_SESSION["privilegio"] == 1) {
         ?>
         <script language='JavaScript'>
-            document.location.href="perfil_cliente.php";
+            document.location.href="perfil_mecanico.php";
         </script>
         <?php
     }
