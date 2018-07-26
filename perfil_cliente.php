@@ -171,7 +171,7 @@ else{
                     $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
                     $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
                     echo "<li class='list-group-item itens'><p style='display:block;'>
-                    Veículo:".$vetor_veiculo['placa']."<a style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                    Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
                     Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
                     Serviço desejado:".$vetor_servico['servico_desejado']."
                     </li>";
