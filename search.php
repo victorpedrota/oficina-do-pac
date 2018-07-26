@@ -13,16 +13,31 @@ if(isset($_POST['texto']))
 {
 	$texto = $_POST['texto'];
 
-	$sql = "SELECT `nome` FROM `oficina` ";
+	$sql = "SELECT * FROM `oficina`";
 	$result = mysqli_query($conn,$sql);
-	$item = array();
+	$numero = mysqli_num_rows($result);
+	echo '[';
+	$x =1;
 	while($row = mysqli_fetch_array($result))
-	array_push($item,$row['nome']);
-	echo $item[0];
-	echo $item[1];
-}else{
+	{
+		if ($numero != $x) 
+		{
+			
+				echo '"'.$row["nome"].'",';
+				
+		}else
+		
+		{
+				echo '"'.$row["nome"].'"';
 
-
+					
+		}$x++;
+	}
+			echo ']';
 }
+	else{
 
-?>
+
+		}
+
+		?>

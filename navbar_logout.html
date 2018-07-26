@@ -59,36 +59,17 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-  $("#search").click(function () {
-    $("#search-toggle").animate({
-      width: 'toggle'
-    });
-  });
-
+  
   $( "#insearch" ).keyup(function( event ) {
     $.post("search.php", {
       texto: $("#insearch").val()
     },function(data) {
 
-var availableTags = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure"
-    ];
-    
-     for (var i in data) {
-
-    availableTags.push(data[i]);
-    }
-    
-    
+ var obj = jQuery.parseJSON(data);
+        
 
     $( "#insearch" ).autocomplete({
-      source: availableTags
+      source: obj
     });
 
 

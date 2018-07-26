@@ -115,79 +115,105 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div id="screen" class="tela"> </div> <br>  
-        <div class="form-row">
-    <div class="col">
-      <input class="form-control" id="message" size="40">
+
+
+
+        <footer class="footer">
+          <div class="container">
+           <div class="form-row">
+            <div class="col-10">
+              <input class="form-control" id="message" size="40">
+            </div>
+            
+
+             <div class="col-2">
+              <button type="button" style="margin-right: 10px" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-wrench"></i></button><button class="btn btn-primary" id="button"> Enviar </button>
+              <input type="hidden" id="conversa" name="cod_servico" value='<?php echo $cod_servico; ?>'>
+              <input type="hidden" id="codigo" name="cod_cliente" value='<?php echo $cod_login; ?>'>
+            </div>
+          </div>
+        </div>
+      </footer>  
+    </main>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mandar Oferta para inicar serviço</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <button class="btn btn-primary" id="button"> Enviar </button>
-      <input type="hidden" id="conversa" name="cod_servico" value='<?php echo $cod_servico; ?>'>
-      <input type="hidden" id="codigo" name="cod_cliente" value='<?php echo $cod_login; ?>'>
-    </div>
-  </div>
-          
-          
-          
-        </main>
-        <script type="text/javascript">  
 
-          function update()
-          {
-            $.post("server.php", {}, function(data){
+    <script type="text/javascript">  
 
-            var obj = jQuery.parseJSON(data);
-            $('#screen').text('');
+      function update()
+      {
+        $.post("server.php", {}, function(data){
 
-           for (var i in obj) {
-      
+          var obj = jQuery.parseJSON(data);
+          $('#screen').text('');
+
+          for (var i in obj) {
+
             if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<p style='float:left;'>Você:"+obj[i].texto + "</p><br><br>");}
             else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor){$('#screen').append("<p style='float:right;'>"+obj[i].texto + "</p><br><br>");}
             
-                }
-          });
-            setTimeout('update()', 1000);
           }
+        });
+        setTimeout('update()', 1000);
+      }
 
-          $(document).ready(
+      $(document).ready(
 
-            function() 
-            {
-             update();
+        function() 
+        {
+         update();
 
-             $("#button").click(    
-              function() 
-              {         
-               $.post("server.php", 
-                { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
-                function(data){ 
-                  $("#screen").val(data); 
-                  $("#message").val("");
-                }
-                );
-             }
-             );
-           });
-
-
-         </script>
-
-       </body>
-
-       </html>
-       <?php
-     }
-     else
-     {
-
-      session_destroy();
+         $("#button").click(    
+          function() 
+          {         
+           $.post("server.php", 
+            { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
+            function(data){ 
+              $("#screen").val(data); 
+              $("#message").val("");
+            }
+            );
+         }
+         );
+       });
 
 
-      ?>
-      <script>
-        alert("Acesso Inválido!");
-        document.location.href = "login.php";
-      </script>
-      <?php
-    }
-  }
+     </script>
+
+   </body>
+
+   </html>
+   <?php
+ }
+ else
+ {
+
+  session_destroy();
+
+
   ?>
+  <script>
+    alert("Acesso Inválido!");
+    document.location.href = "login.php";
+  </script>
+  <?php
+}
+}
+?>

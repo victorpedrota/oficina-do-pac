@@ -101,22 +101,25 @@ else{
                 <span data-feather="home"></span>
                 Página inical <span class="sr-only">(current)</span>
               </a>
+            
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
+              <a class="nav-link" href="" id="feed">Feed</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="btnchamados" >Iniciar Chamado
               </a>
             </li>
+            
+            
             <li class="nav-item">
               <a class="nav-link" href="#" id="btnandamento" >Serviços em andamento
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="btnexcluir" >Excluir veículo
-              </a>
+              <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
             </li>
+            
 
           </ul>
         </div>
@@ -124,7 +127,7 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
-        <div class="col-sm" id="andamento" style="display: block;"><br>
+        <div class="col-sm" id="andamento" style="display: none;"><br>
           <center>
             <h4 id="titulo">Serviço aguardando resposta</h4>
             <div id="info"></div>
@@ -165,16 +168,16 @@ else{
               $numero_servico = mysqli_num_rows($query_servico); 
               if ($numero_servico !=0) {
                 while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-                  
-                    $veiculo = $vetor_servico['cod_veiculo'];
-                    $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
-                    $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
-                    echo "<li class='list-group-item itens'><p style='display:block;'>
-                    Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
-                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
-                    Serviço desejado:".$vetor_servico['servico_desejado']."
-                    </li>";
+
+                  $veiculo = $vetor_servico['cod_veiculo'];
+                  $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                  $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                  $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                  echo "<li class='list-group-item itens'><p style='display:block;'>
+                  Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                  Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
+                  Serviço desejado:".$vetor_servico['servico_desejado']."
+                  </li>";
 
                   
                   
@@ -193,8 +196,8 @@ else{
 
           </center>
         </div>
-        <div class=" d-flex justify-content-center   " >
-          <div id="chamados" style="display: none; margin-top: 60px;">
+        <div class="d-flex justify-content-center " >
+          <div id="chamados" style="display: none; margin-top: 60px;width: 800px">
             <center><h3>Inicar Chamado</h3></center>
             <form method="post" action="abrir_chamado.php" id="form">
               <div class="row">
@@ -202,7 +205,8 @@ else{
 
                   Veiculo:
                   <select name="veiculo" class="form-control" id="veiculos" required>
-                    <option value="">Selecione um Veículo</option>
+                    <option value="3">Selecione um Veículo</option>
+                    <option value="2">d um tipo</option>
                     <?php 
                     while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
                       echo "<option value=".$vetor_veiculo['cod_veiculo'].">Modelo:  ".$vetor_veiculo['modelo']."      Placa:  ".$vetor_veiculo['placa']."</option>";
@@ -212,17 +216,17 @@ else{
                 </div>
                 <div class="col">
                   Tipo de serviço: <i class="fas fa-info-circle"></i>
-                  <select class="form-control" name="tipo">
-                    <option value="">Selecione um tipo</option>
+                  <select class="form-control" name="tipo" required>
+                    <option value="">Selecione um tipo</option> 
                     <option value="troca">troca de oleo</option>
                   </select>
                   <input type="hidden" name="n_oficina" id="n_oficina">
                 </div>
               </div>
-              Descrição do problema:<textarea name="problema" style="border-radius: 1em;" class="form-control"></textarea>
-              Serviço desejado:<textarea name="servico" style="border-radius: 1em;" class="form-control"></textarea>
+              Descrição do problema:<textarea name="problema" style="border-radius: 1em;" class="form-control" required></textarea>
+              Serviço desejado:<textarea name="servico" style="border-radius: 1em;" class="form-control" required></textarea>
               <center><br><a class="btn btn-secondary" href="#">Cancelar</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Enviar</button></center>
+                <button type="button" id="enviar" class="btn btn-primary">Enviar</button></center>
               </form>
             </div>
             
@@ -238,7 +242,7 @@ else{
 
 
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="oficinas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -270,6 +274,8 @@ else{
     </div>
   </div>
 </div>
+<script src="js/validar_form2.js"></script>
+<script src="js/validar_form.js"></script>
 
 <script>
   $("#btnenviar").click(function(){
@@ -285,6 +291,14 @@ else{
     $('#andamento').toggle(1000);
     $('#chamados').css("display","none");
   });
+  $( "#enviar" ).click(function() {
+    var form = $( "#form" );
+    form.valid();
+    if (form.valid() == true) {$("#oficinas").modal("show");}
+
+
+  });
+  
 
 
 </script>
