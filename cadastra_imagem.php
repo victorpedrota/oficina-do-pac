@@ -21,7 +21,7 @@ else{
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
 
-    $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
+    $sql_pesquisa ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
     $resultado = mysqli_query($conn,$sql_pesquisa); 
     $vetor = mysqli_fetch_array($resultado);
     $cod_cliente = $vetor['cod_cliente'];

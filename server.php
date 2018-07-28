@@ -7,11 +7,15 @@ $conn = mysqli_connect("localhost", "root", "","bd_do_alex");
 
 if(isset($_POST['message']))
 {
+	if ($message = "") {
+		# code...
+	}else{
 	$message = $_POST['message'];
 	$cod_servico = $_POST['conversa'];
 	$cod_autor = $_POST['codigo'];
 	$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`) VALUES ('$message','$cod_servico',$cod_autor)";
 	mysqli_query($conn,$sql);
+}
 }
 else if(isset($_POST['valor']) && isset($_POST['data']) && isset($_POST['detalhes'])){
 	$valor = $_POST['valor'];

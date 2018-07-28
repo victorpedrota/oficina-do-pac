@@ -51,118 +51,127 @@ else{
     <html>
 
     <head>
-      <style type="text/css">
-      div.panel,
-      div.flip {
-        width: 200px;
-        padding: 5px;
-        text-align: center;
-        border: solid 1px #c3c3c3;
-        position: fixed;
-        right: 10px;
-        bottom: -15px;
-        z-index: 1;
-      }
 
-      div.panel {
-        position: fixed;
-        bottom: 29px;
-        width: 200px;
-        height: auto;
-        display: none;
-        text-align: left;
-        z-index: 1;
-      }
-    </style>
-    <title>Oficina Pro</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="scss/main.css">
-    <link rel="stylesheet" href="css/chat.css">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Oficina Pro</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Bootstrap CSS CDN -->
+      <link rel="stylesheet" href="scss/main.css">
+      <link rel="stylesheet" href="css/chat.css">
+      <!-- Our Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-  </head>
+    </head>
 
-  <body>
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
+      <?php
+      require("navbar_logout.html");
+      $cod_servico = $_GET['cod_servico'];
+      $cod_orcamento = $_GET['cod_orcamento'];
+      ?>
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="home"></span>
+                  Página inical <span class="sr-only">(current)</span>
+                </a>
 
-    <?php
-    require("navbar_logout.html");
-    $cod_servico = $_GET['cod_servico'];
-    $cod_orcamento = $_GET['cod_orcamento'];
-    ?>
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
-                <span data-feather="home"></span>
-                Página inical <span class="sr-only">(current)</span>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="" id="feed">Feed</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
-              </a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
-            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="" id="feed">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
+                </a>
+              </li>
 
 
-          </ul>
-        </div>
-      </nav>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
+              </li>
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="card text-center" style="margin-top: 100px;">
-          <div class="card-header">
-            Featured
+
+            </ul>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <input type="hidden" name="cod_orcamento" value="<?php echo $cod_orcamento; ?>">
+          <input type="hidden" name="cod_servico" value="<?php echo $codigo_servico;?>">
+          <div class="card text-center" style="margin-top: 30px;">
+            <div class="card-header">
+              Fechando Serviço
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Agendando horário</h5>
+              Confirme o horário estipulado pelo mecanico, ou escolha algum disponivel abaixo.<br>
+              Data:
+              <input type="date" class="form-control" id="data" name="">
+              Horário:
+              <input type="time" class="form-control" id="hora" name="">
+              <br><button id="aceitar" class="btn btn-primary" onclick="window.history.go(-1);">Aceitar</button>
+            </div>
+            <div class="card-footer text-muted">
+
+            </div>
           </div>
-          <div class="card-footer text-muted">
-            2 days ago
-          </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+      <script type="text/javascript">
 
 
 
-  </body>
+        $(document).ready(
 
-  </html>
-  <?php
-}
-else
-{
+          function() 
+          {
+            $("#aceitar").click(    
+              function() 
+              {       
 
-  session_destroy();
+                $.post("aceitar_chamado.php", 
+                  { codigo_servico: $("#cod_servico").val(), codigo_orcamento: $("#cod_orcamento").val(), data: $("#data").val(), hora: $("#hora").val()},
+                  function(data){ 
+                    
+                  }
+                  );
+              }
+              );
+
+          });
+
+        </script>
 
 
+
+      </body>
+
+      </html>
+      <?php
+    }
+    else
+    {
+
+      session_destroy();
+
+
+      ?>
+      <script>
+        alert("Acesso Inválido!");
+        document.location.href = "login.php";
+      </script>
+      <?php
+    }
+  }
   ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-  </script>
-  <?php
-}
-}
-?>

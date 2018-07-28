@@ -58,7 +58,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="scss/main.css">
-    <link rel="stylesheet" href="css/chat.css">
+    
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style type="text/css">
       
@@ -75,18 +75,20 @@ else{
       }
       .rcorners1 {
        border-radius: 25px;
-       border: 1px solid;
-       background-color:#a3a2f1;
+      color: white;
+       background-color:#034752;
        width:200px;
        margin-right:5px;
        margin-top:5px;
        float:left;
        padding: 4px;
+       border-bottom-right-radius: 0px;
 
      }
      .rcorners2 {
       border-radius: 25px;
-      border: 1px solid;
+
+      border-bottom-left-radius: 0px;
       background-color:#a3a2f1;
       width:200px;
       margin-left:5px;
@@ -107,8 +109,9 @@ else{
       background: #dad7d7;
     }
     .orcamento{
+      border-bottom-left-radius: 0px;
       border-radius: 10px;
-      border: 1px solid;
+      
       background-color:#a3a2f1;
       width:200px;
       margin-left:5px;
@@ -250,6 +253,7 @@ else{
 
       function update()
       {
+        
         $.post("server.php", {}, function(data){
 
           var obj = jQuery.parseJSON(data);
@@ -279,12 +283,13 @@ else{
 
         function() 
         {
+          $("#screen").scrollTop($(this)[0].scrollHeight);
          update();
 
          $("#button").click(    
           function() 
           {       
-          alert("w")  
+          $("#screen").animate({scrollTop: $('#screen').prop("scrollHeight")}, 999);
            $.post("server.php", 
             { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
             function(data){ 
