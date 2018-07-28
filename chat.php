@@ -109,9 +109,9 @@ else{
       background: #dad7d7;
     }
     .orcamento{
-      border-bottom-left-radius: 0px;
-      border-radius: 10px;
       
+      border-radius: 10px;
+      border-bottom-left-radius: 0px;
       background-color:#a3a2f1;
       width:200px;
       margin-left:5px;
