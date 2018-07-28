@@ -1,5 +1,5 @@
 <style type="text/css">
-.profile-img{
+.profile{
   border-radius: 50%;
   margin-top: -5px;
   margin-right: 5px;
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Oficina Pro</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img style="border-radius: 0px;width:6.5em;" src="imagens/logo.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -31,9 +31,9 @@
       </li>
 
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" style="margin-right: 30px;">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile-img"></a>
+        <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
@@ -44,7 +44,16 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="logout.php">Sair</a>
+        <div class="dropdown">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-cog"></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right"">
+    <a class="dropdown-item" href="#">Conta</a>
+    <a class="dropdown-item" href="logout.php">Sair</a>
+    
+  </div>
+</div>
       </li>
 
     </ul>
@@ -56,8 +65,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/typeahead.bundle.js"></script>
 <script>
   
   $( "#insearch" ).keyup(function( event ) {

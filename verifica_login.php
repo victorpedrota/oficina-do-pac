@@ -33,14 +33,19 @@
         if($status == 1)
         {                                              
 
-         if($vetor_login['privilegio'] == 0){
-             $cliente ="select * from `cliente` where `cod_login` = $cod_login";
-             $resultado_cliente = mysqli_query($conn,$cliente);
-             $vetor_cliente = mysqli_fetch_array($resultado_cliente);
-             $_SESSION["cod_cliente"] = $vetor_cliente['cod_cliente'];
-             $_SESSION["imagem"] = $vetor_cliente['imagem'];
-             ?>
-             <script language='JavaScript'>
+           if($vetor_login['privilegio'] == 0){
+               $cliente ="select * from `cliente` where `cod_login` = $cod_login";
+               $resultado_cliente = mysqli_query($conn,$cliente);
+               $vetor_cliente = mysqli_fetch_array($resultado_cliente);
+               $_SESSION["cod_cliente"] = $vetor_cliente['cod_cliente'];
+               $cliente ="select * from `login` where `cod_login` = $cod_login";
+               $resultado_cliente = mysqli_query($conn,$cliente);
+               $vetor_cliente = mysqli_fetch_array($resultado_cliente);
+               
+
+               $_SESSION["imagem"] = $vetor_cliente['imagem'];
+               ?>
+               <script language='JavaScript'>
                 document.location.href="perfil_cliente.php";
             </script>
             <?php
@@ -51,6 +56,11 @@
             $vetor = mysqli_fetch_array($resultado_cliente);
             $_SESSION["cod_oficina"] = $vetor['cod_oficina'];
             $_SESSION["cod_mecanico"] = $vetor['cod_mecanico'];
+            $cliente ="select * from `login` where `cod_login` = $cod_login";
+            $resultado_cliente = mysqli_query($conn,$cliente);
+            $vetor_cliente = mysqli_fetch_array($resultado_cliente);
+            $_SESSION["imagem"] = $vetor_cliente['imagem'];
+
             ?>
 
             <script language='JavaScript'>

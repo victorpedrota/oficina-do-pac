@@ -24,11 +24,11 @@ else{
   if($system_control == 1 && $privilegio == 1){
     require('connect.php');
     $cod_servico = $_GET['cod_servico'];
-    $sql_pesquisa ="UPDATE `servico` SET `status`=1 WHERE `cod_servico` = $cod_servico" ;
+    $sql_pesquisa ="UPDATE `servico` SET `status`=1,`cod_mecanico` = $cod_mecanico WHERE `cod_servico` = $cod_servico" ;
     $resultado = mysqli_query($conn,$sql_pesquisa);
       ?>
   <script>
-    alert("Acesso Inválido!");
+    alert("Chamado aceito com sucesso");
     document.location.href="perfil_mecanico.php";
   </script>
   <?php  

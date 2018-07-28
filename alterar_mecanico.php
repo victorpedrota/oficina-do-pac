@@ -19,10 +19,10 @@ else{
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
 
-  if($system_control == 1 && $privilegio == 0){
+  if($system_control == 1 && $privilegio == 1){
     require('connect.php');
 
-    $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
+    $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_login` = $cod_login" ;
     $resultado = mysqli_query($conn,$sql_pesquisa); 
     $vetor = mysqli_fetch_array($resultado);
     
@@ -68,7 +68,7 @@ if (isset ($_POST['senha'])) {
     ?>
     <script>
       alert("Informações atualizadas!");
-      document.location.href="form_alterar_usuario.php";
+      document.location.href="form_alterar_mecanico.php";
     </script>
   
   <?php  

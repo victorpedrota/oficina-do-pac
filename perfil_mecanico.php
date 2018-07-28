@@ -120,7 +120,7 @@ else{
             <ul style="text-align: left;" class="list-group">
 
               <?php
-              $sql_servico = "SELECT * FROM `servico` WHERE  `cod_oficina` = $cod_oficina && `status`=1";
+              $sql_servico = "SELECT * FROM `servico` WHERE  `cod_oficina` = $cod_oficina && `status`=1 && `cod_mecanico` = $cod_mecanico";
               $query_servico = mysqli_query($conn, $sql_servico);
               $numero_servico = mysqli_num_rows($query_servico); 
               if ($numero_servico !=0) {
@@ -131,7 +131,7 @@ else{
                   $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
                   $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
                   echo "<li class='list-group-item itens'><p style='display:block;'>
-                  Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                  Veículo:".$vetor_veiculo['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
                   Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
                   Serviço desejado:".$vetor_servico['servico_desejado']."
                   </li>";

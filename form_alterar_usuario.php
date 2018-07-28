@@ -64,7 +64,7 @@ else{
         ?>
 <div style="" class="container">
         <center>
-          <div class="show-image" style="width: 100px;">
+          <div class="show-image" style="width: 100px;margin-top: 60px;">
             <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
           </div>
 
