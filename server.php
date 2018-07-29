@@ -7,8 +7,8 @@ $conn = mysqli_connect("localhost", "root", "","bd_do_alex");
 
 if(isset($_POST['message']))
 {
-	if ($message = "") {
-		# code...
+	if ($message == "") {
+		
 	}else{
 	$message = $_POST['message'];
 	$cod_servico = $_POST['conversa'];
@@ -17,15 +17,18 @@ if(isset($_POST['message']))
 	mysqli_query($conn,$sql);
 }
 }
-else if(isset($_POST['valor']) && isset($_POST['data']) && isset($_POST['detalhes'])){
+else if(isset($_POST['valor'])){
 	$valor = $_POST['valor'];
 	$data = $_POST['data'];
 	$cod_autor = $_POST['codigo'];
 	$detalhes = $_POST['detalhes'];
 	$cod_servico = $_POST['conversa'];
-	$sql = "INSERT INTO `orcamento`(`valor`, `data`, `detalhes`) VALUES ($valor,'$data','$detalhes')";
+	$sql = "UPDATE `orcamento` SET `status`= 0 WHERE `status` = 1 && `cod_servico` = $cod_servico && `status` != 2";
+	$query = mysqli_query($conn,$sql);
+	$sql = "INSERT INTO `orcamento`(`valor`, `data`, `detalhes`,`status`,`cod_servico`) VALUES ($valor,'$data','$detalhes',1,$cod_servico)";
 	$query = mysqli_query($conn,$sql);
 	$cod_orcamento =  mysqli_insert_id($conn);
+
 	$sql = "INSERT INTO `mensagens`(`cod_servico`,`cod_autor`,`cod_orcamento`) VALUES ($cod_servico,$cod_autor,$cod_orcamento)";
 	$query = mysqli_query($conn,$sql);
 
@@ -53,7 +56,7 @@ else if(isset($_POST['valor']) && isset($_POST['data']) && isset($_POST['detalhe
 				"cod_autor": "'.$row['cod_autor'].'",
 				"cod_orcamento": '.$row['cod_orcamento'].',
 				"status": '.$vetor_servico['status'].',
-				"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'"]},';
+				"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'"]},';
 			}
 			else{
 				echo '{
@@ -62,7 +65,7 @@ else if(isset($_POST['valor']) && isset($_POST['data']) && isset($_POST['detalhe
 					"cod_autor": "'.$row['cod_autor'].'",
 					"cod_orcamento": "'.$row['cod_orcamento'].'",
 					"status": '.$vetor_servico['status'].',
-					"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'"]}';
+					"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'"]}';
 				}
 				$x++;
 			}

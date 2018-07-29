@@ -51,68 +51,7 @@ else{
   <link rel="stylesheet" type="text/css" href="scss/main.css">
   
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <style type="text/css">
-      
-      .tela{
-
-        width: 95%;
-        height: 500px;
-        background: #d8c2c247;
-        border-radius: 1em;
-        margin: 15px;
-        overflow: scroll;
-        overflow-x: hidden;
-
-      }
-      .rcorners1 {
-       border-radius: 25px;
-       border: 1px solid;
-       background-color:#a3a2f1;
-       width:200px;
-       margin-right:5px;
-       margin-top:5px;
-       float:left;
-       padding: 4px;
-
-     }
-     .rcorners2 {
-      border-radius: 25px;
-      border: 1px solid;
-      background-color:#a3a2f1;
-      width:200px;
-      margin-left:5px;
-      margin-top:5px;
-      float:left;
-      padding: 4px;
-
-    }
-
-    .tela::-webkit-scrollbar-track {
-      background-color: #F4F4F4;
-    }
-    .tela::-webkit-scrollbar {
-      width: 6px;
-      background: #F4F4F4;
-    }
-    .tela::-webkit-scrollbar-thumb {
-      background: #dad7d7;
-    }
-    .orcamento{
-      border-radius: 10px;
-      border: 1px solid;
-      background-color:#a3a2f1;
-      width:200px;
-      margin-left:5px;
-      margin-top:5px;
-      float:left;
-      padding: 4px;
-
-    }
-    div.b {
-      word-wrap: break-word;
-    }
-
-    </style>
+  <link rel="stylesheet" type="text/css" href="css/chat.css">
 
 </head>
 
@@ -225,8 +164,8 @@ else{
                 <h5 class="card-title">Informar progresso</h5>
                 <h6 class="card-subtitle mb-2 text-muted">ferramentas</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                <a href="#" class="card-link">Enviar Atualização</a>
+                <a href="#" class="card-link">Timeline</a>
               </div>
 
             </div>
@@ -257,7 +196,7 @@ else{
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Enviar Orçamento</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Enviar pedido para inicar pedido</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -266,7 +205,14 @@ else{
               <form>
 
                 Valor:<input id="valor" type="text" class="form-control" required>
-                Data aproximada do término:<input type="date" id="data" class="form-control" required>
+                Escolha as datas:<div class="row">
+                  
+                  <div class="col-5"> <input type="date" class="form-control" name=""></div>
+                  <div class="col-5"><input type="time" class="form-control" name=""></div>
+                  <div class="col-2"><button class="btn btn-default"> + </button></div>
+                </div>
+               
+                Tempo estimado para término:<input type="date" id="data" class="form-control" required>
                 Detalhes do serviço:<textarea id="detalhes" class="form-control" required></textarea>
 
               </div>
@@ -278,75 +224,7 @@ else{
           </div>
         </div>
       </div>
-      <script type="text/javascript">  
-
-        function update()
-        {
-          $.post("server.php", {}, function(data){
-
-            var obj = jQuery.parseJSON(data);
-            $('#screen').text('');
-
-            for (var i in obj) {
-
-              if (obj[i].cod_orcamento!=0) {
-
-                if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor) {$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br><button class='btn btn-default'>Recusar</button> <button class='btn btn-primary'>aceitar</button></div><br><br><br><br><br><br><br>");}
-                else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor){$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "</div><br><br><br><br><br><br>");}
-
-              }
-              else{
-
-                if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<div class='rcorners1 b' style='float:right;'>Você:"+obj[i].texto + "</div><br><br><br>");}
-                else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor){$('#screen').append("<div class='rcorners2 b' style='float:left;'>"+obj[i].texto + "</div><br><br><br>");}
-              }
-
-
-            }
-          });
-          setTimeout('update()', 1000);
-        }
-
-        $(document).ready(
-
-          function() 
-          {
-           update();
-
-           $("#button").click(    
-            function() 
-            {         
-             $.post("server.php", 
-              { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
-              function(data){ 
-                $("#screen").val(data); 
-                $("#message").val("");
-              }
-              );
-           }
-           );
-           $("#envia_orcamento").click(    
-            function() 
-            {         
-             $.post("server.php", 
-              { valor: $("#valor").val(), data: $("#data").val(), detalhes: $("#detalhes").val(),conversa: $("#conversa").val(), codigo: $("#codigo").val()},
-              function(data){ 
-
-              }
-              );
-             $("#form_orcamento").modal("hide");
-           }
-           );
-
-           $("#orcamento").click(function(){
-            $("#form_orcamento").modal("show");
-            $("#tools").modal("hide");
-          })
-         });
-
-
-
-      </script>
+      <script type="text/javascript" src="js/chat.js"></script>
 
      </body>
 

@@ -107,8 +107,8 @@ else{
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <input type="hidden" name="cod_orcamento" value="<?php echo $cod_orcamento; ?>">
-          <input type="hidden" name="cod_servico" value="<?php echo $codigo_servico;?>">
+          <input type="hidden" id="cod_orcamento" name="cod_orcamento" value=<?php echo $cod_orcamento; ?>>
+          <input type="hidden" id="cod_servico" name="cod_servico" value=<?php echo $cod_servico;?>>
           <div class="card text-center" style="margin-top: 30px;">
             <div class="card-header">
               Fechando Serviço
@@ -141,7 +141,7 @@ else{
               {       
 
                 $.post("aceitar_chamado.php", 
-                  { codigo_servico: $("#cod_servico").val(), codigo_orcamento: $("#cod_orcamento").val(), data: $("#data").val(), hora: $("#hora").val()},
+                  { cod_servico: $("#cod_servico").val(), cod_orcamento: $("#cod_orcamento").val(), data: $("#data").val(), hora: $("#hora").val()},
                   function(data){ 
                     
                   }

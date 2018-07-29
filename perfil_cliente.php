@@ -86,7 +86,7 @@ else{
 
   </head>
 
-  <body>
+  <body style="overflow-x: hidden;">
 
 
     <?php
@@ -101,225 +101,270 @@ else{
                 <span data-feather="home"></span>
                 Página inical <span class="sr-only">(current)</span>
               </a>
-            
+
             </li>
             <li class="nav-item">
               <a class="nav-link" href="" id="feed">Feed</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="btnchamados" >Iniciar Chamado
+              <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
               </a>
             </li>
-            
-            
+
+
             <li class="nav-item">
-              <a class="nav-link" href="#" id="btnandamento" >Serviços em andamento
+              <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
             </li>
-            
+
 
           </ul>
         </div>
       </nav>
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
-        <div class="col-sm" id="andamento" style="display: none;"><br>
-          <center>
-            <h4 id="titulo">Serviço aguardando resposta</h4>
-            <div id="info"></div>
-            <ul style="text-align: left;" class="list-group">
+        <div class="row">
 
-              <?php
-              
-              while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-                if ($vetor_servico['status'] == 0 ) {
+          <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
+          <div class="col-sm" id="andamento" style="display: none;"><br>
+            <center>
+              <h4 id="titulo">Serviço aguardando resposta</h4>
+              <div id="info"></div>
+              <ul style="text-align: left;" class="list-group">
 
-                  $veiculo = $vetor_servico['cod_veiculo'];
-                  $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                  $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
-                  $vetor_veiculo_anda = mysqli_fetch_array($veiculo_resultado_anda);
-                  echo "<li class='list-group-item itens'><p style='display:inline-block;'>
-                  Veículo:".$vetor_veiculo_anda['placa']."
-                  Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
-                  Serviço desejado:".$vetor_servico['servico_desejado']."
-                  </li>";
-                }
+                <?php
 
-                
-              }
-
-              ?>
-
-            </ul>
-            <br>
-            <br>
-
-            <h4 id="titulo">Serviços em discussão</h4>
-            <div id="info"></div>
-            <ul style="text-align: left;" class="list-group">
-
-              <?php
-              $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=1";
-              $query_servico = mysqli_query($conn, $sql_servico);
-              $numero_servico = mysqli_num_rows($query_servico); 
-              if ($numero_servico !=0) {
                 while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+                  if ($vetor_servico['status'] == 0 ) {
 
-                  $veiculo = $vetor_servico['cod_veiculo'];
-                  $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                  $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
-                  $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
-                  echo "<li class='list-group-item itens'><p style='display:block;'>
-                  Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
-                  Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
-                  Serviço desejado:".$vetor_servico['servico_desejado']."
-                  </li>";
+                    $veiculo = $vetor_servico['cod_veiculo'];
+                    $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                    $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
+                    $vetor_veiculo_anda = mysqli_fetch_array($veiculo_resultado_anda);
+                    echo "<li class='list-group-item itens'><p style='display:inline-block;'>
+                    Veículo:".$vetor_veiculo_anda['placa']."
+                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
+                    Serviço desejado:".$vetor_servico['servico_desejado']."
+                    </li>";
+                  }
 
-                  
-                  
-                  
+
                 }
-              }else{
 
-                echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+                ?>
 
-              }
-              
+              </ul>
+              <br>
+              <br>
 
-              ?>
+              <h4 id="titulo">Serviços em discussão</h4>
+              <div id="info"></div>
+              <ul style="text-align: left;" class="list-group">
 
-            </ul>
+                <?php
+                $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=1";
+                $query_servico = mysqli_query($conn, $sql_servico);
+                $numero_servico = mysqli_num_rows($query_servico); 
+                if ($numero_servico !=0) {
+                  while ($vetor_servico = mysqli_fetch_array($query_servico)) {
 
-          </center>
-        </div>
-        <div class="d-flex justify-content-center " >
-          <div id="chamados" style="display: none; margin-top: 60px;width: 800px">
-            <center><h3>Inicar Chamado</h3></center>
-            <form method="post" action="abrir_chamado.php" id="form">
-              <div class="row">
-                <div class="col">
+                    $veiculo = $vetor_servico['cod_veiculo'];
+                    $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                    $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                    echo "<li class='list-group-item itens'><p style='display:block;'>
+                    Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando cliente finalizar o Chamado<br>
+                    Serviço desejado:".$vetor_servico['servico_desejado']."
+                    </li>";
 
-                  Veiculo:
-                  <select name="veiculo" class="form-control" id="veiculos" required>
-                    <option value="3">Selecione um Veículo</option>
-                    <option value="2">d um tipo</option>
-                    <?php 
-                    while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                      echo "<option value=".$vetor_veiculo['cod_veiculo'].">Modelo:  ".$vetor_veiculo['modelo']."      Placa:  ".$vetor_veiculo['placa']."</option>";
+                  }
+
+                }
+
+
+
+                else{
+
+                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+                }
+                ?>
+                </ul>
+                <br>
+                <br>
+
+                <h4 id="titulo">Aguardando Veículo dar entrada na oficina</h4>
+                <div id="info"></div>
+                <ul style="text-align: left;" class="list-group">
+                  <?php
+
+                  $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=2";
+                  $query_servico = mysqli_query($conn, $sql_servico);
+                  $numero_servico = mysqli_num_rows($query_servico); 
+                  if ($numero_servico !=0) {
+                    while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                      $veiculo = $vetor_servico['cod_veiculo'];
+                      $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                      $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                      $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                      echo "<li class='list-group-item itens'><p style='display:block;'>
+                      Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                      Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
+                      Serviço desejado:".$vetor_servico['servico_desejado']."
+                      </li>";
+
+
+
+
                     }
-                    ?>
-                  </select>
+
+                  }
+
+
+
+                  else{
+
+                    echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+                  }              
+
+
+                  ?>
+
+                </ul>
+
+              </center>
+            </div>
+            <div class="d-flex justify-content-center"  style="margin-left: 30px;">
+              <div id="chamados" style="display: none; margin-top: 60px;width: 800px; margin-right: 30px;">
+                <center>
+                  <h3>Inicar Chamado</h3>
+                </center>
+                <form method="post" action="abrir_chamado.php" id="form">
+                  <div class="row">
+                    <div class="col">
+
+                      Veiculo:
+                      <select name="veiculo" class="form-control" id="veiculos" required>
+                        <option value="3">Selecione um Veículo</option>
+                        <option value="2">d um tipo</option>
+                        <?php 
+                        while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                          echo "<option value=".$vetor_veiculo['cod_veiculo'].">Modelo:  ".$vetor_veiculo['modelo']."      Placa:  ".$vetor_veiculo['placa']."</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="col">
+                      Tipo de serviço: <i class="fas fa-info-circle"></i>
+                      <select class="form-control" name="tipo" required>
+                        <option value="">Selecione um tipo</option>
+                        <option value="troca">troca de oleo</option>
+                      </select>
+                      <input type="hidden" name="n_oficina" id="n_oficina">
+                    </div>
+                  </div>
+                  Descrição do problema:<textarea name="problema" style="border-radius: 1em;" class="form-control" required></textarea> Serviço desejado:<textarea name="servico" style="border-radius: 1em;" class="form-control" required></textarea>
+                  <center><br><a class="btn btn-secondary" href="#">Cancelar</a>
+                    <button type="button" id="enviar" class="btn btn-primary">Enviar</button></center>
+                  </form>
                 </div>
-                <div class="col">
-                  Tipo de serviço: <i class="fas fa-info-circle"></i>
-                  <select class="form-control" name="tipo" required>
-                    <option value="">Selecione um tipo</option> 
-                    <option value="troca">troca de oleo</option>
-                  </select>
-                  <input type="hidden" name="n_oficina" id="n_oficina">
+
+              </div>
+              <div class="col-4"></div>
+            </div>
+          </main>
+        </div>
+
+
+
+
+
+
+
+      </div>
+      <div class="modal fade" id="oficinas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Escolha a(s) oficina(s)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group">
+                <select name="noficina" id="nomes" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;">
+                  <?php 
+                  while ($vetor_oficina = mysqli_fetch_array($oficinas_query)) {
+                    echo "<option value=".$vetor_oficina['cod_oficina'].">". $vetor_oficina['nome']."</option>";
+                  }
+                  ?>
+                </select>
+                <div class="input-group-btn">
+                  <button class="btn btn-default" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px" type="submit">
+                    <i class="fas fa-plus"></i>
+                  </button>
                 </div>
               </div>
-              Descrição do problema:<textarea name="problema" style="border-radius: 1em;" class="form-control" required></textarea>
-              Serviço desejado:<textarea name="servico" style="border-radius: 1em;" class="form-control" required></textarea>
-              <center><br><a class="btn btn-secondary" href="#">Cancelar</a>
-                <button type="button" id="enviar" class="btn btn-primary">Enviar</button></center>
-              </form>
             </div>
-            
-          </div>
-
-        </div>
-      </main>
-    </div>
-  </div>
-
-
-
-
-
-</div>
-<div class="modal fade" id="oficinas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Escolha a(s) oficina(s)</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <select name="noficina" id="nomes" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;">
-            <?php 
-            while ($vetor_oficina = mysqli_fetch_array($oficinas_query)) {
-              echo "<option value=".$vetor_oficina['cod_oficina'].">". $vetor_oficina['nome']."</option>";
-            }
-            ?>
-          </select>
-          <div class="input-group-btn">
-            <button class="btn btn-default" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px" type="submit">
-              <i class="fas fa-plus"></i>
-            </button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="btnenviar" class="btn btn-primary">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="btnenviar" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="js/validar_form2.js"></script>
-<script src="js/validar_form.js"></script>
+      <script src="js/validar_form2.js"></script>
+      <script src="js/validar_form.js"></script>
 
-<script>
-  $("#btnenviar").click(function(){
-   var nome = $("#nomes").val();
-   $("#n_oficina").attr("value", nome);
-   $("form").submit();
- });
-  $('#btnchamados').on('click', function() {
-    $('#chamados').toggle(1000);
-    $('#andamento').css("display","none");
-  });
-  $('#btnandamento').on('click', function() {
-    $('#andamento').toggle(1000);
-    $('#chamados').css("display","none");
-  });
-  $( "#enviar" ).click(function() {
-    var form = $( "#form" );
-    form.valid();
-    if (form.valid() == true) {$("#oficinas").modal("show");}
+      <script>
+        $("#btnenviar").click(function() {
+          var nome = $("#nomes").val();
+          $("#n_oficina").attr("value", nome);
+          $("form").submit();
+        });
+        $('#btnchamados').on('click', function() {
+          $('#chamados').show(1000);
+          $('#andamento').css("display", "none");
+        });
+        $('#btnandamento').on('click', function() {
+          $('#andamento').toggle(1000);
+          $('#chamados').css("display", "none");
+        });
+        $("#enviar").click(function() {
+          var form = $("#form");
+          form.valid();
+          if (form.valid() == true) {
+            $("#oficinas").modal("show");
+          }
 
 
-  });
-  
+        });
+      </script>
+
+    </body>
+
+    </html>
+    <?php
+  }
+  else
+  {
+
+    session_destroy();
 
 
-</script>
-
-</body>
-
-</html>
-<?php
-}
-else
-{
-
-  session_destroy();
-
-
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-  </script>
-  <?php
-}
+    ?>
+    <script>
+      alert("Acesso Inválido!");
+      document.location.href = "login.php";
+    </script>
+    <?php
+  }
 }
 ?>
