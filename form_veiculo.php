@@ -185,10 +185,10 @@ else{
                         <div class="row">
                           <div class="col-4">
                             Tipo:
-                            <select name="tipo" class="form-control tipo" required>
+                            <select name="tipo" class="form-control tipo" id="tipo" required>
 
-                              <option value="carro">Carros</option>
-                              <option value="moto">Motos</option>
+                              <option value="carro">Carro</option>
+                              <option value="motos">Motos</option>
                               <option value="caminhao">Caminhão</option>
 
 
@@ -238,7 +238,7 @@ else{
                               <div class="row">
                                 <div class="col-4">
                                   Tipo:
-                                  <select name="tipo"  class="form-control" id="tipo" required>
+                                  <select name="tipo"  class="form-control"required>
 
                                     <option value="carros">Carros</option>
                                     <option value="moto">Motos</option>
