@@ -22,13 +22,18 @@ if(isset($_POST['texto']))
 	{
 		if ($numero != $x) 
 		{
-			
-				echo '"'.$row["nome"].'",';
+				echo '{';	
+				echo '"nome":"'.$row["nome"].'",';
+				echo '"codigo":'.$row["cod_oficina"];
+				echo '},';
 				
 		}else
 		
 		{
-				echo '"'.$row["nome"].'"';
+				echo '{';	
+				echo '"nome":"'.$row["nome"].'",';
+				echo '"codigo":'.$row["cod_oficina"];
+				echo '}';
 
 					
 		}$x++;

@@ -1,33 +1,17 @@
-<?php
-    //Mantendo a sessão/cria uma sessao
-session_start();
-
-if(!isset($_SESSION["system_control"]))
-{
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href="login.php";
-  </script>
-  <?php       
-}
-else{
-        //Sessao já criada  
-        //Recuperando as variaveis da sessão
-  $system_control = $_SESSION["system_control"];   
-  $cod_login = $_SESSION['cod_login'];
-  $privilegio = $_SESSION["privilegio"];
-  $cod_cliente = $_SESSION["cod_cliente"];
-
-  if($system_control == 1 && $privilegio == 0){
-    require('connect.php');
+<?php  
+require('connect.php');
 
     $oficina = $_POST['n_oficina'];
     $tipo = $_POST['tipo'];
     $veiculo = $_POST['veiculo'];
     $servico = $_POST['servico'];
     $problema = $_POST['problema'];
+    $cod_cliente = $_POST['cod_cliente'];
+    $myJSON = json_decode($oficina, true);
+
+    foreach ( $myJSON as $cod_oficina ) {
     
+
     $protocolo = rand() . "\n";
 
     $sql = "SELECT * FROM `servico` WHERE `protocolo` = $protocolo";
@@ -39,7 +23,7 @@ else{
       $protocolo = mt_rand() . "\n";
     }
 
-    $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`) VALUES ($cod_cliente,'$tipo',$veiculo,$oficina,$protocolo,'$problema','$servico')";
+    $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico')";
     $insere = mysqli_query($conn,$sql_cliente);
 
     
@@ -50,27 +34,12 @@ else{
     
     $sql = "INSERT INTO `status`(`status`, `cod_servico`) VALUES (0,$cod_servico)";
     $insere = mysqli_query($conn,$sql);
+
     ?>
     <script>
       alert("Chamado feito com sucesso, aguardando mecanico aceitar pedido");
       document.location.href="login.php";
     </script>
-    <?php
-  }
-  else
-  {
-            //Acesso Inválido
-
-            //Finalizando a sessão
-    session_destroy();
-
-            //Mensagem para o Usuário
+    <?php 
+    }
     ?>
-    <script>
-      alert("Acesso Inválido!");
-      document.location.href="login.php";
-    </script>
-    <?php           
-  }
-}
-?>
