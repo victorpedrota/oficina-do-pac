@@ -250,10 +250,12 @@ else{
                   <div class="col">
 
                     Veiculo:
-                    <select name="veiculo" class="form-control" id="veiculos" required>
-                      <option value="3">Selecione um Veículo</option>
-                      <option value="2">d um tipo</option>
+
+                    <select  class="form-control" id="veiculos" name="veiculo" required>
+                      <option value="">Selecione um Veículo</option>
                       <?php 
+                      $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
+                      $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
                       while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
                         echo "<option value=".$vetor_veiculo['cod_veiculo'].">Modelo:  ".$vetor_veiculo['modelo']."      Placa:  ".$vetor_veiculo['placa']."</option>";
                       }
@@ -325,7 +327,7 @@ else{
       $("#btnenviar").click(function() {
         var nome = $("#nomes").val();
         $("#n_oficina").attr("value", nome);
-    
+
         var inputs = new Array();
 
         $(".hidden").each(function()
