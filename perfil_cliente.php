@@ -97,14 +97,14 @@ else{
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="">
                 <span data-feather="home"></span>
                 Página inical <span class="sr-only">(current)</span>
               </a>
 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="" id="feed">Feed</a>
+              <a class="nav-link" href="#" id="btnfeed">Feed</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
@@ -127,6 +127,35 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="row">
+          <div class="col-sm-9" id="feed" style="display: none;"><br>
+            <div class="card text-center">
+              <div class="card-header">
+                CARD BY PAC
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">BEING MADE BY PAC</h5>
+                <p class="card-text">PAC HERE</p>
+                <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
+              </div>
+              <div class="card-footer text-muted">
+                PAC
+              </div>
+            </div><br>
+            <div class="card text-center">
+              <div class="card-header">
+                CARD BY PAC
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">BEING MADE BY PAC</h5>
+                <p class="card-text">PAC HERE</p>
+                <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
+              </div>
+              <div class="card-footer text-muted">
+                PAC
+              </div>
+            </div>
+
+          </div>
 
           <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
           <div class="col-sm" id="andamento" style="display: none;"><br>
@@ -340,10 +369,17 @@ else{
       $('#btnchamados').on('click', function() {
         $('#chamados').show(1000);
         $('#andamento').css("display", "none");
+        $('#feed').css("display", "none");
+      });
+      $('#btnfeed').on('click', function() {
+        $('#feed').show(1000);
+        $('#andamento').css("display", "none");
+        $('#chamados').css("display", "none");
       });
       $('#btnandamento').on('click', function() {
         $('#andamento').toggle(1000);
         $('#chamados').css("display", "none");
+         $('#feed').css("display", "none"); 
       });
       $("#enviar").click(function() {
         var form = $("#form");
