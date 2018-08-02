@@ -52,7 +52,7 @@ else{
             <li class="nav-item">
               <a class="nav-link active" href="#">
                 <span data-feather="home"></span>
-                Página inical <span class="sr-only">(current)</span>
+                Alterar informações <span class="sr-only">(current)</span>
               </a>
 
             </li>
@@ -101,7 +101,8 @@ else{
             <div class="form-row">
               <div class="col-md-6">
                 <label for="inputAddress">Celular:</label>
-                <input value="<?php echo $vetor['celular']; ?>" pattern=".{14,15}" id="celular" name="celular" type="text" class="form-control telefone" required>
+                  <div id="celular" class="telefone"> <?php echo $vetor['celular']; ?></div>
+               
               </div>
               <div class="col-md-6">
                 <label for="inputAddress2">CEP:</label>
@@ -377,7 +378,16 @@ else{
                 
                 $( "body" ).delegate( ".telefone", "myCustomEvent", function( e, myName, myValue ) {
                   $("#telefone").replaceWith("<input value='<?php echo $vetor['telefone']; ?>'' pattern='.{14,15}'' name='telefone' id='telefone' type='text' class='form-control telefone' required>");
+                  $("#celular").replaceWith("<input value=1<?php echo $vetor['celular']; ?>1 pattern='.{14,15}' id='celular' name='celular' type='text' class='form-control telefone' required>");
+                   
                   $('.telefone').mask('(00) 0000-00009');
+                  $('.telefone').blur(function(event) {
+                    if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+                      $('.telefone').mask('(00) 00000-0009');
+                    } else {
+                      $('.telefone').mask('(00) 0000-00009');
+                    }
+                  });
                 });
                 $( "#alterar_informacoes" ).click(function() {
                   $( "#telefone" ).trigger( "myCustomEvent" );
