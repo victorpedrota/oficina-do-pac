@@ -16,7 +16,7 @@ if(isset($_POST['hora']))
 	$sql = "UPDATE `servico` SET `status`= 2 WHERE `cod_servico` = $cod_servico";
 	mysqli_query($conn,$sql);
 	$sql = "UPDATE `orcamento` SET `status`= 2 WHERE `cod_orcamento` = $cod_orcamento;
-	mysqli_query($conn,$sql);
+	mysqli_query($conn,$sql)";
 
 }else{}
 		?>
