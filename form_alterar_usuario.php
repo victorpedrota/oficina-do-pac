@@ -57,7 +57,7 @@ else{
 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="feed">Informações de conta</a>
+              <a class="nav-link" href="" id="feed">Informações de conta</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="alterar_informacoes" href="#">Alterar informações
@@ -85,7 +85,7 @@ else{
             </div>
 
             <h5 style="margin-top: ">
-              "lembrar de implementar o .replaceWith"<br>
+             
               <?php echo $vetor['nome'] . " " . $vetor['sobrenome']; ?>
             </h5>
           </center>
@@ -106,72 +106,43 @@ else{
               </div>
               <div class="col-md-6">
                 <label for="inputAddress2">CEP:</label>
-                <input value="<?php echo $vetor['cep']; ?>" id="cep" pattern=".{10}" onblur="pesquisacep(this.value);" name="cep" type="text" class="form-control" required>
+                <div id="cep" class="cep"><?php echo $vetor['cep']; ?></div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputCity">Estado:</label>
-                <select name="uf" id="uf" type="text" class="form-control" required>
-                  <option value="<?php echo $vetor['estado'];?>">
-                    <?php echo $vetor['estado']; ?>
-                  </option>
-                  <option value="AC">Acre</option>
-                  <option value="AL">Alagoas</option>
-                  <option value="AP">Amapá</option>
-                  <option value="AM">Amazonas</option>
-                  <option value="BA">Bahia</option>
-                  <option value="CE">Ceará</option>
-                  <option value="DF">Distrito Federal</option>
-                  <option value="ES">Espírito Santo</option>
-                  <option value="GO">Goiás</option>
-                  <option value="MA">Maranhão</option>
-                  <option value="MT">Mato Grosso</option>
-                  <option value="MS">Mato Grosso do Sul</option>
-                  <option value="MG">Minas Gerais</option>
-                  <option value="PA">Pará</option>
-                  <option value="PB">Paraíba</option>
-                  <option value="PR">Paraná</option>
-                  <option value="PE">Pernambuco</option>
-                  <option value="PI">Piauí</option>
-                  <option value="RJ">Rio de Janeiro</option>
-                  <option value="RN">Rio Grande do Norte</option>
-                  <option value="RS">Rio Grande do Sul</option>
-                  <option value="RO">Rondônia</option>
-                  <option value="RR">Roraima</option>
-                  <option value="SC">Santa Catarina</option>
-                  <option value="SP">São Paulo</option>
-                  <option value="SE">Sergipe</option>
-                  <option value="TO">Tocantins</option>
-                </select>
+                <div class="uf" id="uf"><?php echo $vetor['estado']; ?></div>
               </div>
               <div class="form-group col-md-4">
                 <label for="inputState">Cidade:</label>
-                <input value="<?php echo $vetor['cidade']; ?>" id="cidade" name="cidade" type="text" class="form-control" required>
+                <div id="cidade"><?php echo $vetor['cidade']; ?></div>
               </div>
               <div class="form-group col-md-2">
                 <label for="inputZip">Bairro</label>
-                <input value="<?php echo $vetor['bairro']; ?>" id="bairro" name="bairro" type="text" class="form-control" required>
+                <div id="bairro"><?php echo $vetor['bairro']; ?></div>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Rua:</label>
-                <input value="<?php echo $vetor['rua']; ?>" id="rua" name="rua" type="text" class="form-control">
+                <div class="rua" id="rua"><?php echo $vetor['rua']; ?></div>
               </div>
               <div class="form-group col-md-4">
                 <label for="inputPassword4">Numero:</label>
-                <input value="<?php echo $vetor['numero']; ?>" id="numero" name="numero" type="text" class="form-control">
+                <div id="numero"><?php echo $vetor['numero']; ?></div>
               </div>
               <div class="form-group col-md-2">
                 <label for="inputPassword4">Comeplemento:</label>
-                <input value="<?php echo $vetor['complemento']; ?>" type="text" name="complemento" class="form-control">
+                <div id="complemento"><?php echo $vetor['complemento']; ?></div>
+                
               </div>
 
             </div>
+            <div id="botoes" style="display: none">
             <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
               Enviar
-            </button></center>
+            </button></center></div>
 
           </form>
         </div>
@@ -379,6 +350,44 @@ else{
                 $( "body" ).delegate( ".telefone", "myCustomEvent", function( e, myName, myValue ) {
                   $("#telefone").replaceWith("<input value='<?php echo $vetor['telefone']; ?>'' pattern='.{14,15}'' name='telefone' id='telefone' type='text' class='form-control telefone' required>");
                   $("#celular").replaceWith("<input value=1<?php echo $vetor['celular']; ?>1 pattern='.{14,15}' id='celular' name='celular' type='text' class='form-control telefone' required>");
+                  $("#cep").replaceWith("<input value='<?php echo $vetor['cep']; ?>' id='cep' pattern='.{10}' onblur='pesquisacep(this.value);' name='cep' type='text' class='form-control' required>");
+                  $("#cidade").replaceWith("<input value='<?php echo $vetor['cidade']; ?>' id='cidade' name='cidade' type='text' class='form-control' required>");
+                  $("#rua").replaceWith("<input value='<?php echo $vetor['rua']; ?>' id='rua' name='rua' type='text' class='form-control'>");
+                   $("#bairro").replaceWith("<input value='<?php echo $vetor['bairro']; ?>' id='bairro' name='bairro' type='text' class='form-control cep' required>");
+                   $("#numero").replaceWith(" <input value='<?php echo $vetor['numero']; ?>' id='numero' name='numero' type='text' class='form-control'>");
+                   $("#complemento").replaceWith("<input value='<?php echo $vetor['complemento']; ?>' type='text' name='complemento' class='form-control'>");
+                  $("#uf").replaceWith("<select name='uf' id='uf' type='text' class='form-control' required>"+
+                 "<option value='<?php echo $vetor['estado'];?>'>"+
+                   " <?php echo $vetor['estado']; ?>"+
+                 " </option>"+
+                  "<option value='AC'>Acre</option>"+
+                  "<option value='AL'>Alagoas</option>"+
+                 " <option value='AP'>Amapá</option>"+
+                  "<option value='AM'>Amazonas</option>"+
+                  "<option value='BA'>Bahia</option>"+
+                  "<option value='CE'>Ceará</option>"+
+                  "<option value='DF'>Distrito Federal</option>"+
+                  "<option value='ES'>Espírito Santo</option>"+
+                  "<option value='GO'>Goiás</option>"+
+                  "<option value='MA'>Maranhão</option>"+
+                  "<option value='MT'>Mato Grosso</option>"+
+                  "<option value='MS'>Mato Grosso do Sul</option>"+
+                  "<option value='MG'>Minas Gerais</option>"+
+                  "<option value='PA'>Pará</option>"+
+                  "<option value='PB'>Paraíba</option>"+
+                  "<option value='PR'>Paraná</option>"+
+                  "<option value='PE'>Pernambuco</option>"+
+                  "<option value='PI'>Piauí</option>"+
+                  "<option value='RJ'>Rio de Janeiro</option>"+
+                  "<option value='RN'>Rio Grande do Norte</option>"+
+                  "<option value='RS'>Rio Grande do Sul</option>"+
+                  "<option value='RO'>Rondônia</option>"+
+                  "<option value='RR'>Roraima</option>"+
+                  "<option value='SC'>Santa Catarina</option>"+
+                  "<option value='SP'>São Paulo</option>"+
+                  "<option value='SE'>Sergipe</option>"+
+                  "<option value='TO'>Tocantins</option>"+  
+                  "</select>");
                    
                   $('.telefone').mask('(00) 0000-00009');
                   $('.telefone').blur(function(event) {
@@ -386,11 +395,15 @@ else{
                       $('.telefone').mask('(00) 00000-0009');
                     } else {
                       $('.telefone').mask('(00) 0000-00009');
+                      $('.cep').mask('00.000-000');
+                      $('#numero').mask('0000000');
                     }
                   });
                 });
+
                 $( "#alterar_informacoes" ).click(function() {
                   $( "#telefone" ).trigger( "myCustomEvent" );
+                  $("#botoes").css("display","block")
                 });
                 $("#enviar").click(function() {
                   var form = $("#alterar");
@@ -407,7 +420,7 @@ else{
               <script>
                 $(document).ready(function() {
 
-                  $('#cep').mask('00.000-000');
+                  
                   $('.telefone').mask('(00) 0000-00009');
                   $('.telefone').blur(function(event) {
                     if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
@@ -420,13 +433,7 @@ else{
 
                 });
               </script>
-              <script>
-                $(document).ready(function() {
-                  $('#sidebarCollapse').on('click', function() {
-                    $('#sidebar').toggleClass('active');
-                  });
-                });
-              </script>
+            
             </main>
 
           </body>
