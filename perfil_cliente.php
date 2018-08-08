@@ -51,29 +51,6 @@ else{
     <html>
 
     <head>
-      <style type="text/css">
-      div.panel,
-      div.flip {
-        width: 200px;
-        padding: 5px;
-        text-align: center;
-        border: solid 1px #c3c3c3;
-        position: fixed;
-        right: 10px;
-        bottom: -15px;
-        z-index: 1;
-      }
-
-      div.panel {
-        position: fixed;
-        bottom: 29px;
-        width: 200px;
-        height: auto;
-        display: none;
-        text-align: left;
-        z-index: 1;
-      }
-    </style>
     <title>Oficina Pro</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -127,33 +104,43 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-          <div class="col-sm-9" id="feed" style="display: none;"><br>
-            <div class="card text-center">
-              <div class="card-header">
-                CARD BY PAC
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BEING MADE BY PAC</h5>
-                <p class="card-text">PAC HERE</p>
-                <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
-              </div>
-              <div class="card-footer text-muted">
-                PAC
-              </div>
-            </div><br>
-            <div class="card text-center">
-              <div class="card-header">
-                CARD BY PAC
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">BEING MADE BY PAC</h5>
-                <p class="card-text">PAC HERE</p>
-                <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
-              </div>
-              <div class="card-footer text-muted">
-                PAC
-              </div>
-            </div>
+          <div class="col-sm-9" id="feed" style="display: block;"><br>
+            
+              <!-- coemca aqui-->
+              <?php
+              $sql_servico ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
+              $servicos = mysqli_query($conn,$sql_servico);
+              $numero_servicos = mysqli_num_rows($servicos);
+              while ($vetor_servicos = mysqli_fetch_array($servicos)) {
+              $cod_servico = $vetor_servicos['cod_servico'];
+              $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servico" ;
+              $atualizacao = mysqli_query($conn,$sql_atualizacao);
+              $vetor_atualizacao = mysqli_fetch_array($atualizacao);
+              $n_atualizacao = mysqli_num_rows($atualizacao);
+              if($n_atualizacao != 0){
+              $cod_mecanico = $vetor_servicos['cod_mecanico'];
+              $nome_mecanico ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico";
+              $mecanico = mysqli_query($conn,$nome_mecanico);
+              $vetor_mecanico = mysqli_fetch_array($mecanico);
+              
+                ?>
+          <div class="card text-center">
+                <div class="card-header">
+                  <?php echo "<span style='left0;'>" .$vetor_mecanico['nome']."</span>";?>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Atualização</h5>
+                  <p class="card-text"><?php echo $vetor_atualizacao['mensagem'];?></p>
+                  <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
+                </div>
+                <div class="card-footer text-muted">
+                  
+                </div>
+              </div><br>
+              <?php
+            }
+            }
+            ?>
 
           </div>
 
@@ -379,7 +366,7 @@ else{
       $('#btnandamento').on('click', function() {
         $('#andamento').toggle(1000);
         $('#chamados').css("display", "none");
-         $('#feed').css("display", "none"); 
+        $('#feed').css("display", "none"); 
       });
       $("#enviar").click(function() {
         var form = $("#form");
