@@ -1,69 +1,62 @@
-<?php
-
-session_start();
-
-if(!isset($_SESSION["system_control"]))
-{
-  ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Página inicial</title>
-    <link href="css/home.css" rel="stylesheet">
-    <link rel="stylesheet" href="scss/main.css">
-  
-  <style>
-  .parallax {
-    /* The image used */
-    background-image: url("imagens/pagina1.jpg");
+	<title>Página inicial</title>
+	  <link href="css/home.css" rel="stylesheet">
+	  <link rel="stylesheet" href="scss/main.css">
+	
+	<style>
+	.parallax {
+		/* The image used */
+		background-image: url("imagens/pagina1.jpg");
 
-    /* Set a specific height */
-    min-height: 500px; 
+		/* Set a specific height */
+		min-height: 500px; 
 
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+		/* Create the parallax scrolling effect */
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 </style>
 <meta charset="utf-8">
 </head>
 <body>
 
-  <?php
+	<?php
 
-  require('navbar2.html');
-  ?>
+	require('navbar2.html');
+	?>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/slide1.jpg"  alt="First slide">
-      </div>
-      <div class="carousel-item" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/lukas.jpg"  alt="Second slide">
-      </div>
-      <div class="carousel-item" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/lukas.jpg"  alt="Third slide">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Anterior</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Próximo</span>
-    </a>
-  </div>
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active" style="width: 100%;height: 600px;">
+				<img class="d-block w-100" src="imagens/slide1.jpg"  alt="First slide">
+			</div>
+			<div class="carousel-item" style="width: 100%;height: 600px;">
+				<img class="d-block w-100" src="imagens/lukas.jpg"  alt="Second slide">
+			</div>
+			<div class="carousel-item" style="width: 100%;height: 600px;">
+				<img class="d-block w-100" src="imagens/lukas.jpg"  alt="Third slide">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Anterior</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Próximo</span>
+		</a>
+	</div>
 <div style="background-color: #2F4F4F;padding-bottom: 30px; padding-top: 30px">
-  <div class="container">
+	<div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="heading">
@@ -99,7 +92,7 @@ if(!isset($_SESSION["system_control"]))
 
 <div class="parallax"></div>
 <div style="background-color: #2F4F4F;padding:50px;" >
-  <div class="row"><h2>Quem nós somos?Sobre
+	<div class="row"><h2>Quem nós somos?Sobre
           Nós</h2></div>
       <div class="row">
         
@@ -114,7 +107,7 @@ if(!isset($_SESSION["system_control"]))
 <div class="parallax"></div>
 
     <div  style="height: 150px;background-color:#2F4F4F "><center>
-      <div style="padding-top: 100px;padding-bottom: 30px;background-color: #2F4F4F">
+    	<div style="padding-top: 100px;padding-bottom: 30px;background-color: #2F4F4F">
       <a href="#"><img src="imagens/facebook.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/Google.png" width="45" height="45"></a>
       <a href="#"><img src="imagens/instagram.png" width="45" height="45"></a>
@@ -127,36 +120,3 @@ if(!isset($_SESSION["system_control"]))
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </html> 
-
-<?php
-}
-else if($_SESSION["system_control"] == 1)
-{
-
-  if($_SESSION["privilegio"] == 0){
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_cliente.php";
-    </script>
-    <?php
-  }
-  else if ($_SESSION["privilegio"] == 1) {
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_cliente.php";
-    </script>
-    <?php
-  }
-  else if ($_SESSION['privilegio'] == 2) {
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_oficina.php";
-    </script>
-    <?php
-  }
-  else{
-    echo "erro";
-  }
-
-}
-?>
