@@ -104,7 +104,7 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-          <div class="col-sm-9" id="feed" style="display: block;"><br>
+          <div class="col" id="feed" style="display: block;"><br>
             
               <!-- coemca aqui-->
               <?php
@@ -145,7 +145,7 @@ else{
           </div>
 
           <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
-          <div class="col-sm" id="andamento" style="display: none;"><br>
+          <div class="col" id="andamento" style="display: none;"><br>
             <center>
               <h4 id="titulo">Serviço aguardando resposta</h4>
               <div id="info"></div>
@@ -295,12 +295,12 @@ else{
               </div>
 
             </div>
-            <div class="col-4"></div>
-          </div>
+            <div class="col"><img src="imagens/primeiro.png"></div>
+        </div>
         </main>
       </div>
-
-    </div>
+      
+    
     <div class="modal fade" id="oficinas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
