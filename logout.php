@@ -6,5 +6,5 @@
     //session_unset — Libera todas as variáveis de sessão
     session_unset(); 
  
-    echo "<script>alert('Você saiu!');top.location.href='login.php';</script>";        
+        echo "<script>top.location.href='login.php';</script>";   
 ?>,

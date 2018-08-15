@@ -112,33 +112,42 @@ else{
               $servicos = mysqli_query($conn,$sql_servico);
               $numero_servicos = mysqli_num_rows($servicos);
               while ($vetor_servicos = mysqli_fetch_array($servicos)) {
-              $cod_servico = $vetor_servicos['cod_servico'];
-              $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servico" ;
+              $cod_servicos = $vetor_servicos['cod_servico'];
+              $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servicos" ;
               $atualizacao = mysqli_query($conn,$sql_atualizacao);
-              $vetor_atualizacao = mysqli_fetch_array($atualizacao);
-              $n_atualizacao = mysqli_num_rows($atualizacao);
-              if($n_atualizacao != 0){
               $cod_mecanico = $vetor_servicos['cod_mecanico'];
               $nome_mecanico ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico";
               $mecanico = mysqli_query($conn,$nome_mecanico);
               $vetor_mecanico = mysqli_fetch_array($mecanico);
+              $cod_login = $vetor_mecanico['cod_login'];
+              $query_foto ="SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+              $mecanico_foto = mysqli_query($conn,$query_foto);
               
+              if ( mysqli_num_rows($atualizacao)== 0) {
+                  
+                } else{
+                  $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
+                  while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
+                
                 ?>
           <div class="card text-center">
-                <div class="card-header">
-                  <?php echo "<span style='left0;'>" .$vetor_mecanico['nome']."</span>";?>
+                <div class="card-header" style="text-align: left;">
+                  <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Atualização</h5>
+                  <p class="card-text"><?php echo $vetor_atualizacao['assunto'];?></p>
                   <p class="card-text"><?php echo $vetor_atualizacao['mensagem'];?></p>
-                  <a href="#" class="btn btn-primary">BOTAO DO PAC</a>
+                  
                 </div>
                 <div class="card-footer text-muted">
                   
                 </div>
               </div><br>
               <?php
-            }
+              }
+                }
+              
+ 
             }
             ?>
 
@@ -295,7 +304,7 @@ else{
               </div>
 
             </div>
-            <div class="col"><img src="imagens/primeiro.png"></div>
+            <div class="col"></div>
         </div>
         </main>
       </div>
