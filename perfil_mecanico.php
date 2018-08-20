@@ -225,7 +225,7 @@ else{
                   echo "<li class='list-group-item itens'><p style='display:block;'>
                   Veículo:".$vetor_veiculo['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."'style='float:right; right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></a> <a href='#' style='float:right;' data-toggle='modal' data-target='#exampleModal'><i class='fas fa-share-square'></i></a>
                   Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
-                  Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo'>Finalizar serviço</button> <button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo' data-toggle='modal' data-target='#exampleModal'>Mandar atualização</button>
+                  Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo'>Finalizar serviço</button> <button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo atu' data-toggle='modal' data-target='#exampleModal'>Mandar atualização</button>
                   </li>";
 
 
@@ -267,6 +267,9 @@ else{
                 );
 
             })
+            $(".atu").click(function(){
+              $("#bot_cod").attr("value", $(this).val())
+            })
         </script>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -283,12 +286,14 @@ else{
                           <input type="text" name="assunto" class="form-control">
                           Conteudo:
                           <textarea type="text" class="form-control" name="atualizacao"></textarea>
-                        </form>
+                          <input type="hidden" id="bot_cod" name="codigo" value="">
+                          <input type="hidden" value="1" name="var">
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Enviar</button>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div></form>
                 </div>
             </div>
         </div>
