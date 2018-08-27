@@ -113,7 +113,7 @@ else{
               $numero_servicos = mysqli_num_rows($servicos);
               while ($vetor_servicos = mysqli_fetch_array($servicos)) {
               $cod_servicos = $vetor_servicos['cod_servico'];
-              $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servicos" ;
+              $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servicos ORDER BY `cod_atualizacao` DESC" ;
               $atualizacao = mysqli_query($conn,$sql_atualizacao);
               $cod_mecanico = $vetor_servicos['cod_mecanico'];
               $nome_mecanico ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico";
@@ -135,8 +135,9 @@ else{
                   <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
                 </div>
                 <div class="card-body">
-                  <p class="card-text"><?php echo $vetor_atualizacao['assunto'];?></p>
-                  <p class="card-text"><?php echo $vetor_atualizacao['mensagem'];?></p>
+
+                  <p class="card-text">Assunto:<?php echo $vetor_atualizacao['assunto'];?></p>
+                  <p class="card-text">Status do carro:<?php echo $vetor_atualizacao['mensagem'];?></p>
                   
                 </div>
                 <div class="card-footer text-muted">

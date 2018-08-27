@@ -73,7 +73,7 @@ else{
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="perfil_meanico.php">Pagina inicial</a>
+            <a class="nav-link" href="perfil_mecanico.php">Pagina inicial</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="btnchamados" >Ver solicitações
@@ -207,9 +207,9 @@ else{
                 Valor:<input id="valor" type="text" class="form-control" required>
                 Escolha as datas:<div class="row">
                   
-                  <div class="col-5"> <input type="date" class="form-control" name=""></div>
-                  <div class="col-5"><input type="time" class="form-control" name=""></div>
-                  <div class="col-2"><button class="btn btn-default"> + </button></div>
+                  <div class="col"> <input type="date" class="form-control" name=""></div>
+                  <div class="col"><input type="time" class="form-control" name=""></div>
+                  
                 </div>
                
                 Tempo estimado para término:<input type="date" id="data" class="form-control" required>

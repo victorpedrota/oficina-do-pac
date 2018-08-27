@@ -31,9 +31,10 @@ else{
     $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
     $var = $_POST["var"];
+    $cod_servico = $_POST["codigo"];
     if ($var == 0) {
 
-      $sql_pesquisa ="UPDATE `servico` SET `status` = 0 WHERE `cod_servico` = $cod_servico";
+      $sql_pesquisa ="UPDATE `servico` SET `status` = 4 WHERE `cod_servico` = $cod_servico";
       $resultado = mysqli_query($conn,$sql_pesquisa);
 
 
