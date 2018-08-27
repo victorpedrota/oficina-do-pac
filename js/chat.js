@@ -52,7 +52,8 @@
 
          $("#envia_orcamento").click(    
             function() 
-            {         
+            {   
+             $("#form_orcamento").validate();     
              $.post("server.php", 
               { valor: $("#valor").val(), data: $("#data").val(), detalhes: $("#detalhes").val(),conversa: $("#conversa").val(), codigo: $("#codigo").val()},
               function(data){ 
