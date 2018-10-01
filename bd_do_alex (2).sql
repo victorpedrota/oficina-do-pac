@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Ago-2018 às 07:39
--- Versão do servidor: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: 10-Set-2018 às 17:57
+-- Versão do servidor: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,6 +47,33 @@ CREATE TABLE `agenda` (
   `horario` int(11) NOT NULL,
   `cod_oficina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `atualizacao`
+--
+
+CREATE TABLE `atualizacao` (
+  `cod_servico` int(11) NOT NULL,
+  `mensagem` varchar(200) NOT NULL,
+  `hora` time NOT NULL,
+  `data` date NOT NULL,
+  `assunto` varchar(40) NOT NULL,
+  `cod_atualizacao` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `atualizacao`
+--
+
+INSERT INTO `atualizacao` (`cod_servico`, `mensagem`, `hora`, `data`, `assunto`, `cod_atualizacao`) VALUES
+(12, 'ewf', '23:11:11', '2018-08-08', '4r', 12),
+(12, '2112', '23:11:11', '2018-08-06', '4r', 13),
+(12, 'we', '11:53:40', '2018-08-20', 'ew', 14),
+(12, 'htdg', '12:02:29', '2018-08-20', 'fdhgh', 15),
+(12, 'htdg', '12:02:42', '2018-08-20', 'fdhgh', 16),
+(12, '32', '11:11:58', '2018-08-27', '32', 17);
 
 -- --------------------------------------------------------
 
@@ -250,7 +277,15 @@ INSERT INTO `mensagens` (`text`, `cod_mensagem`, `cod_servico`, `cod_autor`, `co
 ('', 147, 13, 57, 0),
 ('', 148, 13, 57, 0),
 ('', 149, 13, 57, 0),
-('', 150, 13, 57, 0);
+('', 150, 13, 57, 0),
+('', 151, 12, 53, 23),
+('hjkui', 152, 12, 53, 0),
+('eiuwefdÃ§', 153, 12, 53, 0),
+('', 154, 15, 53, 0),
+('re', 155, 15, 53, 0),
+('d', 156, 15, 57, 0),
+('ew', 157, 15, 57, 0),
+('', 158, 13, 53, 0);
 
 -- --------------------------------------------------------
 
@@ -323,7 +358,8 @@ INSERT INTO `orcamento` (`cod_orcamento`, `valor`, `data`, `detalhes`, `status`,
 (19, 737, '0828-02-08', 'ehjsaj,', 1, 0),
 (20, 4, '', '', 1, 0),
 (21, 4, '', '', 0, 13),
-(22, 4, '', '', 1, 13);
+(22, 4, '', '', 0, 13),
+(23, 10000, '5345-03-04', '345345', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -350,12 +386,12 @@ CREATE TABLE `servico` (
 --
 
 INSERT INTO `servico` (`cod_servico`, `cod_cliente`, `cod_mecanico`, `cod_oficina`, `tipo_servico`, `cod_veiculo`, `protocolo`, `orcamento`, `problema`, `servico_desejado`, `status`) VALUES
-(12, 18, 6, '10', 'ghdisjolksd', 44, 969414268, 12, '', '', 2),
-(13, 18, 6, '10', 'troca', 43, 598653495, 0, '', '', 2),
+(12, 18, 6, '10', 'ghdisjolksd', 44, 969414268, 12, '', '', 4),
+(13, 18, 6, '10', 'troca', 43, 598653495, 0, '', '', 3),
 (14, 18, 6, '10', 'troca', 2, 708539985, 0, 'wed', 'ss', 1),
-(15, 18, 0, '1', '2', 2, 929215468, 0, '1', '2', 0),
+(15, 18, 6, '10', '2', 2, 929215468, 0, '1', '2', 1),
 (16, 18, 0, '2', '3', 3, 1129792302, 0, '3', '1', 0),
-(17, 18, 0, '92992', '3', 3, 42085776, 0, '3', '1', 0),
+(17, 18, 0, '12', '3', 3, 42085776, 0, '3', '1', 0),
 (18, 18, 0, '92992', '3', 2, 826207296, 0, '3', '1', 0);
 
 -- --------------------------------------------------------
@@ -370,34 +406,6 @@ CREATE TABLE `status` (
   `comentario` varchar(200) NOT NULL,
   `cod_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `status`
---
-
-INSERT INTO `status` (`status`, `cod_servico`, `comentario`, `cod_status`) VALUES
-('1', 12, '', 6),
-('0', 13, '', 7),
-('0', 14, '', 8),
-('0', 15, '', 9),
-('0', 16, '', 10),
-('0', 17, '', 11),
-('0', 18, '', 12),
-('0', 19, '', 13),
-('0', 20, '', 14),
-('0', 21, '', 15),
-('0', 22, '', 16),
-('0', 23, '', 17),
-('0', 24, '', 18),
-('0', 25, '', 19),
-('0', 26, '', 20),
-('0', 27, '', 21),
-('0', 28, '', 22),
-('0', 29, '', 23),
-('0', 30, '', 24),
-('0', 31, '', 25),
-('0', 32, '', 26),
-('0', 33, '', 27);
 
 -- --------------------------------------------------------
 
@@ -439,6 +447,12 @@ INSERT INTO `veiculo` (`cod_veiculo`, `modelo`, `cor`, `ano`, `descricao`, `plac
 --
 ALTER TABLE `agenda`
   ADD PRIMARY KEY (`cod_agenda`);
+
+--
+-- Indexes for table `atualizacao`
+--
+ALTER TABLE `atualizacao`
+  ADD PRIMARY KEY (`cod_atualizacao`);
 
 --
 -- Indexes for table `avaliacao`
@@ -511,6 +525,12 @@ ALTER TABLE `agenda`
   MODIFY `cod_agenda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `atualizacao`
+--
+ALTER TABLE `atualizacao`
+  MODIFY `cod_atualizacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `avaliacao`
 --
 ALTER TABLE `avaliacao`
@@ -538,7 +558,7 @@ ALTER TABLE `mecanico`
 -- AUTO_INCREMENT for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `cod_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `cod_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `oficina`
@@ -550,19 +570,19 @@ ALTER TABLE `oficina`
 -- AUTO_INCREMENT for table `orcamento`
 --
 ALTER TABLE `orcamento`
-  MODIFY `cod_orcamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cod_orcamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `servico`
 --
 ALTER TABLE `servico`
-  MODIFY `cod_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `cod_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `cod_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `cod_status` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `veiculo`

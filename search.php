@@ -9,9 +9,6 @@ $db = mysqli_select_db($conn,"bd_do_alex") or die("Não foi possível selecionar
 
 
 
-if(isset($_POST['texto']))
-{
-	$texto = $_POST['texto'];
 
 	$sql = "SELECT * FROM `oficina`";
 	$result = mysqli_query($conn,$sql);
@@ -23,26 +20,24 @@ if(isset($_POST['texto']))
 		if ($numero != $x) 
 		{
 				echo '{';	
-				echo '"nome":"'.$row["nome"].'",';
-				echo '"codigo":'.$row["cod_oficina"];
+				echo '"text":"'.$row["nome"].'",';
+				echo '"href":"'.$row["nome"].'",';
+				echo '"id":'.$row["cod_oficina"];
 				echo '},';
 				
 		}else
 		
 		{
 				echo '{';	
-				echo '"nome":"'.$row["nome"].'",';
-				echo '"codigo":'.$row["cod_oficina"];
+				echo '"text":"'.$row["nome"].'",';
+				echo '"id":'.$row["cod_oficina"];
 				echo '}';
 
 					
 		}$x++;
 	}
 			echo ']';
-}
-	else{
 
-
-		}
+	
 
 		?>

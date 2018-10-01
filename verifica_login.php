@@ -1,7 +1,4 @@
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
+
     <?php
 
     $login = $_POST['c_login'];
@@ -18,7 +15,7 @@
 
     if($numero != 1)
     {
-        echo "<script>alert('Usuário ou senha incorretos');top.location.href='login.php';</script>";
+        echo "Usuário ou senha incorretos";
     }
     else
     {
@@ -44,10 +41,9 @@
                
 
                $_SESSION["imagem"] = $vetor_cliente['imagem'];
+               echo "<script>window.location.href = 'login.php';</script>";
                ?>
-               <script language='JavaScript'>
-                document.location.href="perfil_cliente.php";
-            </script>
+               
             <?php
         }
         else if ($vetor_login['privilegio'] == 1) {
@@ -69,6 +65,19 @@
             <?php
         }
         else if ($vetor_login['privilegio'] == 2) {
+            $cliente ="SELECT * from `oficina` WHERE `cod_login` = $cod_login";
+            $resultado_cliente = mysqli_query($conn,$cliente);
+            $vetor = mysqli_fetch_array($resultado_cliente);
+            $_SESSION["nome"] = $vetor['nome'];
+            $cliente ="select * from `login` where `cod_login` = $cod_login";
+            $resultado_cliente = mysqli_query($conn,$cliente);
+            $vetor_cliente = mysqli_fetch_array($resultado_cliente);
+            $_SESSION["imagem"] = $vetor_cliente['imagem'];
+            $cliente ="SELECT * from `oficina` WHERE `cod_login` = $cod_login";
+            $resultado_cliente = mysqli_query($conn,$cliente);
+            $vetor = mysqli_fetch_array($resultado_cliente);
+            $_SESSION["cod_oficina"] = $vetor['cod_oficina'];
+
             ?>
             <script language='JavaScript'>
                 document.location.href="perfil_oficina.php";

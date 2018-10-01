@@ -60,7 +60,7 @@ else{
               <a class="nav-link" href="" id="feed">Informações de conta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="alterar_informacoes" href="#">Alterar informações
+              <a class="nav-link" id="alterar_informacoess" href="#">Alterar informações
               </a>
             </li>
 
@@ -81,7 +81,7 @@ else{
         <div style="" class="container">
           <center>
             <div class="show-image" style="width: 100px;margin-top: 60px;">
-              <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor[ 'imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
+              <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor_login[ 'imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
             </div>
 
             <h5 style="margin-top: ">
@@ -350,10 +350,10 @@ else{
                 $( "body" ).delegate( ".telefone", "myCustomEvent", function( e, myName, myValue ) {
                   $("#telefone").replaceWith("<input value='<?php echo $vetor['telefone']; ?>'' pattern='.{14,15}'' name='telefone' id='telefone' type='text' class='form-control telefone' required>");
                   $("#celular").replaceWith("<input value=1<?php echo $vetor['celular']; ?>1 pattern='.{14,15}' id='celular' name='celular' type='text' class='form-control telefone' required>");
-                  $("#cep").replaceWith("<input value='<?php echo $vetor['cep']; ?>' id='cep' pattern='.{10}' onblur='pesquisacep(this.value);' name='cep' type='text' class='form-control' required>");
+                  $("#cep").replaceWith("<input value='<?php echo $vetor['cep']; ?>' id='cep' pattern='.{10}' onblur='pesquisacep(this.value);' name='cep' type='text' class='form-control cep' required>");
                   $("#cidade").replaceWith("<input value='<?php echo $vetor['cidade']; ?>' id='cidade' name='cidade' type='text' class='form-control' required>");
                   $("#rua").replaceWith("<input value='<?php echo $vetor['rua']; ?>' id='rua' name='rua' type='text' class='form-control'>");
-                   $("#bairro").replaceWith("<input value='<?php echo $vetor['bairro']; ?>' id='bairro' name='bairro' type='text' class='form-control cep' required>");
+                   $("#bairro").replaceWith("<input value='<?php echo $vetor['bairro']; ?>' id='bairro' name='bairro' type='text' class='form-control' required>");
                    $("#numero").replaceWith(" <input value='<?php echo $vetor['numero']; ?>' id='numero' name='numero' type='text' class='form-control'>");
                    $("#complemento").replaceWith("<input value='<?php echo $vetor['complemento']; ?>' type='text' name='complemento' class='form-control'>");
                   $("#uf").replaceWith("<select name='uf' id='uf' type='text' class='form-control' required>"+
@@ -388,7 +388,7 @@ else{
                   "<option value='SE'>Sergipe</option>"+
                   "<option value='TO'>Tocantins</option>"+  
                   "</select>");
-                   
+                   $('.cep').mask('00.000-000');
                   $('.telefone').mask('(00) 0000-00009');
                   $('.telefone').blur(function(event) {
                     if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
@@ -401,7 +401,7 @@ else{
                   });
                 });
 
-                $( "#alterar_informacoes" ).click(function() {
+                $( "#alterar_informacoess" ).click(function() {
                   $( "#telefone" ).trigger( "myCustomEvent" );
                   $("#botoes").css("display","block")
                 });
@@ -419,7 +419,7 @@ else{
 
               <script>
                 $(document).ready(function() {
-
+                  $('.cep').mask('00.000-000');
                   
                   $('.telefone').mask('(00) 0000-00009');
                   $('.telefone').blur(function(event) {

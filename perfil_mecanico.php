@@ -47,7 +47,7 @@ else{
 
     <body style="overflow-x: hidden;">
       <?php
-      require("navbar_logout.html");
+      require("navbar_mecanico.html");
       ?>
       <div class="row">
 
@@ -65,19 +65,14 @@ else{
                 <li class="nav-item">
                   <a class="nav-link" href="" id="feed">Feed</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" id="btnchamados">Ver Serviços
-                  </a>
-                </li>
+                
 
 
                 <li class="nav-item">
                   <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="form_veiculo.php">Gerenciar Veícuslos</a>
-                </li>
+          
 
 
               </ul>
@@ -87,7 +82,7 @@ else{
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="row">
               <div class="col-8">
-                <div class="col-sm" id="chamados" style="display: none;"><br>
+                <div class="col-sm" id="chamados" style="display: block;"><br>
                   <center>
                     <h4 id="titulo">Serviço aguardando resposta</h4>
                     <div id="info"></div>

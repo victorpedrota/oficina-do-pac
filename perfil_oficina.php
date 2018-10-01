@@ -17,6 +17,8 @@ else{
   $system_control = $_SESSION["system_control"];   
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
+  $nome = $_SESSION["nome"];
+  $cod_oficina = $_SESSION["cod_oficina"];
 
   if($system_control == 1 && $privilegio == 2){
     require('connect.php'); 
@@ -25,141 +27,226 @@ else{
 
     <!DOCTYPE html>
     <html>
+
     <head>
       <title>Oficina Pro</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <style type="text/css">
-      
-      .main-section{
-
-        background-color: #fff;
-      }
-      .profile-header{
-        background-color: #343a40;
-        height:93px;
-      }
-      .user-detail{
-        margin:-50px 0px 30px 0px;
-      }
-      img{
-        height:100px;
-        width:100px;
-      }
-      .user-detail h5{
-        margin:15px 0px 5px 0px;
-      }
-      .user-social-detail{
-
-        background-color: #343a40;
-      }
-      .user-social-detail a i{
-        color:#fff;
-        font-size:23px;
-        
-      }
-
-      
-    </style>
-
-  </head>
-  <body>
-    <?php
-    require("navbar_logout.html");
-    ?>
-
-    
-    <div class="row" style="margin-top: 30px">
-
-      <div class="col main-section text-center">
-        <div class="row">
-          <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-        </div>
-        <div class="row user-detail">
-          <div class="col">
-
-            <div class="container-fluid" style="margin-top: 10px;  margin-left: 50px" >
-              <img src="https://community.smartsheet.com/sites/default/files/default_user.jpg" class="rounded-circle img-thumbnail">
-              <div class="row" style="margin-top: 10px;">
-                
-                <div class="col-9"><div class="jumbotron" style="height: 100%;">
-                  <h1 class="display-4">Página inicial</h1>
-                  <p class="lead">Aqui vai estar toda a merda q tenho q pensar em colocar q por enquanto so vou colocar botao q vai pra pagina q eu quero e faz oq eu quero</p>
-                  <hr class="my-4">
-                  <p>vai serproblema do lucas arrumar essa caralha de um jeito bonito pq to com preguiça</p>
-                  <p class="lead">
-
-                    <a class="btn btn-primary" href="form_mecanico.php">Cadastrar mecânico</a>
-                  </p>
-                </div></div>
-                <div class="col-2"><div style="height: 100%" class="jumbotron"></div></div>
-              </div>
+      <!-- Bootstrap CSS CDN -->
+      <link rel="stylesheet" href="scss/main.css">
+      <link rel="stylesheet" href="css/chat.css">
+      <!-- Our Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-            </div>
+    </head>
+
+    <body style="overflow-x: hidden;">
+
+
+      <?php
+      require("navbar_oficina.html");
+      ?>
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="">
+                  <span data-feather="home"></span>
+                  Página inical <span class="sr-only">(current)</span>
+                </a>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="btn_graph">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="btn_mecanico">Cadastrar Mecânico</a>
+              </li>
+
+
+
+
+            </ul>
           </div>
-        </div>
-        <div class="row user-social-detail">
+        </nav>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
+          <div id="graph">
+          <center><h3>Dashboard</h3></center>
+          <div class="row">
+            <div class="col"><center><h5>Serviços realizados</h5></center>
+              <div style="height: 400px;width: 400px;"><canvas id="myChart"></canvas></div>
+            </div>    
+            <div class="col"><center><h5>Lista de Mecanicos cadastrados</h5></center>
+              <ul style="text-align: left;" class="list-group">
+                <?php
 
-          <div class="col" style="height: 45px">
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Abrir chamado</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="abrir_chamado.php">
-              Selecionar Oficina:
-              <select name="n_oficina" class="form-control"> 
-                <option>selecione uma oficina</option>
-                <option>
-                 <?php 
-                  for ($i=0; $i < $numero_oficina ; $i++) {
-                      $vetor_oficina = mysqli_fetch_array($oficinas_query);
-                    echo " <option value=" . $vetor_oficina['cod_oficina'] . " > " . $vetor_oficina['nome']. "</option>";
-                  }
-
-                ?>
-
-              </select>
-              Selecionar Veiculo:
-              <select class="form-control" name="veiculo" required> 
-                <option>selecione seu veiculo</option>
-                <option>
-                 <?php 
-
-                 while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
-                  echo " <option value=" . $vetor_veiculo['cod_veiculo'] . " > " . $vetor_veiculo['modelo']. "</option>";
+                $cliente ="select * from `mecanico` where `cod_oficina` = $cod_oficina";
+                $resultado_cliente = mysqli_query($conn,$cliente);
+                while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente)) {
+                  echo "<li class='list-group-item itens'><p>".$vetor_veiculo["nome"]."</p></li>";
                 }
 
+
+
                 ?>
+              </ul>
+            </div></div>
+          </div>
+          <div class="" id="form_mecanico" style="display: none">
+          <form action="cadastrar_mecanico.php" method="POST">
+           <h3 >Formulário Cadastrar Usuário</h3>
+           <label for="ex3">*Itens obrigatórios</label><br> 
+           
+             <div class="row">
+              <div class="col ">
+                <label for="ex3">Login:*</label><br>
 
-              </select>
-              Tipo de Serviço:
-              <input type="text" class="form-control" name="tipo" required>
-            
+                <input class="form-control"  name="login"  minlength="6" type="text" required>
+              </div>
+              <div class="col">
+                <label for="ex3">Senha:*</label><br>
+
+                <input class="form-control"  name="senha"  minlength="8" type="password" required>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col ">
+                <label for="ex3">Primeiro nome:*</label><br>
+
+                <input class="form-control"   name="nome" type="text" pattern="[a-z\s]+$"   required>
+              </div>
+              <div class="col">
+                <label for="ex3">Sobrenome:*</label><br>
+                <input class="form-control"   name="sobrenome" pattern="[a-z\s]+$"  type="text" required></td>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col ">
+               <label for="ex3">Data de nascimento:*</label><br>
+               <input class="form-control" type="date" name="data" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="00/00/0000" OnKeyPress="formatar('##/##/####', this)" minlength="10" required>
+             </div>
+             <div class="col">
+              <label for="ex3">Telefone:</label><br>
+              <input class="form-control" type="text" name="telefone" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+            </div>
+            <div class="col">
+              <label for="ex3">Celular:</label><br>
+              <input class="form-control" type="text" name="celular" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+            </div>
+
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-primary">Abrir</button></form>
+          <div class="row">
+            <div class="col ">
+             <label for="ex3">RG:*</label><br>
+             <input class="form-control" type="text" name="rg" maxlength="12" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]" placeholder="XX.XXX.XXX-X" OnKeyPress="formatar('##.###.###-#', this)" minlength="12" required >
+           </div>
+           <div class="col">
+            <label for="ex3">CPF:*</label><br>
+            <input class="form-control" type="text" name="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX" OnKeyPress="formatar('###.###.###-##', this)" minlength="14" required >
           </div>
+          <div class="col">
+            <label for="ex3">Estado:*</label><br>
+            <select class="form-control" id="estados" name="estado"> 
+              <option value=""></option>
+            </select>
+          </div>
+
         </div>
-      </div>
-    </div>
+        <div class="row">
+          <div class="col ">
+            <label for="ex3">Cidade:*</label><br>
+            <select id="cidades" name="cidade" class="form-control">
+            </select>
+          </div>
+          <div class="col">
+            <label for="ex3">Bairro:*</label><br>
+            <input class="form-control"   name="bairro" type="text" required>
+          </div>
+          <div class="col">
+            <label for="ex3">Rua:*</label><br>
+            <input class="form-control"   name="bairro" type="text" required>
+          </div>
 
-  </body>
-  </html>
-  <?php
+        </div>
+        <div class="row">
+          <div class="col ">
+            <label for="ex3">Numero:*</label><br>
+            <input class="form-control"   name="numero" type="text" pattern="[0-9]+$" required>
+          </div>
+          <div class="col">
+            <label for="ex3">Complemento:</label><br>
+            <input class="form-control"   name="complemento" type="text">
+          </div>
+          <div class="col">
+            <label for="ex3">CEP:*</label><br>
+            <input class="form-control"   OnKeyPress="formatar('##.###.###', this)" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}" placeholder="XX.XXX.XXX" minlength="10" name="cep" type="text" maxlength="10" required>
+          </div>
+
+        </div>
+
+      
+      <br>
+      <div><center><button class="btn btn-primary" type="submit" name=""> Enviar</button></center></div>
+          </form>
+         </div>
+
+  </div>
+  <script type="text/javascript">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [{
+        label: "My First dataset",
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 10, 5, 2, 20, 30, 45],
+      }]
+    },
+
+    // Configuration options go here
+    options: {}
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $("#btn_mecanico").click(function(){
+      if ($("#form_mecanico").css("display") == "none") {
+        $("#graph").css("display", "none");
+        $("#form_mecanico").css("display", "block");
+      }
+      
+    })
+    $("#btn_graph").click(function(){
+      if ($("#graph").css("display") == "none") {
+            $("#form_mecanico").css("display", "none");
+            $("#graph").css("display", "block");
+          }
+
+    })
+  });
+</script>
+
+</main>
+</div>
+
+
+
+
+
+
+</body>
+
+</html>
+<?php
 }
 else
 {

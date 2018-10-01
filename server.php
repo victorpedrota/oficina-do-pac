@@ -10,15 +10,21 @@ if(isset($_POST['message']))
 	$message = $_POST['message'];
 	if ($message == "") {
 		
-	}else{
+	}
+
+	else
+
+	{
 	
 	$cod_servico = $_POST['conversa'];
 	$cod_autor = $_POST['codigo'];
 	$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`) VALUES ('$message',$cod_servico,$cod_autor)";
 	$query = mysqli_query($conn,$sql);
+
+	}
 }
-}
-else if(isset($_POST['valor']) && isset($_POST['data']) && isset($_POST['codigo']) && isset($_POST['detalhes'])){
+else if(isset($_POST['valor'])){
+
 	$valor = $_POST['valor'];
 	$data = $_POST['data'];
 	$cod_autor = $_POST['codigo'];

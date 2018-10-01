@@ -37,7 +37,7 @@ if (isset ($_POST['senha'])) {
   ?>
     <script>
       alert("Senha alterada com sucesso!");
-      document.location.href="form_alterar_usuario.php";
+      document.location.href="form_alterar_mecanico.php";
     </script>
     <?php  
   

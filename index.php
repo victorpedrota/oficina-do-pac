@@ -5,158 +5,185 @@ session_start();
 if(!isset($_SESSION["system_control"]))
 {
   ?>
-  <!DOCTYPE html>
-<html>
-<head>
-  <title>Página inicial</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="scss/main.css">
-  
-  <style>
-  .parallax {
-    /* The image used */
-    background-image: url("imagens/pagina1.jpg");
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="scss/main.css">
 
-    /* Set a specific height */
-    min-height: 500px; 
 
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+    <title>Oficina PRO</title>
+    <style type="text/css">
+    .cortar{
+      object-fit: cover; object-position: center;
+    }
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
 </style>
-<meta charset="utf-8">
+<!-- Bootstrap core CSS -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/carousel.css" rel="stylesheet">
 </head>
 <body>
 
-  <?php
 
-  require('navbar2.html');
-  ?>
+  <header>
+   <?php
+   require('navbar.html');
+   ?>
+ </header>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+ <main role="main">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/slide1.jpg"  alt="First slide">
+      <div class="carousel-item active">
+        <img class="first-slide cortar" src="https://www.canaldapeca.com.br/blog/wp-content/uploads/sites/19/2016/08/Veja-o-que-%C3%A9-preciso-para-montar-uma-Oficina-Mec%C3%A2nica.jpg"  alt="First slide">
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Oficina Pro</h1>
+            <p>Melhor jeito de acompanhar e ter o maior proveito de seu serviço</p>
+            <p><a class="btn btn-lg btn-primary" href="form_cliente.php" role="button">Cadastrar-se</a></p>
+          </div>
+        </div>
       </div>
-      <div class="carousel-item" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/lukas.jpg"  alt="Second slide">
+      <div class="carousel-item">
+        <img class="second-slide cortar" src="http://geroscience.com/wp-content/uploads/2017/10/car-repair-362150_1920.jpg" alt="Second slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Saiba mais</h1>
+            <p>Conheça nossa equipe e saiba mais sobre nós.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Saiba mais.</a></p>
+          </div>
+        </div>
       </div>
-      <div class="carousel-item" style="width: 100%;height: 600px;">
-        <img class="d-block w-100" src="imagens/lukas.jpg"  alt="Third slide">
+      <div class="carousel-item">
+        <img class="third-slide cortar" src="http://blog.mabore.com.br/wp-content/uploads/2015/07/1000767_299602686842906_1414781459_n20.jpg" alt="Third slide">
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>Já possui Cadastro?</h1>
+            <p>Entre e faça orçamentos ou acompanhe seu serviço em tempo real.</p>
+            <p><a class="btn btn-lg btn-primary" href="login.php" role="button">Entrar</a></p>
+          </div>
+        </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Anterior</span>
+      <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Próximo</span>
+      <span class="sr-only">Next</span>
     </a>
   </div>
-<div style="background-color: #2F4F4F;padding-bottom: 30px; padding-top: 30px">
-  <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="heading">
-            <h2 name="beneficios">veja os principais beneficios que nosso site traz a você</h2><br>
-          </div>
-        </div>
-        <div class="col-md-8">
+
+
+      <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+          <!-- Three columns of text below the carousel -->
           <div class="row">
-            <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-plus" aria-hidden="true"></i>
-              <h3>Diferenciais</h3>
-              <p>Nossos profissionais sempre buscam a mais alta qualidade para entregar um serviço que faça o cliente satisfeitos, usando ferramentas e maquinas profissionais.</p>
+            <div class="col-lg-4">
+              <i class="fas fa-car fa-10x"></i>
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+              <i style="margin-top: 10px;margin-bottom: 20px;" class="fas fa-wrench fa-8x"></i>
+              <h2>Heading</h2>
+              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">  
+              <i class="fas fa-copy fa-10x"></i>
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+          </div><!-- /.row -->
+
+
+          <!-- START THE FEATURETTES -->
+
+          <hr class="featurette-divider">
+
+          <div class="row featurette">
+            <div class="col-md-7" style="margin-top: -50px;">
+              <h2 class="featurette-heading">Nossa equipe trabalha o máximo para te ajudar. <span class="text-muted">Venha conhecer quem somos</span></h2><br><center><a href="about.php" class="btn btn-primary btn-lg" style="border-radius: 30px">Sobre nós</a></center>
+             
             </div>
-            <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
-              <h3>Vantagens</h3>
-              <p>Com uma boa vistoria é possivel ter mais confiança e autonomia ao usar o veículo.</p>
-            </div>
-            <div class="col-md-6 text-sm-center service-block"> <i class="fa fa-leaf" aria-hidden="true"></i>
-              <h3>Recomendação</h3>
-              <p>Fazemos recomendações de preços, peças e muito mais para o cliente ter uma vasta fonte de pesquisa pelo o melhor serviço e preço.<p>
-            </div>
-            <div class="col-md-6 text-sm-center service-block"><i class="fa fa-bell" aria-hidden="true"></i>
-              <h3>Garantia</h3>
-              <p>Oferecemos total garantia de serviços bem feitos, profissionais  e preços justos.</p>
+            <div class="col-md-5">
+              <img class="cortar" style="width: 400px;height: 300px;" src="https://support.content.office.net/pt-br/media/461a7a87-5e61-4318-8642-8a84df7b498d.jpg">
             </div>
           </div>
-        </div>
-        <div class="col-md-4"> <img src="imagens/mecanico3.png" class="img-fluid"> </div>
 
-      </div>
+          <hr class="featurette-divider">
+
+
+        <!-- FOOTER -->
+        <footer class="container">
+          <p class="float-right"><a href="#">De volta ao topo</a></p>
+          <p>&copy; 2017-2018 Oficina Pro, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </footer>
+      </main>
+
+    
       
-    </div>
-</div>
+    </body>
+    </html>
 
-<div class="parallax"></div>
-<div style="background-color: #2F4F4F;padding:50px;" >
-  <div class="row"><h2>Quem nós somos?Sobre
-          Nós</h2></div>
-      <div class="row">
-        
-        <div class="col-md-4">
-          <p>Somos um grupo de estudantes com o objetivo de apresentar um projeto de boa qualidade.Trazemos muito esforço e determinação para o desenvolvimento do site e uma ideia que pode evoluir o sistema que as oficinas usam atualmente.Portanto, estamos trabalhando e dando nosso melhor para entregar um projeto de respeito que assim possa ajudar e facilitar a vida dos nossos prezados clientes.</p>
-        </div>
-        <div class="col-md-4">
-          <p>Estudamos atualmente no Colégio Joseense, localizado em São José dos Campos. Nosso professor de informatica(Alex Borges) está nos ajudando dando auxilio e corrigindo nossos erros para manter a qualidade. </p>
-        </div>
-      </div>
-</div>
-<div class="parallax"></div>
-
-    <div  style="height: 150px;background-color:#2F4F4F "><center>
-      <div style="padding-top: 100px;padding-bottom: 30px;background-color: #2F4F4F">
-      <a href="#"><img src="imagens/facebook.png" width="45" height="45"></a>
-      <a href="#"><img src="imagens/Google.png" width="45" height="45"></a>
-      <a href="#"><img src="imagens/instagram.png" width="45" height="45"></a>
-      <a href="#"><img src="imagens/youtube.png" width="45" height="45"></a>
-      <a href="#"><img src="imagens/whatsapp.png" width="45" height="45"></a></div></center>
-    </div>
-
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</html> 
-
-<?php
-}
-else if($_SESSION["system_control"] == 1)
-{
-
-  if($_SESSION["privilegio"] == 0){
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_cliente.php";
-    </script>
     <?php
   }
-  else if ($_SESSION["privilegio"] == 1) {
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_cliente.php";
-    </script>
-    <?php
-  }
-  else if ($_SESSION['privilegio'] == 2) {
-    ?>
-    <script language='JavaScript'>
-      document.location.href="perfil_oficina.php";
-    </script>
-    <?php
-  }
-  else{
-    echo "erro";
-  }
+  else if($_SESSION["system_control"] == 1)
+  {
 
-}
-?>
+    if($_SESSION["privilegio"] == 0){
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_cliente.php";
+      </script>
+      <?php
+    }
+    else if ($_SESSION["privilegio"] == 1) {
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_cliente.php";
+      </script>
+      <?php
+    }
+    else if ($_SESSION['privilegio'] == 2) {
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_oficina.php";
+      </script>
+      <?php
+    }
+    else{
+      echo "erro";
+    }
+
+  }
+  ?>

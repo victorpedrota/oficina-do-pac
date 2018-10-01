@@ -17,9 +17,9 @@ else{
  $system_control = $_SESSION["system_control"];   
  $cod_login = $_SESSION['cod_login'];
  $privilegio = $_SESSION["privilegio"];
- $cod_cliente = $_SESSION["cod_cliente"];
 
- if($system_control == 1 && $privilegio == 0){
+
+ if($system_control == 1){
   require('connect.php');
   ?>
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -61,7 +61,7 @@ else{
         if( @move_uploaded_file( $arquivo_tmp, $destino  ))
         {
 
-         $sql_imagem = "UPDATE `cliente` SET `imagem`='$destino' WHERE `cod_cliente` = $cod_cliente";
+         $sql_imagem = "UPDATE `login` SET `imagem`='$destino' WHERE `cod_login` = $cod_login";
          $insere = mysqli_query($conn,$sql_imagem);
        }
        else
@@ -72,7 +72,7 @@ else{
       ?>
     <script>
       alert("Enviado com sucesso!");
-      document.location.href="form_alterar_usuario.php";
+      document.location.href="javascript:history.go(-1)";
     </script>
     <?php 
   }
@@ -81,7 +81,7 @@ else{
     ?>
     <script>
       alert("Nenhum arquivo enviado!");
-      document.location.href="form_alterar_usuario.php";
+      document.location.href="javascript:history.go(-1)";
     </script>
     <?php 
   }

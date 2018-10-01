@@ -8,7 +8,24 @@
   width: 30px;
   height: 30px;
 }
+body{
+  overflow-y: scroll;
+}
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
 </style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
@@ -22,19 +39,27 @@
 
       <li class="nav-item active">
         <div class="input-group">
-          <input type="text" id="insearch" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar..">
+          <div style="margin-left: 5px;">
+          <!--
+          <select id="insearch" class="js-example-basic-multiple" multiple="multiple" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar.."></select>-->
+          <input id="insearch" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 38px;width: 362px;" placeholder="Pesquisar..">
+            
+          </div>
+
           <div class="input-group-btn">
-            <button class="btn btn-default" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px" type="submit">
+            <button class="btn btn-default" id="search" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 38px" type="submit">
               <i class="fas fa-search"></i>
             </button>
           </div>
         </div>
       </li>
+      
+      
 
     </ul>
     <ul class="navbar-nav ml-auto" style="margin-right: 30px;">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile"></a>
+        <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src="<?php echo $_SESSION['imagem'];?>" class="profile"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
@@ -46,7 +71,7 @@
 
       <li class="nav-item">
         <div class="dropdown">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-cog"></i>
   </button>
   <div class="dropdown-menu dropdown-menu-right"">
@@ -67,27 +92,37 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 <script src="js/typeahead.bundle.js"></script>
-<script>
-  
-  $( "#insearch" ).keyup(function( event ) {
-    $.post("search.php", {
-      texto: $("#insearch").val()
-    },function(data) {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+      <script>
+        
+    
+    $.post("search.php",function(data) {
 
  var obj = jQuery.parseJSON(data);
-        
 
-    $( "#insearch" ).autocomplete({
-      source: obj
-    });
+ $('.js-example-basic-multiple').select2({
+  minimumInputLength: 1,
+  minimumResultsForSearch: 2,
+  language: {
+  inputTooShort: function () {
+    return "Digite o nome da oficina";
+  }
+}
+  ,
+
+  data: obj
+});
+    
 
 
   })
+    $("option").click(function(){
+      alert(this.val())
+    })
 
-  }).keydown(function( event ) {
-    if ( event.which == 13 ) {
-      event.preventDefault();
-    }
-  });
-  
-</script>
+ $("#search").click(function(){
+  window.location.replace("perfil.php?codigo="+$("#insearch").val());
+
+ })
+
+      </script>

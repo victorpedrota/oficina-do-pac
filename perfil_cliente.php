@@ -104,7 +104,8 @@ else{
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="row">
-          <div class="col" id="feed" style="display: block;"><br>
+
+          <div class="col-9" id="feed" style="display: block;"><br>
             
               <!-- coemca aqui-->
               <?php
@@ -264,6 +265,88 @@ else{
 
               </ul>
 
+              <h4 id="titulo">Em andamento</h4>
+              <div id="info"></div>
+              <ul style="text-align: left;" class="list-group">
+                <?php
+
+                $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=3";
+                $query_servico = mysqli_query($conn, $sql_servico);
+                $numero_servico = mysqli_num_rows($query_servico); 
+                if ($numero_servico !=0) {
+                  while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                    $veiculo = $vetor_servico['cod_veiculo'];
+                    $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                    $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                    echo "<li class='list-group-item itens'><p style='display:block;'>
+                    Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
+                    Serviço desejado:".$vetor_servico['servico_desejado']."
+                    </li>";
+
+
+
+
+                  }
+
+                }
+
+
+
+                else{
+
+                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+                }              
+
+
+                ?>
+
+              </ul>
+
+              <h4 id="titulo">Finalizados</h4>
+              <div id="info"></div>
+              <ul style="text-align: left;" class="list-group">
+                <?php
+
+                $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=4";
+                $query_servico = mysqli_query($conn, $sql_servico);
+                $numero_servico = mysqli_num_rows($query_servico); 
+                if ($numero_servico !=0) {
+                  while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                    $veiculo = $vetor_servico['cod_veiculo'];
+                    $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                    $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                    echo "<li class='list-group-item itens'><p style='display:block;'>
+                    Veículo:".$vetor_veiculo['placa']."
+                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Serviço Finalizado<br>
+                    Serviço desejado:".$vetor_servico['servico_desejado']."
+                    </li>";
+
+
+
+
+                  }
+
+                }
+
+
+
+                else{
+
+                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+                }              
+
+
+                ?>
+
+              </ul>
+
             </center>
           </div>
           <div class="d-flex justify-content-center"  style="margin-left: 30px;">
@@ -332,7 +415,7 @@ else{
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
-                <div id="lista_nomes_1"  style="color:black;border: 1px solid #000; margin-top:0px; width: 100%; background-color: white; position: relative;"></div>
+                <div id="lista_nomes_1"  style=" margin-top:0px; width: 100%; background-color: white; position: relative;"></div>
 
               </div>
             </div>
@@ -364,17 +447,17 @@ else{
         $.post( "abrir_chamado.php", { veiculo: $("#veiculos").val(), tipo: $("tipo").val(), problema: $("#descricao").val(), servico: $("#servico").val(),n_oficina: "["+inputs+"]", cod_cliente: $("#cod_cliente").val() } );
       });
       $('#btnchamados').on('click', function() {
-        $('#chamados').show(1000);
+        $('#chamados').css("display", "block");
         $('#andamento').css("display", "none");
         $('#feed').css("display", "none");
       });
       $('#btnfeed').on('click', function() {
-        $('#feed').show(1000);
+        $('#feed').css("display", "block");
         $('#andamento').css("display", "none");
         $('#chamados').css("display", "none");
       });
       $('#btnandamento').on('click', function() {
-        $('#andamento').toggle(1000);
+        $('#andamento').css("display", "block");
         $('#chamados').css("display", "none");
         $('#feed').css("display", "none"); 
       });
@@ -394,7 +477,7 @@ else{
             function(data){ 
               var obj = jQuery.parseJSON(data);
               for (var i in obj) {
-                $("#lista_nomes_"+target.data("id")).append("<button  href='#' value='"+obj[i].codigo+"' id='botao"+i+"' class='escolha'>"+obj[i].nome+"</button>");
+                $("#lista_nomes_"+target.data("id")).append("<button  href='#' value='"+obj[i].id+"' id='botao"+i+"' class='btn btn-link escolha'>"+obj[i].text+"</button>");
               }
 
             }
@@ -410,7 +493,7 @@ else{
           var target = $(this).closest('[data-id]');
           var botao = $(this).val();
           $("#teste"+target.data("id")).remove();
-          alert(botao)
+          $(this).closest('div').remove()
           var num =target.data("id");
           $("#nome"+target.data("id")).remove();
           $("#nome_"+target.data("id")).val($(this).text());
@@ -432,7 +515,7 @@ else{
           "<div class='input-group-btn'>"+
           "<button class='btn btn-default' id='addoficina' style='border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px' type='submit'>"+
           "<i class='fas fa-plus'></i>"+
-          "</button></div></div><div  id=lista_nomes_"+id+"  style='border: 1px solid #000; margin-top:0px; width: 100%; background-color: white; position: relative;''></div></div></div>";
+          "</button></div></div><div  id=lista_nomes_"+id+"  style='margin-top:0px; width: 100%; background-color: white; position: relative;''></div></div></div>";
           $("#corpo").append(teste);
 
         });

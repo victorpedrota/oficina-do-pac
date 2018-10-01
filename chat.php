@@ -52,15 +52,15 @@ else{
     <html>
 
     <head>
-     
-    <title>Oficina Pro</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="scss/main.css">
-    
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <style type="text/css">
+      <title>Oficina Pro</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <link rel="stylesheet" href="scss/main.css">
+
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <style type="text/css">
       
       .tela{
 
@@ -75,7 +75,7 @@ else{
       }
       .rcorners1 {
        border-radius: 25px;
-      color: white;
+       color: white;
        background-color:#034752;
        width:200px;
        margin-right:5px;
@@ -109,7 +109,7 @@ else{
       background: #dad7d7;
     }
     .orcamento{
-      
+
       border-radius: 10px;
       border-bottom-left-radius: 0px;
       background-color:#a3a2f1;
@@ -124,48 +124,38 @@ else{
       word-wrap: break-word;
     }
 
-    </style>
+  </style>
 
-  </head>
+</head>
 
-  <body style="overflow-x: hidden;">
+<body style="overflow-x: hidden;">
 
 
-    <?php
-    require("navbar_logout.html");
-    ?>
+  <?php
+  require("navbar_logout.html");
+  ?>
 
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
-                <span data-feather="home"></span>
-                Página inical <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="btnchamados" >Iniciar Chamado
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="btnandamento" >Serviços em andamento
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="btnexcluir" >Excluir veículo
-              </a>
-            </li>
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Chat <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="perfil_cliente.php">Pagina Incial</a>
+          </li>
+          
+          
 
-          </ul>
-        </div>
-      </nav>
+        </ul>
+      </div>
+    </nav>
 
-       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="row">
 
         <div class="col-8">
@@ -207,7 +197,7 @@ else{
           $sql ="SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina" ;
           $resultado = mysqli_query($conn,$sql);
           $vetor_veiculo = mysqli_fetch_array($resultado);
-
+          $cod_servico = $_GET['cod_servico'];
           ?>
           <div class="col-4">
             <div class="card" style="margin-top:30px;width: 18rem;">
@@ -227,7 +217,7 @@ else{
                 ?>
                 <div class="card-body">
                   <p class="card-text">
-                    
+
 
                   </p>
                 </div>
@@ -247,101 +237,47 @@ else{
           </div>
         </div>
       </main>
+      <div class="modal fade" id="horario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="foi"><input type="hidden" id="cod_orcamento" value=""><input type="hidden" value="<?php echo $cod_servico;?>" id="cod_servico"></form>
+            </div>
+            <div class="modal-footer">
+          
+              
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="button" id="aceita_chamado" class="btn btn-primary">Aceitar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript" src="js/chat.js"></script>
+
+    </body>
+
+    </html>
+    <?php
+  }
+  else
+  {
+
+    session_destroy();
 
 
-    <script type="text/javascript">
-      
-      
-      function update()
-      {
-        
-        $.post("server.php", {}, function(data){
-
-          var obj = jQuery.parseJSON(data);
-          $('#screen').text('');
-
-         for (var i in obj) {
-
-              if (obj[i].cod_orcamento!=0) {
-
-                if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && obj[i].orcamento[3]==1) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br><button class='btn btn-default'>Recusar</button><a style='color:white;' href='aceitar.php?cod_servico="+obj[i].codigo+"&cod_orcamento="+obj[i].cod_orcamento+"' class='btn btn-primary' value="+obj[i].cod_orcamento+">aceitar</a></div><br><br><br><br><br><br><br>");}
-                else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor && obj[i].orcamento[3]==1){$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "</div><br><br><br><br><br><br>");}
-                else if (obj[i].orcamento[3] == 2) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Está em progresso</div><br><br><br><br><br><br>");}
-                else if(obj[i].orcamento[3] == 0){$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Um novo orçamento foi enviado</div><br><br><br><br><br><br>");}
-
-              }
-              else{
-
-                if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<div class='rcorners1 b' style='float:right;'>Você:"+obj[i].texto + "</div><br><br><br>");}
-                else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor){$('#screen').append("<div class='rcorners2 b' style='float:left;'>"+obj[i].texto + "</div><br><br><br>");}
-              }
-
-
-            }
-          });
-        setTimeout('update()', 1000);
-      }
-
-      $(document).ready(
-
-        function() 
-        {
-          $("#screen").scrollTop($(this)[0].scrollHeight);
-         update();
-
-         $("#button").click(    
-          function() 
-          {       
-          $("#screen").animate({scrollTop: $('#screen').prop("scrollHeight")}, 999);
-           $.post("server.php", 
-            { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
-            function(data){ 
-              $("#screen").val(data); 
-              $("#message").val("");
-            }
-            );
-         }
-         );
-
-         $("#envia_orcamento").click(    
-            function() 
-            {         
-             $.post("server.php", 
-              { valor: $("#valor").val(), data: $("#data").val(), detalhes: $("#detalhes").val(),conversa: $("#conversa").val(), codigo: $("#codigo").val()},
-              function(data){ 
-
-              }
-              );
-             $("#form_orcamento").modal("hide");
-           }
-           );
-
-           $("#orcamento").click(function(){
-            $("#form_orcamento").modal("show");
-            $("#tools").modal("hide");
-          })
-
-       });
-
+    ?>
+    <script>
+      alert("Acesso Inválido!");
+      document.location.href = "login.php";
     </script>
-
-   </body>
-
-   </html>
-   <?php
- }
- else
- {
-
-  session_destroy();
-
-
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-  </script>
-  <?php
-}
+    <?php
+  }
 }
 ?>

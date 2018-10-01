@@ -47,7 +47,7 @@ else{
   <title>Oficina Pro</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS CDN -->
+
   <link rel="stylesheet" type="text/css" href="scss/main.css">
   
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -62,6 +62,8 @@ else{
   require("navbar_logout.html");
   ?>
 
+<script src="js/validar_form2.js"></script>
+        <script src="js/validar_form.js"></script>
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
@@ -182,7 +184,7 @@ else{
               </button>
             </div>
             <div class="modal-body">
-              <button class="btn btn-default" id="pedir_carro" style="margin-bottom: 10px">Pedir para levar carro para orçamento</button><br>
+              
               <button id="orcamento" class="btn btn-default">Enviar orçamento</button>
             </div>
             <div class="modal-footer">
@@ -202,13 +204,13 @@ else{
               </button>
             </div>
             <div class="modal-body">
-              <form id="form_orcamento">
+              <form id="form_orcamento2">
 
                 Valor:<input id="valor" type="text" class="form-control" required>
-                Escolha as datas:<div class="row">
+                Escolha a data para inicio:<div class="row">
                   
-                  <div class="col"> <input type="date" class="form-control" name=""></div>
-                  <div class="col"><input type="time" class="form-control" name=""></div>
+                  <div class="col"> <input type="date" class="form-control" name="" required></div>
+                  <div class="col"><input type="time" class="form-control" name="" required></div>
                   
                 </div>
                
@@ -224,7 +226,16 @@ else{
           </div>
         </div>
       </div>
+      
+
+        
       <script type="text/javascript" src="js/chat.js"></script>
+       <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+       <script>
+      $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+
+      </script>
+
 
      </body>
 

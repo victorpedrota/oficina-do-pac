@@ -12,18 +12,31 @@ if(!isset($_SESSION["system_control"]))
 	<title>Oficina Pro</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="scss/main.css">
 	<link href="css/form.css" rel="stylesheet">
-	<body style="overflow-y: hidden;">
-		
-		<?php
+	<style type="text/css">
+	::-webkit-scrollbar-track {
+		background-color: #F4F4F4;
+	}
+	::-webkit-scrollbar {
+		width: 6px;
+		background: #F4F4F4;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #dad7d7;
+	}
 
-		require('navbar2.html');
-		?> 
-		<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
-		<script type="text/javascript" >
+	body{overflow-y:scroll;}
+</style>
 
-			function limpa_formulário_cep() {
+<?php
+
+require('navbar.html');
+?> 
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script type="text/javascript" >
+
+	function limpa_formulário_cep() {
 						//Limpa valores do formulário de cep.
 						document.getElementById('rua').value=("");
 						document.getElementById('bairro').value=("");
@@ -104,9 +117,32 @@ if(!isset($_SESSION["system_control"]))
 					}
 
 				}</script>
+				
 
 				<script type="text/javascript" src="js/jquery.mask.min.js"></script>
-				<div style="margin-top: -50px;" class="container">
+				<div class="container" id="botoes" style="margin: 100px 200px 0px 200px;">
+					<div class="row">
+						<div class="col">
+
+						<img src="https://www.gazetadopovo.com.br/ra/mega/Pub/GP/p4/2017/05/04/Automoveis/Imagens/Cortadas/Dicas%20oficina%202_Bigstock-R4Jt2EcBC9SWpcRY4ThLBCM-1200x800@GP-Web.jpg" style="width: 400px; border-radius: 10px">
+						<br>
+						<div style="margin-top: 10px;width: 400px;">
+							<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
+						<button  id="oficina" class="btn btn-default">Oficina</button></center></div>
+						</div>
+						<div class="col">
+							<img src="https://blog.trocafone.com/wp-content/uploads/2015/08/Dica-para-o-cliente-considere-a-longetividade-do-smartphone.jpg" style="width: 400px;border-radius: 10px">
+
+							<div style="margin-top: 10px;width: 400px;">
+							<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
+						<button id="cliente" class="btn btn-primary">Cliente</button></center></div>
+
+
+							</div>
+					</div>
+					
+				</div>
+				<div style="margin-top: -50px;position: fixed; margin-left: 110px; display: none;" class="container div1"  >
 
 					<form id="regForm" method="POST" action="cadastrar_cliente.php">
 						
@@ -130,7 +166,7 @@ if(!isset($_SESSION["system_control"]))
 						</div>
 
 						<div class="tab" value="2">
-							<center><h3>Quem é você?, é necessário que você preencha os sguintes campos</h3></center>
+							<center><h3>Quem é você?, é necessário que você preencha os seguintes campos</h3></center>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Nome:*</label>
@@ -234,8 +270,9 @@ if(!isset($_SESSION["system_control"]))
 					<div style="position: static;">
 						<br><center>
 							<div>
-								<button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
-								<button type="button" class="btn btn-danger" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+								<a class="btn btn-default" id="voltar1">Voltar</a>
+								<button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
+								<button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
 							</div></center>
 						</div>
 						<!-- Circles which indicates the steps of the form: -->
@@ -245,6 +282,77 @@ if(!isset($_SESSION["system_control"]))
 							<span class="step"></span>
 							<span class="step"></span>
 						</div>
+					</form>
+				</div>
+				<div class="container div2" style="display: none; margin-top: 60px;">
+					<form method="POST" action="">
+						<h3 >Formulário Cadastrar Oficina</h3>
+
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">Login:*</label><br>
+								<input class="form-control" id="ex3" name="login"  minlength="6" type="text" required>
+							</div>
+							<div class="col">
+								<label for="ex3">Senha:*</label><br>
+								<input class="form-control" id="ex3" name="senha"  minlength="8" type="password" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">Nome oficina:*</label><br>
+								<input class="form-control" id="ex3" name="nome" type="text" pattern="[a-z\s]+$"   required>
+							</div>
+							<div class="col">
+								<label for="ex3">Telefone:</label><br>
+								<input class="form-control" type="text" name="telefone" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">Celular:</label><br>
+								<input class="form-control" type="text" name="celular" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+							</div>
+							<div class="col">
+								<label for="ex3">CNPJ:*</label><br>
+								<input class="form-control" type="text" name="cnpj" maxlength="18" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="XX.XXX.XXX/XXX-XX" OnKeyPress="formatar('##.###.###/####-##', this)" minlength="18" required >
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">CEP:*</label><br>
+								<input name="cep" class="form-control" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);">
+							</div>
+							<div class="col">
+								<label for="ex3">Estado:*</label><br>
+								<input type="text" class="form-control" name="uf" id="uf">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">Cidade:</label><br>
+								<input type="text" name="cidade" class="form-control" id="cidade">
+							</div>
+							<div class="col">
+								<label for="ex3">Bairro:*</label><br>
+								<input class="form-control" id="bairro" name="bairro" type="text" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label for="ex3">Rua:</label><br>
+								<input class="form-control" id="rua" name="endereco" type="text" required>
+							</div>
+							<div class="col">
+								<label for="ex3">Numero:*</label><br>
+								<input class="form-control" id="numero" name="numero" type="text" pattern="[0-9]+$" required>
+							</div>
+						</div>
+						<label for="ex3">Complemento:</label><br>
+						<input class="form-control" id="ex3" name="complemento" type="text">
+						<br>
+						<center><button class="btn btn-default" id="voltar2">Voltar</button> <button type="submit" class="btn btn-primary"> Enviar</button></center>
+
 					</form>
 				</div>
 				<script src="js/validar_form2.js"></script>
@@ -274,8 +382,10 @@ function showTab(n) {
 	//... and fix the Previous/Next buttons:
 	if (n == 0) {
 		document.getElementById("prevBtn").style.display = "none";
+		document.getElementById("voltar1").style.display = "inline";
 	} else {
 		document.getElementById("prevBtn").style.display = "inline";
+		document.getElementById("voltar1").style.display = "none";
 	}
 	if (n == (x.length - 1)) {
 		document.getElementById("nextBtn").innerHTML = "Enviar";
@@ -435,6 +545,24 @@ function TestaCPF(strCPF) {
 			node.val(node.val().replace(/[^a-z]/g,'') ); }
 			);
 		$('#numero').mask('0#');
+		
+		$("#cliente").click(function(){
+			$("#botoes").css("display","none")
+			$(".div1").css("display","block")
+		})
+		$("#oficina").click(function(){
+			$("#botoes").css("display","none")
+			$(".div2").css("display","block")
+		})
+		$("#voltar2").click(function(){
+			$("#botoes").css("display","block")
+			$(".div2").css("display","none")
+		})
+		$("#voltar1").click(function(){
+			$("#botoes").css("display","block")
+			$(".div1").css("display","none")
+		})
+
 	});
 </script>
 

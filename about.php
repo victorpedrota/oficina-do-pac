@@ -1,22 +1,57 @@
-<html>
-<head>
-    <title>Oficina Pro</title>
+<?php
+
+session_start();
+
+if(!isset($_SESSION["system_control"]))
+{
+  ?>
+  <!doctype html>
+  <html lang="en">
+  <head>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
-    <link href="css/about.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="scss/main.css">
 
 
+    <title>Oficina PRO</title>
+    <style type="text/css">
+    .cortar{
+      object-fit: cover; object-position: center;
+    }
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+</style>
+<!-- Bootstrap core CSS -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/about.css" rel="stylesheet">
 </head>
 <body>
-    
-    <?php
 
-    require('navbar2.html');
-    ?>
-    
-<section style="color:black;" class="about-sec parallax-section" id="about">
+
+  <header>
+   <?php
+   require('navbar.html');
+   ?>
+ </header>
+
+ <main role="main">
+
+  <section style="color:black;" class="about-sec parallax-section" id="about">
 <section >
     <div class="container">
+        <center><h2>Sobre nós</h2></center><br>
         
         <div class="row">
             
@@ -217,6 +252,50 @@
 </section>
 </section>
 
+          <hr class="featurette-divider">
 
-</body>
-</html>
+
+        <!-- FOOTER -->
+        <footer class="container">
+          
+          <p>&copy; 2017-2018 Oficina Pro, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </footer>
+      </main>
+
+    
+      
+    </body>
+    </html>
+
+    <?php
+  }
+  else if($_SESSION["system_control"] == 1)
+  {
+
+    if($_SESSION["privilegio"] == 0){
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_cliente.php";
+      </script>
+      <?php
+    }
+    else if ($_SESSION["privilegio"] == 1) {
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_cliente.php";
+      </script>
+      <?php
+    }
+    else if ($_SESSION['privilegio'] == 2) {
+      ?>
+      <script language='JavaScript'>
+        document.location.href="perfil_oficina.php";
+      </script>
+      <?php
+    }
+    else{
+      echo "erro";
+    }
+
+  }
+  ?>
