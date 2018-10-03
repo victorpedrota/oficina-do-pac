@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Set-2018 às 17:57
+-- Generation Time: 03-Out-2018 às 17:01
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -142,7 +142,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`login`, `senha`, `privilegio`, `cod_login`, `imagem`) VALUES
-('oficina', '22', 2, 38, ''),
+('oficina', '22', 2, 38, 'fotos_usuarios/dece52731cea3a6a64fd7f58f62778d7.png'),
 ('mecanico', '22', 1, 53, 'fotos_usuarios/123.jpg'),
 ('cliente', '123456', 0, 57, 'fotos_usuarios/123.jpg'),
 ('1234567', '1234567', 0, 58, ''),
@@ -285,7 +285,35 @@ INSERT INTO `mensagens` (`text`, `cod_mensagem`, `cod_servico`, `cod_autor`, `co
 ('re', 155, 15, 53, 0),
 ('d', 156, 15, 57, 0),
 ('ew', 157, 15, 57, 0),
-('', 158, 13, 53, 0);
+('', 158, 13, 53, 0),
+('hjklg', 159, 15, 57, 0),
+('ftgh', 160, 15, 57, 0),
+('r', 161, 15, 57, 0),
+('r', 162, 15, 57, 0),
+('dsg', 163, 15, 57, 0),
+('r', 164, 14, 57, 0),
+('dgfdgdfg', 165, 15, 57, 0),
+('dfg', 166, 15, 57, 0),
+('dg', 167, 15, 57, 0),
+('dfg', 168, 15, 57, 0),
+('alex gay', 169, 15, 57, 0),
+('estrertrt', 170, 15, 57, 0),
+('oi ', 171, 15, 57, 0),
+('kl poÂ´pj', 172, 15, 57, 0),
+('ee', 174, 15, 57, 0),
+('ouou', 175, 15, 57, 0),
+('ou8ou', 176, 15, 57, 0),
+('ou8ou', 177, 15, 57, 0),
+('uou8t6rtrdrr', 178, 15, 57, 0),
+('pedro gay viado', 179, 15, 57, 0),
+('viadinho', 180, 15, 57, 0),
+('pedrogay', 181, 15, 57, 0),
+('oi', 182, 15, 57, 0),
+('gostaria de conerversar com o mecanico ', 183, 15, 57, 0),
+('ppp', 184, 15, 53, 0),
+('tyy', 185, 15, 57, 0),
+('gayyyyyyyy', 186, 15, 53, 0),
+('ola', 187, 14, 57, 0);
 
 -- --------------------------------------------------------
 
@@ -314,7 +342,7 @@ CREATE TABLE `oficina` (
 --
 
 INSERT INTO `oficina` (`cod_oficina`, `nome`, `rua`, `cidade`, `estado`, `cep`, `cnpj`, `cod_login`, `telefone`, `complemento`, `numero`, `bairro`, `celular`) VALUES
-(10, 'vetormmf', 'la', 'Abadia dos Dourados', 'Minas Gerais', '11111111', '3847655000198', 38, 1239336376, 'cu', '', 'vamos', 1122828282),
+(10, 'vetormmf', 'la', 'Abadia dos Dourados', 'Minas Gerais', '11111111', '3847655000198', 38, 1239336376, 'cu', '22', 'vamos', 2147483647),
 (11, 'chegod', 'la', 'Abadia dos Dourados', 'Minas Gerais', '11111111', '3847655000198', 32, 1239336376, 'cu', '', 'vamos', 1122828282);
 
 -- --------------------------------------------------------
@@ -392,7 +420,8 @@ INSERT INTO `servico` (`cod_servico`, `cod_cliente`, `cod_mecanico`, `cod_oficin
 (15, 18, 6, '10', '2', 2, 929215468, 0, '1', '2', 1),
 (16, 18, 0, '2', '3', 3, 1129792302, 0, '3', '1', 0),
 (17, 18, 0, '12', '3', 3, 42085776, 0, '3', '1', 0),
-(18, 18, 0, '92992', '3', 2, 826207296, 0, '3', '1', 0);
+(18, 18, 0, '92992', '3', 2, 826207296, 0, '3', '1', 0),
+(19, 18, 0, '10', '', 43, 1237210446, 0, 'ret', 'ret', 0);
 
 -- --------------------------------------------------------
 
@@ -406,6 +435,13 @@ CREATE TABLE `status` (
   `comentario` varchar(200) NOT NULL,
   `cod_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `status`
+--
+
+INSERT INTO `status` (`status`, `cod_servico`, `comentario`, `cod_status`) VALUES
+('0', 19, '', 1);
 
 -- --------------------------------------------------------
 
@@ -432,11 +468,12 @@ CREATE TABLE `veiculo` (
 INSERT INTO `veiculo` (`cod_veiculo`, `modelo`, `cor`, `ano`, `descricao`, `placa`, `cod_cliente`, `marca`, `tipo`) VALUES
 (2, '2', '2', '2', '2[', '2', 1, '', 'caminhao'),
 (3, '333', '3', '3', '3', '3', 1, '', ''),
-(43, '100 2.8 V6', 'azul', '2018', '', 'dbs-3222', 18, '', 'moto'),
-(44, '118iA 2.0 16V 136cv 3p', 'azul', '2018', '', 'rbf-3321', 18, 'CitroÃ«n', 'moto'),
+(43, '100 2.8 V6', 'azul', '2018', '', 'dbs-3222', 18, '', 'motos'),
+(44, '118iA 2.0 16V 136cv 3p', 'azul', '2018', '', 'rbf-3321', 18, 'CitroÃ«n', 'carro'),
 (45, '116iA 1.6 TB 16V 136cv 5p', 'azul', '2015', '', 'uak-3782', 18, 'BMW', 'carro'),
-(46, '100 2.8 V6', 'azul', '2018', '', 'vsa-6728', 18, 'Audi', 'moto'),
-(47, '116iA 1.6 TB 16V 136cv 5p', 'azul', '2018', '', 'jke-3939', 18, 'BMW', 'moto');
+(46, '100 2.8 V6', 'azul', '2018', '', 'vsa-6728', 18, 'Audi', 'motos'),
+(47, '116iA 1.6 TB 16V 136cv 5p', 'azul', '2018', '', 'jke-3939', 18, 'BMW', 'motos'),
+(48, 'CVO BREAKOUT FXSBSE', 'azul', '2017', '', 'aaa-3903', 18, 'HARLEY-DAVIDSON', 'motos');
 
 --
 -- Indexes for dumped tables
@@ -558,7 +595,7 @@ ALTER TABLE `mecanico`
 -- AUTO_INCREMENT for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `cod_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `cod_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- AUTO_INCREMENT for table `oficina`
@@ -576,19 +613,19 @@ ALTER TABLE `orcamento`
 -- AUTO_INCREMENT for table `servico`
 --
 ALTER TABLE `servico`
-  MODIFY `cod_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cod_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `cod_status` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `veiculo`
 --
 ALTER TABLE `veiculo`
-  MODIFY `cod_veiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `cod_veiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
