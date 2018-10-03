@@ -63,7 +63,7 @@ if(!isset($_SESSION["system_control"]))
                                 <div class="card-body text-center">
                                     <p><img src="imagens/pac.jpg" alt="card image"></p>
                                     <h4 class="card-title">Victor Hugo</h4>
-                                    <p class="card-text">O faz tudo </p>
+                                    <p class="card-text">Progamador chefe </p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ if(!isset($_SESSION["system_control"]))
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Victor Hugo mongol</h4>
+                                    <h4 class="card-title">Victor Hugo Godoi Pedrota</h4>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">
@@ -108,9 +108,9 @@ if(!isset($_SESSION["system_control"]))
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/victor.png" alt="card image"></p>
+                                    <p><img src="imagens/victor.jpg" alt="card image"></p>
                                     <h4 class="card-title">Victor Mateus</h4>
-                                    <p class="card-text">O que faz café</p>
+                                    <p class="card-text">Programador back-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -156,9 +156,9 @@ if(!isset($_SESSION["system_control"]))
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/pedro.png" alt="card image"></p>
+                                    <p><img src="imagens/pedro.jpg" alt="card image"></p>
                                     <h4 class="card-title">Pedro Henrique</h4>
-                                    <p class="card-text">O que tem o pinto maior!</p>
+                                    <p class="card-text">Pesquisador</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -166,8 +166,8 @@ if(!isset($_SESSION["system_control"]))
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Pedro Henrique de lindo pra krl piruzudo</h4>
-                                    <p class="card-text">é um cara bacana </p>
+                                    <h4 class="card-title">Pedro Henrique de Paula</h4>
+                                    <p class="card-text"></p>
 
                                 
                                     <ul class="list-inline">
@@ -206,9 +206,9 @@ if(!isset($_SESSION["system_control"]))
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/lukas.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Lucas Henrique</h4>
-                                    <p class="card-text">O que se acha diferentão so pq tem pau preto</p>
+                                    <p><img src="imagens/lucas.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Lucas Henrique Monteiro</h4>
+                                    <p class="card-text">Programador front-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
