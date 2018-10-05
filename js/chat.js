@@ -26,7 +26,7 @@ function update()
 
     }
   });
-  setTimeout('update()', 1000);
+  setTimeout('update()', 500);
 }
 
 $(document).ready(

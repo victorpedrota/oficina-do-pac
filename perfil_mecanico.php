@@ -72,7 +72,7 @@ else{
                   <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
                   </a>
                 </li>
-          
+
 
 
               </ul>
@@ -287,8 +287,15 @@ else{
 
                 </center>
               </div>
-            </div>
-            <div class="col"></div>
+            </div> 
+            <div class="col" style="margin-top: 60px;margin-bottom: 10px"><div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="http://www.agenciamestre.com/anuncios-facebook/img/img-anuncios-patrocinados.jpg" style="filter: grayscale(100%);" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Anúncio</h5>
+                <p class="card-text">Espaço reservado para anúncio</p>
+                
+              </div>
+            </div></div>
           </div>
         </div>
       </main>

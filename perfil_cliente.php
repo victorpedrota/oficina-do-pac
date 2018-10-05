@@ -131,13 +131,13 @@ else{
                   while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
                 
                 ?>
-          <div class="card text-center">
-                <div class="card-header" style="text-align: left;">
+          <div class="card text-left">
+                <div class="card-header">
                   <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
                 </div>
                 <div class="card-body">
 
-                  <p class="card-text">Assunto:<?php echo $vetor_atualizacao['assunto'];?></p>
+                  <p style="left: 0px;">Assunto:<?php echo $vetor_atualizacao['assunto'];?></p>
                   <p class="card-text">Status do carro:<?php echo $vetor_atualizacao['mensagem'];?></p>
                   
                 </div>
