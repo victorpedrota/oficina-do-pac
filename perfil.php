@@ -133,6 +133,7 @@ else{
              $sql= "SELECT * FROM `login` WHERE  `cod_login` = $imagem";
              $query= mysqli_query($conn, $sql);
              $vetor_img = mysqli_fetch_array($query);
+            $cod_oficina =  $vetor_oficina['cod_oficina'];
              echo "<div class='card' style='width: 40rem;'>
 
              <div class='thumbnail'>
@@ -157,7 +158,41 @@ else{
              <span aria-hidden='true'>&times;</span>
              </button>
              </div>
-             <div class='modal-body'>
+             <div class='modal-body'>";
+
+
+            $sql_servico = "SELECT * FROM `galeria` WHERE  `cod_oficina` = $cod_oficina";
+            $query_servico = mysqli_query($conn, $sql_servico);
+            $numero_servico = mysqli_num_rows($query_servico); 
+            if ($numero_servico !=0) {
+              while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                echo "
+                <div class='show-image' >
+                <img  src='".$vetor_servico['imagem']."' class='cortar' style='height:100px;width:100px;'  >
+                
+                <i class='fas fa-times delete'></i>
+                </div>";
+
+
+
+
+
+              }
+
+
+            }
+
+
+
+            else{
+
+              echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
+
+            }              
+
+
+            echo "
              <h5>Descrição</h5><br>
              ".$vetor_oficina['descricao']."
              

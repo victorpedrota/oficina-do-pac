@@ -61,7 +61,7 @@ else{
             <li class="nav-item">
               <a class="nav-link" href="" id="feed">Informações de conta</a>
             </li>
-            <li class="nav-item">
+          <li class="nav-item">
               <a class="nav-link" id="imagens" href="#" data-toggle="modal" data-target="#ima">Galeria de imagens
               </a>
             </li>
@@ -496,16 +496,7 @@ else{
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn btn-primary">Enviar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    
             </main>
 
           </body>
