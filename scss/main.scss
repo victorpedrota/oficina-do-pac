@@ -12,7 +12,14 @@ $btn-border-radius: 10rem;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
 .main-form {
 	width: 450px;
 	margin: auto;
