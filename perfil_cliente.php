@@ -70,7 +70,7 @@ else{
     require("navbar_logout.html");
     ?>
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 col-xs-12 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -105,7 +105,7 @@ else{
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="row">
 
-                <div class="col-8" id="feed" style="display: block;"><br>
+                <div class="col-md-8 col-sm-10 col-xs-12" id="feed" style="display: block;"><br>
 
                     <!-- coemca aqui-->
                     <?php
@@ -393,7 +393,7 @@ else{
                     </div>
 
                 
-                <div class="col-2" style="margin-top: 25px;margin-bottom: 10px">
+                <div class="col-2 d-none d-sm-block d-sm-none d-md-block" style="margin-top: 25px;margin-bottom: 10px">
                     <div class="card" style="width: 20rem;position: fixed;">
                         <img class="card-img-top" src="http://www.agenciamestre.com/anuncios-facebook/img/img-anuncios-patrocinados.jpg" style="filter: grayscale(100%);" alt="Card image cap">
                         <div class="card-body">

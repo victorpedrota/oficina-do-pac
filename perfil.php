@@ -124,132 +124,130 @@ else{
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
-          <?php
-          $sql_servico = "SELECT * FROM `oficina` WHERE  `nome` LIKE  '%$codigo%'";
-          $query_oficina = mysqli_query($conn, $sql_servico);
-          if($codigo != ""){
-            while ($vetor_oficina = mysqli_fetch_array($query_oficina)) {
-             $imagem =  $vetor_oficina['cod_login'];
-             $sql= "SELECT * FROM `login` WHERE  `cod_login` = $imagem";
-             $query= mysqli_query($conn, $sql);
-             $vetor_img = mysqli_fetch_array($query);
-            $cod_oficina =  $vetor_oficina['cod_oficina'];
-             echo "<div class='card' style='width: 40rem;'>
-
-             <div class='thumbnail'>
-             <img src='".$vetor_img['imagem']."' class='portrait' alt='Image' />
-             </div>
-             <div class='card-body'>
-             <a data-toggle='modal' href='#' data-target='#".$vetor_oficina['cod_oficina']."'><h5 class='card-title'>".$vetor_oficina['nome']."</h5></a>" .
-             $vetor_oficina['nome'] . "<br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".$vetor_oficina['cidade'].", ".$vetor_oficina['estado'] . "</p>
-
-             </div>
-             </div>
-
-             <div class='modal fade bd-example-modal-lg' id='".$vetor_oficina['cod_oficina']."' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' tabindex='-1' role='dialog'>
-             <div class='modal-dialog modal-lg' role='document'>
-             <div class='modal-content'>
-             <div class='modal-header'>
-
-             <div class='thumbnail'>
-             <img src='".$vetor_img['imagem']."' class='portrait' alt='Image' />
-             </div>
-             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-             <span aria-hidden='true'>&times;</span>
-             </button>
-             </div>
-             <div class='modal-body'>";
-
-
-            $sql_servico = "SELECT * FROM `galeria` WHERE  `cod_oficina` = $cod_oficina";
-            $query_servico = mysqli_query($conn, $sql_servico);
-            $numero_servico = mysqli_num_rows($query_servico); 
-            if ($numero_servico !=0) {
-              while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-
-                echo "
-                <div class='show-image' >
-                <img  src='".$vetor_servico['imagem']."' class='cortar' style='height:100px;width:100px;'  >
-                
-                <i class='fas fa-times delete'></i>
-                </div>";
-
-
-
-
-
-              }
-
-
-            }
-
-
-
-            else{
-
-              echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
-
-            }              
-
-
-            echo "
-             <h5>Descrição</h5><br>
-             ".$vetor_oficina['descricao']."
-             
-            
-    </div>
-    <div class='modal-footer'>
-    
-    <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <br>             ";
-
-  }
-  }else{
-    echo "<ul class='list-group'>
-    <li class='list-group-item'>resultado não encontrado</li>
-
-    </ul>";
-  }
-
-
-
-  ?>
- <style type="text/css">#map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }</style>
-
-
-  </main>
+          <div class="row">
+            <div class="col-8">
+              <div class="card" style="margin-bottom: 10px;">
+  <div class="card-body" >
+    <form>CEP: <input type="text" class="form-control d-inline" style="border-radius: 3px; width: 8rem;" name=""></form>
   </div>
 
- <script>
-             var map;
-             function initMap() {
-              map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
-                });
+</div>
+              <?php
+            $sql_servico = "SELECT * FROM `oficina` WHERE  `nome` LIKE  '%$codigo%'";
+            $query_oficina = mysqli_query($conn, $sql_servico);
+            $numero = mysqli_num_rows($query_oficina);
+            
+            if($codigo != "" && $numero != 0 ){
+              while ($vetor_oficina = mysqli_fetch_array($query_oficina)) {
+               $imagem =  $vetor_oficina['cod_login'];
+               $sql= "SELECT * FROM `login` WHERE  `cod_login` = $imagem";
+               $query= mysqli_query($conn, $sql);
+               $vetor_img = mysqli_fetch_array($query);
+               $cod_oficina =  $vetor_oficina['cod_oficina'];
+               echo "<div class='card' style='width: 100%;'>
+
+               <div class='thumbnail'>
+               <img src='".$vetor_img['imagem']."' class='portrait' width='auto' alt='Image' />
+               </div>
+               <div class='card-body'>
+               <a data-toggle='modal' href='#' data-target='#".$vetor_oficina['cod_oficina']."'><h5 class='card-title'>".$vetor_oficina['nome']."</h5></a>" .
+               $vetor_oficina['nome'] . "<br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".$vetor_oficina['cidade'].", ".$vetor_oficina['estado'] . "</p>
+
+               </div>
+               </div>
+
+               <div class='modal fade bd-example-modal-lg' id='".$vetor_oficina['cod_oficina']."' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true' tabindex='-1' role='dialog'>
+               <div class='modal-dialog modal-lg' role='document'>
+               <div class='modal-content'>
+               <div class='modal-header'>
+
+               <div class='thumbnail'>
+               <img src='".$vetor_img['imagem']."' class='portrait' alt='Image'>
+               </div>
+               <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+               <span aria-hidden='true'>&times;</span>
+               </button>
+               </div>
+               <div class='modal-body'><h4>".$vetor_oficina['nome']."</h4><h6>Fotos da Oficina</h6>";
+
+
+
+               $sql_servico = "SELECT * FROM `galeria` WHERE  `cod_oficina` = $cod_oficina";
+               $query_servico = mysqli_query($conn, $sql_servico);
+               $numero_servico = mysqli_num_rows($query_servico); 
+               if ($numero_servico !=0) {
+                while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                  echo "
+                  
+                  <img  src='".$vetor_servico['imagem']."' style='height:100px;width:100px;' style='display:inline;'>";
+
+
+
+
+
+                }
+
+
               }
-              </script>
-    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArDLk6kB_mO1_1rKl5hFRtkNOGdHzJtVU&callback=initMap'
-    async defer></script>
 
 
-  </body>
 
-  </html>
-  <?php
+              else{
+
+                echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
+
+              }              
+
+
+              echo "
+              <h5>Descrição</h5><br>
+              ".$vetor_oficina['descricao']."
+
+
+              </div>
+              <div class='modal-footer'>
+
+              <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
+              </div>
+              </div>
+              </div>
+              </div>
+
+              <br>             ";
+
+            }
+          }else{
+            echo "<ul class='list-group'>
+            <li class='list-group-item'>resultado não encontrado</li>
+
+            </ul>";
+          }
+
+
+
+          ?></div>
+          <div class="col-2 d-none d-sm-block d-sm-none d-md-block"><div class="col-2" style="margin-bottom: 10px">
+                    <div class="card" style="width: 20rem;position: fixed;">
+                        <img class="card-img-top" src="http://www.agenciamestre.com/anuncios-facebook/img/img-anuncios-patrocinados.jpg" style="filter: grayscale(100%);" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Anúncio</h5>
+                            <p class="card-text">Espaço reservado para anúncio</p>
+
+                        </div>
+                    </div>
+                </div>
+</div>
+        </div>
+
+       
+  
+
+
+</body>
+
+</html>
+<?php
 }
 else
 {
@@ -259,8 +257,8 @@ else
 
   ?>
   <script>
-  alert("Acesso Inválido!");
-  document.location.href = "login.php";
+    alert("Acesso Inválido!");
+    document.location.href = "login.php";
   </script>
   <?php
 }

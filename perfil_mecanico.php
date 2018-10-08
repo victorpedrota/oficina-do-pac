@@ -288,7 +288,8 @@ else{
                 </center>
               </div>
             </div> 
-            <div class="col" style="margin-top: 60px;margin-bottom: 10px"><div class="card" style="width: 20rem;">
+            <div class="col-2 d-none d-sm-block d-sm-none d-md-block" style="margin-top: 60px;margin-bottom: 10px">
+              <div class="card" style="width: 20rem;position: fixed;">
               <img class="card-img-top" src="http://www.agenciamestre.com/anuncios-facebook/img/img-anuncios-patrocinados.jpg" style="filter: grayscale(100%);" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Anúncio</h5>
