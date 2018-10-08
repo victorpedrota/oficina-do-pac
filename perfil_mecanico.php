@@ -81,37 +81,40 @@ else{
 
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="row">
-              <div class="col-8" id="div2" style="display: none;margin-top: 60px;"><ul class="list-group">
-                <?php
-                $query ="SELECT * FROM `servico` WHERE `status`= 1 || `status` = 2 || `status` = 3";
-                $query_chat = mysqli_query($conn,$query);
-                $numero_chat = mysqli_num_rows($query_chat);
+              <div class="col-lg-8 col-sm-12" id="div2" style="display: none;margin-top: 60px;">
+                <ul style="text-align: left;" class="list-group">
 
-                while ($vetor_chat = mysqli_fetch_array($query_chat)) {
+                  <?php
+                  $sql_servico = "SELECT * FROM `servico` WHERE  `cod_oficina` = $cod_oficina && (`status`=1  || `status`=2 || `status`=3 )  && `cod_mecanico` = $cod_mecanico";
+                  $query_servico = mysqli_query($conn, $sql_servico);
+                  $numero_servico = mysqli_num_rows($query_servico); 
+                  if ($numero_servico !=0) {
+                    while ($vetor_servico = mysqli_fetch_array($query_servico)) {
 
-                 if ($numero_chat !=0) {
-                  $veiculo = $vetor_chat['cod_veiculo'];
-                  $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                  $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
-                  $vetor_veiculo_anda = mysqli_fetch_array($veiculo_resultado_anda);
-                  echo "<li class='list-group-item itens'><p style='display:inline-block;'>
-                  Veículo:".$vetor_veiculo_anda['placa']."
-                  Protocolo:   ".$vetor_chat['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
-                  Serviço desejado:".$vetor_chat['servico_desejado']."
-                  <br><br><a href='aceitar_chamado2.php?cod_servico=".$vetor_chat['cod_servico']."' class='btn btn-primary'>Aceitar</a>
-                  </li>";
-
+                      $veiculo = $vetor_servico['cod_veiculo'];
+                      $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                      $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                      $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                      echo "<li class='list-group-item itens'><p style='display:block;'>
+                      Veículo:".$vetor_veiculo['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></a>
+                      Protocolo:   ".$vetor_servico['protocolo']."<br>Serviço desejado:".$vetor_servico['servico_desejado']."
+                      </li>";
 
 
-                }else{
 
-                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
 
-                }    
-              }    
-              ?>
-            </ul></div>
-            <div class="col-8" id="div1">
+                    }
+                  }else{
+
+                    echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+                  }
+
+
+                  ?>
+
+                </ul></div>
+            <div class="col-lg-8 col-sm-12" id="div1">
               <div class="col-sm" id="chamados" style="display: block;"><br>
                 <center>
                   <h4 id="titulo">Serviço aguardando resposta</h4>
@@ -123,7 +126,8 @@ else{
 
                     while ($vetor_servico = mysqli_fetch_array($query_servico)) {
 
-                     if ($numero_servico !=0) {
+                     if ($numero_servico) {
+
                       $veiculo = $vetor_servico['cod_veiculo'];
                       $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
                       $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
@@ -318,7 +322,7 @@ else{
               </center>
             </div>
           </div> 
-          <div class="col" style="margin-top: 60px;margin-bottom: 10px"><div class="card" style="width: 20rem;position: fixed;">
+          <div class="col-lg-2 d-none d-sm-block d-sm-none d-md-block" style="margin-top: 60px;margin-bottom: 10px"><div class="card" style="width: 20rem;position: fixed;">
             <img class="card-img-top" src="http://www.agenciamestre.com/anuncios-facebook/img/img-anuncios-patrocinados.jpg" style="filter: grayscale(100%);" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Anúncio</h5>

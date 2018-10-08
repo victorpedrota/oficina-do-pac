@@ -12,14 +12,14 @@ body{
   overflow-y: scroll;
 }
 ::-webkit-scrollbar-track {
-    background-color: #F4F4F4;
+  background-color: #F4F4F4;
 }
 ::-webkit-scrollbar {
-    width: 6px;
-    background: #F4F4F4;
+  width: 6px;
+  background: #F4F4F4;
 }
 ::-webkit-scrollbar-thumb {
-    background: #dad7d7;
+  background: #dad7d7;
 }
 
 </style>
@@ -27,43 +27,52 @@ body{
 <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
 
-  <div style="background: white; height: 12px;width: 60px;position: absolute;"></div><a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><center><img style="border-radius: 0px;max-width: 80px;width: auto; position: relative;" src="imagens/logo.png"></center></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
+ <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><center><img style="border-radius: 0px;max-width: 80px;width: auto; position: relative;" src="imagens/logo.png"></center></a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav mr-auto">
 
-    
 
-    </ul>
-    <ul class="navbar-nav ml-auto" style="margin-right: 30px;">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Página inicial</a>
-      </li>
 
-      <li class="nav-item">
-        <div class="dropdown">
-  <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-cog"></i>
-  </button>
-  <div class="dropdown-menu dropdown-menu-right"">
-    <a class="dropdown-item" href="form_alterar_mecanico.php">Conta</a>
-    <a class="dropdown-item" href="logout.php">Sair</a>
-    
-  </div>
+  </ul>
+  <ul class="navbar-nav ml-auto" style="margin-right: 30px;">
+    <li class="nav-item active">
+      <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile"></a>
+    </li>
+    <li class="nav-item d-none d-sm-block">
+      <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="login.php">Página inicial</a>
+    </li>
+
+    <li class="nav-item d-xl-none d-none d-xl-block">
+      <div class="dropdown">
+        <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="form_alterar_mecanico.php">Conta</a>
+          <a class="dropdown-item" href="logout.php">Sair</a>
+
+        </div>
+      </div>
+    </li>
+    <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
+      <a class="nav-link" href="form_alterar_mecanico.php">Conta</i>
+      </a>
+    </li>
+    <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
+      <a class="nav-link" href="logout.php">Sair</i>
+      </a>
+    </li>
+   
+
+  </ul>
 </div>
-      </li>
-
-    </ul>
-  </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
