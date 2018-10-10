@@ -340,7 +340,7 @@ else{
                                     </div>
                                     <div class='row'>
                                     <div class='col-sm'>
-                                    <center><br><button class='btn btn-secondary cancel'>Cancelar</button>
+                                    <center><br><a href='#' class='btn btn-secondary cancel'>Cancelar</a>
                                     <button type='submit' value='1' id= 'btnenviar' name='opcao' class='btn btn-primary'>Enviar</button></center>
                                     </form> </div>
 
@@ -618,12 +618,11 @@ $("#btnalterar").click(function() {
   $("#titulo").text("Alterar Veículo");
 });
 $(".cancel").click(function(){
-  $( ".info" ).each(function() {
-  var display = $(this).css('display');
-  if(display == "block"){
-    $(this).toggle(1000)
-  }
-});
+  
+  
+    $(".info").css("display","none")
+  
+
 })
 $("#escondido3").appendTo("#cagada");
 $(".aalterar").click(function() {

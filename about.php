@@ -61,9 +61,9 @@ if(!isset($_SESSION["system_control"]))
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/pac.jpg" alt="card image"></p>
+                                    <p><img src="imagens/vitorhugo.jpg" alt="card image"></p>
                                     <h4 class="card-title">Victor Hugo</h4>
-                                    <p class="card-text">Progamador chefe </p>
+                                    <p class="card-text">Progamador front-end </p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@ if(!isset($_SESSION["system_control"]))
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img src="imagens/victor.jpg" alt="card image"></p>
+                                    <p><img src="imagens/vitor.jpg" alt="card image"></p>
                                     <h4 class="card-title">Victor Mateus</h4>
                                     <p class="card-text">Programador back-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -207,8 +207,8 @@ if(!isset($_SESSION["system_control"]))
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img src="imagens/lucas.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Lucas Henrique Monteiro</h4>
-                                    <p class="card-text">Programador front-end</p>
+                                    <h4 class="card-title">Lucas Monteiro</h4>
+                                    <p class="card-text">Programador back-end</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>

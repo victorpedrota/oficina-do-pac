@@ -109,20 +109,21 @@ if(!isset($_SESSION["system_control"]))
               <i class="fas fa-car fa-10x"></i>
               <h2>Objetivos</h2>
               <p>Ser objetivo e profissional é essencial para nosso projeto, buscando ser útil e confiável para oferecer uma boa proposta de atendimento.</p>
-              <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+              
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
               <i style="margin-top: 10px;margin-bottom: 20px;" class="fas fa-wrench fa-8x"></i>
               <h2>Ferramentas</h2>
-              <p> Nossas ferramentas de trabalho foram muito úteis para o bom desenvolvimento do projeto, fazem ele ser possivel.</p>
-              <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+              <p> Nossas ferramentas de trabalho foram muito úteis para o bom desenvolvimento do projeto, fazem ele ser possivel.</p><br><br><center><p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p></center>
+              
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">  
               <i class="fas fa-copy fa-10x"></i>
               <h2>Planejamento</h2>
               <p> O meio financeiro foi pensando para que não haja muitos erros que influênciem negativamente no orçamento do serviço.</p>
-              <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+              
             </div><!-- /.col-lg-4 -->
+
           </div><!-- /.row -->
 
 

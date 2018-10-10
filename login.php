@@ -55,18 +55,18 @@ if(!isset($_SESSION["system_control"]))
 
  <main role="main">
 
-  <section class="about-sec parallax-section" id="about" style="height: 100%">
-    <div class="container">
+  <section class="about-sec parallax-section" id="about" style="height: 100%;margin-top: -30px;" >
+    <div class="container" >
       <div class="card card-container" >
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
         <div id="erro" style="display: block"></div>
-        
+          
         <span id="reauth-email" class="reauth-email"></span>
         <input type="text" id="inputEmail" style="margin-bottom: 10px;" class="form-control" placeholder="Login" name="c_login" required autofocus>
         <input type="password" style="margin-bottom: 10px;" id="inputPassword" class="form-control" name="c_senha" placeholder="Senha" required>
 
-        <button class="btn btn-primary" id="send">Entrar</button>
+        <button class="btn btn-primary" style="width: 100%" id="send">Entrar</button>
         
         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
           Esqueceu a senha?

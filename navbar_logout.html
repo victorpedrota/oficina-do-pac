@@ -12,14 +12,14 @@ body{
   overflow-y: scroll;
 }
 ::-webkit-scrollbar-track {
-    background-color: #F4F4F4;
+  background-color: #F4F4F4;
 }
 ::-webkit-scrollbar {
-    width: 6px;
-    background: #F4F4F4;
+  width: 6px;
+  background: #F4F4F4;
 }
 ::-webkit-scrollbar-thumb {
-    background: #dad7d7;
+  background: #dad7d7;
 }
 
 </style>
@@ -41,13 +41,13 @@ body{
         <div class="input-group">
           <div style="margin-left: 5px;">
           <!--
-          <select id="insearch" class="js-example-basic-multiple" multiple="multiple" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar.."></select>-->
-          <input id="insearch" class="form-control" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 38px;width: 362px;" placeholder="Pesquisar..">
+            <select id="insearch" class="js-example-basic-multiple" multiple="multiple" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar.."></select>-->
+            <input id="insearch" class="form-control d-sm-none d-md-block d-none d-sm-block" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 38px;width: 362px;" placeholder="Pesquisar..">
             
           </div>
 
           <div class="input-group-btn">
-            <button class="btn btn-default" id="search" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 38px" type="submit">
+            <button class="btn btn-default d-sm-none d-md-block d-none d-sm-block" id="search" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 38px" type="submit">
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -61,7 +61,7 @@ body{
       <li class="nav-item active">
         <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src="<?php echo $_SESSION['imagem'];?>" class="profile"></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-sm-none d-md-block d-none d-sm-block ">
         <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
         </a>
       </li>
@@ -69,21 +69,45 @@ body{
         <a class="nav-link" href="login.php">Página inicial</a>
       </li>
 
-      <li class="nav-item">
-        <div class="dropdown">
-  <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-cog"></i>
-  </button>
-  <div class="dropdown-menu dropdown-menu-right"">
-    <a class="dropdown-item" href="form_alterar_usuario.php">Conta</a>
-    <a class="dropdown-item" href="logout.php">Sair</a>
-    
-  </div>
-</div>
-      </li>
+      <li class="nav-item d-block d-sm-none">
+        <form class="form-inline" method="GET" action="perfil.php">
+          <div class="input-group">
+            <div>
+          <!--
+            <select id="insearch" class="js-example-basic-multiple" multiple="multiple" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;" placeholder="Pesquisar.."></select>-->
+            <input id="insearch" class="form-control" name="codigo" style="border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 38px;width: 70%;" placeholder="Pesquisar..">
+            
+          </div>
 
-    </ul>
-  </div>
+          <div class="input-group-btn" style="margin-left: -70px;">
+            <button class="btn btn-default" id="search" style="border-top-left-radius:0px; border-bottom-left-radius:0px; border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 38px;margin-left: 0px;" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </li> 
+
+    <li class="nav-item d-sm-none d-md-block d-none d-sm-block">
+      <div class="dropdown d-sm-none d-md-block d-none d-sm-block">
+        <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right"">
+          <a class="dropdown-item" href="form_alterar_usuario.php">Conta</a>
+          <a class="dropdown-item" href="logout.php">Sair</a>
+
+        </div>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link d-block d-sm-none" href="form_alterar_usuario.php">Conta</a>
+    </li><li class="nav-item">
+      <a class="nav-link d-block d-sm-none" href="logout.php">Sair</a>
+    </li>
+
+  </ul>
+</div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -93,36 +117,36 @@ body{
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 <script src="js/typeahead.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-      <script>
-        
-    
-    $.post("search.php",function(data) {
-
- var obj = jQuery.parseJSON(data);
-
- $('.js-example-basic-multiple').select2({
-  minimumInputLength: 1,
-  minimumResultsForSearch: 2,
-  language: {
-  inputTooShort: function () {
-    return "Digite o nome da oficina";
-  }
-}
-  ,
-
-  data: obj
-});
-    
+<script>
 
 
-  })
-    $("option").click(function(){
-      alert(this.val())
-    })
+  $.post("search.php",function(data) {
 
- $("#search").click(function(){
-  window.location.replace("perfil.php?codigo="+$("#insearch").val());
+   var obj = jQuery.parseJSON(data);
+
+   $('.js-example-basic-multiple').select2({
+    minimumInputLength: 1,
+    minimumResultsForSearch: 2,
+    language: {
+      inputTooShort: function () {
+        return "Digite o nome da oficina";
+      }
+    }
+    ,
+
+    data: obj
+  });
+
+
 
  })
+  $("option").click(function(){
+    alert(this.val())
+  })
 
-      </script>
+  $("#search").click(function(){
+    window.location.replace("perfil.php?codigo="+$("#insearch").val());
+
+  })
+
+</script>
