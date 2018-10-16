@@ -311,7 +311,7 @@ else{
           })
           $(".codigof").click(function() {
             $("#cod_serv").val($(this).val())
-            $.post( "server.php", { foto: "John", codigo: $(this).val() } )
+            $.post( "server.php", { tipo: "mecanico", codigo: $(this).val() } )
             .done(function( data ) {
 
               $( "#foto" ).attr( "src", data );  
@@ -335,11 +335,14 @@ else{
           })
 
           $("#envia").click(function(){
-            $.post( "server.php", { nota: $("#nota").val(), cod: $("#cod_serv").val()} )
+            $.post( "server.php", {tipo: "mecanico" , nota: $("#nota").val(), cod: $("#cod_serv").val()} )
+            $.post("atualizacao.php", {
+          codigo: $("#cod_serv").val() , var: 0
+        },
+        );
+        $(location).attr('href', 'perfil_mecanico.php');
           
           })
-
-
 
 
         </script>
