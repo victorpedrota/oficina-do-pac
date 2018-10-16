@@ -39,6 +39,35 @@ else if(isset($_POST['valor'])){
 	$sql = "INSERT INTO `mensagens`(`cod_servico`,`cod_autor`,`cod_orcamento`) VALUES ($cod_servico,$cod_autor,$cod_orcamento)";
 	$query = mysqli_query($conn,$sql);
 
+}
+else if(isset($_POST['foto'])){
+
+	$foto = $_POST['foto'];
+	$codigo = $_POST['codigo'];
+	$sql = "SELECT * FROM `servico` WHERE `cod_servico` = $codigo";
+	$query = mysqli_query($conn,$sql);
+	$vetor_cliente = mysqli_fetch_array($query);
+	$cod_cliente = $vetor_cliente['cod_cliente'];
+	$sql_cliente = "SELECT * FROM `cliente` WHERE `cod_cliente` = $cod_cliente";
+	$query_cliente = mysqli_query($conn,$sql_cliente);
+	$vetor = mysqli_fetch_array($query_cliente);
+	$cod_login = $vetor['cod_login'];
+	$sql_foto = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+	$query_foto = mysqli_query($conn,$sql_foto);
+	$vetor_foto = mysqli_fetch_array($query_foto);
+	echo $vetor_foto['imagem'];
+
+
+}
+else if(isset($_POST['nota'])){
+
+	$nota = $_POST['nota'];
+	$cod_servico = $_POST['cod'];
+	$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_usuario`) VALUES ($cod_servico,$nota)";
+	$query_cliente = mysqli_query($conn,$sql_cliente);
+	
+
+
 }else{
 	
 	$sql = "SELECT * FROM `mensagens` ORDER BY `cod_mensagem` ASC ";

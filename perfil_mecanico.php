@@ -20,8 +20,8 @@ else{
   $cod_mecanico = $_SESSION["cod_mecanico"];
   if($system_control == 1 && $privilegio == 1){
     require('connect.php');
-    $sql_servico ="SELECT * FROM `servico` WHERE `cod_oficina` = $cod_oficina && `status`=0";
-    $query_servico = mysqli_query($conn,$sql_servico); 
+    $sql_servico1 ="SELECT * FROM `servico` WHERE `cod_oficina` = $cod_oficina && `status`=0";
+    $query_servico1 = mysqli_query($conn,$sql_servico1); 
     $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_login` = $cod_login";
     $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
@@ -38,6 +38,7 @@ else{
       <link rel="stylesheet" href="scss/main.css">
       <link rel="stylesheet" href="css/chat.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" href="css/starrr.css">
       <style type="text/css">
       .yellow{
         color: yellow;
@@ -106,16 +107,19 @@ else{
 
               </ul></div>
               <div class="col-lg-8 col-sm-12" id="div1">
-                <div class="col-sm" id="chamados" style="display: block;"><br>
+                <div class="col-sm" id="chamados" style="display: block; margin-top: 30px;"><br>
                   <center>
                     <h4 id="titulo">Serviço aguardando resposta</h4>
                     <div id="info"></div>
                     <ul style="text-align: left;" class="list-group">
 
                       <?php
-                      $numero_servico = mysqli_num_rows($query_servico);
-                      while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-                       if ($numero_servico) {
+                      $numero_servico1 = mysqli_num_rows($query_servico1);
+                      
+                      if ($numero_servico1 == 0) {
+                      echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>"; 
+                      } else{while ($vetor_servico = mysqli_fetch_array($query_servico1)) {
+                       
                         $veiculo = $vetor_servico['cod_veiculo'];
                         $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
                         $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
@@ -126,9 +130,8 @@ else{
                         Serviço desejado:".$vetor_servico['servico_desejado']."
                         <br><br><a href='aceitar_chamado2.php?cod_servico=".$vetor_servico['cod_servico']."' class='btn btn-primary'>Aceitar</a>
                         </li>";
-                      }else{
-                        echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
-                      }    
+                      }
+                          
                     }    
                     ?>
 
@@ -277,18 +280,20 @@ else{
               </div>
               <div class="modal-body">
                 <center>
-                  <input type="hidden" name="cod_serv">
-                  <img src="imagens/69.png" style="border-radius: 50%;height: 80px;width: 80px;"><br><br>
-                  <i id="primeiro" class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i id="ultimo" class="far fa-star hover fa-2x"></i></center>
+                  <input type="hidden" value="" id="cod_serv" name="cod_serv">
+                  <img src="" id="foto" style="border-radius: 50%;height: 80px;width: 80px;"><br><br>
+                  <div id="vaiq"></div> </center>
                 </div>
+                <input type="hidden" id="nota" value="">
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary">Enviar</button>
+                  <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="fechar">Fechar</button>
+                  <button type="button" id="envia" class="btn btn-primary">Enviar</button>
                 </div>
               </div>
             </div>
           </div>
         </main>
+        <script src="js/starrr.js"></script>
         <script>
           $('#chat').on('click', function() {
             $('#div2').css("display","block");
@@ -305,27 +310,37 @@ else{
             );
           })
           $(".codigof").click(function() {
+            $("#cod_serv").val($(this).val())
+            $.post( "server.php", { foto: "John", codigo: $(this).val() } )
+            .done(function( data ) {
+
+              $( "#foto" ).attr( "src", data );  
+
+            })
+            $( ".starrr" ).remove();
+            $("#vaiq").append("<div class='starrr' id='star1'></div>")
+            $('.starrr').starrr({
+              change: function(e, value){
+                $("#nota").val(value)
 
 
-
+              }
+            })
           })
 
-          $(".hover").click(function(){
-          $("#primeiro").removeClass('fas fa-star yellow');
-          $("#primeiro").addClass('far fa-star');
-          $(this).prevUntil( "#primeiro", "i" )
-          .addClass('far fa-star yellow');
-          $(this).removeClass('fas fa-star yellow');
-          $(this).addClass('far fa-star');
-          $("#primeiro").addClass('fas fa-star yellow');
-          $(this).prevUntil( "#primeiro", "i" )
-          .addClass('fas fa-star yellow');
-          $(this).addClass('fas fa-star yellow');
-
-        })
-
-
           
+          $("#fechar").click(function(){
+            
+            $( ".starrr" ).remove();
+          })
+
+          $("#envia").click(function(){
+            $.post( "server.php", { nota: $("#nota").val(), cod: $("#cod_serv").val()} )
+          
+          })
+
+
+
 
         </script>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
