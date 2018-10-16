@@ -279,7 +279,7 @@ else{
                 <center>
                   <input type="hidden" name="cod_serv">
                   <img src="imagens/69.png" style="border-radius: 50%;height: 80px;width: 80px;"><br><br>
-                  <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i></center>
+                  <i id="primeiro" class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i class="far fa-star hover fa-2x"></i> <i id="ultimo" class="far fa-star hover fa-2x"></i></center>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -310,15 +310,22 @@ else{
 
           })
 
-          $(".hover")
-          .on( "mouseenter", function() {
-            $(this).removeClass('far fa-star');
-            $(this).addClass('fas fa-star yellow');
-          })
-          .on( "mouseleave", function() {
-            $(this).removeClass('fas fa-star yellow');
-            $(this).addClass('far fa-star');
-          });
+          $(".hover").click(function(){
+          $("#primeiro").removeClass('fas fa-star yellow');
+          $("#primeiro").addClass('far fa-star');
+          $(this).prevUntil( "#primeiro", "i" )
+          .addClass('far fa-star yellow');
+          $(this).removeClass('fas fa-star yellow');
+          $(this).addClass('far fa-star');
+          $("#primeiro").addClass('fas fa-star yellow');
+          $(this).prevUntil( "#primeiro", "i" )
+          .addClass('fas fa-star yellow');
+          $(this).addClass('fas fa-star yellow');
+
+        })
+
+
+          
 
         </script>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
