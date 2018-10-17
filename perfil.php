@@ -194,6 +194,7 @@ else{
 
 
 
+
                 else{
 
                   echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
@@ -203,14 +204,46 @@ else{
 
                 echo "
                 <br> <h5>Descrição</h5><br>
-                ".$vetor_oficina['descricao']."
+                ".$vetor_oficina['descricao'];
+                echo "<h6>Mecânicos</h6>";
+                $sql_mecanico = "SELECT * FROM `mecanico` WHERE  `cod_oficina` = $cod_oficina";
+                $query_mecanico = mysqli_query($conn, $sql_mecanico);
+                $numero_mecanico = mysqli_num_rows($query_mecanico); 
+                if ($numero_mecanico !=0) {
+                  while ($vetor_mecanico = mysqli_fetch_array($query_mecanico)) {
+                    $cod_login_mecanico = $vetor_mecanico['cod_login'];
+                    $sql_foto = "SELECT * FROM `login` WHERE  `cod_login` = $cod_login_mecanico";
+                    $query_foto = mysqli_query($conn, $sql_foto);
+                    $vetor_foto = mysqli_fetch_array($query_foto);
+
+                    echo "
+
+                    <img  src='".$vetor_foto['imagem']."' style='height:100px;width:100px;' style='display:inline;'>";
 
 
-                </div>
+
+
+
+                  }
+
+
+                }
+
+
+
+
+                else{
+
+                  echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
+
+                }      
+
+
+                echo " </div>
                 <div class='modal-footer'>
 
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#oi".$vetor_oficina["cod_oficina"]."'>
+                <button type='button' class='btn btn-primary' data-dismiss='modal' data-toggle='modal' data-target='#oi".$vetor_oficina["cod_oficina"]."'>
                 Pedir Orçamento
                 </button>
                 </div>
@@ -225,22 +258,47 @@ else{
                 <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                 <div class='modal-header'>
-                <h5 class='modal-title' id='exampleModalLabel'>Enviar Orçamento</h5>
+                <h5 class='modal-title'  id='exampleModalLabel'>Enviar Orçamento</h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button>
                 </div>
                 <div class='modal-body'>
+                <form method='post' action='abrir_chamado.php' id='form'>
                 <div class='row'>
                 <div class='col'>
-                <input type='text' class='form-control' name=''>
+
+                Veiculo:
+
+                <select class='form-control' id='veiculos' name='veiculo' required>
+                <option value=''>Selecione um Veículo</option>";
+
+                $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
+                $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
+                  echo "<option value=".$vetor_veiculo['cod_veiculo'].">Modelo:  ".$vetor_veiculo['modelo']."      Placa:  ".$vetor_veiculo['placa']."</option>";
+                }
+                echo "
+                </select>
                 </div>
-                <div class='col'></div>
+                <div class='col'>
+                Tipo de serviço: <i class='fas fa-info-circle'></i>
+                <select class='form-control' id='tipo' name='tipo' required>
+                <option value=''>Selecione um tipo</option>
+                <option value='troca'>troca de oleo</option>
+                </select>
+                <input type='hidden' name='n_oficina' id='n_oficina'>
                 </div>
                 </div>
+                Descrição do problema:<textarea name='problema' id='descricao' style='border-radius: 1em;' class='form-control' required></textarea> Serviço desejado:<textarea name='servico' id='servico' style='border-radius: 1em;' class='form-control' required></textarea>
+                
+                <input type='hidden' id='cod_cliente' value='<?php echo $cod_cliente;?>'>
+                </form></div>
                 <div class='modal-footer'>
-                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Save changes</button>
+                
+                
+                <a class='btn btn-secondary' data-dismiss='modal' href='#'>Cancelar</a>
+                <button type='button' id='enviar' class='btn btn-primary'>Enviar</button>
                 </div>
                 </div>
                 </div>
@@ -273,7 +331,27 @@ else{
 
 
 
-
+        <script src="js/validar_form2.js"></script>
+        <script src="js/validar_form.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script>
+          $("#enviar").click(function() {
+            var form = $("#form");
+            form.valid();
+            if (form.valid() == true) {
+            $.post("abrir_chamado.php", {
+            veiculo: $("#veiculos").val(),
+            tipo: $("tipo").val(),
+            problema: $("#descricao").val(),
+            servico: $("#servico").val(),
+            n_oficina: "",
+            cod_cliente: $("#cod_cliente").val()
+        });
+            
+        }
+          })
+        </script>
       </body>
 
       </html>

@@ -18,6 +18,7 @@ else{
   $system_control = $_SESSION["system_control"];
   $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
+  $cod_cliente = $_SESSION["cod_cliente"];
 
   if($system_control == 1 && $privilegio == 0){
     require('connect.php');
@@ -82,6 +83,26 @@ else{
           <center>
             <div class="show-image" style="width: 100px;margin-top: 60px;">
               <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor_login[ 'imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
+              <?php
+              
+              $teste=0;
+              $n=0;
+              $sql_nota ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
+              $resul_nota = mysqli_query($conn,$sql_nota);
+              while ($vetor_nota = mysqli_fetch_array($resul_nota)) {
+              $var = $vetor_nota['cod_servico'];
+              $nota ="SELECT * FROM `avaliacao` WHERE `cod_servico` = $var";
+              $resulta = mysqli_query($conn,$nota);
+              
+              $numero_nota =  mysqli_num_rows($resulta);
+              $n = $numero_nota +$n;
+              $vetor_nota2 = mysqli_fetch_array($resulta);
+              $nota = $vetor_nota2['nota_usuario'];
+              $teste = intval($nota)+intval($teste);
+              
+              }
+              echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
+              ?>
             </div>
 
             <h5 style="margin-top: ">
