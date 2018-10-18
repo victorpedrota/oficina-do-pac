@@ -97,7 +97,7 @@ else{
               $numero_nota =  mysqli_num_rows($resulta);
               $n = $numero_nota +$n;
               $vetor_nota2 = mysqli_fetch_array($resulta);
-              $nota = $vetor_nota2['nota_mecanico'];
+              $nota = $vetor_nota2['nota_usuario'];
               $teste = intval($nota)+intval($teste);
               
               }
