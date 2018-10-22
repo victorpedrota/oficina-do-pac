@@ -79,18 +79,18 @@ else if(isset($_POST['nota'])){
 	$numero = mysqli_num_rows($query);
 	if ($numero == 0) {
 		if ($tipo=="cliente") {
-			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_mecanico`) VALUES ($cod_servico,$nota)";
+			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_usuario`) VALUES ($cod_servico,$nota)";
 			$query_cliente = mysqli_query($conn,$sql_cliente);
 		}else{
-			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_usuario`) VALUES ($cod_servico,$nota)";
+			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_mecanico`) VALUES ($cod_servico,$nota)";
 			$query_cliente = mysqli_query($conn,$sql_cliente);
 		}
 	}else{
 		if ($tipo=="cliente") {
-			$sql_cliente = "UPDATE `avaliacao` SET `nota_mecanico`=$nota WHERE `cod_servico` = $cod_servico";
+			$sql_cliente = "UPDATE `avaliacao` SET `nota_usuario`=$nota WHERE `cod_servico` = $cod_servico";
 			$query_cliente = mysqli_query($conn,$sql_cliente);
 		}else{
-			$sql_cliente = "UPDATE `avaliacao` SET `nota_usuario`=$nota WHERE `cod_servico` = $cod_servico";
+			$sql_cliente = "UPDATE `avaliacao` SET `nota_mecanico`=$nota WHERE `cod_servico` = $cod_servico";
 			$query_cliente = mysqli_query($conn,$sql_cliente);
 		}
 	}
