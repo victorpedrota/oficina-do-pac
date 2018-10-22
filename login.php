@@ -55,9 +55,9 @@ if(!isset($_SESSION["system_control"]))
 
  <main role="main">
 
-  <section class="about-sec parallax-section" id="about" style="height: 100%;margin-top: -30px;" >
-    <div class="container" >
-      <div class="card card-container" >
+  <section class="about-sec parallax-section" id="about" style="height: 100%;" >
+    <div class="container jumbotron" style="margin-top: 60px;width: 350px;">
+      
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
         <div id="erro" style="display: block"></div>
@@ -73,7 +73,7 @@ if(!isset($_SESSION["system_control"]))
         </button>
       </div>
 
-    </div>
+    
   </section>
 </main>
 <script>
