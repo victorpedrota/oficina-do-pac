@@ -74,6 +74,11 @@ else{
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="servico">Serviço oficina
+                </a>
+              </li>
+
 
 
             </ul>
@@ -82,9 +87,35 @@ else{
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="row">
+            <div class="col-lg-8 col-sm-12" id="div_servicos" style="display: none;margin-top: 60px;">
+              <ul style="text-align: left;" class="list-group">
+                <center>
+                    <h4 id="titulo">Serviços em andamento na oficina</h4></center>
+                <?php
+                $sql_servico2 = "SELECT * FROM `servico` WHERE  `cod_oficina` = $cod_oficina && (`status`=1  || `status`=2 || `status`=3 ) && `cod_mecanico` != $cod_mecanico";
+                $query_servico2 = mysqli_query($conn, $sql_servico2);
+                $numero_servico2 = mysqli_num_rows($query_servico2); 
+                if ($numero_servico2 !=0) {
+                  while ($vetor_servico2 = mysqli_fetch_array($query_servico2)) {
+                    $veiculo2 = $vetor_servico2['cod_veiculo'];
+                    $sql_veiculo2 ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo2" ;
+                    $veiculo_resultado2 = mysqli_query($conn,$sql_veiculo2);
+                    $vetor_veiculo2 = mysqli_fetch_array($veiculo_resultado2);
+                    echo "<li class='list-group-item itens'><p style='display:block;'>
+                    Veículo:".$vetor_veiculo2['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico2['cod_servico']."' style='float:right; right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></a>
+                    Protocolo:   ".$vetor_servico2['protocolo']."<br>Serviço desejado:".$vetor_servico2['servico_desejado']."
+                    </li>";
+                  }
+                }else{
+                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+                }
+                ?>
+
+              </ul></div>
             <div class="col-lg-8 col-sm-12" id="div2" style="display: none;margin-top: 60px;">
               <ul style="text-align: left;" class="list-group">
-
+                <center>
+                    <h4 id="titulo">Chat</h4></center>
                 <?php
                 $sql_servico = "SELECT * FROM `servico` WHERE  `cod_oficina` = $cod_oficina && (`status`=1  || `status`=2 || `status`=3 )  && `cod_mecanico` = $cod_mecanico";
                 $query_servico = mysqli_query($conn, $sql_servico);
@@ -298,10 +329,17 @@ else{
           $('#chat').on('click', function() {
             $('#div2').css("display","block");
             $('#div1').css("display","none");
+            $('#div_servicos').css("display","none");
+          });
+          $('#servico').on('click', function() {
+            $('#div_servicos').css("display","block");
+            $('#div1').css("display","none");
+            $('#div2').css("display","none");
           });
           $('#feed').on('click', function() {
             $('#div1').css("display","block");
             $('#div2').css("display","none");
+            $('#div_servicos').css("display","none");
           });
           $(".codigo").click(function() {
             $.post("dar_entrada.php", {

@@ -11,7 +11,7 @@ function update()
 
       if (obj[i].cod_orcamento!=0) {
 
-        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && obj[i].orcamento[3]==1) {$('#screen').append("<div class='orcamento b "+obj[i].cod_orcamento+"' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:<p class='data'>"+obj[i].orcamento[2]+ "</p><br><button class='btn btn-default'>Recusar</button><button style='color:white;' class='btn btn-primary enviar' value="+obj[i].cod_orcamento+">aceitar</button></div><br><br><br><br><br><br><br><br><br>");}
+        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && obj[i].orcamento[3]==1 && $('#cod_mec').val() == 18 ) {$('#screen').append("<div class='orcamento b "+obj[i].cod_orcamento+"' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:<p class='data'>"+obj[i].orcamento[2]+ "</p><br><button class='btn btn-default'>Recusar</button><button style='color:white;' class='btn btn-primary enviar' value="+obj[i].cod_orcamento+">aceitar</button></div><br><br><br><br><br><br><br><br><br>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor && obj[i].orcamento[3]==1){$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "</div><br><br><br><br><br><br>");}
         else if (obj[i].orcamento[3] == 2) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Está em progresso</div><br><br><br><br><br><br>");}
         else if(obj[i].orcamento[3] == 0){$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Um novo orçamento foi enviado</div><br><br><br><br><br><br><br>");}
@@ -20,7 +20,7 @@ function update()
       else{
 
         if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<div class='rcorners1 b' style='float:right;'>"+obj[i].texto + "</div><br><br><br>");}
-        else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor){$('#screen').append("<div class='rcorners2 b' style='float:left;'>"+obj[i].texto + "</div><br><br><br>");}
+        else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && $('#cod_mec').val() == 18){$('#screen').append("<div class='rcorners2 b' style='float:left;'>"+obj[i].texto + "</div><br><br><br>");}
       }
 
 

@@ -116,6 +116,7 @@ else{
               $vetor_cliente = mysqli_fetch_array($resultado);
               $cod_cliente = $vetor_cliente['cod_cliente'];
               $cod_veiculo = $vetor_cliente['cod_veiculo'];
+              $cod_mec = $vetor_cliente['cod_mecanico'];
               $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_cliente` = $cod_cliente" ;
               $resultado_pesquisa = mysqli_query($conn,$sql_pesquisa);
               $vetor_imagem = mysqli_fetch_array($resultado_pesquisa);
@@ -152,7 +153,7 @@ else{
                       </p>
                     </div>
                   </div>
-
+<input type="hidden" name="cod_mec" id="cod_mec" value="<?php echo $cod_cliente; ?>">
                 </div>
                 <div class="card" style="margin-top:30px;width: 20rem;height: 26rem">
                   <div class="card-body">
