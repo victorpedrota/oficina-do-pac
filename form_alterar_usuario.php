@@ -82,31 +82,41 @@ else{
         <div style="" class="container">
           <center>
             <div class="show-image" style="width: 100px;margin-top: 60px;">
-              <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor_login[ 'imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
-              <?php
-              
-              $teste=0;
-              $n=0;
-              $sql_nota ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
-              $resul_nota = mysqli_query($conn,$sql_nota);
-              while ($vetor_nota = mysqli_fetch_array($resul_nota)) {
-              $var = $vetor_nota['cod_servico'];
-              $nota ="SELECT * FROM `avaliacao` WHERE `cod_servico` = $var";
-              $resulta = mysqli_query($conn,$nota);
-              
-              $numero_nota =  mysqli_num_rows($resulta);
-              $n = $numero_nota +$n;
-              $vetor_nota2 = mysqli_fetch_array($resulta);
-              $nota = $vetor_nota2['nota_mecanico'];
-              $teste = intval($nota)+intval($teste);
-              
+              <img data-toggle="modal" data-target="#alterar_foto" src="<?php echo $vetor_login[ 'imagem'];?>" style="width: 100px;height: 100px; border-radius: 50%;">
+              <script>
+                $('.show-image').hover(
+                  function() {
+                   $(this).find('img').fadeTo('fast', 0.5);
+                 },
+                 function() {
+                   $(this).find('img').fadeTo('fast', 1);
+                 }
+                 );
+               </script>
+               <?php
+
+               $teste=0;
+               $n=0;
+               $sql_nota ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
+               $resul_nota = mysqli_query($conn,$sql_nota);
+               while ($vetor_nota = mysqli_fetch_array($resul_nota)) {
+                $var = $vetor_nota['cod_servico'];
+                $nota ="SELECT * FROM `avaliacao` WHERE `cod_servico` = $var";
+                $resulta = mysqli_query($conn,$nota);
+
+                $numero_nota =  mysqli_num_rows($resulta);
+                $n = $numero_nota +$n;
+                $vetor_nota2 = mysqli_fetch_array($resulta);
+                $nota = $vetor_nota2['nota_mecanico'];
+                $teste = intval($nota)+intval($teste);
+
               }
               echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
               ?>
             </div>
 
             <h5 style="margin-top: ">
-             
+
               <?php echo $vetor['nome'] . " " . $vetor['sobrenome']; ?>
             </h5>
           </center>
@@ -122,8 +132,8 @@ else{
             <div class="form-row">
               <div class="col-md-6">
                 <label for="inputAddress">Celular:</label>
-                  <div id="celular" class="telefone"> <?php echo $vetor['celular']; ?></div>
-               
+                <div id="celular" class="telefone"> <?php echo $vetor['celular']; ?></div>
+
               </div>
               <div class="col-md-6">
                 <label for="inputAddress2">CEP:</label>
@@ -161,93 +171,93 @@ else{
 
             </div>
             <div id="botoes" style="display: none">
-            <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
-              Enviar
-            </button></center></div>
+              <center><a href="perfil_cliente.php" class="btn btn-primary">Voltar</a> <button type="button" class="btn btn-primary" id="enviar">
+                Enviar
+              </button></center></div>
 
-          </form>
-        </div>
-      </div>
-      <div class="modal fade" id="alterar_informacoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Autenticação de Usuário</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="validar">
-                <label for="inputPassword4">Senha:</label>
-                <div id="erro"></div>
-
-                <input name="senha_nova" id="v_senha" type="password" class="form-control" required>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" onclick="enviar_informacoes();" class="btn btn-primary">Enviar</button>
-            </div>
+            </form>
           </div>
         </div>
-      </div>
+        <div class="modal fade" id="alterar_informacoes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Autenticação de Usuário</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="validar">
+                  <label for="inputPassword4">Senha:</label>
+                  <div id="erro"></div>
 
-    </div>
-    <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="alterar_cliente.php" id="form">
-              <label for="inputPassword4">Senha atual:</label>
-              <input name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
-              <label for="inputPassword4">Senha nova:</label>
-              <input name="senha_nova" id="senha_nova" type="password" class="form-control" required>
-              <label for="inputPassword4">Confirmar senha:</label>
-              <input name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
-              <input type="hidden" value="1" name="senha">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
-
-                <input type="file" class="form-control" name="arquivo">
-
-
+                  <input name="senha_nova" id="v_senha" type="password" class="form-control" required>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+                <button type="button" onclick="enviar_informacoes();" class="btn btn-primary">Enviar</button>
               </div>
             </div>
           </div>
         </div>
-        <script src="js/jquery.mask.min.js">
-        </script>
 
-        <script type="text/javascript">
-          function limpa_formulário_cep() {
+      </div>
+      <div class="modal fade" id="alterar_senha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="alterar_cliente.php" id="form">
+                <label for="inputPassword4">Senha atual:</label>
+                <input name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
+                <label for="inputPassword4">Senha nova:</label>
+                <input name="senha_nova" id="senha_nova" type="password" class="form-control" required>
+                <label for="inputPassword4">Confirmar senha:</label>
+                <input name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
+                <input type="hidden" value="1" name="senha">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="alterar_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alterar Foto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" action="foto_cliente.php">
+
+                  <input type="file" class="form-control" name="arquivo">
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Alterar foto</button></form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="js/jquery.mask.min.js">
+          </script>
+
+          <script type="text/javascript">
+            function limpa_formulário_cep() {
                 //Limpa valores do formulário de cep.
                 document.getElementById('rua').value = ("");
                 document.getElementById('bairro').value = ("");
@@ -367,49 +377,49 @@ else{
               <script src="js/validar_form.js">
               </script>
               <script>
-                
+
                 $( "body" ).delegate( ".telefone", "myCustomEvent", function( e, myName, myValue ) {
                   $("#telefone").replaceWith("<input value='<?php echo $vetor['telefone']; ?>'' pattern='.{14,15}'' name='telefone' id='telefone' type='text' class='form-control telefone' required>");
                   $("#celular").replaceWith("<input value=1<?php echo $vetor['celular']; ?>1 pattern='.{14,15}' id='celular' name='celular' type='text' class='form-control telefone' required>");
                   $("#cep").replaceWith("<input value='<?php echo $vetor['cep']; ?>' id='cep' pattern='.{10}' onblur='pesquisacep(this.value);' name='cep' type='text' class='form-control cep' required>");
                   $("#cidade").replaceWith("<input value='<?php echo $vetor['cidade']; ?>' id='cidade' name='cidade' type='text' class='form-control' required>");
                   $("#rua").replaceWith("<input value='<?php echo $vetor['rua']; ?>' id='rua' name='rua' type='text' class='form-control'>");
-                   $("#bairro").replaceWith("<input value='<?php echo $vetor['bairro']; ?>' id='bairro' name='bairro' type='text' class='form-control' required>");
-                   $("#numero").replaceWith(" <input value='<?php echo $vetor['numero']; ?>' id='numero' name='numero' type='text' class='form-control'>");
-                   $("#complemento").replaceWith("<input value='<?php echo $vetor['complemento']; ?>' type='text' name='complemento' class='form-control'>");
+                  $("#bairro").replaceWith("<input value='<?php echo $vetor['bairro']; ?>' id='bairro' name='bairro' type='text' class='form-control' required>");
+                  $("#numero").replaceWith(" <input value='<?php echo $vetor['numero']; ?>' id='numero' name='numero' type='text' class='form-control'>");
+                  $("#complemento").replaceWith("<input value='<?php echo $vetor['complemento']; ?>' type='text' name='complemento' class='form-control'>");
                   $("#uf").replaceWith("<select name='uf' id='uf' type='text' class='form-control' required>"+
-                 "<option value='<?php echo $vetor['estado'];?>'>"+
+                   "<option value='<?php echo $vetor['estado'];?>'>"+
                    " <?php echo $vetor['estado']; ?>"+
-                 " </option>"+
-                  "<option value='AC'>Acre</option>"+
-                  "<option value='AL'>Alagoas</option>"+
-                 " <option value='AP'>Amapá</option>"+
-                  "<option value='AM'>Amazonas</option>"+
-                  "<option value='BA'>Bahia</option>"+
-                  "<option value='CE'>Ceará</option>"+
-                  "<option value='DF'>Distrito Federal</option>"+
-                  "<option value='ES'>Espírito Santo</option>"+
-                  "<option value='GO'>Goiás</option>"+
-                  "<option value='MA'>Maranhão</option>"+
-                  "<option value='MT'>Mato Grosso</option>"+
-                  "<option value='MS'>Mato Grosso do Sul</option>"+
-                  "<option value='MG'>Minas Gerais</option>"+
-                  "<option value='PA'>Pará</option>"+
-                  "<option value='PB'>Paraíba</option>"+
-                  "<option value='PR'>Paraná</option>"+
-                  "<option value='PE'>Pernambuco</option>"+
-                  "<option value='PI'>Piauí</option>"+
-                  "<option value='RJ'>Rio de Janeiro</option>"+
-                  "<option value='RN'>Rio Grande do Norte</option>"+
-                  "<option value='RS'>Rio Grande do Sul</option>"+
-                  "<option value='RO'>Rondônia</option>"+
-                  "<option value='RR'>Roraima</option>"+
-                  "<option value='SC'>Santa Catarina</option>"+
-                  "<option value='SP'>São Paulo</option>"+
-                  "<option value='SE'>Sergipe</option>"+
-                  "<option value='TO'>Tocantins</option>"+  
-                  "</select>");
-                   $('.cep').mask('00.000-000');
+                   " </option>"+
+                   "<option value='AC'>Acre</option>"+
+                   "<option value='AL'>Alagoas</option>"+
+                   " <option value='AP'>Amapá</option>"+
+                   "<option value='AM'>Amazonas</option>"+
+                   "<option value='BA'>Bahia</option>"+
+                   "<option value='CE'>Ceará</option>"+
+                   "<option value='DF'>Distrito Federal</option>"+
+                   "<option value='ES'>Espírito Santo</option>"+
+                   "<option value='GO'>Goiás</option>"+
+                   "<option value='MA'>Maranhão</option>"+
+                   "<option value='MT'>Mato Grosso</option>"+
+                   "<option value='MS'>Mato Grosso do Sul</option>"+
+                   "<option value='MG'>Minas Gerais</option>"+
+                   "<option value='PA'>Pará</option>"+
+                   "<option value='PB'>Paraíba</option>"+
+                   "<option value='PR'>Paraná</option>"+
+                   "<option value='PE'>Pernambuco</option>"+
+                   "<option value='PI'>Piauí</option>"+
+                   "<option value='RJ'>Rio de Janeiro</option>"+
+                   "<option value='RN'>Rio Grande do Norte</option>"+
+                   "<option value='RS'>Rio Grande do Sul</option>"+
+                   "<option value='RO'>Rondônia</option>"+
+                   "<option value='RR'>Roraima</option>"+
+                   "<option value='SC'>Santa Catarina</option>"+
+                   "<option value='SP'>São Paulo</option>"+
+                   "<option value='SE'>Sergipe</option>"+
+                   "<option value='TO'>Tocantins</option>"+  
+                   "</select>");
+                  $('.cep').mask('00.000-000');
                   $('.telefone').mask('(00) 0000-00009');
                   $('.telefone').blur(function(event) {
                     if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
@@ -454,7 +464,7 @@ else{
 
                 });
               </script>
-            
+
             </main>
 
           </body>

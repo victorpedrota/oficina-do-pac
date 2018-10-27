@@ -106,11 +106,12 @@ else{
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
         <div id="graph">
           <center><h3>Dashboard</h3></center>
+          <br>
           <div class="row">
             <div class="col"><center><h5>Serviços realizados</h5></center>
               <div style="height: 400px;width: 400px;"><canvas id="myChart"></canvas></div>
             </div>    
-            <div class="col"><center><h5>Lista de Mecanicos cadastrados</h5></center>
+            <div style="margin-left: -200px;" class="col"><center><h5>Lista de Mecanicos cadastrados</h5></center>
               <ul style="text-align: left;" class="list-group">
                 <?php
 

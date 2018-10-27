@@ -264,7 +264,7 @@ else{
                 </button>
                 </div>
                 <div class='modal-body'>
-                <form method='post' action='abrir_chamado.php' id='form'>
+                <form method='post' action='gambiarra.php'>
                 <div class='row'>
                 <div class='col'>
 
@@ -287,18 +287,18 @@ else{
                 <option value=''>Selecione um tipo</option>
                 <option value='troca'>troca de oleo</option>
                 </select>
-                <input type='hidden' name='n_oficina' id='n_oficina'>
+                <input type='hidden' name='cod_oficina' value='".$vetor_oficina["cod_oficina"]."'>
                 </div>
                 </div>
                 Descrição do problema:<textarea name='problema' id='descricao' style='border-radius: 1em;' class='form-control' required></textarea> Serviço desejado:<textarea name='servico' id='servico' style='border-radius: 1em;' class='form-control' required></textarea>
                 
                 <input type='hidden' id='cod_cliente' value='<?php echo $cod_cliente;?>'>
-                </form></div>
+                </div>
                 <div class='modal-footer'>
                 
                 
                 <a class='btn btn-secondary' data-dismiss='modal' href='#'>Cancelar</a>
-                <button type='button' id='enviar' class='btn btn-primary'>Enviar</button>
+                <button type='submit' id='enviar' class='btn btn-primary'>Enviar</button></form>
                 </div>
                 </div>
                 </div>
@@ -340,7 +340,7 @@ else{
             var form = $("#form");
             form.valid();
             if (form.valid() == true) {
-            $.post("abrir_chamado.php", {
+            $.post("gambiarra.php", {
             veiculo: $("#veiculos").val(),
             tipo: $("tipo").val(),
             problema: $("#descricao").val(),

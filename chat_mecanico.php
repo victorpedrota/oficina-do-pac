@@ -108,6 +108,7 @@ else{
                   </div>
                 </div></footer>
               </div>
+
               <?php
 
 
@@ -116,7 +117,7 @@ else{
               $vetor_cliente = mysqli_fetch_array($resultado);
               $cod_cliente = $vetor_cliente['cod_cliente'];
               $cod_veiculo = $vetor_cliente['cod_veiculo'];
-              $cod_mec = $vetor_cliente['cod_mecanico'];
+              $cod_mec = $vetor_cliente['cod_cliente'];
               $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_cliente` = $cod_cliente" ;
               $resultado_pesquisa = mysqli_query($conn,$sql_pesquisa);
               $vetor_imagem = mysqli_fetch_array($resultado_pesquisa);
@@ -131,6 +132,7 @@ else{
 
               ?>
               <div class="col-4">
+                <input type="hidden" value="<?php echo $cod_login; ?>" id="verdadeiro">
                 <div class="card" style="margin-top:30px;width: 20rem;">
                   <div class="card"  style="width: 20rem;">
                     <table>
@@ -153,9 +155,9 @@ else{
                       </p>
                     </div>
                   </div>
-<input type="hidden" name="cod_mec" id="cod_mec" value="<?php echo $cod_cliente; ?>">
+<input type="hidden"  id="cod_mec" value="<?php echo $cod_cliente; ?>">
                 </div>
-                <div class="card" style="margin-top:30px;width: 20rem;height: 26rem">
+                <div class="card" style="margin-top:30px;width: 20rem;height: 20rem">
                   <div class="card-body">
                     <h5 class="card-title">Informar progresso</h5>
                     <h6 class="card-subtitle mb-2 text-muted">ferramentas</h6>
@@ -181,6 +183,7 @@ else{
               </div>
             </div>
           </div>
+
         </main>
         <div class="modal fade" id="tools" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
