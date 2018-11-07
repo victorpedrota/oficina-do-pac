@@ -158,7 +158,7 @@ else{
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="row">
 
-        <div class="col-8">
+        <div class="col-xl-8 col-lg-8 col-xs-12">
           <div id="screen" style="margin-top: 30px;" class="tela"></div> <br>  
 
 
@@ -171,8 +171,8 @@ else{
               </div>
 
 
-              <div class="col-3">
-                <button type="button" style="margin-right: 10px" class="btn btn-default" data-toggle="modal" data-target="#tools"><i class="fas fa-wrench"></i></button><button class="btn btn-primary" id="button"> Enviar </button>
+              <div class="col-xl-3 col-lg-3 ">
+                <button class="btn btn-primary d-inline" id="button">Enviar</button>
                 <input type="hidden" id="conversa" name="cod_servico" value='<?php echo $cod_servico; ?>'>
                 <input type="hidden" id="codigo" name="cod_cliente" value='<?php echo $cod_login; ?>'>
               </div>
@@ -199,7 +199,7 @@ else{
           $vetor_veiculo = mysqli_fetch_array($resultado);
           $cod_servico = $_GET['cod_servico'];
           ?>
-          <div class="col-4">
+          <div class="col-4 d-none d-sm-block d-sm-none d-md-block">
             <div class="card" style="margin-top:30px;width: 18rem;">
               <div class="card"  style="width: 18rem;">
                 <table>
@@ -224,7 +224,7 @@ else{
               </div>
 
             </div>
-            <div class="card" style="margin-top:30px;width: 18rem;">
+            <div class="card d-none d-sm-block d-sm-none d-md-block" style="margin-top:30px;width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title">Informar progresso</h5>
                 <h6 class="card-subtitle mb-2 text-muted">ferramentas</h6>

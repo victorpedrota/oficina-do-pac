@@ -124,9 +124,9 @@ else{
                           $cod_login = $vetor_mecanico['cod_login'];
                           $query_foto ="SELECT * FROM `login` WHERE `cod_login` = $cod_login";
                           $mecanico_foto = mysqli_query($conn,$query_foto);
-
-                          if ( mysqli_num_rows($atualizacao)== 0) {
-
+                         $num = mysqli_num_rows($atualizacao);
+                          if ( $num== 0) {
+                                echo "<li class='list-group-item itens'><p style='display:block;'>Não há atualizações</p></li>";
                           } else{
                               $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
                               while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {

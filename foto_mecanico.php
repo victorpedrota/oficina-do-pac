@@ -58,7 +58,7 @@ else{
           $novoNome = md5(microtime()) . $extensao;
 
     // Concatena a pasta com o nome
-          $destino = 'fotos_usuarios/' . $novoNome; 
+          $destino = 'fotos_usuario/' . $novoNome; 
 
     // tenta mover o arquivo para o destino
           if( @move_uploaded_file( $arquivo_tmp, $destino  ))

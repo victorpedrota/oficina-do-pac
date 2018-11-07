@@ -111,7 +111,15 @@ else{
                 $teste = intval($nota)+intval($teste);
 
               }
-              echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
+              if ($n==0) {
+               $n=1;
+              }
+              if ($teste/$n ==0) {
+                echo "Nenhuma avaliação foi feita";
+              }else{
+                echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
+              }
+              
               ?>
             </div>
 

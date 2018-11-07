@@ -285,7 +285,7 @@ require('navbar.html');
 					</form>
 				</div>
 				<div class="container div2" style="display: none; margin-top: 60px;">
-					<form method="POST" action="">
+					<form method="POST" action="cadastrar.php">
 						<h3 >Formulário Cadastrar Oficina</h3>
 
 						<div class="form-row">
@@ -305,13 +305,13 @@ require('navbar.html');
 							</div>
 							<div class="col">
 								<label for="ex3">Telefone:</label><br>
-								<input class="form-control" type="text" name="telefone" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+								<input class="form-control telefone" type="text" name="telefone"  placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">Celular:</label><br>
-								<input class="form-control" type="text" name="celular" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+								<input class="form-control telefone" type="text" name="celular" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
 							</div>
 							<div class="col">
 								<label for="ex3">CNPJ:*</label><br>
@@ -321,7 +321,7 @@ require('navbar.html');
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">CEP:*</label><br>
-								<input name="cep" class="form-control" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);">
+								<input name="cep" class="form-control" type="text" id="cep" value="" onblur="pesquisacep(this.value);">
 							</div>
 							<div class="col">
 								<label for="ex3">Estado:*</label><br>

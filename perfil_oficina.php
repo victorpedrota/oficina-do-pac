@@ -115,11 +115,19 @@ else{
               <ul style="text-align: left;" class="list-group">
                 <?php
 
-                $cliente ="select * from `mecanico` where `cod_oficina` = $cod_oficina";
-                $resultado_cliente = mysqli_query($conn,$cliente);
-                while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente)) {
+                $cliente1 ="SELECT * FROM `mecanico` WHERE `cod_oficina` = $cod_oficina";
+                $resultado_cliente1 = mysqli_query($conn,$cliente1);
+                $num1 = mysqli_num_rows($resultado_cliente1);
+ 
+                if ($num1 != 0) {
+                  while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente)) {
                   echo "<li class='list-group-item itens'><p>".$vetor_veiculo["nome"]."</p></li>";
+                  }
                 }
+                else{
+                  echo "<li class='list-group-item itens'><p>Não há Mecânicos cadastrados</p></li>";
+                }
+                
 
 
 

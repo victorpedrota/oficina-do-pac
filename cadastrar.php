@@ -3,7 +3,7 @@ $nome = $_POST['nome'];
 $celular = $_POST['celular'];
 $telefone = $_POST['telefone'];
 $cnpj = $_POST['cnpj'];
-$estado = $_POST['estado'];
+$estado = $_POST['uf'];
 $cidade = $_POST['cidade'];
 $endereco = $_POST['endereco'];
 $login = $_POST['login'];
@@ -12,7 +12,7 @@ $numero = $_POST['numero'];
 $complemento = $_POST['complemento'];
 $senha = $_POST['senha'];
 $cep = $_POST['cep'];
-require("../connect.php");
+require("connect.php");
 
 function validar_cnpj($cnpj)
 {
@@ -61,15 +61,14 @@ else
     $resultado = mysqli_query($conn,$sql_pesquisa); 
     $numero = mysqli_num_rows($resultado);
     $vetor_login = mysqli_fetch_array($resultado);
-    $sql ="select * from `oficina` where  `cnpj` = '$cnpjn' || `telefone` = $telefonen" ;
+    $sql ="select * from `oficina` where  `cnpj` = '$cnpjn'" ;
     $resultado_sql = mysqli_query($conn,$sql); 
     $numero_cliente = mysqli_num_rows($resultado_sql);
     if($numero == 0 && $numero_cliente == 0){
 
         $sql_login = "INSERT INTO `login`(`login`, `senha`, `privilegio`) VALUES ('$login','$senha',2)";
         $resultado_login = mysqli_query($conn, $sql_login);
-        if($resultado_login)
-        {
+        
 
             $sql_cod ="select * from `login` where `login` = '$login'" ;
             $resultado_cod = mysqli_query($conn,$sql_cod);
@@ -84,16 +83,8 @@ else
             document.location.href=window.history.go(-1);
         </script>    
             <?php 
-        }
-        else
-        {
-            ?>
-         <script>
-            alert("<?php echo "Erro"?>");
-            document.location.href=window.history.go(-1);
-        </script>    
-            <?php
-        }} 
+        
+    } 
 
         else{
            ?>
