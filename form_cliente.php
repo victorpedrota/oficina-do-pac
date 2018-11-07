@@ -106,17 +106,7 @@ require('navbar.html');
 
 			</script>
 
-			<script>
-				function formatar(mascara, documento){
-					var i = documento.value.length;
-					var saida = mascara.substring(0,1);
-					var texto = mascara.substring(i)
-
-					if (texto.substring(0,1) != saida){
-						documento.value += texto.substring(0,1);
-					}
-
-				}</script>
+		
 				
 
 				<script type="text/javascript" src="js/jquery.mask.min.js"></script>
@@ -207,7 +197,7 @@ require('navbar.html');
 							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="inputZip">CEP:</label>
-									<input class="form-control" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
+									<input class="form-control cep" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="inputState">Estado:</label>
@@ -291,65 +281,84 @@ require('navbar.html');
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">Login:*</label><br>
-								<input class="form-control" id="ex3" name="login"  minlength="6" type="text" required>
-							</div>
-							<div class="col">
-								<label for="ex3">Senha:*</label><br>
-								<input class="form-control" id="ex3" name="senha"  minlength="8" type="password" required>
+								<input class="form-control" name="login"  minlength="6" type="text" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
+								<label for="ex3">Senha:*</label><br>
+								<input class="form-control" name="senha"  id="senha" minlength="6" type="password" required>
+							</div>
+							<div class="col">
+								<label for="ex3">Senha:*</label><br>
+								<input class="form-control" name="c_senha" id="c_senha"  minlength="6" type="password" required>
+							</div>
+						</div>
+						<hr>
+						<div class="form-row">
+							<div class="col">
 								<label for="ex3">Nome oficina:*</label><br>
-								<input class="form-control" id="ex3" name="nome" type="text" pattern="[a-z\s]+$"   required>
+								<input class="form-control letters"  name="nome" type="text" pattern="[a-z\s]+$"   required>
 							</div>
 							<div class="col">
 								<label for="ex3">Telefone:</label><br>
+<<<<<<< HEAD
 								<input class="form-control telefone" type="text" name="telefone"  placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+=======
+								<input class="form-control telefone" type="text" name="telefone">
+>>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">Celular:</label><br>
+<<<<<<< HEAD
 								<input class="form-control telefone" type="text" name="celular" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+=======
+								<input class="form-control telefone" type="text" name="celular">
+>>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
 							</div>
 							<div class="col">
 								<label for="ex3">CNPJ:*</label><br>
-								<input class="form-control" type="text" name="cnpj" maxlength="18" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="XX.XXX.XXX/XXX-XX" OnKeyPress="formatar('##.###.###/####-##', this)" minlength="18" required >
+								<input class="form-control cnpj" type="text" name="cnpj">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">CEP:*</label><br>
+<<<<<<< HEAD
 								<input name="cep" class="form-control" type="text" id="cep" value="" onblur="pesquisacep(this.value);">
+=======
+								<input name="cep" class="form-control cep" type="text" id="cep" value=""  onblur="pesquisacep(this.value);">
+>>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
 							</div>
 							<div class="col">
 								<label for="ex3">Estado:*</label><br>
-								<input type="text" class="form-control" name="uf" id="uf">
+								<input type="text" class="form-control letters" name="uf" id="uf">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">Cidade:</label><br>
-								<input type="text" name="cidade" class="form-control" id="cidade">
+								<input type="text" name="cidade letters" class="form-control" id="cidade">
 							</div>
 							<div class="col">
 								<label for="ex3">Bairro:*</label><br>
-								<input class="form-control" id="bairro" name="bairro" type="text" required>
+								<input class="form-control letters" name="bairro" type="text" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col">
 								<label for="ex3">Rua:</label><br>
-								<input class="form-control" id="rua" name="endereco" type="text" required>
+								<input class="form-control"  name="endereco" type="text" required>
 							</div>
 							<div class="col">
 								<label for="ex3">Numero:*</label><br>
-								<input class="form-control" id="numero" name="numero" type="text" pattern="[0-9]+$" required>
+								<input class="form-control"  name="numero" type="text" pattern="[0-9]+$" required>
 							</div>
 						</div>
 						<label for="ex3">Complemento:</label><br>
-						<input class="form-control" id="ex3" name="complemento" type="text">
+						<input class="form-control"  name="complemento" type="text">
 						<br>
 						<center><button class="btn btn-default" id="voltar2">Voltar</button> <button type="submit" class="btn btn-primary"> Enviar</button></center>
 
@@ -532,7 +541,7 @@ function TestaCPF(strCPF) {
 								}
 							});
 		$('#cpf').mask('000.000.000-00', {reverse: true});
-		$('#cep').mask('00.000-000');
+		$('.cep').mask('00.000-000');
 		$('#rg').mask('00.000.000-0', {reverse: true});
 		$('#data').mask('00/00/0000');
 
@@ -564,6 +573,8 @@ function TestaCPF(strCPF) {
 		})
 
 	});
+	$(".cnpj").mask("00.000.000/0000-00");
+
 </script>
 
 </body>
