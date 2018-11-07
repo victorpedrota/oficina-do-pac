@@ -44,10 +44,12 @@ else{
         color: yellow;
       }
     </style>
+    <meta charset="utf-8">
   </head>
 
   <body style="overflow-x: hidden;">
     <?php
+    header('Content-Type: text/html; charset=utf-8');
     require("navbar_mecanico.html");
     ?>
     <div class="row">

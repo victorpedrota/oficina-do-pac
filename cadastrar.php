@@ -58,7 +58,7 @@ function validar_cnpj($cnpj)
 else
 {
     $sql_pesquisa ="select * from `login` where `login` = '$login'" ;
-    $resultado = mysqli_query($conn,$sql_pesquisa); 
+    $resultado = mysqli_query($conn,$sql_pesquisa); x
     $numero = mysqli_num_rows($resultado);
     $vetor_login = mysqli_fetch_array($resultado);
     $sql ="select * from `oficina` where  `cnpj` = '$cnpjn'" ;

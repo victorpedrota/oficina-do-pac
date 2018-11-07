@@ -107,12 +107,16 @@ else{
                 <div class="row">
 
                     <div class="col-md-8 col-sm-10 col-xs-12" id="feed" style="display: block;"><br>
-
+                        <ul style="text-align: left;" class="list-group">
                         <!-- coemca aqui-->
                         <?php
+
                         $sql_servico ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
                         $servicos = mysqli_query($conn,$sql_servico);
                         $numero_servicos = mysqli_num_rows($servicos);
+                        if ($numero_servicos == 0) {
+                            echo "<li class='list-group-item itens'><p style='display:block;'>Não há atualizações</p></li>";
+                        }
                         while ($vetor_servicos = mysqli_fetch_array($servicos)) {
                           $cod_servicos = $vetor_servicos['cod_servico'];
                           $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servicos ORDER BY `cod_atualizacao` DESC" ;
@@ -125,7 +129,9 @@ else{
                           $query_foto ="SELECT * FROM `login` WHERE `cod_login` = $cod_login";
                           $mecanico_foto = mysqli_query($conn,$query_foto);
                          $num = mysqli_num_rows($atualizacao);
-                          if ( $num== 0) {
+                         echo $num;
+
+                          if ( $num == 0) {
                                 echo "<li class='list-group-item itens'><p style='display:block;'>Não há atualizações</p></li>";
                           } else{
                               $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
@@ -157,7 +163,7 @@ else{
 
                     }
                     ?>
-
+                </ul>
                 </div>
 
 
@@ -169,7 +175,10 @@ else{
                         <ul style="text-align: left;" class="list-group">
 
                             <?php
+                            if (mysqli_num_rows($query_servico) == 0) {
 
+                                echo "<li class='list-group-item itens'><p style='display:block;'>Não há veículos nesta fase</p></li>";
+                            }
                             while ($vetor_servico = mysqli_fetch_array($query_servico)) {
                               if ($vetor_servico['status'] == 0 ) {
 

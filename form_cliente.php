@@ -106,279 +106,278 @@ require('navbar.html');
 
 			</script>
 
-		
-				
 
-				<script type="text/javascript" src="js/jquery.mask.min.js"></script>
-				<div class="container" id="botoes" style="margin: 100px 200px 0px 200px;">
-					<div class="row">
-						<div class="col">
+
+
+			<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+			<div class="container" id="botoes" style="margin: 100px 200px 0px 200px;">
+				<div class="row">
+					<div class="col">
 
 						<img src="https://www.gazetadopovo.com.br/ra/mega/Pub/GP/p4/2017/05/04/Automoveis/Imagens/Cortadas/Dicas%20oficina%202_Bigstock-R4Jt2EcBC9SWpcRY4ThLBCM-1200x800@GP-Web.jpg" style="width: 400px; border-radius: 10px">
 						<br>
 						<div style="margin-top: 10px;width: 400px;">
 							<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
-						<button  id="oficina" class="btn btn-default">Oficina</button></center></div>
-						</div>
-						<div class="col">
-							<img src="https://blog.trocafone.com/wp-content/uploads/2015/08/Dica-para-o-cliente-considere-a-longetividade-do-smartphone.jpg" style="width: 400px;border-radius: 10px">
-
-							<div style="margin-top: 10px;width: 400px;">
-							<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
-						<button id="cliente" class="btn btn-primary">Cliente</button></center></div>
-
-
-							</div>
-					</div>
-					
-				</div>
-				<div style="margin-top: -50px;position: fixed; margin-left: 110px; display: none;" class="container div1"  >
-
-					<form id="regForm" method="POST" action="cadastrar_cliente.php">
-						
-						<br>
-
-						<div class="tab" value="0">
-							
-							<center><div><h3>Vamos fazer isso na ordem certa. Crie um login e senha</h3> </div></center>
-
-
-							<h5 style="display:  inline-block;">Login:</h5>
-							<input class="form-control"  id="login" name="login"  minlength="6" type="text" required>
-							<br>
-
-							<h5 style="display:  inline-block;">Senha:</h5>
-							<input class="form-control"  id="senha" name="senha"  minlength="6" type="password" required>
-							<br>
-							<h5 style="display:  inline-block;">Confirmar Senha:</h5>
-							<input class="form-control" id="c_senha" name="c_senha"  minlength="6" type="password" required>
-
-						</div>
-
-						<div class="tab" value="2">
-							<center><h3>Quem é você?, é necessário que você preencha os seguintes campos</h3></center>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">Nome:*</label>
-									<input class="form-control letters" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Sobrenome:*</label>
-									<input class="form-control letters" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputAddress">CPF:</label>
-									<input class="form-control" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX"  required >
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputAddress2">RG:</label>
-									<input class="form-control" type="text" id="rg" name="rg"  placeholder="XX.XXX.XXX-X" required >
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputCity">Data nascimento:*</label>
-									<input class="form-control" type="text" name="data" id="data" required>
-								</div>
-								<div class="form-group col-md-6">
-									<label>Email:</label>
-									<input class="form-control" type="email" required>
-								</div>
-
-
-							</div>
-
-						</div>
-
-						<div class="tab">
-							<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="inputZip">CEP:</label>
-									<input class="form-control cep" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="inputState">Estado:</label>
-									<input class="form-control" id="uf" name="estado" type="text" required> 
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="inputCity">Cidade:*</label>
-									<input type="text" id="cidade" name="cidade" class="form-control letters">
-								</div>
-
-
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">Bairro:*</label>
-									<input class="form-control" id="bairro" name="bairro" type="text"  required>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Rua:*</label>
-									<input class="form-control" id="rua" name="rua"  type="text" required>
-								</div>
-							</div>
-
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">Número:*</label>
-									<input class="form-control" id="numero" name="numero" type="text"   required>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Complemento:*</label>
-									<input class="form-control" id="complemento" name="complemento" type="text">
-								</div>
-							</div>
-						</div>
-
-
-
-						<div class="tab">
-							<center><h3>Precisamos de seu contato caso ocorra algum problema, por favor insira seu contato</h3></center>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">Telefone:*</label>
-									<input id="telefone" class="form-control telefone" type="text" name="telefone" placeholder="00 0000-0000">
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Celular:*</label>
-									<input class="form-control telefone" type="text" name="celular" id="celular"  placeholder="00 0000-0000" >
-								</div>
-							</div>
-						</div>
-
-
-
-						<style type="text/css">
-
-
-					</style>
-
-					<div style="position: static;">
-						<br><center>
-							<div>
-								<a class="btn btn-default" id="voltar1">Voltar</a>
-								<button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
-								<button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
-							</div></center>
-						</div>
-						<!-- Circles which indicates the steps of the form: -->
-						<div style="text-align:center;margin-top:40px;">
-							<span class="step"></span>
-							<span class="step"></span>
-							<span class="step"></span>
-							<span class="step"></span>
-						</div>
-					</form>
-				</div>
-				<div class="container div2" style="display: none; margin-top: 60px;">
-					<form method="POST" action="cadastrar.php">
-						<h3 >Formulário Cadastrar Oficina</h3>
-
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Login:*</label><br>
-								<input class="form-control" name="login"  minlength="6" type="text" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Senha:*</label><br>
-								<input class="form-control" name="senha"  id="senha" minlength="6" type="password" required>
+								<button  id="oficina" class="btn btn-default">Oficina</button></center></div>
 							</div>
 							<div class="col">
-								<label for="ex3">Senha:*</label><br>
-								<input class="form-control" name="c_senha" id="c_senha"  minlength="6" type="password" required>
-							</div>
-						</div>
-						<hr>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Nome oficina:*</label><br>
-								<input class="form-control letters"  name="nome" type="text" pattern="[a-z\s]+$"   required>
-							</div>
-							<div class="col">
-								<label for="ex3">Telefone:</label><br>
-<<<<<<< HEAD
-								<input class="form-control telefone" type="text" name="telefone"  placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
-=======
-								<input class="form-control telefone" type="text" name="telefone">
->>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Celular:</label><br>
-<<<<<<< HEAD
-								<input class="form-control telefone" type="text" name="celular" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
-=======
-								<input class="form-control telefone" type="text" name="celular">
->>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
-							</div>
-							<div class="col">
-								<label for="ex3">CNPJ:*</label><br>
-								<input class="form-control cnpj" type="text" name="cnpj">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">CEP:*</label><br>
-<<<<<<< HEAD
-								<input name="cep" class="form-control" type="text" id="cep" value="" onblur="pesquisacep(this.value);">
-=======
-								<input name="cep" class="form-control cep" type="text" id="cep" value=""  onblur="pesquisacep(this.value);">
->>>>>>> 4fa43fb02f954be2d68b43b3fae280ad5c4ba9dd
-							</div>
-							<div class="col">
-								<label for="ex3">Estado:*</label><br>
-								<input type="text" class="form-control letters" name="uf" id="uf">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Cidade:</label><br>
-								<input type="text" name="cidade letters" class="form-control" id="cidade">
-							</div>
-							<div class="col">
-								<label for="ex3">Bairro:*</label><br>
-								<input class="form-control letters" name="bairro" type="text" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col">
-								<label for="ex3">Rua:</label><br>
-								<input class="form-control"  name="endereco" type="text" required>
-							</div>
-							<div class="col">
-								<label for="ex3">Numero:*</label><br>
-								<input class="form-control"  name="numero" type="text" pattern="[0-9]+$" required>
-							</div>
-						</div>
-						<label for="ex3">Complemento:</label><br>
-						<input class="form-control"  name="complemento" type="text">
-						<br>
-						<center><button class="btn btn-default" id="voltar2">Voltar</button> <button type="submit" class="btn btn-primary"> Enviar</button></center>
+								<img src="https://blog.trocafone.com/wp-content/uploads/2015/08/Dica-para-o-cliente-considere-a-longetividade-do-smartphone.jpg" style="width: 400px;border-radius: 10px">
 
-					</form>
-				</div>
-				<script src="js/validar_form2.js"></script>
-				<script src="js/validar_form.js"></script>
-				<script>
-					var form = $( "#regForm" );
-
-					$( "#nextBtn" ).click(function() {
+								<div style="margin-top: 10px;width: 400px;">
+									<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
+										<button id="cliente" class="btn btn-primary">Cliente</button></center></div>
 
 
+									</div>
+								</div>
 
-						form.valid();
+							</div>
+							<div style="margin-top: -50px;position: fixed; margin-left: 110px; display: none;" class="container div1"  >
 
-					});
-				</script>
+								<form id="regForm" method="POST" action="cadastrar_cliente.php">
 
-				<script>
+									<br>
+
+									<div class="tab" value="0">
+
+										<center><div><h3>Vamos fazer isso na ordem certa. Crie um login e senha</h3> </div></center>
+
+
+										<h5 style="display:  inline-block;">Login:</h5>
+										<input class="form-control"  id="login" name="login"  minlength="6" type="text" required>
+										<br>
+
+										<h5 style="display:  inline-block;">Senha:</h5>
+										<input class="form-control"  id="senha" name="senha"  minlength="6" type="password" required>
+										<br>
+										<h5 style="display:  inline-block;">Confirmar Senha:</h5>
+										<input class="form-control" id="c_senha" name="c_senha"  minlength="6" type="password" required>
+
+									</div>
+
+									<div class="tab" value="2">
+										<center><h3>Quem é você?, é necessário que você preencha os seguintes campos</h3></center>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputEmail4">Nome:*</label>
+												<input class="form-control letters" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputPassword4">Sobrenome:*</label>
+												<input class="form-control letters" id="sobrenome" name="sobrenome" pattern="[a-z\s]+$"  type="text" required>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputAddress">CPF:</label>
+												<input class="form-control" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX"  required >
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputAddress2">RG:</label>
+												<input class="form-control" type="text" id="rg" name="rg"  placeholder="XX.XXX.XXX-X" required >
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputCity">Data nascimento:*</label>
+												<input class="form-control" type="text" name="data" id="data" required>
+											</div>
+											<div class="form-group col-md-6">
+												<label>Email:</label>
+												<input class="form-control" type="email" required>
+											</div>
+
+
+										</div>
+
+									</div>
+
+									<div class="tab">
+										<center><h3>Onde você está?, precisamos de sua localização para oferecer um serviço melhor</h3></center>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label for="inputZip">CEP:</label>
+												<input class="form-control cep" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="inputState">Estado:</label>
+												<input class="form-control" id="uf" name="estado" type="text" required> 
+											</div>
+
+											<div class="form-group col-md-4">
+												<label for="inputCity">Cidade:*</label>
+												<input type="text" id="cidade" name="cidade" class="form-control letters">
+											</div>
+
+
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputEmail4">Bairro:*</label>
+												<input class="form-control" id="bairro" name="bairro" type="text"  required>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputPassword4">Rua:*</label>
+												<input class="form-control" id="rua" name="rua"  type="text" required>
+											</div>
+										</div>
+
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputEmail4">Número:*</label>
+												<input class="form-control" id="numero" name="numero" type="text"   required>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputPassword4">Complemento:*</label>
+												<input class="form-control" id="complemento" name="complemento" type="text">
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="tab">
+										<center><h3>Precisamos de seu contato caso ocorra algum problema, por favor insira seu contato</h3></center>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputEmail4">Telefone:*</label>
+												<input id="telefone" class="form-control telefone" type="text" name="telefone" placeholder="00 0000-0000">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="inputPassword4">Celular:*</label>
+												<input class="form-control telefone" type="text" name="celular" id="celular"  placeholder="00 0000-0000" >
+											</div>
+										</div>
+									</div>
+
+
+
+									<style type="text/css">
+
+
+								</style>
+
+								<div style="position: static;">
+									<br><center>
+										<div>
+											<a class="btn btn-default" id="voltar1">Voltar</a>
+											<button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
+											<button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+										</div></center>
+									</div>
+									<!-- Circles which indicates the steps of the form: -->
+									<div style="text-align:center;margin-top:40px;">
+										<span class="step"></span>
+										<span class="step"></span>
+										<span class="step"></span>
+										<span class="step"></span>
+									</div>
+								</form>
+							</div>
+							<div class="container div2" style="display: none; margin-top: 60px;">
+								<form method="POST" action="cadastrar.php">
+									<br>
+									<h3 >Formulário Cadastrar Oficina</h3>
+
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">Login:*</label><br>
+											<input class="form-control" name="login"  minlength="6" type="text" required>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">Senha:*</label><br>
+											<input class="form-control" name="senha"  id="senha" minlength="6" type="password" required>
+										</div>
+										<div class="col">
+											<label for="ex3">Senha:*</label><br>
+											<input class="form-control" name="c_senha" id="c_senha"  minlength="6" type="password" required>
+										</div>
+									</div>
+									<hr>
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">Nome oficina:*</label><br>
+											<input class="form-control letters"  name="nome" type="text" pattern="[a-z\s]+$"   required>
+										</div>
+										<div class="col">
+											<label for="ex3">Telefone:</label><br>
+
+
+											<input class="form-control telefone" type="text" name="telefone">
+
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">Celular:</label><br>
+
+
+
+											<input class="form-control telefone" type="text" name="celular">
+
+										</div>
+										<div class="col">
+											<label for="ex3">CNPJ:*</label><br>
+											<input class="form-control cnpj" type="text" name="cnpj">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">CEP:*</label><br>
+											<input name="cep" class="form-control cep" type="text" id="cep" value=""  onblur="pesquisacep(this.value);">
+
+										</div>
+										<div class="col">
+											<label for="ex3">Estado:*</label><br>
+											<input type="text" class="form-control letters" name="uf" id="uf">
+										</div>
+										<div class="col">
+											<label for="ex3">Cidade:</label><br>
+											<input type="text" name="cidade" class="form-control letters" id="cidade">
+										</div>
+									</div>
+									
+									<div class="form-row">
+										<div class="col">
+											<label for="ex3">Bairro:*</label><br>
+											<input class="form-control letters" name="bairro" id="bairro" type="text" required>
+										</div>
+										<div class="col">
+											<label for="ex3">Rua:</label><br>
+											<input class="form-control"  name="endereco" id="rua" type="text" required>
+										</div>
+										<div class="col">
+											<label for="ex3">Numero:*</label><br>
+											<input class="form-control"  name="numero" type="text" pattern="[0-9]+$" required>
+										</div>
+										<div class="col">
+											<label for="ex3">Complemento:</label><br>
+											<input class="form-control"  name="complemento" type="text">
+										</div>
+									</div>
+
+									<br>
+									<center><button class="btn btn-default" id="voltar2">Voltar</button> <button type="submit" class="btn btn-primary"> Enviar</button></center>
+
+								</form>
+							</div>
+							<script src="js/validar_form2.js"></script>
+							<script src="js/validar_form.js"></script>
+							<script>
+								var form = $( "#regForm" );
+
+								$( "#nextBtn" ).click(function() {
+
+
+
+									form.valid();
+
+								});
+							</script>
+
+							<script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 var z, x = document.getElementsByClassName("tab");

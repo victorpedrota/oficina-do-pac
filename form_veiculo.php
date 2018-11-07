@@ -285,6 +285,9 @@ else{
 
                                   <?php
                                   $x = 0;
+                                  if (mysqli_num_rows($veiculo_resultado) == 0) {
+                                     echo "<li class='list-group-item itens'><p style='display:block;'>Não há veículos cadastrados</p></li>";
+                                  }
                                   while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
 
                                     echo "<li class='list-group-item itens'>Placa:<p style='display:inline-block;'  class='placa'> " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'test".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  Modelo:  " . $vetor_veiculo['modelo']. " Marca: ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."  Cor:".$vetor_veiculo['cor']."
