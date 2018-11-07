@@ -48,7 +48,7 @@ $cepn = soNumero($cep);
             $resultado_cod = mysqli_query($conn,$sql_cod);
             $vetor_cod = mysqli_fetch_array($resultado_cod);
             $cod_login = $vetor_cod['cod_login'];
-            $sql_cliente = "INSERT INTO `cliente`(`cod_login`, `nome`, `rg`, `cpf`, `rua`, `estado`, `cep`, `cidade`, `telefone`, `bairro`, `complemento`, `sobrenome`, `numero`, `celular`,`data_nascimento`) VALUES ($cod_login,'$nome',$rgn,'$cpf','$rua','$estado',$cepn,'$cidade',$telefonen,'$bairro','$complemento','$sobrenome',$numero,$celularn,'$data')";
+            $sql_cliente = "INSERT INTO `cliente`(`cod_login`, `nome`, `rg`, `cpf`, `rua`, `estado`, `cep`, `cidade`, `telefone`, `bairro`, `complemento`, `sobrenome`, `numero`, `celular`,`data_nascimento`) VALUES ($cod_login,'$nome',$rgn,'$cpf','$rua','$estado',$cepn,'$cidade',$telefonen,'$bairro','$complemento','$sobrenome',$numero,$celularn,'$data_nascimento')";
             $insere = mysqli_query($conn,$sql_cliente);
 
             if ($insere) {
