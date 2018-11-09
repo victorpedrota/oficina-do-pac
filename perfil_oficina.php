@@ -60,8 +60,8 @@ else{
         left:84%;
       }
       .cortar{
-      object-fit: cover; object-position: center;
-    }
+        object-fit: cover; object-position: center;
+      }
     </style>
 
 
@@ -118,10 +118,10 @@ else{
                 $cliente1 ="SELECT * FROM `mecanico` WHERE `cod_oficina` = $cod_oficina";
                 $resultado_cliente1 = mysqli_query($conn,$cliente1);
                 $num1 = mysqli_num_rows($resultado_cliente1);
- 
+
                 if ($num1 != 0) {
                   while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente)) {
-                  echo "<li class='list-group-item itens'><p>".$vetor_veiculo["nome"]."</p></li>";
+                    echo "<li class='list-group-item itens'><p>".$vetor_veiculo["nome"]."</p></li>";
                   }
                 }
                 else{
@@ -135,6 +135,9 @@ else{
               </ul>
             </div></div>
           </div>
+          <script src="js/validar_form2.js"></script>
+          <script src="js/validar_form.js"></script>
+          <script type="text/javascript" src="js/jquery.mask.min.js"></script>
           <div class="" id="form_mecanico" style="display: none">
             <form action="cadastrar_mecanico.php" method="POST">
              <h3 >Formulário Cadastrar Usuário</h3>
@@ -149,7 +152,7 @@ else{
               <div class="col">
                 <label for="ex3">Senha:*</label><br>
 
-                <input class="form-control"  name="senha"  minlength="8" type="password" required>
+                <input class="form-control"  name="senha"  minlength="6" type="password" required>
               </div>
 
             </div>
@@ -219,16 +222,20 @@ else{
           </div>
           <div class="col">
             <label for="ex3">Complemento:</label><br>
-            <input class="form-control"   name="complemento" type="text">
+            <input class="form-control"  name="complemento" type="text">
           </div>
           <div class="col">
-            <label for="ex3">CEP:*</label><br>
-            <input class="form-control"   OnKeyPress="formatar('##.###.###', this)" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}" placeholder="XX.XXX.XXX" minlength="10" name="cep" type="text" maxlength="10" required>
+            <label for="ex3">cep:</label><br>
+            <input class="form-control"  id="cep" type="text" required>
           </div>
 
         </div>
 
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#cep').mask('00.000-000');
+  })
+</script>
         <br>
         <div><center><button class="btn btn-primary" type="submit" name=""> Enviar</button></center></div>
       </form>
