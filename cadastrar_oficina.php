@@ -1,177 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <title>Cadastrar Usuário</title>
-  <meta charset="utf-8">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <script type="text/javascript"> 
-
-    function formatar(mascara, documento){
-      var i = documento.value.length;
-      var saida = mascara.substring(0,1);
-      var texto = mascara.substring(i)
-
-      if (texto.substring(0,1) != saida){
-        documento.value += texto.substring(0,1);
-      }
-
-    }
-
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-</head>
-<body>
-  <?php
-
-    require('navbar2.html');
-    ?>
-  <script type="text/javascript" >
-
-  function limpa_formulário_cep() {
-            //Limpa valores do formulário de cep.
-            document.getElementById('rua').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('cidade').value=("");
-            document.getElementById('uf').value=("");
-            
-          }
-
-          function meu_callback(conteudo) {
-            if (!("erro" in conteudo)) {
-            //Atualiza os campos com os valores.
-            document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('uf').value=(conteudo.uf);
-            
-        } //end if.
-        else {
-            //CEP não Encontrado.
-            limpa_formulário_cep();
-            alert("CEP não encontrado.");
-          }
+    <title>Oficina Pro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="scss/main.css">
+    <link href="css/form.css" rel="stylesheet">
+    <style type="text/css">
+        ::-webkit-scrollbar-track {
+            background-color: #F4F4F4;
         }
-        
-        function pesquisacep(valor) {
 
-        //Nova variável "cep" somente com dígitos.
-        var cep = valor.replace(/\D/g, '');
+        ::-webkit-scrollbar {
+            width: 6px;
+            background: #F4F4F4;
+        }
 
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+        ::-webkit-scrollbar-thumb {
+            background: #dad7d7;
+        }
 
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
+        body {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
 
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
+<body>
+    <?php  require('navbar.html'); ?>
+    <div class="container" style="margin-top: 60px;">
+        <form method="POST" id="form" action="cadastrar.php">
+            <br>
+            <h3>Formulário Cadastrar Oficina</h3>
 
-                //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('rua').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('cidade').value="...";
-                document.getElementById('uf').value="...";
-                
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">Login:</label>
+                    <input class="form-control" name="login" id="login" minlength="6" type="text" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">Senha:</label>
+                    <input class="form-control" name="senha" id="senha" minlength="6" type="password" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Confirmar Senha:</label>
+                    <input class="form-control" name="c_senha" id="c_senha" minlength="6" type="password" required>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">Nome oficina:</label>
+                    <input class="form-control letters" id="nome" name="nome" type="text" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Telefone:</label>
 
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
 
-                //Sincroniza com o callback.
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+                    <input class="form-control telefone" id="telefone" type="text" name="telefone" required>
 
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">Celular:</label>
+
+
+
+                    <input class="form-control telefone" type="text" id="celular" name="celular" required>
+
+                </div>
+                <div class="col">
+                    <label for="ex3">CNPJ:</label>
+                    <input class="form-control cnpj" type="text" id="cnpj" name="cnpj" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">CEP:</label>
+                    <input name="cep" class="form-control cep" type="text" id="cep" value="" onblur="pesquisacep(this.value);" required>
+
+                </div>
+                <div class="col">
+                    <label for="ex3">Estado:</label>
+                    <input type="text" class="form-control letters" name="uf" id="uf" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Cidade:</label>
+                    <input type="text" name="cidade" class="form-control letters" id="cidade" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label for="ex3">Bairro:</label>
+                    <input class="form-control letters" name="bairro" id="bairro" type="text" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Rua:</label>
+                    <input class="form-control" name="endereco" id="rua" type="text" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Numero:</label>
+                    <input class="form-control numero" id="numero" type="text" pattern="[0-9]+$" required>
+                </div>
+                <div class="col">
+                    <label for="ex3">Complemento:</label>
+                    <input class="form-control" id="complemento" name="complemento" type="text">
+                </div>
+            </div>
+
+            <br>
+            <center><a class="btn btn-default" href="form_cliente.php">Voltar</a> <button type="button" class="btn btn-primary" id="enviar"> Enviar</button></center>
+
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+        function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value = ("");
+            document.getElementById('bairro').value = ("");
+            document.getElementById('cidade').value = ("");
+            document.getElementById('uf').value = ("");
+
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('rua').value = (conteudo.logradouro);
+                document.getElementById('bairro').value = (conteudo.bairro);
+                document.getElementById('cidade').value = (conteudo.localidade);
+                document.getElementById('uf').value = (conteudo.uf);
 
             } //end if.
             else {
-                //cep é inválido.
+                //CEP não Encontrado.
                 limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-              }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-          }
+                alert("CEP não encontrado.");
+            }
+        }
+
+        function pesquisacep(valor) {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('rua').value = "...";
+                    document.getElementById('bairro').value = "...";
+                    document.getElementById('cidade').value = "...";
+                    document.getElementById('uf').value = "...";
+
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
         };
+    </script>
 
-      </script>
-  <?php  require('navbar2.html'); ?>
-  <div class="container" style="margin-top: 80px;">
-    <form method="POST" action="">
-      <h3 >Formulário Cadastrar Oficina</h3>
+    <script src="js/validar_form2.js"></script>
+    <script src="js/validar_form.js"></script>
+    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.letters').bind('keyup blur', function() {
+                var node = $(this);
+                node.val(node.val().replace(/[^a-z]/g, ''));
+            });
+            $('#numero').mask('0#');
+            $(".cnpj").mask("00.000.000/0000-00");
+            $('.cep').mask('00.000-000');
 
-      <div class="form-row">
-        <div class="col">
-          <label for="ex3">Login:*</label><br>
-          <input class="form-control" id="ex3" name="login"  minlength="6" type="text" required>
-        </div>
-        <div class="col">
-         <label for="ex3">Senha:*</label><br>
-         <input class="form-control" id="ex3" name="senha"  minlength="8" type="password" required>
-       </div>
-     </div>
-     <div class="form-row">
-      <div class="col">
-        <label for="ex3">Nome oficina:*</label><br>
-        <input class="form-control" id="ex3" name="nome" type="text" pattern="[a-z\s]+$"   required>
-      </div>
-      <div class="col">
-       <label for="ex3">Telefone:</label><br>
-       <input class="form-control" type="text" name="telefone" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
-     </div>
-   </div>
-   <div class="form-row">
-    <div class="col">
-     <label for="ex3">Celular:</label><br>
-     <input class="form-control" type="text" name="celular" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
-   </div>
-   <div class="col">
-     <label for="ex3">CNPJ:*</label><br>
-     <input class="form-control" type="text" name="cnpj" maxlength="18" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="XX.XXX.XXX/XXX-XX" OnKeyPress="formatar('##.###.###/####-##', this)" minlength="18" required >
-   </div>
- </div>
- <div class="form-row">
-  <div class="col">
-   <label for="ex3">CEP:*</label><br>
-   <input name="cep" class="form-control" type="text" id="cep" value="" size="10" maxlength="9" onblur="pesquisacep(this.value);">
- </div>
- <div class="col">
-  <label for="ex3">Estado:*</label><br>
-   <input type="text" class="form-control" name="uf" id="uf">
-</div>
-</div>
-<div class="form-row">
-  <div class="col">
-    <label for="ex3">Cidade:</label><br>
-    <input type="text" name="cidade" class="form-control" id="cidade">
-  </div>
-  <div class="col">
-    <label for="ex3">Bairro:*</label><br>
-    <input class="form-control" id="bairro" name="bairro" type="text" required>
-  </div>
-</div>
-<div class="form-row">
-  <div class="col">
-    <label for="ex3">Rua:</label><br>
-    <input class="form-control" id="rua" name="endereco" type="text" required>
-  </div>
-  <div class="col">
-    <label for="ex3">Numero:*</label><br>
-    <input class="form-control" id="numero" name="numero" type="text" pattern="[0-9]+$" required>
-  </div>
-</div>
-<label for="ex3">Complemento:</label><br>
-<input class="form-control" id="ex3" name="complemento" type="text">
-<br>
-<center><button type="submit" class="btn btn-primary"> Enviar</button></center>
+            $('#data').mask('00/00/0000');
 
-</form>
-</div>
+            $('.telefone').mask('(00) 0000-00009');
+            $('.telefone').blur(function(event) {
+                if ($(this).val().length == 15) { // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+                    $('.telefone').mask('(00) 00000-0009');
+                } else {
+                    $('.telefone').mask('(00) 0000-00009');
+                }
+            });
+            $("#enviar").click(function() {
+                var form = $("#form")
+                var alex = ""
+                form.valid();
+                if (form.valid() == true) {
+                    $.post("cadastrar.php", {
+                            nome: $("#nome").val(),
+                            celular: $("#celular").val(),
+                            telefone: $("#telefone").val(),
+                            cnpj: $("#cnpj").val(),
+                            uf: $("#uf").val(),
+                            cidade: $("#cidade").val(),
+                            rua: $("#rua").val(),
+                            login: $("#login").val(),
+                            bairro: $("#bairro").val(),
+                            numero: $("#numero").val(),
+                            complemento: $("#complemento").val(),
+                            senha: $("#senha").val(),
+                            cep: $("#cep").val(),
+                            c_senha: $("#c_senha").val()
 
-    </body>
-    </html>
+                        })
+                        .done(function(data) {
+                            if ( data == 1) {
+                            	 $("#cnpj").css("background-color","#ff7b7b")
+                            }
+                            else if( data == 2) {
+                            	$("#senha").css("background-color","#ff7b7b")
+                            	$("#c_senha").css("background-color","#ff7b7b")
+                            }
+                            else if (data == 0 ) {
+                            	 location.reload();
+                            }
+                        });
+                }
+
+
+
+            })
+            $(".form-control").click(function(){
+            	$(this).css("background-color","#fff")
+            })
+        });
+    </script>
+</body>
+
+</html>

@@ -5,13 +5,14 @@ $telefone = $_POST['telefone'];
 $cnpj = $_POST['cnpj'];
 $estado = $_POST['uf'];
 $cidade = $_POST['cidade'];
-$endereco = $_POST['endereco'];
+$rua = $_POST['rua'];
 $login = $_POST['login'];
 $bairro = $_POST['bairro'];
-$numero = $_POST['numero'];
+$c_senha = $_POST['c_senha'];
 $complemento = $_POST['complemento'];
 $senha = $_POST['senha'];
 $cep = $_POST['cep'];
+$numero = $_POST['numero'];
 require("connect.php");
 
 function validar_cnpj($cnpj)
@@ -47,18 +48,16 @@ function validar_cnpj($cnpj)
     $cepn = soNumero($cep);
     
     if (validar_cnpj($cnpj) ==false) {
-     ?>
-         <script>
-            alert("<?php echo "CNPJ inválido"?>");
-            document.location.href=window.history.go(-1);
-        </script>    
-            <?php
+     echo 1;
+}
+else if($senha != $c_senha ){
+    echo 2;
 }
 
 else
 {
     $sql_pesquisa ="select * from `login` where `login` = '$login'" ;
-    $resultado = mysqli_query($conn,$sql_pesquisa); x
+    $resultado = mysqli_query($conn,$sql_pesquisa); 
     $numero = mysqli_num_rows($resultado);
     $vetor_login = mysqli_fetch_array($resultado);
     $sql ="select * from `oficina` where  `cnpj` = '$cnpjn'" ;
@@ -74,23 +73,12 @@ else
             $resultado_cod = mysqli_query($conn,$sql_cod);
             $vetor_cod = mysqli_fetch_array($resultado_cod);
             $cod_login = $vetor_cod['cod_login'];
-            $sql_cliente = "INSERT INTO `oficina`(`cod_login`,`nome`,`cnpj`,`endereco`,`estado`,`cep`,`cidade`,`telefone`,`celular`,`bairro`,`complemento`) VALUES ($cod_login,'$nome',$cnpjn,'$endereco','$estado',$cepn,'$cidade',$telefonen,$celularn,'$bairro','$complemento')";
+            $sql_cliente = "INSERT INTO `oficina`(`cod_login`,`nome`,`cnpj`,`rua`,`estado`,`cep`,`cidade`,`telefone`,`celular`,`bairro`,`complemento`,`numero`) VALUES ($cod_login,'$nome',$cnpjn,'$rua','$estado',$cepn,'$cidade',$telefonen,$celularn,'$bairro','$complemento',$numero)";
             $insere = mysqli_query($conn,$sql_cliente);
 
-            ?>
-         <script>
-            alert("<?php echo "Cadastro com sucesso"?>");
-            document.location.href=window.history.go(-1);
-        </script>    
-            <?php 
-        
+            echo 0;
     } 
 
         else{
-           ?>
-            <script>
-            alert("<?php echo "Erro"?>");
-            document.location.href=window.history.go(-1);
-        </script> 
-           <?php }}
+           echo "Erro"; }}
       ?>

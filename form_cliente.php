@@ -118,7 +118,7 @@ require('navbar.html');
 						<br>
 						<div style="margin-top: 10px;width: 400px;">
 							<h4 style="text-align: justify; text-justify: inter-word;">Se você quiser se cadastrar para gerenciar melhor a sua oficina e atrair mais cliente escolha esta opção.</h4><center>
-								<button  id="oficina" class="btn btn-default">Oficina</button></center></div>
+								<a  id="oficina" href="cadastrar_oficina.php" class="btn btn-default">Oficina</a></center></div>
 							</div>
 							<div class="col">
 								<img src="https://blog.trocafone.com/wp-content/uploads/2015/08/Dica-para-o-cliente-considere-a-longetividade-do-smartphone.jpg" style="width: 400px;border-radius: 10px">
@@ -274,96 +274,8 @@ require('navbar.html');
 									</div>
 								</form>
 							</div>
-							<div class="container div2" style="display: none; margin-top: 60px;">
-								<form method="POST" action="cadastrar.php">
-									<br>
-									<h3 >Formulário Cadastrar Oficina</h3>
-
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">Login:*</label><br>
-											<input class="form-control" name="login"  minlength="6" type="text" required>
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">Senha:*</label><br>
-											<input class="form-control" name="senha"  id="senha" minlength="6" type="password" required>
-										</div>
-										<div class="col">
-											<label for="ex3">Senha:*</label><br>
-											<input class="form-control" name="c_senha" id="c_senha"  minlength="6" type="password" required>
-										</div>
-									</div>
-									<hr>
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">Nome oficina:*</label><br>
-											<input class="form-control letters"  name="nome" type="text" pattern="[a-z\s]+$"   required>
-										</div>
-										<div class="col">
-											<label for="ex3">Telefone:</label><br>
-
-
-											<input class="form-control telefone" type="text" name="telefone">
-
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">Celular:</label><br>
-
-
-
-											<input class="form-control telefone" type="text" name="celular">
-
-										</div>
-										<div class="col">
-											<label for="ex3">CNPJ:*</label><br>
-											<input class="form-control cnpj" type="text" name="cnpj">
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">CEP:*</label><br>
-											<input name="cep" class="form-control cep" type="text" id="cep" value=""  onblur="pesquisacep(this.value);">
-
-										</div>
-										<div class="col">
-											<label for="ex3">Estado:*</label><br>
-											<input type="text" class="form-control letters" name="uf" id="uf">
-										</div>
-										<div class="col">
-											<label for="ex3">Cidade:</label><br>
-											<input type="text" name="cidade" class="form-control letters" id="cidade">
-										</div>
-									</div>
-									
-									<div class="form-row">
-										<div class="col">
-											<label for="ex3">Bairro:*</label><br>
-											<input class="form-control letters" name="bairro" id="bairro" type="text" required>
-										</div>
-										<div class="col">
-											<label for="ex3">Rua:</label><br>
-											<input class="form-control"  name="endereco" id="rua" type="text" required>
-										</div>
-										<div class="col">
-											<label for="ex3">Numero:*</label><br>
-											<input class="form-control"  name="numero" type="text" pattern="[0-9]+$" required>
-										</div>
-										<div class="col">
-											<label for="ex3">Complemento:</label><br>
-											<input class="form-control"  name="complemento" type="text">
-										</div>
-									</div>
-
-									<br>
-									<center><button class="btn btn-default" id="voltar2">Voltar</button> <button type="submit" class="btn btn-primary"> Enviar</button></center>
-
-								</form>
-							</div>
-							<script src="js/validar_form2.js"></script>
+						
+								<script src="js/validar_form2.js"></script>
 							<script src="js/validar_form.js"></script>
 							<script>
 								var form = $( "#regForm" );
@@ -558,10 +470,7 @@ function TestaCPF(strCPF) {
 			$("#botoes").css("display","none")
 			$(".div1").css("display","block")
 		})
-		$("#oficina").click(function(){
-			$("#botoes").css("display","none")
-			$(".div2").css("display","block")
-		})
+		
 		$("#voltar2").click(function(){
 			$("#botoes").css("display","block")
 			$(".div2").css("display","none")
