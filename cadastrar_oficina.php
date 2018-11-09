@@ -33,7 +33,7 @@
         <form method="POST" id="form" action="cadastrar.php">
             <br>
             <h3>Formulário Cadastrar Oficina</h3>
-
+            <center>><div id="texto"></div></center>
             <div class="form-row">
                 <div class="col">
                     <label for="ex3">Login:</label>
@@ -244,6 +244,9 @@
                             }
                             else if (data == 0 ) {
                             	 location.reload();
+                            }
+                            else if(data == 3){
+                            	$("#texto").text("Login ou cnpj já cadastrados")
                             }
                         });
                 }

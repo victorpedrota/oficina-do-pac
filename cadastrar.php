@@ -56,11 +56,11 @@ else if($senha != $c_senha ){
 
 else
 {
-    $sql_pesquisa ="select * from `login` where `login` = '$login'" ;
+    $sql_pesquisa ="SELECT * FROM `login` WHERE `login` = '$login'" ;
     $resultado = mysqli_query($conn,$sql_pesquisa); 
     $numero = mysqli_num_rows($resultado);
     $vetor_login = mysqli_fetch_array($resultado);
-    $sql ="select * from `oficina` where  `cnpj` = '$cnpjn'" ;
+    $sql ="SELECT * FROM `oficina` WHERE  `cnpj` = '$cnpjn'" ;
     $resultado_sql = mysqli_query($conn,$sql); 
     $numero_cliente = mysqli_num_rows($resultado_sql);
     if($numero == 0 && $numero_cliente == 0){
@@ -73,12 +73,12 @@ else
             $resultado_cod = mysqli_query($conn,$sql_cod);
             $vetor_cod = mysqli_fetch_array($resultado_cod);
             $cod_login = $vetor_cod['cod_login'];
-            $sql_cliente = "INSERT INTO `oficina`(`cod_login`,`nome`,`cnpj`,`rua`,`estado`,`cep`,`cidade`,`telefone`,`celular`,`bairro`,`complemento`,`numero`) VALUES ($cod_login,'$nome',$cnpjn,'$rua','$estado',$cepn,'$cidade',$telefonen,$celularn,'$bairro','$complemento',$numero)";
+            $sql_cliente = "INSERT INTO `oficina`(`cod_login`,`nome`,`cnpj`,`rua`,`estado`,`cep`,`cidade`,`telefone`,`celular`,`bairro`,`complemento`,`numero`) VALUES ($cod_login,'$nome','$cnpjn','$rua','$estado',$cepn,'$cidade',$telefonen,$celularn,'$bairro','$complemento',$numero)";
             $insere = mysqli_query($conn,$sql_cliente);
 
             echo 0;
     } 
 
         else{
-           echo "Erro"; }}
+           echo 3; }}
       ?>
