@@ -139,105 +139,127 @@ else{
           <script src="js/validar_form.js"></script>
           <script type="text/javascript" src="js/jquery.mask.min.js"></script>
           <div class="" id="form_mecanico" style="display: none">
-            <form action="cadastrar_mecanico.php" method="POST">
+            <form action="cadastrar_mecanico.php" id="form" method="POST">
              <h3 >Formulário Cadastrar Usuário</h3>
-             <label for="ex3">*Itens obrigatórios</label><br> 
+
 
              <div class="row">
               <div class="col ">
-                <label for="ex3">Login:*</label><br>
+                <label for="ex3">Login:</label><br><div id="texto"></div>
 
-                <input class="form-control"  name="login"  minlength="6" type="text" required>
+                <input class="form-control"  name="login" id="login" minlength="6" type="text" required>
               </div>
               <div class="col">
-                <label for="ex3">Senha:*</label><br>
+                <label for="ex3">Senha:</label><br>
 
-                <input class="form-control"  name="senha"  minlength="6" type="password" required>
+                <input class="form-control"  name="senha" id="senha"  minlength="6" type="password" required>
+              </div>
+              <div class="col">
+                <label for="ex3">Confirmar senha:</label><br>
+
+                <input class="form-control"  name="c_senha"  id="c_senha" minlength="6" type="password" required>
               </div>
 
             </div>
             <div class="row">
               <div class="col ">
-                <label for="ex3">Primeiro nome:*</label><br>
+                <label for="ex3">Primeiro nome:</label><br>
 
-                <input class="form-control"   name="nome" type="text" pattern="[a-z\s]+$"   required>
+                <input class="form-control letters" id="nome" name="nome" type="text" required>
               </div>
               <div class="col">
-                <label for="ex3">Sobrenome:*</label><br>
-                <input class="form-control"   name="sobrenome" pattern="[a-z\s]+$"  type="text" required></td>
+                <label for="ex3">Sobrenome:</label><br>
+                <input class="form-control letters"   name="sobrenome" id="sobrenome"   type="text" required></td>
               </div>
             </div>
             <div class="row">
               <div class="col ">
-               <label for="ex3">Data de nascimento:*</label><br>
-               <input class="form-control" type="date" name="data" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="00/00/0000" OnKeyPress="formatar('##/##/####', this)" minlength="10" required>
+               <label for="ex3">Data de nascimento:</label><br>
+               <input class="form-control data" id="data" type="date" required>
              </div>
              <div class="col">
               <label for="ex3">Telefone:</label><br>
-              <input class="form-control" type="text" name="telefone" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+              <input class="form-control telefone" type="text" name="telefone" id="telefone"  required>
             </div>
             <div class="col">
               <label for="ex3">Celular:</label><br>
-              <input class="form-control" type="text" name="celular" maxlength="12" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" placeholder="00 0000-0000" OnKeyPress="formatar('## ####-####', this)" minlength="12">
+              <input class="form-control telefone" type="text" name="celular" id="celular" required>
             </div>
 
           </div>
           <div class="row">
             <div class="col ">
-             <label for="ex3">RG:*</label><br>
-             <input class="form-control" type="text" name="rg" maxlength="12" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]" placeholder="XX.XXX.XXX-X" OnKeyPress="formatar('##.###.###-#', this)" minlength="12" required >
+             <label for="ex3">RG:</label><br>
+             <input class="form-control" type="text" name="rg" id="rg" required>
            </div>
            <div class="col">
-            <label for="ex3">CPF:*</label><br>
-            <input class="form-control" type="text" name="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" placeholder="XXX.XXX.XXX-XX" OnKeyPress="formatar('###.###.###-##', this)" minlength="14" required >
+            <label for="ex3">CPF:</label><br>
+            <input class="form-control" type="text" name="cpf"  id="cpf" required >
           </div>
           <div class="col">
-            <label for="ex3">Estado:*</label><br>
-            <select class="form-control" id="estados" name="estado"> 
-              <option value=""></option>
-            </select>
+            <label for="ex3">CEP:</label><br>
+            <input class="form-control"  id="cep" type="text" required>
+          </div>
+          <div class="col">
+            <label for="ex3">Estado:</label><br>
+            <input class="form-control" id="uf" name="uf" required> 
+
           </div>
 
         </div>
         <div class="row">
+
           <div class="col ">
-            <label for="ex3">Cidade:*</label><br>
-            <select id="cidades" name="cidade" class="form-control">
-            </select>
+            <label for="ex3">Cidade:</label><br>
+            <input id="cidade" name="cidade" class="form-control letters" required>
+            
           </div>
           <div class="col">
-            <label for="ex3">Bairro:*</label><br>
-            <input class="form-control"   name="bairro" type="text" required>
+            <label for="ex3">Bairro:</label><br>
+            <input class="form-control" id="bairro"   name="bairro" type="text" required>
           </div>
-          <div class="col">
-            <label for="ex3">Rua:*</label><br>
-            <input class="form-control"   name="bairro" type="text" required>
-          </div>
+
 
         </div>
         <div class="row">
+          <div class="col">
+            <label for="ex3">Rua:</label><br>
+            <input class="form-control"  id="rua" name="rua" type="text" required>
+          </div>
           <div class="col ">
-            <label for="ex3">Numero:*</label><br>
-            <input class="form-control"   name="numero" type="text" pattern="[0-9]+$" required>
+            <label for="ex3">Numero:</label><br>
+            <input class="form-control"  id="numero"  name="numero" type="text" required>
           </div>
           <div class="col">
             <label for="ex3">Complemento:</label><br>
-            <input class="form-control"  name="complemento" type="text">
+            <input class="form-control"  name="complemento" id="complemento" type="text">
           </div>
-          <div class="col">
-            <label for="ex3">cep:</label><br>
-            <input class="form-control"  id="cep" type="text" required>
-          </div>
+          
 
         </div>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#cep').mask('00.000-000');
-  })
-</script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#cep').mask('00.000-000');
+            $('#numero').mask('#0');
+            $('.telefone').mask('(00) 0000-00009');
+            $('.telefone').blur(function(event) {
+                if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+                  $('.telefone').mask('(00) 00000-0009');
+                } else {
+                  $('.telefone').mask('(00) 0000-00009');
+                }
+              });
+            $('.letters').bind('keyup blur',function(){ 
+              var node = $(this);
+              node.val(node.val().replace(/[^a-z]/g,'') ); }
+              );
+          })
+          $('#cpf').mask('000.000.000-00', {reverse: true});
+          $('#rg').mask('00.000.000-0', {reverse: true});
+        </script>
         <br>
-        <div><center><button class="btn btn-primary" type="submit" name=""> Enviar</button></center></div>
+        <div><center><button class="btn btn-primary" id="send" type="button"> Enviar</button></center></div>
       </form>
     </div>
 
@@ -359,13 +381,96 @@ else{
 
     })
   });
+  $("#send").click(function(){
+
+    var form
+    form = $("#form")
+    form.valid();
+    if (form.valid() == true) {
+      $.post("cadastrar_mecanico.php", {
+        nome: $("#nome").val(),
+        sobrenome: $("#sobrenome").val(),
+        celular: $("#celular").val(),
+        telefone: $("#telefone").val(),
+        rg: $("#rg").val(),
+        cpf: $("#cpf").val(),
+        cidade: $("#cidade").val(),
+        rua: $("#rua").val(),
+        login: $("#login").val(),
+        bairro: $("#bairro").val(),
+        numero: $("#numero").val(),
+        complemento: $("#complemento").val(),
+        senha: $("#senha").val(),
+        cep: $("#cep").val(),
+        c_senha: $("#c_senha").val(),
+        data: $("#data").val(),
+        uf: $("#uf").val()
+
+      })
+      .done(function(data) {
+        
+        if ( data == 1) {
+         $('#erro').modal('show')
+       }
+       else if( data == 2) {
+        $("#login").css("background-color","#ff7b7b")
+        $("#texto").text("Nick ja existe")
+      }
+      else if (data == 0 ) {
+       $('#exampleModal').modal('show')
+     }
+     else if(data == 3){
+      $("#texto").text("Login ou cnpj já cadastrados")
+    }
+  });
+    }
+
+
+
+  })
 </script>
 
 </main>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Cadastro feito com sucesso
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
+<div class="modal fade" id="erro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        CPF ou RG já cadastrados
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
