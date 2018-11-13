@@ -4,10 +4,54 @@ session_start();
 if(!isset($_SESSION["system_control"]))
 {
   ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-  </script>
+  <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="scss/main.css">
+    
+
+    <title>Acesso inválido</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Você não tem acesso a esta página
+      </div>
+      <div class="modal-footer">
+        
+        <a  href="login.php" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#exampleModalLong').modal('show')
+    $('#exampleModalLong').on('hidden.bs.modal', function (e) {
+ window.location.href = 'login.php';
+})
+
+  })
+</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+  </body>
+</html>
   <?php       
 }
 else{
@@ -53,6 +97,25 @@ else{
     require("navbar_mecanico.html");
     ?>
     <div class="row">
+       <div class="modal fade" id="suceeso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Concluido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Entrada do veículo confirmada
+      </div>
+      <div class="modal-footer">
+        
+        <a  href="perfil_mecanico.php" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div class="col">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -225,7 +288,7 @@ else{
                               echo "<li class='list-group-item itens'><p style='display:block;'>
                               Veículo:".$vetor_veiculo['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
                               Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
-                              Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo'>Confirmar entrada</button>
+                              Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo gambiarra2'>Confirmar entrada</button>
                               </li>";
                             }
                           }
@@ -349,11 +412,15 @@ else{
                   $('#div2').css("display","none");
                   $('#div_servicos').css("display","none");
                 });
-                $(".codigo").click(function() {
+                $(".codigo.gambiarra2").click(function() {
                   $.post("dar_entrada.php", {
                     codigo: $(this).val()
-                  },
-                  );
+                  }
+                  )
+                  $('#suceeso').modal('show')
+                      $('#sucesso').on('hidden.bs.modal', function (e) {
+                       window.location.href = 'perfil_mecanico.php';
+                     })
                 })
                 $(".codigof").click(function() {
                   $("#cod_serv").val($(this).val())
@@ -386,7 +453,7 @@ else{
                     codigo: $("#cod_serv").val() , var: 0
                   },
                   );
-                  $(location).attr('href', 'perfil_mecanico.php');
+                  location.reload();
 
                 })
 
@@ -430,10 +497,53 @@ else{
               session_destroy();
             //Mensagem para o Usuário
               ?>
-              <script>
-                alert("Acesso Inválido!");
-                document.location.href = "login.php";
-              </script>
+              <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="scss/main.css">
+    
+
+    <title>Acesso inválido</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Você não tem acesso a esta página
+      </div>
+      <div class="modal-footer">
+        
+        <a  href="login.php" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('#exampleModalLong').modal('show')
+    $('#exampleModalLong').on('hidden.bs.modal', function (e) {
+ window.location.href = 'login.php';
+})
+
+  })
+</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+  </body>
+</html>
               <?php           
             }
           }

@@ -122,7 +122,7 @@ else if(isset($_POST['nota'])){
 				"cod_autor": "'.$row['cod_autor'].'",
 				"cod_orcamento": '.$row['cod_orcamento'].',
 				"status": '.$vetor_servico['status'].',
-				"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'"]},';
+				"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'","'.$vetor_servico['mostra'].'"]},';
 			}
 			else{
 				echo '{

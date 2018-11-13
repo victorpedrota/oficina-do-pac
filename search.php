@@ -9,7 +9,6 @@ $db = mysqli_select_db($conn,"bd_do_alex") or die("Não foi possível selecionar
 
 
 
-
 	$sql = "SELECT * FROM `oficina`";
 	$result = mysqli_query($conn,$sql);
 	$numero = mysqli_num_rows($result);

@@ -144,7 +144,7 @@ require('navbar.html');
 
 
 										<h5 style="display:  inline-block;">Login:</h5>
-										<input class="form-control"  id="login" name="login"  minlength="6" type="text" required>
+										<input class="form-control"  id="login" name="login"  minlength="6" type="text" required >
 										<br>
 
 										<h5 style="display:  inline-block;">Senha:</h5>

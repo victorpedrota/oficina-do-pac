@@ -8,7 +8,8 @@ require('connect.php');
     $problema = $_POST['problema'];
     $cod_cliente = $_POST['cod_cliente'];
     $myJSON = json_decode($oficina, true);
-
+    $data =  date('h:i:s');
+    $hora = date("d/m/Y");;
     foreach ( $myJSON as $cod_oficina ) {
     
 
@@ -23,7 +24,7 @@ require('connect.php');
       $protocolo = mt_rand() . "\n";
     }
 
-    $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico')";
+    $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`,`data`,`hora`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico',$data,$hora)";
     $insere = mysqli_query($conn,$sql_cliente);
 
     

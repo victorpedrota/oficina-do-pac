@@ -36,18 +36,18 @@
             <center>><div id="texto"></div></center>
             <div class="form-row">
                 <div class="col">
-                    <label for="ex3">Login:</label>
+                    <label >Login:</label>
                     <input class="form-control" name="login" id="login" minlength="6" type="text" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
                     <label for="ex3">Senha:</label>
-                    <input class="form-control" name="senha" id="senha" minlength="6" type="password" required>
+                    <input class="form-control oi" name="senha" id="senha" minlength="6" type="password" required>
                 </div>
                 <div class="col">
                     <label for="ex3">Confirmar Senha:</label>
-                    <input class="form-control" name="c_senha" id="c_senha" minlength="6" type="password" required>
+                    <input class="form-control oi" name="c_senha" id="c_senha" minlength="6" type="password" required>
                 </div>
             </div>
             <hr>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col">
                     <label for="ex3">CNPJ:</label>
-                    <input class="form-control cnpj" type="text" id="cnpj" name="cnpj" required>
+                    <input class="form-control cnpj oi" type="text" id="cnpj" name="cnpj" required>
                 </div>
             </div>
             <div class="form-row">
@@ -86,22 +86,22 @@
                 </div>
                 <div class="col">
                     <label for="ex3">Estado:</label>
-                    <input type="text" class="form-control letters" name="uf" id="uf" required>
+                    <input type="text" class="form-control letters" name="uf" id="uf" required readonly="true">
                 </div>
                 <div class="col">
                     <label for="ex3">Cidade:</label>
-                    <input type="text" name="cidade" class="form-control letters" id="cidade" required>
+                    <input type="text" name="cidade" class="form-control letters" id="cidade" readonly="true" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <label for="ex3">Bairro:</label>
-                    <input class="form-control letters" name="bairro" id="bairro" type="text" required>
+                    <input class="form-control letters" name="bairro" id="bairro" readonly="true" type="text" required>
                 </div>
                 <div class="col">
                     <label for="ex3">Rua:</label>
-                    <input class="form-control" name="endereco" id="rua" type="text" required>
+                    <input class="form-control" name="endereco" id="rua" readonly="true" type="text" required>
                 </div>
                 <div class="col">
                     <label for="ex3">Numero:</label>
@@ -254,7 +254,7 @@
 
 
             })
-            $(".form-control").click(function(){
+            $(".oi").click(function(){
             	$(this).css("background-color","#fff")
             })
         });

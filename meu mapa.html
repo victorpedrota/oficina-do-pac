@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maps</title>
+</head>
+<body>
+	<input type="text" id="rua">
+	<input type="text" name="bairro">
+	<button id="enviar">Enviar</button>
+	<script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			$("#enviar").click(function(){
+				$.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address="+$("#rua").val()+"&key=AIzaSyC_th57iRMXc4TMnR9p4_wZjAd4GdrsII8", function( json ) {
+					console.log( "JSON Data: " + json.results[0].geometry.location.lat);
+					console.log( "JSON Data: " + json.results[0].geometry.location.lng);
+				});
+			})
+		})
+	</script>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
  .tela{
 
         width: 80%;
-        height: 36rem;
+        height: 30rem;
         background: #d8c2c247;
         border-radius: 1em;
         margin: 15px;
@@ -25,7 +25,7 @@
       border-radius: 25px;
 
       border-bottom-left-radius: 0px;
-      background-color:#a3a2f1;
+      background-color:#dcf8c6;
       width:200px;
       margin-left:5px;
       margin-top:5px;
