@@ -104,23 +104,14 @@ else{
               <li class="nav-item">
                 <a class="nav-link active" href="">
                   <span data-feather="home"></span>
-                  Página inical <span class="sr-only">(current)</span>
+                  Pesquisar <span class="sr-only">(current)</span>
                 </a>
 
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" id="btnfeed">Feed</a>
+                <a class="nav-link" href="perfil_cliente.php" id="btnfeed"><i class="fas fa-arrow-left"></i> Voltar</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
-                </a>
-              </li>
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
-                </a>
-              </li>
+            
               <li class="nav-item">
                 <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
               </li>
@@ -296,7 +287,15 @@ else{
               Tipo de serviço: <i class='fas fa-info-circle'></i>
               <select class='form-control' id='tipo' name='tipo' required>
               <option value=''>Selecione um tipo</option>
+              <option value='revisao'>revisão geral</option>
               <option value='troca'>troca de oleo</option>
+              <option value='troca'>troca de pneu</option>
+              <option value='troca'>troca de vidro</option>
+              <option value='revisao'>revisão do motor</option>
+              <option value='troca'>troca de freios</option>
+              <option value='troca'>troca de amortecedores</option>
+          
+
               </select>
               <input type='hidden' name='cod_oficina' value='".$vetor_oficina["cod_oficina"]."'>
               </div>
