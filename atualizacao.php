@@ -53,7 +53,7 @@ else{
 
       ?>
       <script>
-
+        
         document.location.href = "perfil_mecanico.php";
       </script>
       <?php 

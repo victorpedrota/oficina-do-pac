@@ -489,15 +489,16 @@ else{
         })
         .done(function(data) {
 
-          if ( data == 1) {
+          if ( data == 2) {
            $('#erro').modal('show')
          }
-         else if( data == 2) {
+         else if( data == 1) {
           $("#login").css("background-color","#ff7b7b")
           $("#texto").text("Nick ja existe")
         }
         else if (data == 0 ) {
          $('#exampleModal').modal('show')
+
 
        }
        else if(data == 3){
@@ -517,10 +518,13 @@ else{
 
 
   })
-  $("#fecharrr").click(function(){
-    location.reload();
-  })
-
+  
+$("#porra").click(function(){
+  location.reload();
+})
+    $('#exampleModal').on('hidden.bs.modal', function (e) {
+ window.location.href = 'perfil_oficina.php';
+})
 </script>
 
 
@@ -539,7 +543,7 @@ else{
         Cadastro feito com sucesso
       </div>
       <div class="modal-footer">
-        <a href="perfil_oficina.php"  id="fecharrr" class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+        <a href="perfil_oficina.php" class="btn btn-primary">Fechar</a>
         
       </div>
     </div>

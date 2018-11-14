@@ -4,12 +4,7 @@ session_start();
 
 if(!isset($_SESSION["system_control"]))
 {
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-</script>
-<?php
+  require("erro.php");
 }
 else{
         //Sessao já criada
@@ -118,6 +113,7 @@ else{
                             
 
                             $sql_servico ="SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente" ;
+                            
                             $servicos = mysqli_query($conn,$sql_servico);
                             $numero_servicos = mysqli_num_rows($servicos);
 
@@ -342,10 +338,14 @@ else{
 
     $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=4";
     $query_servico = mysqli_query($conn, $sql_servico);
-    $numero_servico = mysqli_num_rows($query_servico); 
-    if ($numero_servico !=0) {
+    $numero_servico9 = mysqli_num_rows($query_servico); 
+    $sql_servico4 = "SELECT * FROM `avaliacao` WHERE `nota_usuario` =0 ";
+    $query_servico4 = mysqli_query($conn, $sql_servico4);
+    $numero_servico4 = mysqli_num_rows($query_servico4); 
+    if ($numero_servico9 !=0) {
       while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-
+        $sql_servico4 = "SELECT * FROM `avaliacao` WHERE `nota_usuario` =0";
+        $query_servico4 = mysqli_query($conn, $sql_servico4);
         $veiculo = $vetor_servico['cod_veiculo'];
         $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
         $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
@@ -479,6 +479,7 @@ else{
   <div class="modal-body">
     <center>
       <input type="hidden" value="" id="cod_serv" name="cod_serv">
+      <input type="hidden" value="" id="excluido" name="excluido">
       <img src="" id="foto" style="border-radius: 50%;height: 80px;width: 80px;"><br><br>
       <div id="vaiq"></div> </center> 
       <input type="hidden" id="nota" value="">  
@@ -595,8 +596,18 @@ else{
         $("#cod_serv").val($(this).val())
         $.post( "server.php", { tipo: "cliente" ,codigo: $(this).val() } )
         .done(function( data ) {
+            if (data = "erro") {
+                $( "#foto" ).attr( "src", "//ssl.gstatic.com/accounts/ui/avatar_2x.png" );
+                $("#foto").after("<br><br><strong>O mecânico não trabalha mais nesta oficina</strong>");
+                $( ".starrr" ).remove();
+                $("#excluido").atrr("value",1)
 
-          $( "#foto" ).attr( "src", data );  
+            }
+            else{
+                $( "#foto" ).attr( "src", data );
+                $("#excluido").atrr("value",0)
+            }
+            
 
       })
         $( ".starrr" ).remove();
@@ -617,7 +628,7 @@ else{
     })
 
     $("#envia").click(function(){
-        $.post( "server.php", { tipo: "cliente", nota: $("#nota").val(), cod: $("#cod_serv").val()} ).done(function( data ) {
+        $.post( "server.php", { tipo: "cliente", nota: $("#nota").val(), cod: $("#cod_serv").val(), excluido: $("#excluido").val()} ).done(function( data ) {
 
         });
         
@@ -638,12 +649,7 @@ else
   session_destroy();
 
 
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-</script>
-<?php
+  require("erro.php");
 }
 }
 ?>

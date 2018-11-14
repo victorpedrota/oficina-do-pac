@@ -87,6 +87,9 @@ else{
       .yellow{
         color: yellow;
       }
+      .preto{
+        color:#000;
+      }
     </style>
     <meta charset="utf-8">
   </head>
@@ -315,7 +318,7 @@ else{
                               $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
                               $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
                               echo "<li class='list-group-item itens'><p style='display:block;'>
-                              Veículo:".$vetor_veiculo['placa']."<a href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."'style='float:right; right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></a> <a href='#' style='float:right;' data-toggle='modal' data-target='#exampleModal'><i class='fas fa-share-square'></i></a>
+                              Veículo:".$vetor_veiculo['placa']."<button href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."'style='float:right;' class='btn btn-link preto' right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></button> <button  style='float:right;' class='btn btn-link atu preto' value=".$vetor_servico['cod_servico']." data-toggle='modal' data-target='#exampleModal'><i class='fas fa-share-square'></i></button>
                               Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
                               Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." data-toggle='modal' data-target='#avaliacao' class='btn btn-primary codigof'>Finalizar serviço</button> <button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo atu' data-toggle='modal' data-target='#exampleModal'>Mandar atualização</button>
                               </li>";
@@ -440,7 +443,11 @@ else{
                     }
                   })
                 })
-
+$(".atu").click(function(){
+  var valor = $(this).val()
+  
+  $("#bot_cod").attr("value",valor)
+})
 
                 $("#fechar").click(function(){
 

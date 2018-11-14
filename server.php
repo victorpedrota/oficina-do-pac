@@ -51,20 +51,36 @@ else if(isset($_POST['codigo'])){
 	if ($tipo == "cliente") {
 		$cod_cliente = $vetor_cliente['cod_mecanico'];
 		$sql_cliente = "SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_cliente";
+
 		$query_cliente = mysqli_query($conn,$sql_cliente);
-		$vetor = mysqli_fetch_array($query_cliente);
-		$cod_login = $vetor['cod_login'];
+		if (mysqli_num_rows($query_cliente) !=0) {
+
+			$vetor = mysqli_fetch_array($query_cliente);
+			$cod_login = $vetor['cod_login'];
+		}
+		else{
+			echo "erro";
+		}
+		
 	}else{
 		$cod_cliente = $vetor_cliente['cod_cliente'];
 		$sql_cliente = "SELECT * FROM `cliente` WHERE `cod_cliente` = $cod_cliente";
 		$query_cliente = mysqli_query($conn,$sql_cliente);
-		$vetor = mysqli_fetch_array($query_cliente);
-		$cod_login = $vetor['cod_login'];
+		if (mysqli_num_rows($query_cliente) !=0) {
+
+			$vetor = mysqli_fetch_array($query_cliente);
+			$cod_login = $vetor['cod_login'];
+		}
+		else{
+			echo "erro";
+		}
 	}
 	
 	$sql_foto = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
 	$query_foto = mysqli_query($conn,$sql_foto);
 	$vetor_foto = mysqli_fetch_array($query_foto);
+
+	
 	echo $vetor_foto['imagem'];
 
 
@@ -74,6 +90,7 @@ else if(isset($_POST['nota'])){
 	$nota = $_POST['nota'];
 	$tipo = $_POST['tipo'];
 	$cod_servico = $_POST['cod'];
+	$excluido = $_POST['excluido'];
 	$sql = "SELECT * FROM `avaliacao` WHERE `cod_servico` = $cod_servico";
 	$query = mysqli_query($conn,$sql);
 	$numero = mysqli_num_rows($query);

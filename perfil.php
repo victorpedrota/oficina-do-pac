@@ -145,7 +145,7 @@ else{
                $cod_oficina =  $vetor_oficina['cod_oficina'];
 
                echo "<div class='card' style='width: 100%;'>
-               ".$vetor_oficina['cep']."
+      
                <input type='hidden' class='lat' value='".$vetor_oficina['cep']."''>
                <p id='kraio'></p>
                <div class='thumbnail'>

@@ -82,12 +82,7 @@ $cep = soNumero($cepn);
       session_destroy();
 
 
-      ?>
-      <script>
-        alert("Acesso Inválido!");
-        document.location.href = "login.php";
-      </script>
-      <?php
+      require('erro.php');
     }
   }
   ?>
