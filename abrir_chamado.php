@@ -1,5 +1,5 @@
 <?php  
-require('connect.php');
+require('erro.php');
 
     $oficina = $_POST['n_oficina'];
     $tipo = $_POST['tipo'];
@@ -36,11 +36,6 @@ require('connect.php');
     $sql = "INSERT INTO `status`(`status`, `cod_servico`) VALUES (0,$cod_servico)";
     $insere = mysqli_query($conn,$sql);
 
-    ?>
-    <script>
-      alert("Chamado feito com sucesso, aguardando mecanico aceitar pedido");
-      document.location.href="login.php";
-    </script>
-    <?php 
+    require('erro.php');
     }
     ?>
