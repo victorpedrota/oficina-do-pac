@@ -179,6 +179,22 @@ else{
                         <div class="col-4"> Placa:<input type="text" class="form-control inplaca" id="placa" name="placa" required></div>
                         <div class="col-4"> Cor: <select name="cor" style="" class="form-control" id="cor" required> <option value="">Selecione um cor
                         </option><option value="azul">azul
+                        </option>
+                        <option value="vermelho">vermelho
+                        </option>
+                        <option value="preto">preto
+                        </option>
+                        <option value="branco">branco
+                        </option>
+                        <option value="amarelo">amarelo
+                        </option>
+                        <option value="rosa">rosa
+                        </option>
+                        <option value="prata">prata
+                        </option>
+                        <option value="cinza">cinza
+                        </option>
+                        <option value="laranja">laranja
                         </option> </select> </div>
                         <div class="col-4"> Ano: <select  class="form-control year" name="ano" id="year" required>
                           <option value="">Selecione o ano</option> </select> </div>
@@ -285,8 +301,9 @@ else{
                                   }
                                   while ($vetor_veiculo = mysqli_fetch_array($veiculo_resultado)) {
 
-                                    echo "<li class='list-group-item itens'>Placa:<p style='display:inline-block;'  class='placa'> " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'test".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  Modelo:  " . $vetor_veiculo['modelo']. " Marca: ".$vetor_veiculo['marca']." Ano: ".$vetor_veiculo['ano']."  Cor:".$vetor_veiculo['cor']."
+                                    echo "<li class='list-group-item itens'>Placa:<p style='display:inline-block;'  class='placa'> " . $vetor_veiculo['placa']. "</p><a class='aexcluir' style='display:none;' href='excluir_veiculo.php?placa=".$vetor_veiculo['placa']."'aria-label='Close'><i class='fas fa-times close'></i></a><button value= 'test".$x."' class='btn btn-primary aalterar' style='display:none;' href='#' aria-label='Edit'><i class='fas fa-pencil-alt edit'></i></button><br> Tipo: ". $vetor_veiculo['tipo']."  <br>Modelo:  " . $vetor_veiculo['modelo']. " <br>  Marca: ".$vetor_veiculo['marca']." <br>Ano: ".$vetor_veiculo['ano']." <br> Cor:".$vetor_veiculo['cor']."
                                     <div style='display:none;' id='oi".$x."' class='semvergonha info test".$x."'>
+                                    <hr>
                                     <input type='hidden' name= 'plano'>
 
                                     <form method='POST' action='cadastrar_veiculo.php'>
