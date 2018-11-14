@@ -4,12 +4,8 @@ session_start();
 
 if(!isset($_SESSION["system_control"]))
 {
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href = "login.php";
-  </script>
-  <?php
+  
+ require('connect.php');
 }
 else{
         //Sessao já criada
@@ -166,12 +162,7 @@ else{
       session_destroy();
 
 
-      ?>
-      <script>
-        alert("Acesso Inválido!");
-        document.location.href = "login.php";
-      </script>
-      <?php
+    require('erro.php');
     }
   }
   ?>
