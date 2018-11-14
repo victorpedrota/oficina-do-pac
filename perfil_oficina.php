@@ -4,12 +4,7 @@ session_start();
 
 if(!isset($_SESSION["system_control"]))
 {
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href="login.php";
-  </script>
-  <?php       
+  require('erro.php');    
 }
 else{
         //Sessao já criada  
@@ -190,8 +185,8 @@ else{
                   $num1 = mysqli_num_rows($resultado_cliente1);
 
                   if ($num1 != 0) {
-                    while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente)) {
-                      echo "<li class='list-group-item itens'><p>".$vetor_veiculo["nome"]."</p></li>";
+                    while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente1)) {
+                      echo "<li class='list-group-item itens'>".$vetor_veiculo["nome"]."<a class='teste' style='float: right;' href='excluir_mecanico.php?codigo=".$vetor_veiculo['cod_mecanico']."'><i class='fas fa-times'></i></a></li>";
                     }
                   }
                   else{
@@ -272,7 +267,7 @@ else{
             </div>
             <div class="col">
               <label for="ex3">Estado:</label><br>
-              <input class="form-control" id="uf" name="uf" required> 
+              <input class="form-control" id="uf" name="uf" required readonly="readonly"> 
 
             </div>
 
@@ -281,12 +276,12 @@ else{
 
             <div class="col ">
               <label for="ex3">Cidade:</label><br>
-              <input id="cidade" name="cidade" class="form-control letters" required>
+              <input id="cidade" name="cidade" class="form-control letters" required readonly="readonly">
 
             </div>
             <div class="col">
               <label for="ex3">Bairro:</label><br>
-              <input class="form-control" id="bairro"   name="bairro" type="text" required>
+              <input class="form-control" id="bairro"   name="bairro" type="text" required readonly="readonly">
             </div>
 
 
@@ -294,7 +289,7 @@ else{
           <div class="row">
             <div class="col">
               <label for="ex3">Rua:</label><br>
-              <input class="form-control"  id="rua" name="rua" type="text" required>
+              <input class="form-control"  id="rua" name="rua" type="text" required readonly="readonly">
             </div>
             <div class="col ">
               <label for="ex3">Numero:</label><br>
@@ -462,33 +457,8 @@ else{
      alert('ok');
    }
  });
-  jQuery.validator.addMethod("cpf", function(value, element) {
-   value = jQuery.trim(value);
-   
-   value = value.replace('.','');
-   value = value.replace('.','');
-   cpf = value.replace('-','');
-   while(cpf.length < 11) cpf = "0"+ cpf;
-   var expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
-   var a = [];
-   var b = new Number;
-   var c = 11;
-   for (i=0; i<11; i++){
-    a[i] = cpf.charAt(i);
-    if (i < 9) b += (a[i] * --c);
-  }
-  if ((x = b % 11) < 2) { a[9] = 0 } else { a[9] = 11-x }
-    b = 0;
-  c = 11;
-  for (y=0; y<10; y++) b += (a[y] * c--);
-    if ((x = b % 11) < 2) { a[10] = 0; } else { a[10] = 11-x; }
   
-  var retorno = true;
-  if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg)) retorno = false;
   
-  return this.optional(element) || retorno;
-
-}, "Informe um CPF válido");
 
   $("#send").click(function(){
 
@@ -528,6 +498,7 @@ else{
         }
         else if (data == 0 ) {
          $('#exampleModal').modal('show')
+
        }
        else if(data == 3){
         $("#texto").text("Login ou cnpj já cadastrados")
@@ -545,6 +516,9 @@ else{
 
 
 
+  })
+  $("#fecharrr").click(function(){
+    location.reload();
   })
 
 </script>
@@ -565,7 +539,7 @@ else{
         Cadastro feito com sucesso
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <a href="perfil_oficina.php"  id="fecharrr" class="btn btn-secondary" data-dismiss="modal">Fechar</a>
         
       </div>
     </div>
@@ -607,12 +581,9 @@ else
   session_destroy();
 
             //Mensagem para o Usuário
-  ?>
-  <script>
-    alert("Acesso Inválido!");
-    document.location.href="login.php";
-  </script>
-  <?php           
+  
+   require('erro.php');
+             
 }
 }
 ?>
