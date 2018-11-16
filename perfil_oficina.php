@@ -152,8 +152,12 @@ else{
 
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" id="btn_graph">Dashboard</a>
+                <a class="nav-link" href="#" id="btn_servicos">Serviços</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="btn_mecanicos">Mecânicos</a>
+              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" id="imagens" href="#" data-toggle="modal" data-target="#ima">Galeria de imagens
                 </a>
@@ -171,14 +175,38 @@ else{
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
-          <div id="graph">
-            <center><h3>Dashboard</h3></center>
+          <div style="display: block;" id="servicos">
+            <center><h3>Gerenciar Serviços</h3></center>
             <br>
-            <div class="row">
-              <div class="col"><center><h5>Serviços realizados</h5></center>
-                <div style="height: 400px;width: 400px;"><canvas id="myChart"></canvas></div>
+            
+              
+                <center><h5>Lista de Serviços</h5></center>
+                <ul style="text-align: left;" class="list-group">
+                  <?php
+
+                  $cliente2 ="SELECT * FROM `servico` WHERE `status` = 0";
+                  $resultado_cliente2 = mysqli_query($conn,$cliente2);
+                  $num2 = mysqli_num_rows($resultado_cliente2);
+
+                  if ($num2 != 0) {
+                    while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente2)) {
+                      echo "<li class='list-group-item itens'>Protocolo:".$vetor_veiculo["protocolo"]."<a class='teste' style='float: right;' href='excluir_servico.php?codigo=".$vetor_veiculo['cod_servico']."'><i class='fas fa-times'></i></a><br>
+                      Serviço desejado:".$vetor_veiculo['servico_desejado']."<br>Tipo serviço:".$vetor_veiculo['tipo_servico']."
+                        </li>";
+                    }
+                  }
+                  else{
+                    echo "<li class='list-group-item itens'><p>Não há serviços em espera</p></li>";
+                  }
+
+
+
+
+                  ?>
+                </ul>
+                
               </div>    
-              <div style="margin-left: -200px;" class="col"><center><h5>Lista de Mecanicos cadastrados</h5></center>
+              <div style="margin-left: 0px;display: none" id="mecanicos"><center><h5>Lista de Mecanicos cadastrados</h5></center>
                 <ul style="text-align: left;" class="list-group">
                   <?php
 
@@ -206,6 +234,7 @@ else{
             <script src="js/validar_form.js"></script>
             <script type="text/javascript" src="js/jquery.mask.min.js"></script>
             <div class="" id="form_mecanico" style="display: none">
+              <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -30px;">
               <form action="cadastrar_mecanico.php" id="form" method="POST">
                <h3 >Formulário Cadastrar Mecânico</h3>
 
@@ -435,15 +464,25 @@ else{
   $(document).ready(function () {
     $("#btn_mecanico").click(function(){
       if ($("#form_mecanico").css("display") == "none") {
-        $("#graph").css("display", "none");
+        $("#mecanicos").css("display", "none");
+        $("#servicos").css("display", "none");
         $("#form_mecanico").css("display", "block");
       }
       
     })
-    $("#btn_graph").click(function(){
-      if ($("#graph").css("display") == "none") {
+    $("#btn_servicos").click(function(){
+      if ($("#servicos").css("display") == "none") {
         $("#form_mecanico").css("display", "none");
-        $("#graph").css("display", "block");
+        $("#mecanicos").css("display", "none");
+        $("#servicos").css("display", "block");
+      }
+
+    })
+    $("#btn_mecanicos").click(function(){
+      if ($("#mecanicos").css("display") == "none") {
+        $("#form_mecanico").css("display", "none");
+        $("#servicos").css("display", "none");
+        $("#mecanicos").css("display", "block");
       }
 
     })

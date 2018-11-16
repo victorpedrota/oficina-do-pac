@@ -5,13 +5,13 @@ session_start();
 if(!isset($_SESSION["system_control"]))
 {
   ?>
- <!doctype html>
-<html lang="en">
+  <!doctype html>
+  <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="scss/main.css">
     
 
     <title>Acesso inválido</title>
@@ -21,38 +21,38 @@ if(!isset($_SESSION["system_control"]))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Você não tem acesso a esta página
-      </div>
-      <div class="modal-footer">
-        
-        <a  href="login.php" class="btn btn-primary">Voltar</a>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Você não tem acesso a esta página
+          </div>
+          <div class="modal-footer">
+
+            <a  href="login.php" class="btn btn-primary">Voltar</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<script>
-  $(document).ready(function(){
-    $('#exampleModalLong').modal('show')
-    $('#exampleModalLong').on('hidden.bs.modal', function (e) {
- window.location.href = 'login.php';
-})
+    <script>
+      $(document).ready(function(){
+        $('#exampleModalLong').modal('show')
+        $('#exampleModalLong').on('hidden.bs.modal', function (e) {
+         window.location.href = 'login.php';
+       })
 
-  })
-</script>
+      })
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
   </body>
-</html>
+  </html>
   <?php
 }
 else{
@@ -73,6 +73,15 @@ else{
     $sql ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
     $resul = mysqli_query($conn,$sql);
     $vetor_login = mysqli_fetch_array($resul);
+
+    
+    $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_login` = $cod_login";
+    $resultado = mysqli_query($conn,$sql_pesquisa);
+    $vetor = mysqli_fetch_array($resultado);
+    $cod_mecanico = $vetor['cod_oficina'];
+    $sql_pesquisa3 ="SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_mecanico";
+    $resultado3 = mysqli_query($conn,$sql_pesquisa3);
+    $vetor_oficina = mysqli_fetch_array($resultado3);
 
 
     ?>
@@ -125,28 +134,38 @@ else{
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div style="" class="container">
           <center>
-            <div class="show-image" style="width: 100px;margin-top: 60px;">
+            <br>
+            <?php echo "<br><strong>".$vetor_oficina['nome']."</strong>"?>
+            <div class="show-image" style="width: 100px;margin-top: 40px;">
               <img data-toggle="modal" data-target="#alterar_foto" src=<?php echo $vetor_login['imagem'];?> style="width: 100px;height: 100px; border-radius: 50%;">
               <?php
               
               $teste=0;
-              $n=0;
+              $n=1;
               $sql_nota ="SELECT * FROM `servico` WHERE `cod_mecanico` = $codigo_mecanico" ;
               $resul_nota = mysqli_query($conn,$sql_nota);
               while ($vetor_nota = mysqli_fetch_array($resul_nota)) {
-              $var = $vetor_nota['cod_servico'];
-              $nota ="SELECT * FROM `avaliacao` WHERE `cod_servico` = $var";
-              $resulta = mysqli_query($conn,$nota);
-              
-              $numero_nota =  mysqli_num_rows($resulta);
-              $n = $numero_nota +$n;
-              $vetor_nota2 = mysqli_fetch_array($resulta);
-              $nota = $vetor_nota2['nota_usuario'];
-              $teste = intval($nota)+intval($teste);
-              
-              }
-                echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
+                $var = $vetor_nota['cod_servico'];
+                $nota ="SELECT * FROM `avaliacao` WHERE `cod_servico` = $var";
+                $resulta = mysqli_query($conn,$nota);
+
+                $numero_nota =  mysqli_num_rows($resulta);
+                $n = $numero_nota +$n;
+                $vetor_nota2 = mysqli_fetch_array($resulta);
+                $nota = $vetor_nota2['nota_usuario'];
+                $teste = intval($nota)+intval($teste);
+
                 
+
+              }
+              if ($teste == 0) {
+                  echo "<i class='fas fa-star' style='color:yellow'></i><strong>Sem avaliações</strong>";
+                }
+                else{
+                  echo "<i class='fas fa-star' style='color:yellow'></i><strong>" . ($teste/$n)."</strong>";
+                }
+              
+
               ?>
             </div>
 
@@ -515,53 +534,53 @@ else{
 
           ?>
           <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="scss/main.css">
-    
+          <html lang="en">
+          <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="scss/main.css">
 
-    <title>Acesso inválido</title>
-  </head>
-  <body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Você não tem acesso a esta página
-      </div>
-      <div class="modal-footer">
-        
-        <a  href="login.php" class="btn btn-primary">Voltar</a>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  $(document).ready(function(){
-    $('#exampleModalLong').modal('show')
-    $('#exampleModalLong').on('hidden.bs.modal', function (e) {
- window.location.href = 'login.php';
-})
 
-  })
-</script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-  </body>
-</html>
+            <title>Acesso inválido</title>
+          </head>
+          <body>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Você não tem acesso a esta página
+                  </div>
+                  <div class="modal-footer">
+
+                    <a  href="login.php" class="btn btn-primary">Voltar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              $(document).ready(function(){
+                $('#exampleModalLong').modal('show')
+                $('#exampleModalLong').on('hidden.bs.modal', function (e) {
+                 window.location.href = 'login.php';
+               })
+
+              })
+            </script>
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+          </body>
+          </html>
           <?php
         }
       }

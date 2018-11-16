@@ -32,8 +32,8 @@ else{
     $resultado_pesquisa = mysqli_query($conn,$sql);
     $vetor_login = mysqli_fetch_array($resultado_pesquisa);
     $first_acess = $vetor_login['first_acess'];
-   
-        
+
+
     
 
     $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
@@ -60,7 +60,7 @@ else{
         <link rel="stylesheet" href="css/chat.css">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" href="css/starrr.css"
+        <link rel="stylesheet" href="css/starrr.css">
 
 
     </head>
@@ -122,7 +122,7 @@ else{
                             if ($first_acess == 1 && $numero_servicos == 0) {
                                 echo "<li class='list-group-item itens'><p style='display:block;'>Não há atualizações</p></li>";
                             }
-                           else if ($first_acess == 0 && $numero_servicos == 0) {
+                            else if ($first_acess == 0 && $numero_servicos == 0) {
 
                                 echo "<li class='list-group-item itens'><p style='display:block;'>LUCAS SEU VIADINHO COLOCA AQUI O TUTORIAL SEU ARROMBADO</p></li>";
                             }
@@ -141,195 +141,196 @@ else{
                               
 
                               if ( $num == 0) {
-                                
-                            } else{
-                              $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
-                              while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
 
-                                ?>
-                                <div class="card text-left">
-                                    <div class="card-header">
-                                        <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
-                                    </div>
-                                    <div class="card-body">
+                              } else{
+                                  $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
+                                  while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
 
-                                        <p style="left: 0px;">Assunto:
-                                            <?php echo $vetor_atualizacao['assunto'];?>
-                                        </p>
-                                        <p class="card-text">Status do carro:
-                                            <?php echo $vetor_atualizacao['mensagem'];?>
-                                        </p>
+                                    ?>
+                                    <div class="card text-left">
+                                        <div class="card-header">
+                                            <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
+                                        </div>
+                                        <div class="card-body">
 
-                                    </div>
-                                    <div class="card-footer text-muted">
+                                            <p style="left: 0px;">Assunto:
+                                                <?php echo $vetor_atualizacao['assunto'];?>
+                                            </p>
+                                            <p class="card-text">Status do carro:
+                                                <?php echo $vetor_atualizacao['mensagem'];?>
+                                            </p>
 
-                                    </div>
-                                </div><br>
-                                <?php
+                                        </div>
+                                        <div class="card-footer text-muted">
+
+                                        </div>
+                                    </div><br>
+                                    <?php
+                                }
                             }
+
+
+                        }
+                        
+                        ?>
+                    </ul>
+                </div>
+
+
+                <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
+                <div class="col-8" id="andamento" style="display: none;"><br>
+                    <center>
+                        <h4 id="titulo">Serviço aguardando resposta</h4>
+                        <div id="info"></div>
+                        <ul style="text-align: left;" class="list-group">
+
+                            <?php
+
+                            $sql_servico = "SELECT * FROM `servico` WHERE `cod_cliente` = $cod_cliente && `status` = 0";
+                            $query_servico = mysqli_query($conn, $sql_servico);
+                            if (mysqli_num_rows($query_servico) == 0) {
+
+                                echo "<li class='list-group-item itens'><p style='display:block;'>Não há veículos nesta fase</p></li>";
+                            }
+                    
+                            while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                                $veiculo = $vetor_servico['cod_veiculo'];
+                                $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                                $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
+                                $vetor_veiculo_anda = mysqli_fetch_array($veiculo_resultado_anda);
+                                echo "<li class='list-group-item itens'><p style='display:inline-block;'>
+                                Veículo:".$vetor_veiculo_anda['placa']."
+                                Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
+                                Serviço desejado:".$vetor_servico['servico_desejado']."
+                                </li>";
+                            
+
+
                         }
 
+                        ?>
 
-                    }
-                    if ( $num == 0) {
-                                echo "<li class='list-group-item itens'><p style='display:block;'>Não há atualizações</p></li>";
-                            } 
-                    ?>
-                </ul>
-            </div>
+                    </ul>
+                    <br>
+                    <br>
 
-
-            <!--AQUI ESTARÁ A PORRA DO CÓDIGO DA PORRA DO CHAMADO, PEDRO É UMA PUTA  -->
-            <div class="col-8" id="andamento" style="display: none;"><br>
-                <center>
-                    <h4 id="titulo">Serviço aguardando resposta</h4>
+                    <h4 id="titulo">Serviços em discussão</h4>
                     <div id="info"></div>
                     <ul style="text-align: left;" class="list-group">
 
                         <?php
-                        if (mysqli_num_rows($query_servico) == 0) {
-
-                            echo "<li class='list-group-item itens'><p style='display:block;'>Não há veículos nesta fase</p></li>";
-                        }
-                        while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-                          if ($vetor_servico['status'] == 0 ) {
+                        $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=1";
+                        $query_servico = mysqli_query($conn, $sql_servico);
+                        $numero_servico = mysqli_num_rows($query_servico); 
+                        if ($numero_servico !=0) {
+                          while ($vetor_servico = mysqli_fetch_array($query_servico)) {
 
                             $veiculo = $vetor_servico['cod_veiculo'];
-                            $sql_veiculo_anda ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                            $veiculo_resultado_anda = mysqli_query($conn,$sql_veiculo_anda);
-                            $vetor_veiculo_anda = mysqli_fetch_array($veiculo_resultado_anda);
-                            echo "<li class='list-group-item itens'><p style='display:inline-block;'>
-                            Veículo:".$vetor_veiculo_anda['placa']."
-                            Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando aceitação da Oficina<br>
+                            $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                            $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                            $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                            echo "<li class='list-group-item itens'><p style='display:block;'>
+                            Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                            Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando cliente finalizar o Chamado<br>
                             Serviço desejado:".$vetor_servico['servico_desejado']."
                             </li>";
+
                         }
 
-
                     }
 
-                    ?>
 
-                </ul>
-                <br>
-                <br>
 
-                <h4 id="titulo">Serviços em discussão</h4>
-                <div id="info"></div>
-                <ul style="text-align: left;" class="list-group">
+                    else{
 
-                    <?php
-                    $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=1";
-                    $query_servico = mysqli_query($conn, $sql_servico);
-                    $numero_servico = mysqli_num_rows($query_servico); 
-                    if ($numero_servico !=0) {
-                      while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+                      echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
 
-                        $veiculo = $vetor_servico['cod_veiculo'];
-                        $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                        $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
-                        $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
-                        echo "<li class='list-group-item itens'><p style='display:block;'>
-                        Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
-                        Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando cliente finalizar o Chamado<br>
-                        Serviço desejado:".$vetor_servico['servico_desejado']."
-                        </li>";
+                  }
+                  ?>
+              </ul>
+              <br>
+              <br>
 
-                    }
+              <h4 id="titulo">Aguardando Veículo dar entrada na oficina</h4>
+              <div id="info"></div>
+              <ul style="text-align: left;" class="list-group">
+                <?php
+
+                $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=2";
+                $query_servico = mysqli_query($conn, $sql_servico);
+                $numero_servico = mysqli_num_rows($query_servico); 
+                if ($numero_servico !=0) {
+                  while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+                    $veiculo = $vetor_servico['cod_veiculo'];
+                    $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+                    $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+                    $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+                    echo "<li class='list-group-item itens'><p style='display:block;'>
+                    Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+                    Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
+                    Serviço desejado:".$vetor_servico['servico_desejado']."
+                    </li>";
+
+
+
 
                 }
 
-
-
-                else{
-
-                  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
-
-              }
-              ?>
-          </ul>
-          <br>
-          <br>
-
-          <h4 id="titulo">Aguardando Veículo dar entrada na oficina</h4>
-          <div id="info"></div>
-          <ul style="text-align: left;" class="list-group">
-            <?php
-
-            $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=2";
-            $query_servico = mysqli_query($conn, $sql_servico);
-            $numero_servico = mysqli_num_rows($query_servico); 
-            if ($numero_servico !=0) {
-              while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-
-                $veiculo = $vetor_servico['cod_veiculo'];
-                $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-                $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
-                $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
-                echo "<li class='list-group-item itens'><p style='display:block;'>
-                Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
-                Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
-                Serviço desejado:".$vetor_servico['servico_desejado']."
-                </li>";
-
-
-
-
             }
+
+
+
+            else{
+
+              echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
+
+          }              
+
+
+          ?>
+
+      </ul>
+
+      <h4 id="titulo">Em andamento</h4>
+      <div id="info"></div>
+      <ul style="text-align: left;" class="list-group">
+        <?php
+
+        $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=3";
+        $query_servico = mysqli_query($conn, $sql_servico);
+        $numero_servico = mysqli_num_rows($query_servico); 
+        if ($numero_servico !=0) {
+          while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+
+            $veiculo = $vetor_servico['cod_veiculo'];
+            $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
+            $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
+            $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
+            echo "<li class='list-group-item itens'><p style='display:block;'>
+            Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
+            Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
+            Serviço desejado:".$vetor_servico['servico_desejado']."
+            </li>";
+
+
+
 
         }
 
-
-
-        else{
-
-          echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
-
-      }              
-
-
-      ?>
-
-  </ul>
-
-  <h4 id="titulo">Em andamento</h4>
-  <div id="info"></div>
-  <ul style="text-align: left;" class="list-group">
-    <?php
-
-    $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=3";
-    $query_servico = mysqli_query($conn, $sql_servico);
-    $numero_servico = mysqli_num_rows($query_servico); 
-    if ($numero_servico !=0) {
-      while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-
-        $veiculo = $vetor_servico['cod_veiculo'];
-        $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
-        $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
-        $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
-        echo "<li class='list-group-item itens'><p style='display:block;'>
-        Veículo:".$vetor_veiculo['placa']."<a href='chat.php?cod_servico=".$vetor_servico['cod_servico']."' style='float:right; right:0px;'><i class='fas fa-external-link-alt'></i></a>
-        Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
-        Serviço desejado:".$vetor_servico['servico_desejado']."
-        </li>";
-
-
-
-
     }
 
-}
 
 
+    else{
 
-else{
+      echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
 
-  echo "<li class='list-group-item itens'>Não há veiculos nesta fase</li>";
-
-}              
+  }              
 
 
-?>
+  ?>
 
 </ul>
 
@@ -339,7 +340,7 @@ else{
     <?php
 
     
-     
+
     $sql_servico4 = "SELECT * FROM `avaliacao` WHERE `nota_usuario` =0 ";
     $query_servico4 = mysqli_query($conn, $sql_servico4);
     $numero_servico4 = mysqli_num_rows($query_servico4); 
@@ -604,16 +605,16 @@ else{
                 $('#bct').remove();
                 $("#foto").after("<div id='bct'><br><br><strong>O mecânico não trabalha mais nesta oficina</strong></div>");
                 $( ".starrr" ).remove();
-                $("#excluido").atrr("value",1)
+                $("#excluido").attr("value",1)
 
             }
             else{
                 $( "#foto" ).attr( "src", data );
-                $("#excluido").atrr("value",0)
+                $("#excluido").attr("value",0)
             }
             
 
-      })
+        })
         $( ".starrr" ).remove();
         $("#vaiq").append("<div class='starrr' id='star1'></div>")
         $('.starrr').starrr({
@@ -632,6 +633,7 @@ else{
     })
 
     $("#envia").click(function(){
+        alert($("#excluido").val())
         $.post( "server.php", { tipo: "cliente", nota: $("#nota").val(), cod: $("#cod_serv").val(), excluido: $("#excluido").val()} ).done(function( data ) {
 
         });
@@ -654,7 +656,7 @@ else
 
 
 
-require('erro.php');
+  require('erro.php');
 
 }
 }

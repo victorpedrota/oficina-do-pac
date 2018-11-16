@@ -8,16 +8,29 @@
 	<input type="text" name="bairro">
 	<button id="enviar">Enviar</button>
 	<script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
-	<script>
-		$(document).ready(function(){
-			$("#enviar").click(function(){
-				$.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address="+$("#rua").val()+"&key=AIzaSyC_th57iRMXc4TMnR9p4_wZjAd4GdrsII8", function( json ) {
-					console.log( "JSON Data: " + json.results[0].geometry.location.lat);
-					console.log( "JSON Data: " + json.results[0].geometry.location.lng);
-				});
-			})
-		})
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA90is4YmX41e1qhTBBn9LgCWMoXnEOVXg&libraries=geometry"></script>
+	<script type="text/javascript">
+		function CalculaDistancia(origem, destino) {
+			var service = new google.maps.DistanceMatrixService();
+			service.getDistanceMatrix(
+			{
+				origins: [origem],
+				destinations: [destino],
+				travelMode: google.maps.TravelMode.DRIVING
+			}, callback);
+		}
+		function callback(response, status) {
+			if (status == google.maps.DistanceMatrixStatus.OK) {
+				alert("Distância:" + response.rows[0].elements[0].distance.text);
+				alert("Duração:" + response.rows[0].elements[0].duration.text);
+			}
+		}
 	</script>
+
+	<a href="javascript:CalculaDistancia('12236495', '12235831');">calcular</a>
+	<a href="javascript:CalculaDistancia('rua bacabal', '12235831');">calcular</a>
+	<a href="javascript:CalculaDistancia('rua mauricio cardoso', '12235831');">calcular</a>
 
 </body>
 </html>

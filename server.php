@@ -23,6 +23,47 @@ if(isset($_POST['message']))
 
 	}
 }
+else if(isset($_POST['cliente'])){
+	
+	$cliente = $_POST['cliente'];
+	$sql_foto = "SELECT * FROM `servico` WHERE `cod_cliente` = $cliente";
+	$query_foto = mysqli_query($conn,$sql_foto);
+	$numero = mysqli_num_rows($query_foto);
+	$x =1;
+	
+	echo "[";
+	while($vetor_servico = mysqli_fetch_array($query_foto)){
+	$cod_oficina = $vetor_servico['cod_oficina'];
+	$sql_oficina = "SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina";
+	$query_oficina = mysqli_query($conn,$sql_oficina);
+	$vetor_oficina = mysqli_fetch_array($query_oficina);
+	$cod_login = $vetor_oficina['cod_login'];
+	$sql_login = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+	$query_login = mysqli_query($conn,$sql_login);
+	$vetor_login = mysqli_fetch_array($query_login);
+
+		if ($numero != $x) {
+
+			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome": "'.$vetor_oficina['nome'].'","serv":"'.$vetor_servico['servico_desejado'].'"},' ;
+
+		}
+		else{
+			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome":"'.$vetor_oficina['nome'].'","serv": "'.$vetor_servico['servico_desejado'].'"}' ;
+		}
+		$x++;
+	}
+	echo "]";
+
+
+
+	
+}
+else if (isset($_POST['visto'])) {
+
+	$cod = $_POST['visto'];
+	$sql = "UPDATE `servico` SET `mostra`= 1 WHERE `cod_servico` = $cod";
+	$query = mysqli_query($conn,$sql);
+}
 else if(isset($_POST['valor'])){
 
 	$valor = $_POST['valor'];
@@ -91,24 +132,29 @@ else if(isset($_POST['nota'])){
 	$tipo = $_POST['tipo'];
 	$cod_servico = $_POST['cod'];
 	$excluido = $_POST['excluido'];
-	$sql = "SELECT * FROM `avaliacao` WHERE `cod_servico` = $cod_servico";
-	$query = mysqli_query($conn,$sql);
-	$numero = mysqli_num_rows($query);
-	if ($numero == 0) {
-		if ($tipo=="cliente") {
-			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_usuario`) VALUES ($cod_servico,$nota)";
-			$query_cliente = mysqli_query($conn,$sql_cliente);
-		}else{
-			$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_mecanico`) VALUES ($cod_servico,$nota)";
-			$query_cliente = mysqli_query($conn,$sql_cliente);
-		}
+	if ($excluido ==1 ) {
+		$sql_cliente = "DELETE FROM `avaliacao` WHERE `cod_servico` = $cod_servico";
+		$query_cliente = mysqli_query($conn,$sql_cliente);
 	}else{
-		if ($tipo=="cliente") {
-			$sql_cliente = "UPDATE `avaliacao` SET `nota_usuario`=$nota WHERE `cod_servico` = $cod_servico";
-			$query_cliente = mysqli_query($conn,$sql_cliente);
+		$sql = "SELECT * FROM `avaliacao` WHERE `cod_servico` = $cod_servico";
+		$query = mysqli_query($conn,$sql);
+		$numero = mysqli_num_rows($query);
+		if ($numero == 0) {
+			if ($tipo=="cliente") {
+				$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_usuario`) VALUES ($cod_servico,$nota)";
+				$query_cliente = mysqli_query($conn,$sql_cliente);
+			}else{
+				$sql_cliente = "INSERT INTO `avaliacao`(`cod_servico`, `nota_mecanico`) VALUES ($cod_servico,$nota)";
+				$query_cliente = mysqli_query($conn,$sql_cliente);
+			}
 		}else{
-			$sql_cliente = "UPDATE `avaliacao` SET `nota_mecanico`=$nota WHERE `cod_servico` = $cod_servico";
-			$query_cliente = mysqli_query($conn,$sql_cliente);
+			if ($tipo=="cliente") {
+				$sql_cliente = "UPDATE `avaliacao` SET `nota_usuario`=$nota WHERE `cod_servico` = $cod_servico";
+				$query_cliente = mysqli_query($conn,$sql_cliente);
+			}else{
+				$sql_cliente = "UPDATE `avaliacao` SET `nota_mecanico`=$nota WHERE `cod_servico` = $cod_servico";
+				$query_cliente = mysqli_query($conn,$sql_cliente);
+			}
 		}
 	}
 	

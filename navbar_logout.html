@@ -61,9 +61,19 @@ body{
       <li class="nav-item active">
         <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src="<?php echo $_SESSION['imagem'];?>" class="profile"></a>
       </li>
-      <li class="nav-item d-sm-none d-md-block d-none d-sm-block ">
-        <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
+      <li class="nav-item dropdown dropleft">
+        <a class="nav-link" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="far fa-bell"></i>
         </a>
+        <div class="dropdown-menu "  style="width: 400px;" id="bct" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Não vistas</a>
+          <div class="dropdown-divider" id="nvisto"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Recentes</a>
+          <div class="dropdown-divider" id="visto"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Expandir</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="login.php">Página inicial</a>
@@ -87,6 +97,7 @@ body{
         </div>
       </form>
     </li> 
+
 
     <li class="nav-item d-sm-none d-md-block d-none d-sm-block">
       <div class="dropdown d-sm-none d-md-block d-none d-sm-block">
@@ -117,7 +128,9 @@ body{
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 <script src="js/typeahead.bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<input type="hidden" id="gambiarra3"  value="<?php echo $cod_cliente; ?>">
 <script>
+
 
 
   $.post("search.php",function(data) {
@@ -148,5 +161,40 @@ body{
     window.location.replace("perfil.php?codigo="+$("#insearch").val());
 
   })
+  $("#navbarDropdown2").click(function(){
+
+
+   $.post( "server.php", { cliente: $("#gambiarra3").val()})
+   .done(function( data ) {
+
+     var obj = JSON.parse(data)
+     
+     for (var i in obj) {
+      if(i<5){
+
+
+      if (obj[i].visto == 1) {
+        $("#visto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li>  </ul></li></ul>")
+      }
+      else{
+        $("#visto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'><img style='width:60px;height:60px;border-radius:50%;' src="+obj[i].img+"></li><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].nome+"</button></li></ul>")
+      }
+      
+
+    }
+  }
+
+  });
+   if ($(".nvisto").length == 0) {
+     $("#nvisto").after("<button class='dropdown-item not tirar nvisto' href='#'>sem novidades</button>")
+   }
+    $( ".tirar" ).each(function( index ) {
+    $.post( "server.php", { visto: $(this).val()} );
+   
+    $(this).remove()
+
+  })
+ });
+
 
 </script>

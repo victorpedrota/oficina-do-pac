@@ -47,6 +47,7 @@ else{
     $veiculo = $_POST['veiculo'];
     $servico = $_POST['servico'];
     $problema = $_POST['problema'];
+    
 
 
     $protocolo = rand() . "\n";
@@ -60,7 +61,7 @@ else{
       $protocolo = mt_rand() . "\n";
   }
 
-  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico')";
+  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`, `data`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico', CURDATE())";
   $insere = mysqli_query($conn,$sql_cliente);
 
   
