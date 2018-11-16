@@ -338,24 +338,25 @@ else{
 <ul style="text-align: left;" class="list-group">
     <?php
 
-    $sql_servico = "SELECT * FROM `servico` WHERE  `cod_cliente` = $cod_cliente && `status`=4";
-    $query_servico = mysqli_query($conn, $sql_servico);
-    $numero_servico9 = mysqli_num_rows($query_servico); 
+    
+     
     $sql_servico4 = "SELECT * FROM `avaliacao` WHERE `nota_usuario` =0 ";
     $query_servico4 = mysqli_query($conn, $sql_servico4);
     $numero_servico4 = mysqli_num_rows($query_servico4); 
-    if ($numero_servico9 !=0) {
-      while ($vetor_servico = mysqli_fetch_array($query_servico)) {
-        $sql_servico4 = "SELECT * FROM `avaliacao` WHERE `nota_usuario` =0";
-        $query_servico4 = mysqli_query($conn, $sql_servico4);
-        $veiculo = $vetor_servico['cod_veiculo'];
+    if ($numero_servico4 !=0) {
+      while ($vetor_servico = mysqli_fetch_array($query_servico4)) {
+        $cod_servico1 = $vetor_servico['cod_servico'];
+        $sql_servico = "SELECT * FROM `servico` WHERE  `cod_servico` = $cod_servico1";
+        $query_servico = mysqli_query($conn, $sql_servico);
+        $vetor_servico1 = mysqli_fetch_array($query_servico);
+        $veiculo = $vetor_servico1['cod_veiculo'];
         $sql_veiculo ="SELECT * FROM `veiculo` WHERE `cod_veiculo` = $veiculo" ;
         $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
         $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
         echo "<li class='list-group-item itens'><p style='display:block;'>
         Veículo:".$vetor_veiculo['placa']."
-        Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Serviço Finalizado<br>
-        Serviço desejado:".$vetor_servico['servico_desejado']."<br><br><button value='".$vetor_servico['cod_servico']."' data-toggle='modal' data-target='#avaliacao' class='btn btn-primary codigof'>Avaliar Mecânico</button>
+        Protocolo:   ".$vetor_servico1['protocolo']."<br>Status: Serviço Finalizado<br>
+        Serviço desejado:".$vetor_servico1['servico_desejado']."<br><br><button value='".$vetor_servico1['cod_servico']."' data-toggle='modal' data-target='#avaliacao' class='btn btn-primary codigof'>Avaliar Mecânico</button>
         </li>";
 
 
@@ -600,7 +601,8 @@ else{
         .done(function( data ) {
             if (data = "erro") {
                 $( "#foto" ).attr( "src", "//ssl.gstatic.com/accounts/ui/avatar_2x.png" );
-                $("#foto").after("<br><br><strong>O mecânico não trabalha mais nesta oficina</strong>");
+                $('#bct').remove();
+                $("#foto").after("<div id='bct'><br><br><strong>O mecânico não trabalha mais nesta oficina</strong></div>");
                 $( ".starrr" ).remove();
                 $("#excluido").atrr("value",1)
 

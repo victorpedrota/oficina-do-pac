@@ -4,12 +4,9 @@ session_start();
 
 if(!isset($_SESSION["system_control"]))
 {
-<<<<<<< HEAD
-  require('erro.php');
-  
-=======
+
   require('erro.php');    
->>>>>>> 689ff066b3a6659799d694cdfbf2da7070f5d784
+
 }
 else{
         //Sessao já criada  
@@ -590,13 +587,11 @@ else
   session_destroy();
 
             //Mensagem para o Usuário
-<<<<<<< HEAD
- require('erro.php');       
-=======
+
   
    require('erro.php');
              
->>>>>>> 689ff066b3a6659799d694cdfbf2da7070f5d784
+
 }
 }
 ?>
