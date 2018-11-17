@@ -34,7 +34,7 @@ else if(isset($_POST['cliente'])){
 	echo "[";
 	while($vetor_servico = mysqli_fetch_array($query_foto)){
 	$cod_oficina = $vetor_servico['cod_oficina'];
-	$sql_oficina = "SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina";
+	$sql_oficina = "SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina ORDER BY `cod_oficina` DESC";
 	$query_oficina = mysqli_query($conn,$sql_oficina);
 	$vetor_oficina = mysqli_fetch_array($query_oficina);
 	$cod_login = $vetor_oficina['cod_login'];
@@ -44,11 +44,11 @@ else if(isset($_POST['cliente'])){
 
 		if ($numero != $x) {
 
-			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome": "'.$vetor_oficina['nome'].'","serv":"'.$vetor_servico['servico_desejado'].'"},' ;
+			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome": "'.$vetor_oficina['nome'].'","serv":"'.$vetor_servico['servico_desejado'].'","status":"'.$vetor_servico['status'].'"},' ;
 
 		}
 		else{
-			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome":"'.$vetor_oficina['nome'].'","serv": "'.$vetor_servico['servico_desejado'].'"}' ;
+			echo '{ "cod":"'.$vetor_servico['cod_servico'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome":"'.$vetor_oficina['nome'].'","serv": "'.$vetor_servico['servico_desejado'].'","status":"'.$vetor_servico['status'].'"}' ;
 		}
 		$x++;
 	}

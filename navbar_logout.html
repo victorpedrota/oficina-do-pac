@@ -72,7 +72,7 @@ body{
           <a class="dropdown-item" href="#">Recentes</a>
           <div class="dropdown-divider" id="visto"></div>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Expandir</a>
+          <a id="expandir" class="dropdown-item" href="#">Expandir</a>
         </div>
       </li>
       <li class="nav-item">
@@ -170,31 +170,84 @@ body{
      var obj = JSON.parse(data)
      
      for (var i in obj) {
-      if(i<5){
-
-
-      if (obj[i].visto == 1) {
-        $("#visto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li>  </ul></li></ul>")
-      }
-      else{
-        $("#visto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'><img style='width:60px;height:60px;border-radius:50%;' src="+obj[i].img+"></li><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].nome+"</button></li></ul>")
-      }
       
 
+
+        if (obj[i].visto == 1) {
+          if (i <5) {
+          $("#visto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li> </ul></li></ul>")
+          }
+        }
+        else{
+          if (obj[i].status == 1) {
+            $("#nvisto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li><li style='margin-left:10px;' class='list-item'>Serviço foi para discussão </li></ul></li></ul>")
+          }
+          else if (obj[i].status == 2) {
+            $("#nvisto").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li><li style='margin-left:10px;' class='list-item'>Leve seu carro até a oficina </li></ul></li></ul>")
+          }
+      
+        }
+
+
+      
     }
-  }
 
   });
    if ($(".nvisto").length == 0) {
      $("#nvisto").after("<button class='dropdown-item not tirar nvisto' href='#'>sem novidades</button>")
    }
-    $( ".tirar" ).each(function( index ) {
+   $( ".tirar" ).each(function( index ) {
     $.post( "server.php", { visto: $(this).val()} );
-   
+
     $(this).remove()
 
   })
  });
 
+  $("#expandir").click(function(){
+    $.post( "server.php", { cliente: $("#gambiarra3").val()})
+    .done(function( data ) {
+
+     var obj = JSON.parse(data)
+     
+     for (var i in obj) {
+      
+
+        if (obj[i].visto == 1) {
+          $("#karaio").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li> </ul></li></ul>")
+        }
+        else{
+
+          $("#karaio").after("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].serv+"</button></li> </ul></li></ul>")
+        }
+
+
+
+    }
+
+  });
+
+    $("#allservices").modal('show')
+  })
+
 
 </script>
+<div class="modal fade bd-example-modal-lg" id="allservices" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Todos os serviços em andamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 400px;overflow-y: scroll;">
+        <div  id="karaio"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
