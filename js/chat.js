@@ -13,17 +13,17 @@ function update()
 
         if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && obj[i].orcamento[3]==1) {$('#screen').append("<div class='orcamento b "+obj[i].cod_orcamento+"' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:<p class='data'>"+obj[i].orcamento[2]+ "</p><br><button class='btn btn-default'>Recusar</button><button style='color:white;' class='btn btn-primary enviar' value="+obj[i].cod_orcamento+">aceitar</button></div><br><br><br><br><br><br><br><br><br>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor && obj[i].orcamento[3]==1){$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "</div><br><br><br><br><br><br>");}
-        else if (obj[i].orcamento[3] == 2) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Está em progresso</div><br><br><br><br><br><br>");}
-        else if(obj[i].orcamento[3] == 0){$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Um novo orçamento foi enviado</div><br><br><br><br><br><br><br>");}
+        else if ($('#conversa').val() == obj[i].codigo && obj[i].orcamento[3] == 2 ) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Está em progresso</div><br><br><br><br><br><br>");}
+        else if( $('#conversa').val() == obj[i].codigo && obj[i].orcamento[3] == 0 ){$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Um novo orçamento foi enviado</div><br><br><br><br><br><br><br>");}
 
       }
       else{
 
-        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<div class='rcorners1 b' style='float:right;'>"+obj[i].texto + "</div><br><br><br>");}
+        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<ul style='margin-bottom:10px;margin-left:5px; text-align: right;' class='list-inline tirar novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src=''></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].texto+"</strong></button></li><li class='list-item'><button value='' class='dropdown-item not tirar' href='#'></button></li><li style='margin-left:10px;' class='list-item'>O serviço foi finalizado </li></ul></li></ul>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor )
           {
             if ($('#cod_mec').val() == $("#verdadeiro").val()) {
-            $('#screen').append("<div class='rcorners2 b' style='float:left;'>"+obj[i].texto + "</div><br><br><br>");
+            $('#screen').append("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src=''></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].texto+"</strong></button></li><li class='list-item'><button value='' class='dropdown-item not tirar' href='#'></button></li><li style='margin-left:10px;' class='list-item'>O serviço foi finalizado </li></ul></li></ul>");
           }
       }
        

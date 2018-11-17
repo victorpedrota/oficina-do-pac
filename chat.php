@@ -154,7 +154,9 @@ else{
       <div class="row">
 
         <div class="col-xl-8 col-lg-8 col-xs-12">
-          <div id="screen" style="margin-top: 30px;" class="tela"></div> <br>  
+          <div id="screen" style="margin-top: 30px;" class="tela">
+            
+          </div> <br>  
 
 
 
