@@ -63,6 +63,22 @@ body{
       <li class="nav-item active">
         <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src="<?php echo $_SESSION['imagem'];?>" class="profile"></a>
       </li>
+      
+      <li class="nav-item dropdown dropleft">
+        <a class="nav-link" href="#" id="mensagens" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i id="msg" class="far fa-comment"></i>
+        </a>
+        <div class="dropdown-menu"  style="width: 400px;height: auto;" id="messages" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Não vistas</a>
+          <div class="dropdown-divider"> </div>
+          <div style="overflow-y: scroll;max-height: 90px;" id="mgsnvista"> </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Recentes</a>
+          <div class="dropdown-divider" ></div>
+          <div id="msgvista" style="overflow-y: scroll;max-height: 330px;"></div>
+          
+      </li>
+      
       <li class="nav-item dropdown dropleft">
         <a class="nav-link" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i id="bell" class="far fa-bell"></i>
@@ -214,6 +230,45 @@ body{
 
     $( ".tirar" ).each(function( index ) {
       $.post( "server.php", { visto: $(this).val()} );
+
+      $(this).remove()
+
+    })
+  });
+  $("#mensagens").click(function() {
+    // refresh list
+
+    var sla
+    sla =0
+    
+    $.post( "server.php", { seemsg: $("#gambiarra3").val()})
+    .done(function( data ) {
+      
+     var obj = JSON.parse(data)
+
+     for (var i in obj) {
+
+
+
+      if (obj[i].visto == 1) {
+
+        $("#msgvista").prepend("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline seemsg novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not seemsg disabled ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].msg+"</button></li> </ul></li></ul>")
+
+      }
+      else{
+        $("#mgsnvista").append("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline seemsg novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not seemsg disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].msg+"</button></li> </ul></li></ul>")
+
+
+      }
+
+
+      
+    }
+
+  })
+
+    $( ".seemsg" ).each(function( index ) {
+      $.post( "server.php", { msgvisto: $(this).val()} );
 
       $(this).remove()
 

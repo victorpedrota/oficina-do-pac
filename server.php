@@ -36,6 +36,52 @@ else if (isset($_POST['nav'])) {
 		}
 	}
 }
+else if (isset($_POST['msg'])) {
+	$msg = $_POST['msg'];
+	$cod_cliente = $_POST['cod_cliente'];
+	if ($msg==1) {
+		$sql= "SELECT * FROM `mensagens` WHERE `cod_destinatario` = $cod_cliente && `mostra` = 0";
+		$query = mysqli_query($conn,$sql);
+		$numero = mysqli_num_rows($query);
+		if ($numero != 0) {
+			echo 1;
+		}
+	}
+}
+else if(isset($_POST['seemsg'])){
+	
+	$cliente = $_POST['seemsg'];
+	$sql_foto = "SELECT * FROM `mensagens` WHERE `cod_destinatario` = $cliente";
+	$query_foto = mysqli_query($conn,$sql_foto);
+	$numero = mysqli_num_rows($query_foto);
+	$x =1;
+	
+	echo "[";
+	while($vetor_servico = mysqli_fetch_array($query_foto)){
+		$cod_mecanico = $vetor_servico['cod_autor'];
+		$sql = "SELECT * FROM `mecanico` WHERE `cod_login` = $cod_mecanico";
+		$query = mysqli_query($conn,$sql);
+		$vetor_mecanico = mysqli_fetch_array($query);
+		$sql_login = "SELECT * FROM `login` WHERE `cod_login` = $cod_mecanico";
+		$query_login = mysqli_query($conn,$sql_login);
+		$vetor_login = mysqli_fetch_array($query_login);
+
+		if ($numero != $x) {
+
+			echo '{ "cod":"'.$vetor_servico['cod_destinatario'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome": "'.$vetor_mecanico['nome'].'","msg":"'.$vetor_servico['text'].'"},' ;
+
+		}
+		else{
+			echo '{ "cod":"'.$vetor_servico['cod_destinatario'].'", "visto": "'.$vetor_servico['mostra'].'","img":"'.$vetor_login['imagem'].'","nome": "'.$vetor_mecanico['nome'].'","msg":"'.$vetor_servico['text'].'"}' ;
+		}
+		$x++;
+	}
+	echo "]";
+
+
+
+	
+}
 else if(isset($_POST['cliente'])){
 	
 	$cliente = $_POST['cliente'];
@@ -75,6 +121,12 @@ else if (isset($_POST['visto'])) {
 
 	$cod = $_POST['visto'];
 	$sql = "UPDATE `servico` SET `mostra`= 1 WHERE `cod_servico` = $cod";
+	$query = mysqli_query($conn,$sql);
+}
+else if (isset($_POST['msgvisto'])) {
+
+	$cod = $_POST['msgvisto'];
+	$sql = "UPDATE `mensagens` SET `mostra`= 1 WHERE `cod_destinatario` = $cod";
 	$query = mysqli_query($conn,$sql);
 }
 else if(isset($_POST['valor'])){
