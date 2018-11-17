@@ -43,7 +43,7 @@ else{
       $date = date('Y-m-d'); 
       $hora = date('H:i:s');
 
-      $sql_pesquisa ="INSERT INTO `atualizacao`(`cod_servico`, `mensagem`, `hora`, `data`, `assunto`) VALUES ($cod_servico,'$atualizacao','$hora','$date','$assunto')";
+      $sql_pesquisa ="INSERT INTO `atualizacao`(`cod_servico`, `mensagem`, `hora`, `data`, `assunto`,`cod_mecanico`) VALUES ($cod_servico,'$atualizacao','$hora','$date','$assunto',$cod_mecanico)";
       $resultado = mysqli_query($conn,$sql_pesquisa);
 
       ?>

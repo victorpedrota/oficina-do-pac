@@ -177,14 +177,30 @@ else{
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
           <div style="display: block;" id="servicos">
             <center><h3>Gerenciar Serviços</h3></center>
+            <?php
+            $sql_servico ="SELECT * FROM `servico` WHERE `cod_mecanico` = 0 && `status` != 0";
+            $resultado_cliente2 = mysqli_query($conn,$sql_servico);
+            $num2 = mysqli_num_rows($resultado_cliente2);
+
+            if ($num2!=0) {
+              while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente2)) {
+                echo " <div class='alert alert-danger' role='alert'>
+                Parece que tem um serviço parado, escolha um mecânico para ele.<button value='".$vetor_veiculo["cod_servico"]."' class='btn btn-link cod_serv'  data-target='#lista_mec'  data-toggle='modal'>Escolher mecânico</button> <button class='aviso btn btn-link' style='float: right;margin-top: -7px;'><i class='fas fa-times'></i></button>
+                </div>";
+              }
+
+            }
+
+            ?>
+
             <br>
-            
+
 
             <center><h5>Lista de Serviços</h5></center>
             <ul style="text-align: left;" class="list-group">
               <?php
 
-              $cliente2 ="SELECT * FROM `servico` WHERE `status` = 0";
+              $cliente2 ="SELECT * FROM `servico` WHERE `status` = 0 && `status` <=3";
               $resultado_cliente2 = mysqli_query($conn,$cliente2);
               $num2 = mysqli_num_rows($resultado_cliente2);
 
@@ -268,173 +284,231 @@ else{
 
              <div class="row">
               <div class="col "><div id="texto"></div>
-                <label for="ex3">Login:</label>
+              <label for="ex3">Login:</label>
 
-                <input class="form-control"  name="login" id="login" minlength="6" type="text" required>
-              </div>
-              <div class="col">
-                <label for="ex3">Senha:</label>
-
-                <input class="form-control"  name="senha" id="senha"  minlength="6" type="password" required>
-              </div>
-              <div class="col">
-                <label for="ex3">Confirmar senha:</label>
-
-                <input class="form-control"  name="c_senha"  id="c_senha" minlength="6" type="password" required>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col ">
-                <label for="ex3">Primeiro nome:</label>
-
-                <input class="form-control letters" id="nome" name="nome" type="text" required>
-              </div>
-              <div class="col">
-                <label for="ex3">Sobrenome:</label>
-                <input class="form-control letters"   name="sobrenome" id="sobrenome"   type="text" required></td>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col ">
-               <label for="ex3">Data de nascimento:</label>
-               <input class="form-control data" id="data" type="date" required>
-             </div>
-             <div class="col">
-              <label for="ex3">Telefone:</label>
-              <input class="form-control telefone" type="text" name="telefone" id="telefone"  required>
+              <input class="form-control"  name="login" id="login" minlength="6" type="text" required>
             </div>
             <div class="col">
-              <label for="ex3">Celular:</label>
-              <input class="form-control telefone" type="text" name="celular" id="celular" required>
+              <label for="ex3">Senha:</label>
+
+              <input class="form-control"  name="senha" id="senha"  minlength="6" type="password" required>
+            </div>
+            <div class="col">
+              <label for="ex3">Confirmar senha:</label>
+
+              <input class="form-control"  name="c_senha"  id="c_senha" minlength="6" type="password" required>
             </div>
 
           </div>
           <div class="row">
             <div class="col ">
-             <label for="ex3">RG:</label>
-             <input class="form-control" type="text" name="rg" id="rg" required>
+              <label for="ex3">Primeiro nome:</label>
+
+              <input class="form-control letters" id="nome" name="nome" type="text" required>
+            </div>
+            <div class="col">
+              <label for="ex3">Sobrenome:</label>
+              <input class="form-control letters"   name="sobrenome" id="sobrenome"   type="text" required></td>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col ">
+             <label for="ex3">Data de nascimento:</label>
+             <input class="form-control data" id="data" type="date" required>
            </div>
            <div class="col">
-            <label for="ex3">CPF:</label>
-            <input class="form-control" type="text" name="cpf"  id="cpf" required >
+            <label for="ex3">Telefone:</label>
+            <input class="form-control telefone" type="text" name="telefone" id="telefone"  required>
           </div>
           <div class="col">
-            <label for="ex3">CEP:</label>
-            <input class="form-control cep" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
-          </div>
-          <div class="col">
-            <label for="ex3">Estado:</label>
-            <input class="form-control" id="uf" name="uf" required readonly="readonly"> 
-
+            <label for="ex3">Celular:</label>
+            <input class="form-control telefone" type="text" name="celular" id="celular" required>
           </div>
 
         </div>
         <div class="row">
-
           <div class="col ">
-            <label for="ex3">Cidade:</label>
-            <input id="cidade" name="cidade" class="form-control letters" required readonly="readonly">
-
-          </div>
-          <div class="col">
-            <label for="ex3">Bairro:</label>
-            <input class="form-control" id="bairro"   name="bairro" type="text" required readonly="readonly">
-          </div>
-
-
+           <label for="ex3">RG:</label>
+           <input class="form-control" type="text" name="rg" id="rg" required>
+         </div>
+         <div class="col">
+          <label for="ex3">CPF:</label>
+          <input class="form-control" type="text" name="cpf"  id="cpf" required >
         </div>
-        <div class="row">
-          <div class="col">
-            <label for="ex3">Rua:</label>
-            <input class="form-control"  id="rua" name="rua" type="text" required readonly="readonly">
-          </div>
-          <div class="col ">
-            <label for="ex3">Numero:</label>
-            <input class="form-control"  id="numero"  name="numero" type="text" required>
-          </div>
-          <div class="col">
-            <label for="ex3">Complemento:</label>
-            <input class="form-control"  name="complemento" id="complemento" type="text">
-          </div>
-
+        <div class="col">
+          <label for="ex3">CEP:</label>
+          <input class="form-control cep" id="cep"  onblur="pesquisacep(this.value);"  name="cep" type="text" required>
+        </div>
+        <div class="col">
+          <label for="ex3">Estado:</label>
+          <input class="form-control" id="uf" name="uf" required readonly="readonly"> 
 
         </div>
 
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $('#cep').mask('00.000-000');
-            $('#numero').mask('#0');
-            $('.telefone').mask('(00) 0000-00009');
-            $('.telefone').blur(function(event) {
+      </div>
+      <div class="row">
+
+        <div class="col ">
+          <label for="ex3">Cidade:</label>
+          <input id="cidade" name="cidade" class="form-control letters" required readonly="readonly">
+
+        </div>
+        <div class="col">
+          <label for="ex3">Bairro:</label>
+          <input class="form-control" id="bairro"   name="bairro" type="text" required readonly="readonly">
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="ex3">Rua:</label>
+          <input class="form-control"  id="rua" name="rua" type="text" required readonly="readonly">
+        </div>
+        <div class="col ">
+          <label for="ex3">Numero:</label>
+          <input class="form-control"  id="numero"  name="numero" type="text" required>
+        </div>
+        <div class="col">
+          <label for="ex3">Complemento:</label>
+          <input class="form-control"  name="complemento" id="complemento" type="text">
+        </div>
+
+
+      </div>
+
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#cep').mask('00.000-000');
+          $('#numero').mask('#0');
+          $('.telefone').mask('(00) 0000-00009');
+          $('.telefone').blur(function(event) {
                 if($(this).val().length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
                   $('.telefone').mask('(00) 00000-0009');
                 } else {
                   $('.telefone').mask('(00) 0000-00009');
                 }
               });
-            $('.letters').bind('keyup blur',function(){ 
-              var node = $(this);
-              node.val(node.val().replace(/[^a-z]/g,'') ); }
-              );
-          })
-          $('#cpf').mask('000.000.000-00', {reverse: true});
-          $('#rg').mask('00.000.000-0', {reverse: true});
-        </script>
-        <br>
-        <div><center><button class="btn btn-primary" id="send" type="button"> Enviar</button></center></div>
-      </form>
-    </div>
-
+          $('.letters').bind('keyup blur',function(){ 
+            var node = $(this);
+            node.val(node.val().replace(/[^a-z]/g,'') ); }
+            );
+        })
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+        $('#rg').mask('00.000.000-0', {reverse: true});
+      </script>
+      <br>
+      <div><center><button class="btn btn-primary" id="send" type="button"> Enviar</button></center></div>
+    </form>
   </div>
-  <div class="modal fade" id="ima" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Galeria de imagens</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class='card-group'>
-            <?php 
+
+</div>
+<div class="modal fade" id="ima" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Galeria de imagens</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class='card-group'>
+          <?php 
 
 
-            $sql_servico = "SELECT * FROM `galeria` WHERE  `cod_oficina` = $cod_oficina";
-            $query_servico = mysqli_query($conn, $sql_servico);
-            $numero_servico = mysqli_num_rows($query_servico); 
-            if ($numero_servico !=0) {
-              while ($vetor_servico = mysqli_fetch_array($query_servico)) {
+          $sql_servico = "SELECT * FROM `galeria` WHERE  `cod_oficina` = $cod_oficina";
+          $query_servico = mysqli_query($conn, $sql_servico);
+          $numero_servico = mysqli_num_rows($query_servico); 
+          if ($numero_servico !=0) {
+            while ($vetor_servico = mysqli_fetch_array($query_servico)) {
 
-                echo "
-                <div class='show-image' >
-                <img  src='".$vetor_servico['imagem']."' class='cortar' style='height:100px;width:100px;'  >
+              echo "
+              <div class='show-image' >
+              <img  src='".$vetor_servico['imagem']."' class='cortar' style='height:100px;width:100px;'  >
 
-                <i class='fas fa-times delete'></i>
-                </div>";
-
-
+              <i class='fas fa-times delete'></i>
+              </div>";
 
 
 
-              }
 
 
             }
 
 
+          }
 
+
+
+          else{
+
+            echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
+
+          }              
+
+
+          ?>
+
+          <button class="btn btn-secondary" style="height: 40px; margin-top: 40px;margin-left: 35px;" data-toggle="modal" data-target="#envia_img" data-dismiss="modal"><i class="fas fa-plus"></i></button></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="envia_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Escolher imagens</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form method="post" enctype="multipart/form-data" action="foto_mecanico.php">
+
+            <input type="file" class="form-control" name="arquivo">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" name="opcao" value="0" class="btn btn-primary">Enviar</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="lista_mec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Escolher Mecânico</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" >
+           <div class="" style="max-height: 400px;overflow-y: scroll;">
+            <?php
+            $cliente1 ="SELECT * FROM `mecanico` WHERE `cod_oficina` = $cod_oficina";
+            $resultado_cliente1 = mysqli_query($conn,$cliente1);
+            $num1 = mysqli_num_rows($resultado_cliente1);
+
+            if ($num1 != 0) {
+              while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente1)) {
+
+                echo "<li class='list-group-item itens'>".$vetor_veiculo["nome"]."<button class='gay btn btn-secondary' style='float: right;' value='".$vetor_veiculo['cod_mecanico']."'><i class='fas fa-share-square'></i></button><br></li>";
+              }
+            }
             else{
-
-              echo "<li class='list-group-item itens'>Não há imagens cadastradas</li>";
-
-            }              
-
-
-            ?>
-
-            <button class="btn btn-secondary" style="height: 40px; margin-top: 40px;margin-left: 35px;" data-toggle="modal" data-target="#envia_img" data-dismiss="modal"><i class="fas fa-plus"></i></button></div>
+              echo "<li class='list-group-item itens'><p>Não há Mecânicos cadastrados</p></li>";
+            }
+            ?>    
+            <input type="hidden" id="cod_servico" name="">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -443,67 +517,9 @@ else{
         </div>
       </div>
     </div>
-    <div class="modal fade" id="envia_img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Escolher imagens</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-
-            <form method="post" enctype="multipart/form-data" action="foto_mecanico.php">
-
-              <input type="file" class="form-control" name="arquivo">
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="submit" name="opcao" value="0" class="btn btn-primary">Enviar</button></form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="lista_mec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Escolher Mecânico</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" >
-               <div class="" style="height: 400px;overflow-y: scroll;">
-              <?php
-              $cliente1 ="SELECT * FROM `mecanico` WHERE `cod_oficina` = $cod_oficina";
-              $resultado_cliente1 = mysqli_query($conn,$cliente1);
-              $num1 = mysqli_num_rows($resultado_cliente1);
-
-              if ($num1 != 0) {
-                while ($vetor_veiculo = mysqli_fetch_array($resultado_cliente1)) {
-
-                  echo "<li class='list-group-item itens'>".$vetor_veiculo["nome"]."<button class='gay btn btn-secondary' style='float: right;' value='".$vetor_veiculo['cod_mecanico']."'><i class='fas fa-share-square'></i></button><br></li>";
-                }
-              }
-              else{
-                echo "<li class='list-group-item itens'><p>Não há Mecânicos cadastrados</p></li>";
-              }
-?>    
-<input type="hidden" id="cod_servico" name="">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-             
-            </div>
-          </div>
-        </div>
-      </div>
-      <script type="text/javascript">
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
+    <script type="text/javascript">
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
 
@@ -549,6 +565,9 @@ else{
 
     })
   });
+  $(".aviso").click(function(){
+    $(this).parent().remove()
+  })
   $("#meuForm").validate({
     rules: {
       cpf: {cpf: true, required: true}
@@ -615,7 +634,7 @@ else{
       }
     }
     $(".form-control").click(function(){
-      $(this).css("background-color","#ffffff00")
+      $(this).css("background-color","#fff")
     })
 
 
@@ -629,11 +648,12 @@ else{
    window.location.href = 'perfil_oficina.php';
  })
   $(".cod_serv").click(function(){
+    alert($(this).val())
     $("#cod_servico").attr("value",$(this).val())
 
   })
   $(".gay").click(function(){
-    
+
     var cod_servico = $("#cod_servico").val()
     $(location).attr('href','alterar_mecanico_servico.php?codigo='+$(this).val()+'&cod_servico='+cod_servico)
 

@@ -442,6 +442,7 @@ else{
                       Conteudo:
                       <textarea type="text" class="form-control" name="atualizacao"></textarea>
                       <input type="hidden" id="bot_cod" name="codigo" value="">
+                      <input type="hidden" name="cod_mec" value="<?php echo $cod_mecanico;?>">
                       <input type="hidden" value="1" name="var">
 
                     </div>

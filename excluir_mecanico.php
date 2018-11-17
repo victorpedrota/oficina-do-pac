@@ -26,7 +26,7 @@ else{
     $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $codigo_mecanico";
     $resultado = mysqli_query($conn,$sql_pesquisa);
     $vetor = mysqli_fetch_array($resultado);
-     $log =$vetor['cod_login'];
+    $log =$vetor['cod_login'];
     $sql_servico2 ="DELETE FROM `login` WHERE `cod_login` = $log";
     $query_servico2 = mysqli_query($conn,$sql_servico2); 
     $sql_servico1 ="DELETE FROM `mecanico` WHERE `cod_mecanico` = $codigo_mecanico";
