@@ -11,7 +11,7 @@ function update()
 
       if (obj[i].cod_orcamento!=0) {
 
-        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor && obj[i].orcamento[3]==1) {$('#screen').append("<div class='orcamento b "+obj[i].cod_orcamento+"' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:<p class='data'>"+obj[i].orcamento[2]+ "</p><br><button class='btn btn-default'>Recusar</button><button style='color:white;' class='btn btn-primary enviar' value="+obj[i].cod_orcamento+">aceitar</button></div><br><br><br><br><br><br><br><br><br>");}
+        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_destinatario && obj[i].orcamento[3]==1) {$('#screen').append("<div class='orcamento b "+obj[i].cod_orcamento+"' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:<p class='data'>"+obj[i].orcamento[2]+ "</p><br><button class='btn btn-default'>Recusar</button><button style='color:white;' class='btn btn-primary enviar' value="+obj[i].cod_orcamento+">aceitar</button></div><br><br><br><br><br><br><br><br><br>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor && obj[i].orcamento[3]==1){$('#screen').append("<div class='orcamento b' style='float:right;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "</div><br><br><br><br><br><br>");}
         else if ($('#conversa').val() == obj[i].codigo && obj[i].orcamento[3] == 2 ) {$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Está em progresso</div><br><br><br><br><br><br>");}
         else if( $('#conversa').val() == obj[i].codigo && obj[i].orcamento[3] == 0 ){$('#screen').append("<div class='orcamento b' style='float:left;height200px;'>Valor:"+obj[i].orcamento[0]+"<br>Detalhes:"+obj[i].orcamento[1]+"<br>Data de entrega:"+obj[i].orcamento[2]+ "<br>Um novo orçamento foi enviado</div><br><br><br><br><br><br><br>");}
@@ -20,11 +20,12 @@ function update()
       else{
 
         if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<ul style='margin-bottom:10px;text-align:right;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");}
-        else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor )
+        else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_destinatario && $('#cod_destinatario').val() == obj[i].cod_autor )
           {
-            if ($('#cod_mec').val() == $("#verdadeiro").val()) {
+            
             $('#screen').append("<ul style='margin-bottom:10px;background-color: red;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");
-          }
+          
+
       }
        
       }
@@ -53,7 +54,7 @@ $(document).ready(
       {       
         $("#screen").animate({scrollTop: $('#screen').prop("scrollHeight")}, 999);
         $.post("server.php", 
-          { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
+          { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val(), cod_destinatario:$("#cod_destinatario").val()},
           function(data){ 
             $("#screen").val(data); 
             $("#message").val("");

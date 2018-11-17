@@ -116,8 +116,8 @@ else{
               $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_cliente` = $cod_cliente" ;
               $resultado_pesquisa = mysqli_query($conn,$sql_pesquisa);
               $vetor_imagem = mysqli_fetch_array($resultado_pesquisa);
-              $cod_login = $vetor_imagem['cod_login'];
-              $sql_pesq ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
+              $cod_login_usuario = $vetor_imagem['cod_login'];
+              $sql_pesq ="SELECT * FROM `login` WHERE `cod_login` = $cod_login_usuario" ;
               $resultado_pesq = mysqli_query($conn,$sql_pesq);
               $vetor_final= mysqli_fetch_array($resultado_pesq);
               $imagem_cliente = $vetor_final['imagem'];
@@ -138,7 +138,7 @@ else{
                         echo "<h5 style='margin-top:25px;'>" . $vetor_imagem['nome']. " " . $vetor_imagem['sobrenome'] . "</h5>";
                         ?></td> 
                       </tr>
-
+                      <input type="hidden" id="cod_destinatario" value="<?php echo $cod_login_usuario;?>" name="">
                     </table><br> <h5 style="margin-left: 15px;">Informações do veículo</h5>
                     <?php
                     echo "<h6 style='margin-left:15px;margin-top:10px;'>Placa:".$vetor_veiculo['placa']. "  Marca:". $vetor_veiculo['marca'] ."<br>Modelo:". $vetor_veiculo['modelo'] . "</h6>";

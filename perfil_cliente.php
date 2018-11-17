@@ -130,17 +130,17 @@ else{
                               $cod_servicos = $vetor_servicos['cod_servico'];
                               $sql_atualizacao ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servicos ORDER BY `cod_atualizacao` DESC" ;
                               $atualizacao = mysqli_query($conn,$sql_atualizacao);
-                             
+
                               
                               
-                                
+
                               $num = mysqli_num_rows($atualizacao);
                               
 
                               if ( $num == 0) {
 
                               } else{
-                                  
+
                                   while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
                                     $cod_mecanico = $vetor_atualizacao['cod_mecanico'];
                                     $nome_mecanico ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico";
@@ -148,8 +148,8 @@ else{
                                     $vetor_mecanico = mysqli_fetch_array($mecanico);
                                     $cod_login = $vetor_mecanico['cod_login'];
                                     $query_foto ="SELECT * FROM `login` WHERE `cod_login` = $cod_login";
-                              $mecanico_foto = mysqli_query($conn,$query_foto);
-                              $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
+                                    $mecanico_foto = mysqli_query($conn,$query_foto);
+                                    $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
                                     ?>
                                     <div class="card text-left">
                                         <div class="card-header">
@@ -543,145 +543,165 @@ else{
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="js/starrr.js"></script>
 <script>
-    $("#btnenviar").click(function() {
-        var nome = $("#nomes").val();
-        $("#n_oficina").attr("value", nome);
+    function update()
+        {
 
-        var inputs = new Array();
+            $.post("server.php",{nav: 1, cod_cliente:$("#cod_cliente").val()})
+                .done(function(data){
+                    if (data!=0) {
+                        $( "#bell" ).effect( "shake",{distance:8} );
+                    }else{
 
-        $(".hidden").each(function() {
-            inputs.push($(this).val());
-        });
-
-        $.post("abrir_chamado.php", {
-            veiculo: $("#veiculos").val(),
-            tipo: $("tipo").val(),
-            problema: $("#descricao").val(),
-            servico: $("#servico").val(),
-            n_oficina: "[" + inputs + "]",
-            cod_cliente: $("#cod_cliente").val()
-        });
-    });
-    $('#btnchamados').on('click', function() {
-        $('#chamados').css("display", "block");
-        $('#andamento').css("display", "none");
-        $('#feed').css("display", "none");
-    });
-    $('#btnfeed').on('click', function() {
-        $('#feed').css("display", "block");
-        $('#andamento').css("display", "none");
-        $('#chamados').css("display", "none");
-    });
-    $('#btnandamento').on('click', function() {
-        $('#andamento').css("display", "block");
-        $('#chamados').css("display", "none");
-        $('#feed').css("display", "none");
-    });
-    $("#enviar").click(function() {
-        var form = $("#form");
-        form.valid();
-        if (form.valid() == true) {
-            $("#oficinas").modal("show");
+                    }
+                })
+            setTimeout('update()', 5000);
         }
+    $(document).ready(function(){
 
 
-        $('html').on('keyup', '.nomes', function() {
-            var target = $(this).closest('[data-id]');
-            $("#lista_nomes_" + target.data("id") + " button").remove();
-            $.post("search.php", {
-                texto: $(this).val()
-            },
-            function(data) {
-                var obj = jQuery.parseJSON(data);
-                for (var i in obj) {
-                    $("#lista_nomes_" + target.data("id")).append("<button  href='#' value='" + obj[i].id + "' id='botao" + i + "' class='btn btn-link escolha'>" + obj[i].text + "</button>");
+        update();
+        $("#btnenviar").click(function() {
+            var nome = $("#nomes").val();
+            $("#n_oficina").attr("value", nome);
+
+            var inputs = new Array();
+
+            $(".hidden").each(function() {
+                inputs.push($(this).val());
+            });
+
+            $.post("abrir_chamado.php", {
+                veiculo: $("#veiculos").val(),
+                tipo: $("tipo").val(),
+                problema: $("#descricao").val(),
+                servico: $("#servico").val(),
+                n_oficina: "[" + inputs + "]",
+                cod_cliente: $("#cod_cliente").val()
+            });
+        });
+        $('#btnchamados').on('click', function() {
+            $('#chamados').css("display", "block");
+            $('#andamento').css("display", "none");
+            $('#feed').css("display", "none");
+        });
+        $('#btnfeed').on('click', function() {
+            $('#feed').css("display", "block");
+            $('#andamento').css("display", "none");
+            $('#chamados').css("display", "none");
+        });
+        $('#btnandamento').on('click', function() {
+            $('#andamento').css("display", "block");
+            $('#chamados').css("display", "none");
+            $('#feed').css("display", "none");
+        });
+        $("#enviar").click(function() {
+            var form = $("#form");
+            form.valid();
+            if (form.valid() == true) {
+                $("#oficinas").modal("show");
+            }
+
+
+            $('html').on('keyup', '.nomes', function() {
+                var target = $(this).closest('[data-id]');
+                $("#lista_nomes_" + target.data("id") + " button").remove();
+                $.post("search.php", {
+                    texto: $(this).val()
+                },
+                function(data) {
+                    var obj = jQuery.parseJSON(data);
+                    for (var i in obj) {
+                        $("#lista_nomes_" + target.data("id")).append("<button  href='#' value='" + obj[i].id + "' id='botao" + i + "' class='btn btn-link escolha'>" + obj[i].text + "</button>");
+                    }
+
+                }
+                );
+            }).keydown(function() {
+                var target = $(this).closest('[data-id]');
+                $("#lista_nomes_" + target.data("id") + " button").remove();
+            });
+
+
+
+            $('html').on('click', '.escolha', function() {
+                var target = $(this).closest('[data-id]');
+                var botao = $(this).val();
+                $("#teste" + target.data("id")).remove();
+                $(this).closest('div').remove()
+                var num = target.data("id");
+                $("#nome" + target.data("id")).remove();
+                $("#nome_" + target.data("id")).val($(this).text());
+                $("#lista_nomes_" + target.data("id")).append("<input type='hidden' id='teste" + num + "' class='hidden' value='" + botao + "'>");
+
+            })
+
+
+
+
+            var id = 1;
+            $('html').on('click', '#addoficina', function() {
+
+                id++;
+                var teste = "<br><div  data-id=" + id + ">" +
+                "<div class='input-group'>" +
+                "<input name='noficina' list='lista_nomes' id='nome_" + id + "' class='form-control nomes' data-live-search='true' style='border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;'>" +
+
+                "<div class='input-group-btn'>" +
+                "<button class='btn btn-default' id='addoficina' style='border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px' type='submit'>" +
+                "<i class='fas fa-plus'></i>" +
+                "</button></div></div><div  id=lista_nomes_" + id + "  style='margin-top:0px; width: 100%; background-color: white; position: relative;''></div></div></div>";
+                $("#corpo").append(teste);
+
+            });
+
+        });
+        $(".codigof").click(function() {
+            $("#cod_serv").val($(this).val())
+            $.post( "server.php", { tipo: "cliente" ,codigo: $(this).val() } )
+            .done(function( data ) {
+                if (data = "erro") {
+                    $( "#foto" ).attr( "src", "//ssl.gstatic.com/accounts/ui/avatar_2x.png" );
+                    $('#bct').remove();
+                    $("#foto").after("<div id='bct'><br><br><strong>O mecânico não trabalha mais nesta oficina</strong></div>");
+                    $( ".starrr" ).remove();
+                    $("#excluido").attr("value",1)
+
+                }
+                else{
+                    $( "#foto" ).attr( "src", data );
+                    $("#excluido").attr("value",0)
                 }
 
+
+            })
+            $( ".starrr" ).remove();
+            $("#vaiq").append("<div class='starrr' id='star1'></div>")
+            $('.starrr').starrr({
+              change: function(e, value){
+                $("#nota").val(value)
+
+
             }
-            );
-        }).keydown(function() {
-            var target = $(this).closest('[data-id]');
-            $("#lista_nomes_" + target.data("id") + " button").remove();
-        });
-
-
-
-        $('html').on('click', '.escolha', function() {
-            var target = $(this).closest('[data-id]');
-            var botao = $(this).val();
-            $("#teste" + target.data("id")).remove();
-            $(this).closest('div').remove()
-            var num = target.data("id");
-            $("#nome" + target.data("id")).remove();
-            $("#nome_" + target.data("id")).val($(this).text());
-            $("#lista_nomes_" + target.data("id")).append("<input type='hidden' id='teste" + num + "' class='hidden' value='" + botao + "'>");
-
+        })
         })
 
 
+        $("#fechar").click(function(){
 
+            $( ".starrr" ).remove();
+        })
 
-        var id = 1;
-        $('html').on('click', '#addoficina', function() {
+        $("#envia").click(function(){
+            alert($("#excluido").val())
+            $.post( "server.php", { tipo: "cliente", nota: $("#nota").val(), cod: $("#cod_serv").val(), excluido: $("#excluido").val()} ).done(function( data ) {
 
-            id++;
-            var teste = "<br><div  data-id=" + id + ">" +
-            "<div class='input-group'>" +
-            "<input name='noficina' list='lista_nomes' id='nome_" + id + "' class='form-control nomes' data-live-search='true' style='border-top-left-radius:3px; border-bottom-left-radius:3px; border-top-right-radius: 0px;border-bottom-right-radius: 0px; margin-left: 5px;height: 36px;width: 362px;'>" +
+            });
 
-            "<div class='input-group-btn'>" +
-            "<button class='btn btn-default' id='addoficina' style='border-top-left-radius:0px; border-bottom-left-radius:0px;border-top-right-radius: 3px;border-bottom-right-radius: 3px; height: 36px' type='submit'>" +
-            "<i class='fas fa-plus'></i>" +
-            "</button></div></div><div  id=lista_nomes_" + id + "  style='margin-top:0px; width: 100%; background-color: white; position: relative;''></div></div></div>";
-            $("#corpo").append(teste);
-
-        });
-
-    });
-    $(".codigof").click(function() {
-        $("#cod_serv").val($(this).val())
-        $.post( "server.php", { tipo: "cliente" ,codigo: $(this).val() } )
-        .done(function( data ) {
-            if (data = "erro") {
-                $( "#foto" ).attr( "src", "//ssl.gstatic.com/accounts/ui/avatar_2x.png" );
-                $('#bct').remove();
-                $("#foto").after("<div id='bct'><br><br><strong>O mecânico não trabalha mais nesta oficina</strong></div>");
-                $( ".starrr" ).remove();
-                $("#excluido").attr("value",1)
-
-            }
-            else{
-                $( "#foto" ).attr( "src", data );
-                $("#excluido").attr("value",0)
-            }
-            
+            $(location).attr('href', 'perfil_cliente.php');
 
         })
-        $( ".starrr" ).remove();
-        $("#vaiq").append("<div class='starrr' id='star1'></div>")
-        $('.starrr').starrr({
-          change: function(e, value){
-            $("#nota").val(value)
 
-
-        }
-    })
-    })
-
-
-    $("#fechar").click(function(){
-
-        $( ".starrr" ).remove();
-    })
-
-    $("#envia").click(function(){
-        alert($("#excluido").val())
-        $.post( "server.php", { tipo: "cliente", nota: $("#nota").val(), cod: $("#cod_serv").val(), excluido: $("#excluido").val()} ).done(function( data ) {
-
-        });
         
-        $(location).attr('href', 'perfil_cliente.php');
-
     })
 </script>
 

@@ -188,8 +188,8 @@ else{
         $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico" ;
         $resultado_pesquisa = mysqli_query($conn,$sql_pesquisa);
         $vetor_imagem = mysqli_fetch_array($resultado_pesquisa);
-        $cod_login = $vetor_imagem['cod_login'];
-        $sql_pesq ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
+        $cod_login_mecanico = $vetor_imagem['cod_login'];
+        $sql_pesq ="SELECT * FROM `login` WHERE `cod_login` = $cod_login_mecanico" ;
         $resultado_pesq = mysqli_query($conn,$sql_pesq);
         $vetor_final= mysqli_fetch_array($resultado_pesq);
         $imagem_cliente = $vetor_final['imagem'];
@@ -198,6 +198,7 @@ else{
         $vetor_veiculo = mysqli_fetch_array($resultado);
         $cod_servico = $_GET['cod_servico'];
         ?>
+        <input type="hidden" id="cod_destinatario" value="<?php echo $cod_login_mecanico;?>" name="">
         <div class="col-4 d-none d-sm-block d-sm-none d-md-block">
           <div class="card" style="margin-top:30px;width: 18rem;">
             <div class="card"  style="width: 18rem;">
@@ -268,7 +269,7 @@ else{
        {       
         $("#screen").animate({scrollTop: $('#screen').prop("scrollHeight")}, 999);
         $.post("server.php", 
-          { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val()},
+          { message: $("#message").val(), conversa: $("#conversa").val(), codigo: $("#codigo").val(),, cod_destinatario:$("#cod_destinatario").val()},
           function(data){ 
             $("#screen").val(data); 
             $("#message").val("");

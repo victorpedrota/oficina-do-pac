@@ -60,8 +60,9 @@ else{
     while ($vetor_pro['protocolo'] == $protocolo) {
       $protocolo = mt_rand() . "\n";
   }
-
-  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`, `data`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico', CURDATE())";
+$date = date('Y-m-d'); 
+$hora = date('H:i');
+  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`, `data`,`hora`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico', $date,'$hora')";
   $insere = mysqli_query($conn,$sql_cliente);
 
   

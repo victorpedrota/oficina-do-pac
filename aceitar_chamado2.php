@@ -31,7 +31,7 @@ else{
     
      $cod_servico = $_GET['cod_servico'];
     
-	$sql = "UPDATE `servico` SET `status`= 1,`cod_mecanico` = $cod_mecanico WHERE `cod_servico` = $cod_servico";
+	$sql = "UPDATE `servico` SET `status`= 1,`cod_mecanico` = $cod_mecanico,`mostra`=0 WHERE `cod_servico` = $cod_servico";
 	mysqli_query($conn,$sql);
 	?>
 	 <!doctype html>

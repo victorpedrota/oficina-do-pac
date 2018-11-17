@@ -18,9 +18,22 @@ if(isset($_POST['message']))
 
 		$cod_servico = $_POST['conversa'];
 		$cod_autor = $_POST['codigo'];
-		$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`) VALUES ('$message',$cod_servico,$cod_autor)";
+		$cod_destinatario = $_POST['cod_destinatario'];
+		$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`,`cod_destinatario`) VALUES ('$message',$cod_servico,$cod_autor,$cod_destinatario)";
 		$query = mysqli_query($conn,$sql);
 
+	}
+}
+else if (isset($_POST['nav'])) {
+	$nav = $_POST['nav'];
+	$cod_cliente = $_POST['cod_cliente'];
+	if ($nav==1) {
+		$sql= "SELECT * FROM `servico` WHERE `status`!=0 && `cod_cliente` = $cod_cliente && `mostra` = 0 ";
+		$query = mysqli_query($conn,$sql);
+		$numero = mysqli_num_rows($query);
+		if ($numero != 0) {
+			echo 1;
+		}
 	}
 }
 else if(isset($_POST['cliente'])){
@@ -33,14 +46,14 @@ else if(isset($_POST['cliente'])){
 	
 	echo "[";
 	while($vetor_servico = mysqli_fetch_array($query_foto)){
-	$cod_oficina = $vetor_servico['cod_oficina'];
-	$sql_oficina = "SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina ORDER BY `cod_oficina` DESC";
-	$query_oficina = mysqli_query($conn,$sql_oficina);
-	$vetor_oficina = mysqli_fetch_array($query_oficina);
-	$cod_login = $vetor_oficina['cod_login'];
-	$sql_login = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
-	$query_login = mysqli_query($conn,$sql_login);
-	$vetor_login = mysqli_fetch_array($query_login);
+		$cod_oficina = $vetor_servico['cod_oficina'];
+		$sql_oficina = "SELECT * FROM `oficina` WHERE `cod_oficina` = $cod_oficina ORDER BY `cod_oficina` DESC";
+		$query_oficina = mysqli_query($conn,$sql_oficina);
+		$vetor_oficina = mysqli_fetch_array($query_oficina);
+		$cod_login = $vetor_oficina['cod_login'];
+		$sql_login = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+		$query_login = mysqli_query($conn,$sql_login);
+		$vetor_login = mysqli_fetch_array($query_login);
 
 		if ($numero != $x) {
 
@@ -183,6 +196,7 @@ else if(isset($_POST['nota'])){
 				"texto": "'.$row["text"].'",
 				"codigo": '.$row["cod_servico"].',
 				"cod_autor": "'.$row['cod_autor'].'",
+				"cod_destinatario": "'.$row['cod_destinatario'].'",
 				"cod_orcamento": '.$row['cod_orcamento'].',
 				"status": '.$vetor_servico['status'].',
 				"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'","'.$vetor_servico['mostra'].'"]},';
@@ -192,6 +206,7 @@ else if(isset($_POST['nota'])){
 					"texto": "'.$row["text"].'",
 					"codigo": '.$row["cod_servico"].',
 					"cod_autor": "'.$row['cod_autor'].'",
+					"cod_destinatario": "'.$row['cod_destinatario'].'",
 					"cod_orcamento": "'.$row['cod_orcamento'].'",
 					"status": '.$vetor_servico['status'].',
 					"orcamento": ["'.$vetor_orcamento["valor"].'","'.$vetor_orcamento["detalhes"].'","'.$vetor_orcamento["data"].'","'.$vetor_orcamento["status"].'"]}';
