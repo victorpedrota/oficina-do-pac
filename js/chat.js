@@ -19,11 +19,11 @@ function update()
       }
       else{
 
-        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<ul style='margin-bottom:10px;margin-left:5px; text-align: right;' class='list-inline tirar novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src=''></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].texto+"</strong></button></li><li class='list-item'><button value='' class='dropdown-item not tirar' href='#'></button></li><li style='margin-left:10px;' class='list-item'>O serviço foi finalizado </li></ul></li></ul>");}
+        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<ul style='margin-bottom:10px;text-align:right;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() != obj[i].cod_autor )
           {
             if ($('#cod_mec').val() == $("#verdadeiro").val()) {
-            $('#screen').append("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline tirar novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-60px;' src=''></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='' class='dropdown-item not tirar disabled  ' href='#'><strong>"+obj[i].texto+"</strong></button></li><li class='list-item'><button value='' class='dropdown-item not tirar' href='#'></button></li><li style='margin-left:10px;' class='list-item'>O serviço foi finalizado </li></ul></li></ul>");
+            $('#screen').append("<ul style='margin-bottom:10px;background-color: red;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");
           }
       }
        

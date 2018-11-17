@@ -31,6 +31,8 @@ else{
     $query_servico2 = mysqli_query($conn,$sql_servico2); 
     $sql_servico1 ="DELETE FROM `mecanico` WHERE `cod_mecanico` = $codigo_mecanico";
     $query_servico1 = mysqli_query($conn,$sql_servico1); 
+    $sql = "UPDATE `servico` SET `cod_mecanico`=0 WHERE `cod_mecanico` = $codigo_mecanico";
+    $query_servico3 = mysqli_query($conn,$sql); 
 
     ?>
     <html lang="en">
