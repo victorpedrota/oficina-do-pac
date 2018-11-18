@@ -341,14 +341,17 @@ else{
                     $('#senhaerro').modal('show')
                   } else {
                     if (senha != c_senha) {
-                      alert("senha incorreta")
+                      document.getElementById("gay").innerHTML = "Senha incorreta!";
+                    $('#senhaerro').modal('show')
                     } else if (senha_nova.length < 6) {
-                      alert("a senha deve ter pelo menos 6 digitos")
+                      document.getElementById("gay").innerHTML = "A senha deve ter pelo menos 6 dígitos!";
+                    $('#senhaerro').modal('show')
                     } else {
                       if (senha_nova == c_senha_nova) {
                         form.submit();
                       } else {
-                        alert("senhas não conferem")
+                        document.getElementById("gay").innerHTML = "Senhas não conferem!";
+                    $('#senhaerro').modal('show')
                       }
                     }
                   }
