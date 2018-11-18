@@ -243,7 +243,7 @@
                             	$("#c_senha").css("background-color","#ff7b7b")
                             }
                             else if (data == 0 ) {
-                            	 location.reload();
+                            	 $(location).attr('href','login.php');
                             }
                             else if(data == 3){
                             	$("#texto").text("Login ou cnpj já cadastrados")

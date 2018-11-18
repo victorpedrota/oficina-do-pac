@@ -138,17 +138,22 @@ else if (isset($_POST['msgvisto'])) {
 else if(isset($_POST['valor'])){
 
 	$valor = $_POST['valor'];
+	$tipo = $_POST['tipo'];
+	$hora = $_POST['hora'];
 	$data = $_POST['data'];
+	$data_termino = $_POST['data_termino'];
 	$cod_autor = $_POST['codigo'];
 	$detalhes = $_POST['detalhes'];
+	$cod_destinatario = $_POST['cod_destinatario'];
 	$cod_servico = $_POST['conversa'];
 	$sql = "UPDATE `orcamento` SET `status`= 0 WHERE `status` = 1 && `cod_servico` = $cod_servico && `status` != 2";
 	$query = mysqli_query($conn,$sql);
-	$sql = "INSERT INTO `orcamento`(`valor`, `data`, `detalhes`,`status`,`cod_servico`) VALUES ($valor,'$data','$detalhes',1,$cod_servico)";
+	$sql = "INSERT INTO `orcamento`(`valor`, `data`, `detalhes`,`status`,`cod_servico`,`tipo`) VALUES ($valor,'$data','$detalhes',1,$cod_servico,'$tipo')";
 	$query = mysqli_query($conn,$sql);
 	$cod_orcamento =  mysqli_insert_id($conn);
-
-	$sql = "INSERT INTO `mensagens`(`cod_servico`,`cod_autor`,`cod_orcamento`) VALUES ($cod_servico,$cod_autor,$cod_orcamento)";
+	$sql = "INSERT INTO `agenda`(`data_inicio`, `horario_inicio`, `data_termino`, `cod_orcamento`) VALUES ('$data','$hora','$data_termino',$cod_orcamento)";
+	$query = mysqli_query($conn,$sql);
+	$sql = "INSERT INTO `mensagens`(`cod_servico`,`cod_autor`,`cod_orcamento`,`cod_destinatario`) VALUES ($cod_servico,$cod_autor,$cod_orcamento,$cod_destinatario)";
 	$query = mysqli_query($conn,$sql);
 
 }
@@ -239,7 +244,34 @@ else if(isset($_POST['nota'])){
 	
 
 
-}else{
+}
+
+else if (isset($_POST['servicos'])) {
+	$cod_servico = $_POST['servicos'];
+	$x =1;
+	$sql = "SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico";
+	$query = mysqli_query($conn,$sql);
+
+	$numero = mysqli_fetch_array($query);
+	echo "[";
+	while($vetor_orcamento = mysqli_fetch_array($query)){
+		$cod_orcamento = $vetor_orcamento['cod_orcamento'];
+		$sql = "SELECT * FROM `agenda` WHERE `cod_orcamento` = $cod_orcamento";
+		$query = mysqli_query($conn,$sql);
+		$vetor_agenda = mysqli_fetch_array($query);
+		if ($numero == $x) {
+
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'"},' ;
+
+		}
+		else{
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'"}' ;
+		}
+		$x++;
+	}
+	echo "]";
+}
+else{
 	
 	$sql = "SELECT * FROM `mensagens` ORDER BY `cod_mensagem` ASC ";
 	$result = mysqli_query($conn,$sql);
@@ -261,6 +293,7 @@ else if(isset($_POST['nota'])){
 				"texto": "'.$row["text"].'",
 				"codigo": '.$row["cod_servico"].',
 				"cod_autor": "'.$row['cod_autor'].'",
+				"tipo": "'.$vetor_orcamento['tipo'].'",
 				"cod_destinatario": "'.$row['cod_destinatario'].'",
 				"cod_orcamento": '.$row['cod_orcamento'].',
 				"status": '.$vetor_servico['status'].',
@@ -271,6 +304,7 @@ else if(isset($_POST['nota'])){
 					"texto": "'.$row["text"].'",
 					"codigo": '.$row["cod_servico"].',
 					"cod_autor": "'.$row['cod_autor'].'",
+					"tipo": "'.$vetor_orcamento['tipo'].'",
 					"cod_destinatario": "'.$row['cod_destinatario'].'",
 					"cod_orcamento": "'.$row['cod_orcamento'].'",
 					"status": '.$vetor_servico['status'].',

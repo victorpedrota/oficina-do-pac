@@ -209,7 +209,7 @@ else{
           <ul style="text-align: left;" class="list-group">
             <?php
 
-            $cliente2 ="SELECT * FROM `servico` WHERE `status` = 0 && `status` <=3";
+            $cliente2 ="SELECT * FROM `servico` WHERE `status` = 0 && `status` <=3 && `cod_oficina` = $cod_oficina";
             $resultado_cliente2 = mysqli_query($conn,$cliente2);
             $num2 = mysqli_num_rows($resultado_cliente2);
 
@@ -235,7 +235,7 @@ else{
             <ul style="text-align: left;" class="list-group">
               <?php
 
-              $cliente2 ="SELECT * FROM `servico` WHERE `cod_oficina` <= 3";
+              $cliente2 ="SELECT * FROM `servico` WHERE `cod_oficina` <= 3 && `cod_oficina` = $cod_oficina";
               $resultado_cliente2 = mysqli_query($conn,$cliente2);
               $num2 = mysqli_num_rows($resultado_cliente2);
 

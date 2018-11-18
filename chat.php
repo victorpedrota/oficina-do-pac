@@ -224,16 +224,39 @@ else{
             </div>
 
           </div>
-          <div class="card d-none d-sm-block d-sm-none d-md-block" style="margin-top:30px;width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Informar progresso</h5>
-              <h6 class="card-subtitle mb-2 text-muted">ferramentas</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
+          <div class="card" style="margin-top:30px;width: 18rem;height: 250px;max-height: 300px;">
+            
+              <h5 class="card-header">Resumo do chamado</h5>
+            <div class="card-body" style=" max-height: 200px;overflow-y: scroll;">
+            
+              <?php
+              $orcamento ="SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico && `status` = 2";
+              $query_orcamento = mysqli_query($conn,$orcamento);
+              $vetor_orcmaneto = mysqli_fetch_array($query_orcamento);
+              $valor_total = 0;
+              $x=1;
+              $numero_orcamento = mysqli_num_rows($query_orcamento);
+              if ($numero_orcamento == 0) {
+                 echo "Não há serviços em andamento";
+              }
+              else{
+                while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
+                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  $x++;
+                  $valor_total = $valor_total + $vetor_orcmaneto['valor'];
+                }
+              }
+              ?>
 
+              
+
+              
+            </div>
+ <div class="card-footer text-muted">
+    Valor total: <a href="#" class="card-link"><?php echo $valor_total; ?></a>
+  </div>
           </div>
+
         </div>
       </div>
     </main>
@@ -276,13 +299,13 @@ else{
           }
           );
       }
-     }
+    }
 
-   });
- </script>
+  });
+</script>
 
- </html>
- <?php
+</html>
+<?php
 }
 else
 {

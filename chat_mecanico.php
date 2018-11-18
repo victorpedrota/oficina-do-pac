@@ -150,32 +150,40 @@ else{
                       </p>
                     </div>
                   </div>
-<input type="hidden"  id="cod_mec" value="<?php echo $cod_cliente; ?>">
-                </div>
-                <div class="card" style="margin-top:30px;width: 20rem;height: 20rem">
-                  <div class="card-body">
-                    <h5 class="card-title">Informar progresso</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">ferramentas</h6>
-                    <div style="overflow-y: visible; height: 10rem">
-                      <?php
-                      $query_foto ="SELECT * FROM `atualizacao` WHERE `cod_servico` = $cod_servico";
-                      $atualizacao = mysqli_query($conn,$query_foto);
 
-                      if ( mysqli_num_rows($atualizacao)!= 0) {
+                </div><input type="hidden"  id="cod_mec" value="<?php echo $cod_cliente; ?>">
+                <div class="card" style="margin-top:30px;width: 18rem;height: 250px;max-height: 300px;">
+            
+              <h5 class="card-header">Resumo do chamado</h5>
+            <div class="card-body" style=" max-height: 200px;overflow-y: scroll;">
+            
+              <?php
+              $orcamento ="SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico && `status` = 2";
+              $query_orcamento = mysqli_query($conn,$orcamento);
+              $vetor_orcmaneto = mysqli_fetch_array($query_orcamento);
+              $valor_total = 0;
+              $x=1;
+              $numero_orcamento = mysqli_num_rows($query_orcamento);
+              if ($numero_orcamento == 0) {
+                 echo "Não há serviços em andamento";
+              }
+              else{
+                while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
+                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  $x++;
+                  $valor_total = $valor_total + $vetor_orcmaneto['valor'];
+                }
+              }
+              ?>
 
-                        while ($vetor_atualizacao = mysqli_fetch_array($atualizacao)) {
-                          echo $vetor_atualizacao['mensagem']."<br>";
-                        }
+              
 
-                      }else{
-                        echo "jdhfj";
-                      }
-                    ?>
-                  </div>
-                 
-                </div>
-                <div class="card-footer"> <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#tools">Enviar Atualização</a> <button href="#" class="btn btn-secondary">Timeline</button></div>
-              </div>
+              
+            </div>
+ <div class="card-footer text-muted">
+    Valor total: <a href="#" class="card-link"><?php echo $valor_total; ?></a>
+  </div>
+          </div>
             </div>
           </div>
 
@@ -204,7 +212,7 @@ else{
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enviar pedido para inicar pedido</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Enviar proposta para inicar pedido</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -215,15 +223,26 @@ else{
                   Valor:<input id="valor" type="text" class="form-control" required>
                   Escolha a data para inicio:<div class="row">
 
-                    <div class="col"> <input type="date" class="form-control" name="" required></div>
-                    <div class="col"><input type="time" class="form-control" name="" required></div>
+                    <div class="col"> <input type="date" class="form-control" id="data_inicio" required></div>
+                    <div class="col"><input type="time" class="form-control" id="horario_inicio" required></div>
 
                   </div>
+                  <div class="row">
+                    <div class="col">
+                      Término:<input type="date" id="data_termino" class="form-control" required>
+                     
+                  </div>
+                    <div class="col">
+                      Tipo serviço:<select class="form-control" id="tipo" required>
+                      <option value="troca de oleo">Troca de óleo</option>
+                    </select>
+                  </div>
+                    
 
-                  Tempo estimado para término:<input type="date" id="data" class="form-control" required>
-                  Detalhes do serviço:<textarea id="detalhes" class="form-control" required></textarea>
+                  
 
                 </div>
+                  Detalhes do serviço:<textarea id="detalhes" class="form-control" required></textarea>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                   <button type="button" id="envia_orcamento" class="btn btn-secondary"">Enviar</button>

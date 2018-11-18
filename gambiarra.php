@@ -10,11 +10,12 @@ else{
         //Sessao já criada
         //Recuperando as variaveis da sessão
   $system_control = $_SESSION["system_control"];
-  $cod_login = $_SESSION['cod_login'];
   $privilegio = $_SESSION["privilegio"];
-  $cod_cliente = $_SESSION["cod_cliente"];
 
   if($system_control == 1 && $privilegio == 0){
+  $cod_login = $_SESSION['cod_login'];
+  
+  $cod_cliente = $_SESSION["cod_cliente"];
     require('connect.php');
 
     $sql_pesquisa ="SELECT * FROM `cliente` WHERE `cod_login` = $cod_login" ;
@@ -62,7 +63,7 @@ else{
   }
 $date = date('Y-m-d'); 
 $hora = date('H:i');
-  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`, `data`,`hora`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico', $date,'$hora')";
+  $sql_cliente = "INSERT INTO `servico`(`cod_cliente`, `tipo_servico`, `cod_veiculo`,`cod_oficina`,`protocolo`,`problema`,`servico_desejado`) VALUES ($cod_cliente,'$tipo',$veiculo,$cod_oficina,$protocolo,'$problema','$servico')";
   $insere = mysqli_query($conn,$sql_cliente);
 
   
