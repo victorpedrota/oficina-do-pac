@@ -58,7 +58,7 @@ if (isset ($_POST['senha'])) {
       </div>
       <div class="modal-footer">
         
-        <a  href="login.php" class="btn btn-primary">Voltar</a>
+        <a  href="login.php" class="btn btn-primary">Ok</a>
       </div>
     </div>
   </div>

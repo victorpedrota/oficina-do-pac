@@ -38,6 +38,25 @@ else{
     </head>
 
     <body>
+      <div class="modal fade" id="senhaerro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="gay"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
       <?php
       require("navbar_logout.html");
       ?>
@@ -336,7 +355,7 @@ else{
                   var senha_nova = document.getElementById("senha_nova").value
                   var c_senha_nova = document.getElementById("c_senha_nova").value
                   if (senha == "" || senha_nova == "" || c_senha_nova == "") {
-                    alert("Preencha todos os campos")
+                    $('#senhaerro').modal('show')
                   } else {
                     if (senha != c_senha) {
                       alert("senha incorreta")
