@@ -11,10 +11,11 @@ else{
   
 
   $system_control = $_SESSION["system_control"];   
-  $cod_login = $_SESSION['cod_login'];
+  
   $privilegio = $_SESSION["privilegio"];
 
   if($system_control == 1 && $privilegio == 2){
+    $cod_login = $_SESSION['cod_login'];
     require('connect.php');
 
     $sql_pesquisa ="SELECT * FROM `mecanico` WHERE `cod_login` = $cod_login" ;
@@ -25,7 +26,7 @@ else{
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-if (isset ($_POST['senha'])) {
+if (isset ($_POST['senha_nova'])) {
   $senha = $_POST['senha_nova'];
   $oficina ="UPDATE `login` SET `senha`='$senha' WHERE `cod_login` = $cod_login";
   $oficinas_query = mysqli_query($conn,$oficina); 
@@ -38,7 +39,7 @@ if (isset ($_POST['senha'])) {
 <link rel="stylesheet" href="scss/main.css">
     
 
-    <title>Acesso inválido</title>
+    <title>Sucesso</title>
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -48,17 +49,17 @@ if (isset ($_POST['senha'])) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Acesso inválido</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Senha alterada com sucesso</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Você não tem acesso a esta página
+        Sua senha foi alterada!
       </div>
       <div class="modal-footer">
         
-        <a  href="alterar_oficina.php" class="btn btn-primary">Voltar</a>
+        <a  href="form_alterar_oficina.php" class="btn btn-primary">Voltar</a>
       </div>
     </div>
   </div>
@@ -67,7 +68,7 @@ if (isset ($_POST['senha'])) {
   $(document).ready(function(){
     $('#exampleModalLong').modal('show')
     $('#exampleModalLong').on('hidden.bs.modal', function (e) {
- window.location.href = 'alterar_oficina.php';
+ window.location.href = 'form_alterar_oficina.php';
 })
 
   })
@@ -79,7 +80,7 @@ if (isset ($_POST['senha'])) {
 </html>
     <?php  
   
-}else{
+}else if (isset($_POST['estado'])) {
   
     
     
