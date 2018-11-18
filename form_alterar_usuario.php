@@ -337,6 +337,7 @@ else{
                   var senha_nova = document.getElementById("senha_nova").value
                   var c_senha_nova = document.getElementById("c_senha_nova").value
                   if (senha == "" || senha_nova == "" || c_senha_nova == "") {
+                    document.getElementById("gay").innerHTML = "Preencha todos os campos!!";
                     $('#senhaerro').modal('show')
                   } else {
                     if (senha != c_senha) {
@@ -474,7 +475,7 @@ else{
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Erro</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -483,8 +484,8 @@ else{
         <p id="gay"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        
       </div>
     </div>
   </div>
