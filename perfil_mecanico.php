@@ -278,7 +278,7 @@ else{
                             $veiculo_resultado = mysqli_query($conn,$sql_veiculo);
                             $vetor_veiculo = mysqli_fetch_array($veiculo_resultado);
                             echo "<li class='list-group-item itens'><p style='display:block;'>
-                            Veículo:".$vetor_veiculo['placa']."<button href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."'style='float:right;' class='btn btn-link preto' right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></button> <button  style='float:right;' class='btn btn-link atu preto' value=".$vetor_servico['cod_servico']." data-toggle='modal' data-target='#exampleModal'><i class='fas fa-share-square'></i></button>
+                            Veículo:".$vetor_veiculo['placa']."<button href='chat_mecanico.php?cod_servico=".$vetor_servico['cod_servico']."'style='float:right;' class='btn btn-link preto' right:0px;margin-left:5px;'><i class='fas fa-external-link-alt'></i></button> <button  style='float:right;' class='btn btn-link atu preto' value=".$vetor_servico['cod_servico']." data-toggle='modal' data-target='#exampleModal'><i class='fas fa-share-square'></i></button><button class='btn btn-link expandir' data-toggle='modal' data-target='#emandamento' value='".$vetor_servico['cod_servico']."' style='float:right; right:0px;margin-top:0px;color:black;'><i class='fas fa-expand-arrows-alt'></i></button>
                             Protocolo:   ".$vetor_servico['protocolo']."<br>Status: Aguardando carro ser entregue<br>
                             Serviço desejado:".$vetor_servico['servico_desejado']."<br><button value=".$vetor_servico['cod_servico']." data-toggle='modal' data-target='#avaliacao' class='btn btn-primary codigof'>Finalizar serviço</button> <button value=".$vetor_servico['cod_servico']." class='btn btn-primary codigo atu' data-toggle='modal' data-target='#exampleModal'>Mandar atualização</button>
                             </li>";
@@ -358,6 +358,26 @@ else{
                 </div>
               </div>
             </main>
+            <div class="modal fade" id="emandamento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Serviços sendo realizados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <div id="serv_realizados"></div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            
+        </div>
+    </div>
+</div>
+</div>
             <script src="js/starrr.js"></script>
             <script>
               $('#chat').on('click', function() {
@@ -423,6 +443,27 @@ else{
                 location.reload();
 
               })
+              $(".expandir").click(function(){
+            $( ".opora" ).each(function( index ) {
+              $(this).remove()
+          });
+
+            $.post( "server.php", { servicos: $(this).val() })
+            .done(function( data ) {
+                var serv = 1;
+                var obj = jQuery.parseJSON(data);
+                for (var i in obj) {
+                  if (obj[i].status == 1) {
+                    alert("porra")
+                  }
+                  console.log(obj[i].status)
+                    $("#serv_realizados").prepend("<div class='opora'><p>Serviço "+serv+": "+obj[i].tipo+"        Data inicio:"+obj[i].data_inicio+"</p></div>")
+                    serv = serv+1
+                }   
+            })
+
+        })
+    
 
 
             </script>

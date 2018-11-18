@@ -261,11 +261,11 @@ else if (isset($_POST['servicos'])) {
 		$vetor_agenda = mysqli_fetch_array($query);
 		if ($numero == $x) {
 
-			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'"},' ;
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].'},' ;
 
 		}
 		else{
-			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'"}' ;
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].'}' ;
 		}
 		$x++;
 	}

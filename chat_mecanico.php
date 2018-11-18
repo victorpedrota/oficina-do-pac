@@ -169,7 +169,7 @@ else{
               }
               else{
                 while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
-                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;' href='excluir_orcamento.php?cod_orcamento=".$vetor_orcmaneto['cod_orcamento']."'><i class='fas fa-times'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
                   $x++;
                   $valor_total = $valor_total + $vetor_orcmaneto['valor'];
                 }

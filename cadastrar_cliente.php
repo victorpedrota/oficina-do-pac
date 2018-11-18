@@ -53,10 +53,7 @@ $cepn = soNumero($cep);
 
             if ($insere) {
                 ?>
-                <script language='JavaScript'>
-                    alert("Cadastrado com Sucesso");
-                    document.location.href="form_cliente.php";
-                </script>
+                
                 <?php
             }
             else{

@@ -144,7 +144,7 @@ require('navbar.html');
 
 
 										<h5 style="display:  inline-block;">Login:</h5>
-										<input class="form-control"  id="login" name="login"  minlength="6" type="text" required >
+										<input class="form-control letters"  id="login" name="login"  minlength="6" maxlength="20" type="text" required >
 										<br>
 
 										<h5 style="display:  inline-block;">Senha:</h5>
@@ -160,7 +160,7 @@ require('navbar.html');
 										<div class="form-row">
 											<div class="form-group col-md-6">
 												<label for="inputEmail4">Nome:*</label>
-												<input class="form-control letters" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+												<input class="form-control" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputPassword4">Sobrenome:*</label>
@@ -206,7 +206,7 @@ require('navbar.html');
 
 											<div class="form-group col-md-4">
 												<label for="inputCity">Cidade:*</label>
-												<input type="text" id="cidade" name="cidade" class="form-control letters">
+												<input type="text" id="cidade" name="cidade" class="form-control letters" required>
 											</div>
 
 
@@ -244,7 +244,7 @@ require('navbar.html');
 												<input id="telefone" class="form-control telefone" type="text" name="telefone" placeholder="00 0000-0000">
 											</div>
 											<div class="form-group col-md-6">
-												<label for="inputPassword4">Celular:*</label>
+												<label for="inputPassword4">Celular:</label>
 												<input class="form-control telefone" type="text" name="celular" id="celular"  placeholder="00 0000-0000" >
 											</div>
 										</div>

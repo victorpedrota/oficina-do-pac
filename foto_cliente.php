@@ -58,6 +58,11 @@ else{
 
          $sql_imagem = "UPDATE `login` SET `imagem`='$destino' WHERE `cod_login` = $cod_login";
          $insere = mysqli_query($conn,$sql_imagem);
+         $sql_imagem = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+         $insere = mysqli_query($conn,$sql_imagem);
+         $vetor =  mysqli_fetch_array($insere);
+         $imagem = $vetor['imagem'];
+         $_SESSION['imagem'] = $imagem;
        }
        else
         echo "Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.<br />";
@@ -65,7 +70,7 @@ else{
     else
         
       ?>
-    <html lang="en">
+    <html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -93,7 +98,7 @@ else{
       </div>
       <div class="modal-footer">
         
-        <a  href="form_alterar_oficina.php" class="btn btn-primary">Voltar</a>
+        <a href="javascript:history.back()" class="btn btn-primary">Voltar</a>
       </div>
     </div>
   </div>
@@ -102,7 +107,7 @@ else{
   $(document).ready(function(){
     $('#exampleModalLong').modal('show')
     $('#exampleModalLong').on('hidden.bs.modal', function (e) {
- window.location.href = 'form_alterar_oficina.php';
+ window.history.back();
 })
 
   })
