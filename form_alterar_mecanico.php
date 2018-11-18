@@ -218,7 +218,7 @@ else{
                 <div id="numero"><?php echo $vetor['numero']; ?></div>
               </div>
               <div class="form-group col-md-2">
-                <label for="inputPassword4">Comeplemento:</label>
+                <label for="inputPassword4">Complemento:</label>
                 <div id="complemento"><?php echo $vetor['complemento']; ?></div>
                 
               </div>

@@ -89,11 +89,11 @@ else{
         </button>
       </div>
       <div class="modal-body">
-        Foto aletrada com sucesso!
+        Foto alterada com sucesso!
       </div>
       <div class="modal-footer">
         
-        <a  href="form_alterar_oficina.php" class="btn btn-primary">Voltar</a>
+        <a  href="form_alterar_mecanico.php" class="btn btn-primary">Ok</a>
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@ else{
   $(document).ready(function(){
     $('#exampleModalLong').modal('show')
     $('#exampleModalLong').on('hidden.bs.modal', function (e) {
- window.location.href = 'form_alterar_oficina.php';
+ window.location.href = 'form_alterar_mecanico.php';
 })
 
   })
