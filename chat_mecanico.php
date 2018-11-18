@@ -54,7 +54,7 @@ else{
 
 
       <?php
-      require("navbar_logout.html");
+      require("navbar_mecanico.html");
       ?>
 
       <script src="js/validar_form2.js"></script>

@@ -568,38 +568,11 @@ else{
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="js/starrr.js"></script>
 <script>
-    function update_messages()
-    {
-
-        $.post("server.php",{msg: 1, cod_cliente:$("#cod_cliente").val()})
-        .done(function(data){
-            if (data!=0) {
-                $( "#msg" ).effect( "shake",{distance:8} );
-            }else{
-
-            }
-        })
-        setTimeout('update_messages()', 5000);
-    }
-    function update()
-    {
-
-        $.post("server.php",{nav: 1, cod_cliente:$("#cod_cliente").val()})
-        .done(function(data){
-           
-            if (data!=0) {
-                $( "#bell" ).effect( "shake",{distance:8} );
-            }else{
-
-            }
-        })
-        setTimeout('update()', 5000);
-    }
+   
     $(document).ready(function(){
 
 
-        update();
-        update_messages();
+       
         $("#btnenviar").click(function() {
             var nome = $("#nomes").val();
             $("#n_oficina").attr("value", nome);

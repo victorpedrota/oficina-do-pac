@@ -30,6 +30,7 @@ body{
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
+  
 
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><center><img style="border-radius: 0px;max-width: 80px;width: auto; position: relative;" src="imagens/logo.png"></center></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,8 +151,37 @@ body{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <input type="hidden" id="gambiarra3"  value="<?php echo $cod_cliente; ?>">
 <script>
+ function update_messages()
+    {
 
+        $.post("server.php",{msg: 1, cod_cliente:$("#cod_cliente").val()})
+        .done(function(data){
+            if (data!=0) {
+                $( "#msg" ).effect( "shake",{distance:8} );
+            }else{
 
+            }
+        })
+        setTimeout('update_messages()', 5000);
+    }
+    function update()
+    {
+
+        $.post("server.php",{nav: 1, cod_cliente:$("#cod_cliente").val()})
+        .done(function(data){
+           
+            if (data!=0) {
+                $( "#bell" ).effect( "shake",{distance:8} );
+            }else{
+
+            }
+        })
+        setTimeout('update()', 5000);
+    }
+
+$(document).ready(function(){
+   update();
+        update_messages();
 
   $.post("search.php",function(data) {
 
@@ -299,6 +329,7 @@ $("#expandir").click(function(){
 });
 
   $("#allservices").modal('show')
+})
 })
 
 

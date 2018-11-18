@@ -33,6 +33,8 @@ body{
 </button>
 <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav mr-auto">
+    <input type="hidden" id="gambiarra3"  value="<?php echo $cod_mecanico; ?>">
+    <input type="hidden" id="cod_login"  value="<?php echo $cod_login; ?>">
 
 
 
@@ -41,38 +43,48 @@ body{
     <li class="nav-item active">
       <a class="nav-link" href="#"><?php echo $_SESSION["nome"] ; ?><img src=" <?php echo $_SESSION['imagem'];?>" class="profile"></a>
     </li>
-    <li class="nav-item d-none d-sm-block">
-      <a class="nav-link" href="login.php"><i class="far fa-bell"></i>
+    <li class="nav-item dropdown dropleft">
+      <a class="nav-link" href="#" id="mensagens" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i id="msg" class="far fa-comment"></i>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="login.php">Página inicial</a>
-    </li>
+      <div class="dropdown-menu"  style="width: 400px;height: auto;" id="messages" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Não vistas</a>
+        <div class="dropdown-divider"> </div>
+        <div style="overflow-y: scroll;max-height: 90px;" id="mgsnvista"> </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Recentes</a>
+        <div class="dropdown-divider" ></div>
+        <div id="msgvista" style="overflow-y: scroll;max-height: 330px;"></div>
 
-    <li class="nav-item d-xl-none d-none d-xl-block">
-      <div class="dropdown">
-        <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-cog"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="form_alterar_mecanico.php">Conta</a>
-          <a class="dropdown-item" href="logout.php">Sair</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.php">Página inicial</a>
+      </li>
 
+      <li class="nav-item d-xl-none d-none d-xl-block">
+        <div class="dropdown">
+          <button type="button" class="btn btn-secondary dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="form_alterar_mecanico.php">Conta</a>
+            <a class="dropdown-item" href="logout.php">Sair</a>
+
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
-      <a class="nav-link" href="form_alterar_mecanico.php">Conta</i>
-      </a>
-    </li>
-    <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
-      <a class="nav-link" href="logout.php">Sair</i>
-      </a>
-    </li>
-   
+      </li>
+      <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
+        <a class="nav-link" href="form_alterar_mecanico.php">Conta</i>
+        </a>
+      </li>
+      <li class="nav-item d-none d-sm-block d-md-none d-block d-sm-none">
+        <a class="nav-link" href="logout.php">Sair</i>
+        </a>
+      </li>
 
-  </ul>
-</div>
+
+    </ul>
+  </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -81,3 +93,63 @@ body{
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 <script src="js/typeahead.bundle.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+
+  function update_messages()
+  {
+
+    $.post("server.php",{msg: 1, cod_cliente:$("#cod_login").val()})
+    .done(function(data){
+      if (data!=0) {
+
+          $( "#msg" ).effect( "shake",{distance:8} );
+      }else{
+
+      }
+    })
+    setTimeout('update_messages()', 5000);
+  }
+  $(document).ready(function(){
+    update_messages();
+     $("#mensagens").click(function() {
+    // refresh list
+
+    var sla
+    sla =0
+    
+    $.post( "server.php", { seemsg: $("#cod_login").val(), tipo: "mecanico"})
+    .done(function( data ) {
+     
+     var obj = JSON.parse(data)
+
+     for (var i in obj) {
+
+
+
+      if (obj[i].visto == 1) {
+
+        $("#msgvista").prepend("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline seemsg novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not seemsg disabled ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].msg+"</button></li> </ul></li></ul>")
+
+      }
+      else{
+        $("#mgsnvista").append("<ul style='margin-bottom:10px;margin-left:5px;' class='list-inline seemsg novisto'> <li class='list-inline-item'> <img style='width:60px;height:60px;border-radius:50%;margin-top:-30px;' src="+obj[i].img+"></li><li class='list-inline-item'><ul class='list-inline'><li class='list-inline-item'><button value='"+obj[i].cod+"' class='dropdown-item not seemsg disabled  ' href='#'><strong>"+obj[i].nome+"</strong></button></li><li class='list-item'><button value='"+obj[i].cod+"' class='dropdown-item not tirar' href='#'>"+obj[i].msg+"</button></li> </ul></li></ul>")
+
+
+      }
+
+
+      
+    }
+
+  })
+
+    $( ".seemsg" ).each(function( index ) {
+      $.post( "server.php", { msgvisto: $(this).val()} );
+
+      $(this).remove()
+
+    })
+  });
+  })
+</script>

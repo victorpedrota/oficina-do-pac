@@ -19,7 +19,7 @@ if(isset($_POST['message']))
 		$cod_servico = $_POST['conversa'];
 		$cod_autor = $_POST['codigo'];
 		$cod_destinatario = $_POST['cod_destinatario'];
-		$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`,`cod_destinatario`) VALUES ('$message',$cod_servico,$cod_autor,$cod_destinatario)";
+		$sql = "INSERT INTO `mensagens`(`text`,`cod_servico`,`cod_autor`,`cod_destinatario`,`mostra`) VALUES ('$message',$cod_servico,$cod_autor,$cod_destinatario,0)";
 		$query = mysqli_query($conn,$sql);
 
 	}
@@ -51,6 +51,7 @@ else if (isset($_POST['msg'])) {
 else if(isset($_POST['seemsg'])){
 	
 	$cliente = $_POST['seemsg'];
+	$tipo = $_POST['tipo'];
 	$sql_foto = "SELECT * FROM `mensagens` WHERE `cod_destinatario` = $cliente";
 	$query_foto = mysqli_query($conn,$sql_foto);
 	$numero = mysqli_num_rows($query_foto);
@@ -59,7 +60,12 @@ else if(isset($_POST['seemsg'])){
 	echo "[";
 	while($vetor_servico = mysqli_fetch_array($query_foto)){
 		$cod_mecanico = $vetor_servico['cod_autor'];
-		$sql = "SELECT * FROM `mecanico` WHERE `cod_login` = $cod_mecanico";
+		if ($tipo == "mecanico") {
+			$sql = "SELECT * FROM `cliente` WHERE `cod_login` = $cod_mecanico";
+		} else{
+			$sql = "SELECT * FROM `mecanico` WHERE `cod_login` = $cod_mecanico";
+		}
+		
 		$query = mysqli_query($conn,$sql);
 		$vetor_mecanico = mysqli_fetch_array($query);
 		$sql_login = "SELECT * FROM `login` WHERE `cod_login` = $cod_mecanico";
