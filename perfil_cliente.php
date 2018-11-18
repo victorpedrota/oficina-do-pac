@@ -170,15 +170,28 @@ else{
                         $cod_mecanico = $vetor_atualizacao['cod_mecanico'];
                         $nome_mecanico ="SELECT * FROM `mecanico` WHERE `cod_mecanico` = $cod_mecanico";
                         $mecanico = mysqli_query($conn,$nome_mecanico);
+                        $numero_mecanico = mysqli_num_rows($mecanico);
+                        if ($numero_mecanico == 0) {
+                            $nome = "Não cadastrado";
+                             $imagem = "fotos_usuario/default.jpg";
+                        }
+                        else{
                         $vetor_mecanico = mysqli_fetch_array($mecanico);
+                        $nome = $vetor_mecanico['nome'];
+                       
                         $cod_login = $vetor_mecanico['cod_login'];
                         $query_foto ="SELECT * FROM `login` WHERE `cod_login` = $cod_login";
                         $mecanico_foto = mysqli_query($conn,$query_foto);
                         $vetor_mecanico_login = mysqli_fetch_array($mecanico_foto);
+                         $imagem = $vetor_mecanico_login['imagem'];
+                        }
+                        
+
+                        
                         ?>
                         <div class="card text-left">
                             <div class="card-header">
-                                <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$vetor_mecanico_login['imagem']."'><strong> " .$vetor_mecanico['nome']."</strong></span>";?>
+                                <?php echo "<span style='left:0px;'><img style='width:50px;height:50px; border-radius:50%;' src='".$imagem."'><strong> " .$nome."</strong></span>";?>
                             </div>
                             <div class="card-body">
 
@@ -683,7 +696,8 @@ else{
             $("#cod_serv").val($(this).val())
             $.post( "server.php", { tipo: "cliente" ,codigo: $(this).val() } )
             .done(function( data ) {
-                if (data = "erro") {
+                alert(data)
+                if (data == "erro") {
                     $( "#foto" ).attr( "src", "//ssl.gstatic.com/accounts/ui/avatar_2x.png" );
                     $('#bct').remove();
                     $("#foto").after("<div id='bct'><br><br><strong>O mecânico não trabalha mais nesta oficina</strong></div>");

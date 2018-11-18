@@ -271,7 +271,7 @@ $(document).ready(function(){
     var sla
     sla =0
     
-    $.post( "server.php", { seemsg: $("#gambiarra3").val()})
+    $.post( "server.php", { seemsg: $("#gambiarra3").val(),tipo: "cliente"})
     .done(function( data ) {
       
      var obj = JSON.parse(data)

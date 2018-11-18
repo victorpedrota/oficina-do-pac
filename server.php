@@ -169,6 +169,12 @@ else if(isset($_POST['codigo'])){
 
 			$vetor = mysqli_fetch_array($query_cliente);
 			$cod_login = $vetor['cod_login'];
+			$sql_foto = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+			$query_foto = mysqli_query($conn,$sql_foto);
+			$vetor_foto = mysqli_fetch_array($query_foto);
+
+			
+			echo $vetor_foto['imagem'];
 		}
 		else{
 			echo "erro";
@@ -182,18 +188,19 @@ else if(isset($_POST['codigo'])){
 
 			$vetor = mysqli_fetch_array($query_cliente);
 			$cod_login = $vetor['cod_login'];
+			$sql_foto = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
+			$query_foto = mysqli_query($conn,$sql_foto);
+			$vetor_foto = mysqli_fetch_array($query_foto);
+
+			
+			echo $vetor_foto['imagem'];
 		}
 		else{
 			echo "erro";
 		}
 	}
 	
-	$sql_foto = "SELECT * FROM `login` WHERE `cod_login` = $cod_login";
-	$query_foto = mysqli_query($conn,$sql_foto);
-	$vetor_foto = mysqli_fetch_array($query_foto);
-
 	
-	echo $vetor_foto['imagem'];
 
 
 }

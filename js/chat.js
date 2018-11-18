@@ -19,7 +19,7 @@ function update()
       }
       else{
 
-        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor) {$('#screen').append("<ul style='margin-bottom:10px;text-align:right;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");}
+        if ($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_autor && $('#cod_destinatario').val() == obj[i].cod_destinatario ) {$('#screen').append("<ul style='margin-bottom:10px;text-align:right;' class='list-group-item'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul>");}
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_destinatario && $('#cod_destinatario').val() == obj[i].cod_autor )
           {
             
