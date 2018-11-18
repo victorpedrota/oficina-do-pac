@@ -189,7 +189,7 @@ else{
               </button>
             </div>
             <div class="modal-body">
-              <form method="post" action="alterar_mecanico.php" id="form">
+              <form method="post" action="alterar_oficina.php" id="form">
                 <label for="inputPassword4">Senha atual:</label>
                 <input name="senha_antiga" id="senha_antiga" type="password" class="form-control" required>
                 <label for="inputPassword4">Senha nova:</label>
