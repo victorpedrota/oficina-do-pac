@@ -148,7 +148,7 @@ else{
                </div>
                <div class='card-body'>
                <a data-toggle='modal' href='#' data-target='#".$vetor_oficina['cod_oficina']."'><h5 class='card-title'>".$vetor_oficina['nome']."</h5></a>" .
-               $vetor_oficina['nome'] . "<br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".$vetor_oficina['cidade'].", ".$vetor_oficina['estado'] . "</p>
+               $vetor_oficina['nome'] . "<br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".utf8_encode($vetor_oficina['cidade']).", ".$vetor_oficina['estado'] . "</p>
 
                </div>
                </div>
@@ -165,7 +165,7 @@ else{
                <span aria-hidden='true'>&times;</span>
                </button>
                </div>
-               <div class='modal-body'><h4>".$vetor_oficina['nome']."</h4><br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".$vetor_oficina['cidade'].", ".$vetor_oficina['estado'] . "</p>
+               <div class='modal-body'><h4>".$vetor_oficina['nome']."</h4><br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".utf8_encode($vetor_oficina['cidade']).", ".$vetor_oficina['estado'] . "</p>
                <h6>Fotos da Oficina</h6>";
 
 

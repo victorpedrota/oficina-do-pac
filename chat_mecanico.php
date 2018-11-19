@@ -170,13 +170,15 @@ else{
               else{
                 while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
                   if ($vetor_orcmaneto['status'] ==2) {
-                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;' href='excluir_orcamento.php?cod_orcamento=".$vetor_orcmaneto['cod_orcamento']."'><i class='fas fa-times'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;' href='excluir_orcamento.php?cod_orcamento=".$vetor_orcmaneto['cod_orcamento']."'><i class='fas fa-times'></i></a><br><p class='valor'>Valor:".$vetor_orcmaneto['valor']."</p><br>";
+                    $valor_total = $valor_total + $vetor_orcmaneto['valor'];
                   }else if ($vetor_orcmaneto['status'] ==3) {
-                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;'><i class='fas fa-check' style='color:green;'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;'><i class='fas fa-check' style='color:green;'></i></a><br><p class='valor'>Valor:".$vetor_orcmaneto['valor']."</p><br>";
+                    $valor_total = $valor_total + $vetor_orcmaneto['valor'];
                   }
                   
                   $x++;
-                  $valor_total = $valor_total + $vetor_orcmaneto['valor'];
+                
                 }
               }
               ?>
@@ -186,7 +188,7 @@ else{
               
             </div>
  <div class="card-footer text-muted">
-    Valor total: <a href="#" class="card-link"><?php echo $valor_total; ?></a>
+    Valor total: <a href="#" class="card-link"><?php echo "<p class='valor'>".$valor_total."</p>"; ?></a>
   </div>
           </div>
             </div>
@@ -225,7 +227,7 @@ else{
               <div class="modal-body">
                 <form id="form_orcamento2">
 
-                  Valor:<input id="valor" type="text" class="form-control" required>
+                  Valor:<input id="valor" type="text" class="form-control valor" required>
                   Escolha a data para inicio:<div class="row">
 
                     <div class="col"> <input type="date" class="form-control" id="data_inicio" required></div>
@@ -262,7 +264,7 @@ else{
         <script type="text/javascript" src="js/chat.js"></script>
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script>
-          $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+          $('.valor').mask('000.000.000.000.000,00', {reverse: true});
 
         </script>
 

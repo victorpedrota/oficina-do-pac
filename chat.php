@@ -241,7 +241,7 @@ else{
               }
               else{
                 while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
-                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<br>Valor:<p class='valor'>".$vetor_orcmaneto['valor']."</p><br>";
                   $x++;
                   $valor_total = $valor_total + $vetor_orcmaneto['valor'];
                 }
@@ -287,6 +287,7 @@ else{
 
   </body>
   <script>
+    $('.valor').mask('000.000.000.000.000,00', {reverse: true});
     $( "#message" ).keydown(function( event ) {
       if ( event.which == 13 ) {
        {       

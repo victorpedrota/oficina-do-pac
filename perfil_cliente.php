@@ -85,19 +85,14 @@ else{
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="btnfeed">Feed</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" id="btnchamados">Iniciar Chamado
-                            </a>
-                        </li>
+                        
 
 
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="btnandamento">Serviços em andamento
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="btnchat" href="#">Chat</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="form_veiculo.php">Gerenciar Veículos</a>
                         </li>
@@ -149,7 +144,7 @@ else{
                     }
                     else if ($first_acess == 0 && $numero_servicos == 0) {
 
-                        echo "<li class='list-group-item itens'><p style='display:block;'>LUCAS SEU VIADINHO COLOCA AQUI O TUTORIAL SEU ARROMBADO</p></li>";
+                        echo "<li class='list-group-item itens'><p style='display:block;'><center><h1>Seja bem vindo</h1><center></li>";
                     }
                     while ($vetor_servicos = mysqli_fetch_array($servicos)) {
                       $cod_servicos = $vetor_servicos['cod_servico'];
