@@ -144,14 +144,14 @@ require('navbar.html');
 
 
 										<h5 style="display:  inline-block;">Login:</h5>
-										<input class="form-control letters"  id="login" name="login"  minlength="6" maxlength="20" type="text" required >
+										<input class="form-control"  id="login" name="login"  minlength="6" maxlength="20" type="text" required >
 										<br>
 
 										<h5 style="display:  inline-block;">Senha:</h5>
-										<input class="form-control"  id="senha" name="senha"  minlength="6" type="password" required>
+										<input class="form-control"  id="senha" name="senha"  minlength="6" maxlength="20" type="password" required>
 										<br>
 										<h5 style="display:  inline-block;">Confirmar Senha:</h5>
-										<input class="form-control" id="c_senha" name="c_senha"  minlength="6" type="password" required>
+										<input class="form-control" id="c_senha" name="c_senha"  minlength="6" maxlength="20" type="password" required>
 
 									</div>
 
@@ -160,7 +160,7 @@ require('navbar.html');
 										<div class="form-row">
 											<div class="form-group col-md-6">
 												<label for="inputEmail4">Nome:*</label>
-												<input class="form-control" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
+												<input class="form-control letters" id="nome" name="nome" type="text" pattern="[a-z\s]+$"   required>
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputPassword4">Sobrenome:*</label>
@@ -395,7 +395,8 @@ if (login.value.length<6) {login.className += " invalid"; }
 else if(senha.value.length<6){senha.className += " invalid";}
 else if (senha.value.length != c_senha.value.length) {senha.className += " invalid";c_senha.className += " invalid";}
 else if(z==1 && TestaCPF(cpf.value.replace(/[^0-9]/g,'')) == false) {cpf.className += " invalid";}
-else if (z==1 && rgn.length != 9  ){rg.className += " invalid";}
+else if (z==1 && rgn.length < 8  ){rg.className += " invalid";}
+
 else if (z==1 && rgn == "000000000" || rgn == "111111111" || rgn == "222222222" || rgn == "333333333" || rgn == "444444444" || rgn == "555555555" || rgn == "666666666" || rgn == "777777777" || rgn == "888888888" || rgn == "99999999" ){rg.className += " invalid";}
 else if ((telefone.value.length != 15 && telefone.value.length != 14) && z ==3 ) {telefone.className += " invalid"}
 	else if ((celular.value.length != 15 && celular.value.length != 14) && z ==3 ) {celular.className += " invalid"}
@@ -453,7 +454,10 @@ function TestaCPF(strCPF) {
 							});
 		$('#cpf').mask('000.000.000-00', {reverse: true});
 		$('.cep').mask('00.000-000');
-		$('#rg').mask('00.000.000-0', {reverse: true});
+		$('#rg').mask('00.000.000-A', {
+			reverse: true,
+			A: {pattern: /[A-Z]+$/}
+		});
 		$('#data').mask('00/00/0000');
 
 		$( "input" ).click(function() {

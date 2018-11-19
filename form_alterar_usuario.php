@@ -229,7 +229,7 @@ else{
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
+                <button type="button" id="porra" onclick="enviar();" class="btn btn-primary">Alterar senha</button></form>
               </div>
             </div>
           </div>
@@ -493,6 +493,10 @@ else{
     </div>
   </div>
 </div>
+<script>
+$("#porra").click(function(){
+  
+})</script>
           </body>
 
           </html>
