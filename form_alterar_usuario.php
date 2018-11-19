@@ -226,6 +226,7 @@ else{
                 <label for="inputPassword4">Confirmar senha:</label>
                 <input name="c_senha_nova" id="c_senha_nova" type="password" class="form-control" required>
                 <input type="hidden" value="1" name="senha">
+                <input type="hidden" value="<?php echo $vetor_login['senha'];?> " id="essa_senha">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -331,7 +332,10 @@ else{
               </script>
               <script type="text/javascript">
                 function enviar() {
-                  var senha = "<?php print $vetor_login['senha']; ?>";
+                  var senha = "<?php print base64_decode($vetor_login['senha']); ?>";
+                  
+                  var essa_senha = document.getElementById("essa_senha").value
+                  
                   var form = document.getElementById("form");
                   var c_senha = document.getElementById("senha_antiga").value
                   var senha_nova = document.getElementById("senha_nova").value
@@ -340,8 +344,8 @@ else{
                     document.getElementById("gay").innerHTML = "Preencha todos os campos!!";
                     $('#senhaerro').modal('show')
                   } else {
-                    if (senha != c_senha) {
-                      document.getElementById("gay").innerHTML = "Senha incorreta!";
+                    if (senha != essa_senha) {
+                      form.submit();
                     $('#senhaerro').modal('show')
                     } else if (senha_nova.length < 6) {
                       document.getElementById("gay").innerHTML = "A senha deve ter pelo menos 6 dígitos!";
@@ -362,7 +366,7 @@ else{
 
 
                 function enviar_informacoes() {
-                  var senha = "<?php print $vetor_login['senha']; ?>";
+                  var senha = "<?php print base64_decode($vetor_login['senha']); ?>";
                   var form = document.getElementById("alterar");
                   var c_senha = document.getElementById("v_senha").value
                   if (senha != c_senha || c_senha == "") {
@@ -494,9 +498,7 @@ else{
   </div>
 </div>
 <script>
-$("#porra").click(function(){
-  
-})</script>
+</script>
           </body>
 
           </html>

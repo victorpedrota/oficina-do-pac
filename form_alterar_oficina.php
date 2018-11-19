@@ -45,7 +45,7 @@ else{
 
     <body>
       <?php
-      require("navbar_mecanico.html");
+      require("navbar_oficina.html");
       ?>
 
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -97,7 +97,7 @@ else{
           </center>
           <hr>
 
-          <form method="POST" action="alterar_mecanico.php" id="alterar">
+          <form method="POST" action="alterar_oficina.php" id="alterar">
             <div id="erro_alterar"></div>
 
             <label for="inputPassword4">Telefone:</label>
@@ -302,7 +302,8 @@ else{
               </script>
               <script type="text/javascript">
                 function enviar() {
-                  var senha = "<?php print $vetor_login['senha']; ?>";
+                  var senha = "<?php print base64_decode($vetor_login['senha']); ?>";
+
                   var form = document.getElementById("form");
                   var c_senha = document.getElementById("senha_antiga").value
                   var senha_nova = document.getElementById("senha_nova").value
@@ -311,7 +312,7 @@ else{
                     alert("Preencha todos os campos")
                   } else {
                     if (senha != c_senha) {
-                      alert("senha incorreta")
+                      form.submit();
                     } else if (senha_nova.length < 6) {
                       alert("a senha deve ter pelo menos 6 digitos")
                     } else {
@@ -329,7 +330,7 @@ else{
 
 
                 function enviar_informacoes() {
-                  var senha = "<?php print $vetor_login['senha']; ?>";
+                  var senha = "<?php print base64_decode($vetor_login['senha']); ?>";
                   var form = document.getElementById("alterar");
                   var c_senha = document.getElementById("v_senha").value
                   if (senha != c_senha || c_senha == "") {

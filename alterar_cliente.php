@@ -25,12 +25,22 @@ else{
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-if (isset ($_POST['senha'])) {
-  $senha = $_POST['senha_nova'];
-  $oficina ="UPDATE `login` SET `senha`='$senha' WHERE `cod_login` = $cod_login";
+if (isset ($_POST['senha_antiga'])) {
+
+  $sql_login ="SELECT * FROM `login` WHERE `cod_login` = $cod_login" ;
+  $resultado_login = mysqli_query($conn,$sql_login);
+  $vetor_login = mysqli_fetch_array($resultado_login);
+  $senha_c = $vetor_login['senha'];
+  $senha = $_POST['senha_antiga'];
+  $senha_nova = $_POST['senha_nova'];
+  $senha_nova1 = base64_encode($senha_nova);
+  $senha1 = base64_decode($senha_c);
+  
+  if ($senha == $senha1) {
+   $oficina ="UPDATE `login` SET `senha`='$senha_nova1' WHERE `cod_login` = $cod_login";
   $oficinas_query = mysqli_query($conn,$oficina); 
   ?>
-    <html lang="en">
+ <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -76,7 +86,15 @@ if (isset ($_POST['senha'])) {
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
   </body>
-</html>s
+</html>
+  <?php
+  }else{
+
+  }
+  
+ 
+  ?>
+   
     <?php  
   
 }else{

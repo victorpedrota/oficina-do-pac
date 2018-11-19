@@ -101,15 +101,17 @@ if(!isset($_SESSION["system_control"]))
         </button>
       </div>
       <div class="modal-body">
-        <form>
-        Coloque seu email:
-        <input type="text" class="form-control" name="email">
-      </form>
+        <form method="post" action="altera_senha.php">
+        Coloque seu cpf ou cnpj:
+        <input type="text" class="form-control" name="cpf">
+        Nova senha:
+        <input  class="form-control" type="password" name="nova">
+      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
+        <input  type="submit" class="btn btn-primary" id="enviar">
+      </div></form>
     </div>
   </div>
 </div>

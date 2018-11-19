@@ -5,8 +5,8 @@ $login = $_POST['c_login'];
 $senha = $_POST['c_senha'];
 
 require('connect.php');
-
-$sql_pesquisa ="select * from `login` where `login` = '$login' && `senha` = '$senha'";
+$senhac = base64_encode($senha);
+$sql_pesquisa ="select * from `login` where `login` = '$login' && `senha` = '$senhac'";
 $resultado = mysqli_query($conn,$sql_pesquisa); 
 $numero = mysqli_num_rows($resultado);
 $vetor_login = mysqli_fetch_array($resultado);
