@@ -242,6 +242,11 @@ else{
                     <div class="col">
                       Tipo serviço:<select class="form-control" id="tipo" required>
                       <option value="troca de oleo">Troca de óleo</option>
+                      <option value="troca">Troca de pneu</option>
+                      <option value="revisão">Revisão geral</option>
+                      <option value="troca">Troca de farol</option>
+                      <option value="revisão">Revisão do motor</option>
+                      <option value="outros">Outros...</option>
                     </select>
                   </div>
                     

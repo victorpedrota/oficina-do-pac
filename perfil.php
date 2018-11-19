@@ -165,7 +165,7 @@ else{
                <span aria-hidden='true'>&times;</span>
                </button>
                </div>
-               <div class='modal-body'><h4>".$vetor_oficina['nome']."</h4><br>Endereço: rua " . $vetor_oficina['rua'] . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".utf8_encode($vetor_oficina['cidade']).", ".$vetor_oficina['estado'] . "</p>
+               <div class='modal-body'><h4>".$vetor_oficina['nome']."</h4><br>Endereço: rua " . utf8_encode($vetor_oficina['rua']) . ", " . $vetor_oficina['numero'] . $vetor_oficina['bairro'] .", ".utf8_encode($vetor_oficina['cidade']).", ".utf8_encode($vetor_oficina['estado']) . "</p>
                <h6>Fotos da Oficina</h6>";
 
 
@@ -285,14 +285,14 @@ else{
               Tipo de serviço: <i class='fas fa-info-circle'></i>
               <select class='form-control' id='tipo' name='tipo' required>
               <option value=''>Selecione um tipo</option>
-              <option value='revisao'>revisão geral</option>
-              <option value='troca'>troca de oleo</option>
-              <option value='troca'>troca de pneu</option>
-              <option value='troca'>troca de vidro</option>
-              <option value='revisao'>revisão do motor</option>
-              <option value='troca'>troca de freios</option>
-              <option value='troca'>troca de amortecedores</option>
-          
+              <option value='revisao'>Revisão geral</option>
+              <option value='troca'>Troca de oleo</option>
+              <option value='troca'>Troca de pneu</option>
+              <option value='troca'>Troca de vidro</option>
+              <option value='revisao'>Revisão do motor</option>
+              <option value='troca'>Troca de freios</option>
+              <option value='troca'>Troca de amortecedores</option>
+          <option value='troca'>Outros...</option>
 
               </select>
               <input type='hidden' name='cod_oficina' value='".$vetor_oficina["cod_oficina"]."'>

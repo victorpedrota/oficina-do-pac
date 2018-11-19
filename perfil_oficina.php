@@ -180,7 +180,7 @@ else{
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: 30px;">
          <div style="display: none;" id="estatistica">
-
+          <center>Sem dados suficientes para Estatísticas no momento</center>
           <canvas id="myChart" ></canvas>
 
         </div>

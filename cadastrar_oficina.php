@@ -54,7 +54,7 @@
             <div class="form-row">
                 <div class="col">
                     <label for="ex3">Nome oficina:</label>
-                    <input class="form-control letters" id="nome" name="nome" type="text" required>
+                    <input class="form-control " id="nome" name="nome" type="text" required>
                 </div>
                 <div class="col">
                     <label for="ex3">Telefone:</label>

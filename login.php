@@ -103,9 +103,9 @@ if(!isset($_SESSION["system_control"]))
       <div class="modal-body">
         <form method="post" action="altera_senha.php">
         Coloque seu cpf ou cnpj:
-        <input type="text" class="form-control" name="cpf">
+        <input type="text" class="form-control" name="cpf" required>
         Nova senha:
-        <input  class="form-control" type="password" name="nova">
+        <input  class="form-control" type="password" name="nova" required>
       
       </div>
       <div class="modal-footer">

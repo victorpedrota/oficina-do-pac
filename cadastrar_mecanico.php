@@ -35,7 +35,8 @@ function soNumero($str) {
   $cidade = $_POST['cidade'];
   $data = $_POST['data'];
   $login = $_POST['login'];
-  $senha = $_POST['senha'];
+  $senha1 = $_POST['senha'];
+  $senha = base64_encode($senha1);
   $rua = $_POST['rua'];
   $cepn = $_POST['cep'];
   $complemento = $_POST['complemento'];

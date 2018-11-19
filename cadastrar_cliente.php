@@ -12,7 +12,7 @@ $bairro = $_POST['bairro'];
 $numero = $_POST['numero'];
 $complemento = $_POST['complemento'];
 $login = $_POST['login'];
-$senha1 = $_POST['senha'];
+$senha = $_POST['senha'];
 $cep = $_POST['cep'];
 $data_nascimento = $_POST['data'];
 require("connect.php");
@@ -20,7 +20,7 @@ function soNumero($str) {
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-$senha = md5($senha1);
+$senha1 = base64_encode($senha);
 $cpf = soNumero($cpf1);
 $rgn = soNumero($rg);
 $celularn = soNumero($celular);
@@ -39,7 +39,7 @@ $numero_cliente = mysqli_num_rows($resultado_sql);
 
 if($numero == 0 && $numero_cliente == 0){
 
-    $sql_login = "INSERT INTO `login`(`login`, `senha`, `privilegio`) VALUES ('$login','$senha',0)";
+    $sql_login = "INSERT INTO `login`(`login`, `senha`, `privilegio`) VALUES ('$login','$senha1',0)";
     $resultado_login = mysqli_query($conn, $sql_login);
 
 

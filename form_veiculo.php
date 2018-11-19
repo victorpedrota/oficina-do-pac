@@ -312,8 +312,16 @@ else{
                                     <div class='col-4'> Placa:<input value='".$vetor_veiculo['placa']."' type='text' class='form-control inplaca placa' id='placa' name='placa' required></div>
                                     <input type='hidden' value='".$vetor_veiculo['cor']."' name='altera_cor'>
                                     <div class='col-4'> Cor: <select name='cor' style='' class='form-control' id='cor' required> <option value=''>Selecione um cor
-                                    </option><option value='azul'>azul
-                                    </option> </select> </div>
+                                    </option>
+                                    <option value='azul'>azul</option> 
+                                    <option value='vermelho'>vermelho</option> 
+                                    <option value='roxo'>roxo</option> 
+                                    <option value='amarelo'>amarelo</option> 
+                                    <option value='branco'>branco</option> 
+                                    <option value='preto'>preto</option>
+                                    <option value='cinza'>cinza</option> 
+                                    <option value='prata'>prata</option>  
+                                    </select> </div>
                                     <div class='col-4'> Ano: <select  class='form-control year' name='ano' id='year' required>
                                     <option value=''>Selecione o ano</option> </select> </div>
                                     </div>

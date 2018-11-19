@@ -1,10 +1,11 @@
 <?php
+ini_set('default_charset', 'UTF-8');
 $nome = $_POST['nome'];
 $celular = $_POST['celular'];
 $telefone = $_POST['telefone'];
 $cnpj = $_POST['cnpj'];
 $estado = $_POST['uf'];
-$cidade = $_POST['cidade'];
+$cidade = utf8_encode($_POST['cidade']);
 $rua = $_POST['rua'];
 $login = $_POST['login'];
 $bairro = $_POST['bairro'];
