@@ -152,15 +152,15 @@ else{
                   </div>
 
                 </div><input type="hidden"  id="cod_mec" value="<?php echo $cod_cliente; ?>">
-                <div class="card" style="margin-top:30px;width: 18rem;height: 250px;max-height: 300px;">
+                <div class="card" style="margin-top:30px;width: 20rem;height: 250px;max-height: 300px;">
             
               <h5 class="card-header">Resumo do chamado</h5>
-            <div class="card-body" style=" max-height: 200px;overflow-y: scroll;">
+            <div class="card-body" style=" max-height: 300px;overflow-y: scroll;">
             
               <?php
-              $orcamento ="SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico && `status` = 2";
+              $orcamento ="SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico";
               $query_orcamento = mysqli_query($conn,$orcamento);
-              $vetor_orcmaneto = mysqli_fetch_array($query_orcamento);
+              
               $valor_total = 0;
               $x=1;
               $numero_orcamento = mysqli_num_rows($query_orcamento);
@@ -169,7 +169,12 @@ else{
               }
               else{
                 while ($vetor_orcmaneto = mysqli_fetch_array($query_orcamento)) {
-                  echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;' href='excluir_orcamento.php?cod_orcamento=".$vetor_orcmaneto['cod_orcamento']."'><i class='fas fa-times'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  if ($vetor_orcmaneto['status'] ==2) {
+                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;' href='excluir_orcamento.php?cod_orcamento=".$vetor_orcmaneto['cod_orcamento']."'><i class='fas fa-times'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  }else if ($vetor_orcmaneto['status'] ==3) {
+                    echo "Serviço".$x.":". $vetor_orcmaneto['tipo']."<a style='float:right;'><i class='fas fa-check' style='color:green;'></i></a><br>Valor:".$vetor_orcmaneto['valor']."<br>";
+                  }
+                  
                   $x++;
                   $valor_total = $valor_total + $vetor_orcmaneto['valor'];
                 }

@@ -1,0 +1,41 @@
+<?php
+    //Mantendo a sessão/cria uma sessao
+session_start();
+if(!isset($_SESSION["system_control"]))
+{
+  require('erro.php');       
+}
+else{
+        //Sessao já criada  
+        //Recuperando as variaveis da sessão
+  $system_control = $_SESSION["system_control"];   
+  $cod_login = $_SESSION['cod_login'];
+  $privilegio = $_SESSION["privilegio"];
+  
+  if($system_control == 1 && $privilegio == 1){
+    if (isset($_GET['cod'])) {
+      $cod= $_GET['cod'];
+      $cod_oficina = $_SESSION["cod_oficina"];
+      $cod_mecanico = $_SESSION["cod_mecanico"];
+      require('connect.php');
+      $sql_servico1 ="UPDATE `orcamento` SET `status`=3 WHERE `cod_orcamento` = $cod";
+      $query_servico1 = mysqli_query($conn,$sql_servico1); 
+      
+    }
+
+
+    ?>
+
+
+    <?php
+  }
+  else
+  {
+            //Acesso Inválido
+            //Finalizando a sessão
+    session_destroy();
+            //Mensagem para o Usuário
+    require('erro.php');      
+  }
+}
+?>

@@ -12,7 +12,7 @@ $bairro = $_POST['bairro'];
 $numero = $_POST['numero'];
 $complemento = $_POST['complemento'];
 $login = $_POST['login'];
-$senha = $_POST['senha'];
+$senha1 = $_POST['senha'];
 $cep = $_POST['cep'];
 $data_nascimento = $_POST['data'];
 require("connect.php");
@@ -20,7 +20,7 @@ function soNumero($str) {
     return preg_replace("/[^0-9]/", "", $str);
 }
 
-
+$senha = md5($senha1);
 $cpf = soNumero($cpf1);
 $rgn = soNumero($rg);
 $celularn = soNumero($celular);

@@ -248,24 +248,25 @@ else if(isset($_POST['nota'])){
 
 else if (isset($_POST['servicos'])) {
 	$cod_servico = $_POST['servicos'];
-	$x =1;
+	
 	$sql = "SELECT * FROM `orcamento` WHERE `cod_servico` = $cod_servico";
-	$query = mysqli_query($conn,$sql);
-
-	$numero = mysqli_fetch_array($query);
+	$query_orc = mysqli_query($conn,$sql);
+	$numero = mysqli_num_rows($query_orc);
+	$x =1;
 	echo "[";
-	while($vetor_orcamento = mysqli_fetch_array($query)){
+	while($vetor_orcamento = mysqli_fetch_array($query_orc)){
 		$cod_orcamento = $vetor_orcamento['cod_orcamento'];
 		$sql = "SELECT * FROM `agenda` WHERE `cod_orcamento` = $cod_orcamento";
 		$query = mysqli_query($conn,$sql);
 		$vetor_agenda = mysqli_fetch_array($query);
-		if ($numero == $x) {
 
-			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].'},' ;
+		if ($numero != $x) {
+
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].',"cod":'.$vetor_orcamento['cod_orcamento'].'},' ;
 
 		}
 		else{
-			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].'}' ;
+			echo '{ "tipo":"'.$vetor_orcamento['tipo'].'","data_inicio":"'.$vetor_agenda['data_termino'].'","status":'.$vetor_orcamento['status'].',"cod":'.$vetor_orcamento['cod_orcamento'].'}' ;
 		}
 		$x++;
 	}

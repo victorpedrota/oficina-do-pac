@@ -23,7 +23,7 @@ function update()
         else if($('#conversa').val() == obj[i].codigo && $('#codigo').val() == obj[i].cod_destinatario && $('#cod_destinatario').val() == obj[i].cod_autor )
           {
             
-            $('#screen').append("<div class='row'><ul style='margin-bottom:10px;background-color: red; width:100%;margin-left:10px;' class='list-group-item d-block'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul></div>");
+            $('#screen').append("<div class='row'><ul style='margin-bottom:10px;background-color: #e6e6d9; width:100%;margin-left:10px;' class='list-group-item d-block'> <li class='list-inline-item'>"+obj[i].texto+"</li></ul></div>");
           
 
       }

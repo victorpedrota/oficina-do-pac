@@ -94,11 +94,12 @@ else{
         </button>
       </div>
       <div class="modal-body">
-        Foto aletrada com sucesso!
+        Foto alterada com sucesso!
       </div>
       <div class="modal-footer">
-        
+
         <a href="javascript:history.back()" class="btn btn-primary">Voltar</a>
+
       </div>
     </div>
   </div>
@@ -107,7 +108,9 @@ else{
   $(document).ready(function(){
     $('#exampleModalLong').modal('show')
     $('#exampleModalLong').on('hidden.bs.modal', function (e) {
+
  window.history.back();
+
 })
 
   })
