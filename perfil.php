@@ -272,6 +272,9 @@ else{
 
               $sql_vec ="SELECT * FROM `veiculo` WHERE `cod_cliente` = $cod_cliente" ;
               $veiculo_res = mysqli_query($conn,$sql_vec);
+              if (mysqli_num_rows($veiculo_res) == 0) {
+                echo "<option>Cadastre um carro</option>";
+              }
               while ($vetor_vec = mysqli_fetch_array($veiculo_res)) {
                 echo "<option value=".$vetor_vec['cod_veiculo'].">Modelo:  ".$vetor_vec['modelo']."      Placa:  ".$vetor_vec['placa']."</option>";
               }
